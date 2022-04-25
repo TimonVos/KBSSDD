@@ -24,5 +24,11 @@ namespace WPF
         {
             InitializeComponent();
         }
+
+        private void RadioButton_Checked(object sender, RoutedEventArgs e)
+        {
+            FormType.Content = "test";
+            
+        }
     }
 }
