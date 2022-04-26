@@ -27,19 +27,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\xcort\\.nuget\\packages\\": {}
+    "C:\\Users\\dilan\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Programming\\Projects\\C#\\KBSDD\\Beoordelingssysteem\\WPF2\\WPF2.csproj",
+      "projectUniqueName": "C:\\Users\\dilan\\Source\\Repos\\TimonVos\\KBSSDD\\Beoordelingssysteem\\WPF2\\WPF2.csproj",
       "projectName": "WPF2",
-      "projectPath": "D:\\Programming\\Projects\\C#\\KBSDD\\Beoordelingssysteem\\WPF2\\WPF2.csproj",
-      "packagesPath": "C:\\Users\\xcort\\.nuget\\packages\\",
-      "outputPath": "D:\\Programming\\Projects\\C#\\KBSDD\\Beoordelingssysteem\\WPF2\\obj\\",
+      "projectPath": "C:\\Users\\dilan\\Source\\Repos\\TimonVos\\KBSSDD\\Beoordelingssysteem\\WPF2\\WPF2.csproj",
+      "packagesPath": "C:\\Users\\dilan\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\dilan\\Source\\Repos\\TimonVos\\KBSSDD\\Beoordelingssysteem\\WPF2\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\xcort\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\dilan\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -53,8 +53,8 @@
         "net6.0-windows7.0": {
           "targetAlias": "net6.0-windows",
           "projectReferences": {
-            "D:\\Programming\\Projects\\C#\\KBSDD\\Beoordelingssysteem\\Model\\Model.csproj": {
-              "projectPath": "D:\\Programming\\Projects\\C#\\KBSDD\\Beoordelingssysteem\\Model\\Model.csproj"
+            "C:\\Users\\dilan\\Source\\Repos\\TimonVos\\KBSSDD\\Beoordelingssysteem\\Model\\Model.csproj": {
+              "projectPath": "C:\\Users\\dilan\\Source\\Repos\\TimonVos\\KBSSDD\\Beoordelingssysteem\\Model\\Model.csproj"
             }
           }
         }
@@ -86,7 +86,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
       }
     }
   }

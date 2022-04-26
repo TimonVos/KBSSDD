@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\WpfApp"
+    "\\Beoordelingssysteem",
+    "\\Beoordelingssysteem\\Model"
   ],
+  "SelectedNode": "\\Beoordelingssysteem\\Model\\Form.cs",
   "PreviewInSolutionExplorer": false
 }
