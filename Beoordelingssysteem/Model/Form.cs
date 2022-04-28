@@ -7,7 +7,6 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using Model;
-using Model.Annotations;
 
 namespace WPF
 {
@@ -21,12 +20,12 @@ namespace WPF
         /// <summary>
         /// Dictionary of competences to be rated, each provided with a integer to indicate weight towards final grade.
         /// </summary>
-        public Dictionary<Competence, int> Competences { get; set; }
+        public Dictionary<Competence, int> ?Competences { get; set; }
         /// <summary>
         /// Small array for the control questions for knock-out criteria of a project.
         /// </summary>
-        private string[] ControlQuestions { get; set; }
-        private ObservableCollection<string> _competenceList;
+        private string[] ?ControlQuestions { get; set; }
+        private ObservableCollection<string> ?_competenceList;
         #endregion
 
         #region StandardFormFiller
@@ -143,6 +142,9 @@ namespace WPF
                 i += 3;
             }
             tempCompetence.Criteriums.Add(tempCriterium);
+            this.Competences.Add(tempCompetence, 10);
+            tempCompetence = new Competence();
+            tempCompetence.Name = "Manage & Control";
             this.Competences.Add(tempCompetence, 10);
         }
         #endregion

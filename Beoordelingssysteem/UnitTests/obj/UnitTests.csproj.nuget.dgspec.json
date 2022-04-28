@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\dilan\\Source\\Repos\\TimonVos\\KBSSDD\\Beoordelingssysteem\\UnitTests\\UnitTests.csproj": {}
+    "C:\\Programming\\KBSDD\\Beoordelingssysteem\\UnitTests\\UnitTests.csproj": {}
   },
   "projects": {
-    "C:\\Users\\dilan\\Source\\Repos\\TimonVos\\KBSSDD\\Beoordelingssysteem\\UnitTests\\UnitTests.csproj": {
+    "C:\\Programming\\KBSDD\\Beoordelingssysteem\\UnitTests\\UnitTests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\dilan\\Source\\Repos\\TimonVos\\KBSSDD\\Beoordelingssysteem\\UnitTests\\UnitTests.csproj",
+        "projectUniqueName": "C:\\Programming\\KBSDD\\Beoordelingssysteem\\UnitTests\\UnitTests.csproj",
         "projectName": "UnitTests",
-        "projectPath": "C:\\Users\\dilan\\Source\\Repos\\TimonVos\\KBSSDD\\Beoordelingssysteem\\UnitTests\\UnitTests.csproj",
-        "packagesPath": "C:\\Users\\dilan\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\dilan\\Source\\Repos\\TimonVos\\KBSSDD\\Beoordelingssysteem\\UnitTests\\obj\\",
+        "projectPath": "C:\\Programming\\KBSDD\\Beoordelingssysteem\\UnitTests\\UnitTests.csproj",
+        "packagesPath": "C:\\Users\\xcort\\.nuget\\packages\\",
+        "outputPath": "C:\\Programming\\KBSDD\\Beoordelingssysteem\\UnitTests\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\dilan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\xcort\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -72,7 +72,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     }

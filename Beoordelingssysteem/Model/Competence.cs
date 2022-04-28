@@ -10,10 +10,10 @@ namespace Model
     {
         #region Properties
 
-        public string Name { get; set; }
-        public string[] RatedBy { get; set; }
-        public List<Criterium> Criteriums { get; set; }
-        public string Notes { get; set; }
+        public string ?Name { get; set; }
+        public string[] ?RatedBy { get; set; }
+        public List<Criterium> ?Criteriums { get; set; }
+        public string ?Notes { get; set; }
         #endregion
     }
 }

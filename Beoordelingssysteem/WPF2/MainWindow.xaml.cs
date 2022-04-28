@@ -28,7 +28,6 @@ namespace WPF
 
         private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
         }
 
         private void RadioButton_Checked(object sender, RoutedEventArgs e)
@@ -49,6 +48,17 @@ namespace WPF
         private void RadioButton_Checked_3()
         {
 
+        }
+
+        private void CompetenceSelection_Selected(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void CompetenceSelection_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            SelectedCompetence.Content = CompetenceSelection.SelectedItem.ToString();
+            MainFormGrid.Visibility = Visibility.Visible;
         }
     }
 }

@@ -6,7 +6,6 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
-using Model.Annotations;
 using WPF;
 
 namespace Model
@@ -17,8 +16,8 @@ namespace Model
         {
             CreateForm();
         }
-        private ObservableCollection<string> _competenceList;
-        public ObservableCollection<string> CompetenceList
+        private ObservableCollection<string> ?_competenceList;
+        public ObservableCollection<string> ?CompetenceList
         {
             get => _competenceList;
 
@@ -30,12 +29,6 @@ namespace Model
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;
-
-        [NotifyPropertyChangedInvocator]
-        protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
 
         private void CreateForm()
         {

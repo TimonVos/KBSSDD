@@ -10,7 +10,7 @@
     <Window.DataContext>
         <Model:FormContext/>
     </Window.DataContext>
-    <Grid Background="#FF3A3A3A" Margin="0,0,0,-6">
+    <Grid Background="#FF3A3A3A" Margin="0,0,0,-120">
         <Grid HorizontalAlignment="Left" Height="174" Margin="10,10,0,0" VerticalAlignment="Top" Width="187" Background="#FFB2B6B7">
             <StackPanel Margin="10">
                 <Label FontWeight="Bold">Wie wil je beoordelen?</Label>
@@ -23,73 +23,71 @@
                 <RadioButton GroupName="Student">S1164034</RadioButton>
             </StackPanel>
         </Grid>
-
-        <Grid Height="142" Margin="0,10,10,0" VerticalAlignment="Top" Background="#FFB2B6B7" HorizontalAlignment="Right" Width="175">
-            <StackPanel Margin="10">
-                <Label FontWeight="Bold">Wat wil je beoordelen?</Label>
-                <RadioButton GroupName="Competenties">Persoonlijke ontwikkeling</RadioButton>
-                <RadioButton GroupName="Competenties" IsChecked="True">Manage &amp; Control</RadioButton>
-                <RadioButton GroupName="Competenties">Analyseren</RadioButton>
-                <RadioButton GroupName="Competenties">Adviseren</RadioButton>
-                <RadioButton GroupName="Competenties">Ontwerpen</RadioButton>
-                <RadioButton GroupName="Competenties">Realiseren</RadioButton>
-            </StackPanel>
+        <TextBox Margin="10,189,0,0" TextWrapping="Wrap" Text="Voeg student toe" HorizontalAlignment="Left" Width="107" Height="22" VerticalAlignment="Top"/>
+        <Button Content="Toevoegen" HorizontalAlignment="Left" Margin="122,190,0,0" VerticalAlignment="Top"/>
+        <Grid Margin="0,10,0,0" HorizontalAlignment="Right" Width="381" Height="208" VerticalAlignment="Top">
+            <Grid Height="196" Margin="196,2,10,0" VerticalAlignment="Top" Background="#FFB2B6B7">
+                <StackPanel Margin="10">
+                    <Label FontWeight="Bold">Wat wil je beoordelen?</Label>
+                    <ListBox x:Name="CompetenceSelection" Background="#FFB2B6B7" d:ItemsSource="{d:SampleData ItemCount=5}" ItemsSource="{Binding CompetenceList}" SelectionChanged="CompetenceSelection_SelectionChanged"/>
+                </StackPanel>
+            </Grid>
+            <Button Content="Export naar Word" Width="100" Height="25" Margin="0,0,150,150"/>
+            <Button Content="Export naar .CSV" Width="100" Height="25" Margin="0,50,150,125"/>
         </Grid>
-        <Grid HorizontalAlignment="Center" Height="315" Margin="0,257,0,0" VerticalAlignment="Top" Width="618" Background="#FFB2B6B7">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="64*"/>
-                <ColumnDefinition Width="245*"/>
-            </Grid.ColumnDefinitions>
-            <Grid HorizontalAlignment="Left" Margin="10,0,0,0" Height="27" VerticalAlignment="Top" Width="120" Background="#FF2F39D2" Grid.Column="1">
-                <Border BorderBrush="Black" BorderThickness="2" HorizontalAlignment="Stretch" Height="Auto" Margin="0,0,0,0" VerticalAlignment="Stretch" Width="Auto"/>
+        <Grid HorizontalAlignment="Center" Name="MainFormGrid" Visibility="Visible" Height="696" VerticalAlignment="Top" Width="780">
+            <Grid Height="333" HorizontalAlignment="Center" Margin="81,0,81,106" VerticalAlignment="Bottom" Background="#FFB2B6B7">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="64*"/>
+                    <ColumnDefinition Width="245*"/>
+                </Grid.ColumnDefinitions>
+                <Grid HorizontalAlignment="Left" Margin="10,0,0,0" Height="27" VerticalAlignment="Top" Width="120" Background="#FF2F39D2" Grid.Column="1">
+                    <Border BorderBrush="Black" BorderThickness="2" HorizontalAlignment="Stretch" Height="Auto" Margin="0,0,0,0" VerticalAlignment="Stretch" Width="Auto"/>
+                </Grid>
+                <Grid HorizontalAlignment="Left" Margin="130,0,0,0" Height="27" VerticalAlignment="Top" Width="120" Background="#FF2F39D2" Grid.Column="1">
+                    <Border BorderBrush="Black" BorderThickness="2"/>
+                </Grid>
+                <Grid HorizontalAlignment="Left" Margin="250,0,0,0" Height="27" VerticalAlignment="Top" Width="120" Background="#FF2F39D2" Grid.Column="1">
+                    <Border BorderBrush="Black" BorderThickness="2"/>
+                </Grid>
+                <Grid HorizontalAlignment="Left" Margin="370,0,0,0" Height="27" VerticalAlignment="Top" Width="120" Background="#FF2F39D2" Grid.Column="1">
+                    <Border BorderBrush="Black" BorderThickness="2"/>
+                </Grid>
+                <RadioButton Grid.Column="1" Content="RadioButton" HorizontalAlignment="Left" Margin="28,53,0,0" VerticalAlignment="Top" Checked="RadioButton_Checked_2"/>
+                <RadioButton Grid.Column="1" Content="RadioButton" HorizontalAlignment="Left" Margin="28,114,0,0" VerticalAlignment="Top"/>
+                <RadioButton Grid.Column="1" Content="RadioButton" HorizontalAlignment="Left" Margin="28,171,0,0" VerticalAlignment="Top" Checked="RadioButton_Checked_1"/>
+                <RadioButton Grid.Column="1" Content="RadioButton" HorizontalAlignment="Left" Margin="28,226,0,0" VerticalAlignment="Top"/>
+                <RadioButton Grid.Column="1" Content="RadioButton" HorizontalAlignment="Left" Margin="148,53,0,0" VerticalAlignment="Top"/>
+                <RadioButton Grid.Column="1" Content="RadioButton" HorizontalAlignment="Left" Margin="268,53,0,0" VerticalAlignment="Top"/>
+                <RadioButton Grid.Column="1" Content="RadioButton" HorizontalAlignment="Left" Margin="388,53,0,0" VerticalAlignment="Top"/>
+                <RadioButton Grid.Column="1" Content="RadioButton" HorizontalAlignment="Left" Margin="148,114,0,0" VerticalAlignment="Top"/>
+                <RadioButton Grid.Column="1" Content="RadioButton" HorizontalAlignment="Left" Margin="268,114,0,0" VerticalAlignment="Top"/>
+                <RadioButton Grid.Column="1" Content="RadioButton" HorizontalAlignment="Left" Margin="388,114,0,0" VerticalAlignment="Top"/>
+                <RadioButton Grid.Column="1" Content="RadioButton" HorizontalAlignment="Left" Margin="148,171,0,0" VerticalAlignment="Top"/>
+                <RadioButton Grid.Column="1" Content="RadioButton" HorizontalAlignment="Left" Margin="268,171,0,0" VerticalAlignment="Top"/>
+                <RadioButton Grid.Column="1" Content="RadioButton" HorizontalAlignment="Left" Margin="388,172,0,0" VerticalAlignment="Top"/>
+                <RadioButton Grid.Column="1" Content="RadioButton" HorizontalAlignment="Left" Margin="148,226,0,0" VerticalAlignment="Top"/>
+                <RadioButton Grid.Column="1" Content="RadioButton" HorizontalAlignment="Left" Margin="268,226,0,0" VerticalAlignment="Top"/>
+                <RadioButton Grid.Column="1" Content="RadioButton" HorizontalAlignment="Left" Margin="388,226,0,0" VerticalAlignment="Top"/>
+                <TextBlock HorizontalAlignment="Center" Margin="0,53,0,0" TextWrapping="Wrap" Text="Aanpak" VerticalAlignment="Top"/>
+                <TextBlock HorizontalAlignment="Left" Margin="41,109,0,0" TextWrapping="Wrap" Text="Initiatief" VerticalAlignment="Top"/>
+                <TextBlock HorizontalAlignment="Center" Margin="0,166,0,0" TextWrapping="Wrap" Text="Keuzes maken" VerticalAlignment="Top"/>
+                <TextBlock HorizontalAlignment="Left" Margin="33,225,0,0" TextWrapping="Wrap" Text="Effectiviteit" VerticalAlignment="Top"/>
+                <RadioButton Grid.Column="1" Content="RadioButton" HorizontalAlignment="Left" Margin="28,276,0,0" VerticalAlignment="Top"/>
+                <RadioButton Grid.Column="1" Content="RadioButton" HorizontalAlignment="Left" Margin="28,276,0,0" VerticalAlignment="Top"/>
+                <RadioButton Grid.Column="1" Content="RadioButton" HorizontalAlignment="Left" Margin="388,276,0,0" VerticalAlignment="Top"/>
+                <RadioButton Grid.Column="1" Content="RadioButton" HorizontalAlignment="Left" Margin="268,276,0,0" VerticalAlignment="Top"/>
+                <RadioButton Grid.Column="1" Content="RadioButton" HorizontalAlignment="Left" Margin="148,276,0,0" VerticalAlignment="Top"/>
+                <TextBlock HorizontalAlignment="Center" Margin="0,274,0,0" TextWrapping="Wrap" Text="Zelfkritisch" VerticalAlignment="Top"/>
             </Grid>
-            <Grid HorizontalAlignment="Left" Margin="130,0,0,0" Height="27" VerticalAlignment="Top" Width="120" Background="#FF2F39D2" Grid.Column="1">
-                <Border BorderBrush="Black" BorderThickness="2"/>
+            <Grid HorizontalAlignment="Left" Height="28" Margin="91,229,0,0" VerticalAlignment="Top" Width="138" Background="#FFB2B6B7">
+                <Label Name="SelectedCompetence" HorizontalAlignment="Center" VerticalAlignment="Top" Height="23" Content=""/>
             </Grid>
-            <Grid HorizontalAlignment="Left" Margin="250,0,0,0" Height="27" VerticalAlignment="Top" Width="120" Background="#FF2F39D2" Grid.Column="1">
-                <Border BorderBrush="Black" BorderThickness="2"/>
-            </Grid>
-            <Grid HorizontalAlignment="Left" Margin="370,0,0,0" Height="27" VerticalAlignment="Top" Width="120" Background="#FF2F39D2" Grid.Column="1">
-                <Border BorderBrush="Black" BorderThickness="2"/>
-            </Grid>
-            <RadioButton Grid.Column="1" Content="RadioButton" HorizontalAlignment="Left" Margin="28,53,0,0" VerticalAlignment="Top" Checked="RadioButton_Checked_2"/>
-            <RadioButton Grid.Column="1" Content="RadioButton" HorizontalAlignment="Left" Margin="28,114,0,0" VerticalAlignment="Top"/>
-            <RadioButton Grid.Column="1" Content="RadioButton" HorizontalAlignment="Left" Margin="28,171,0,0" VerticalAlignment="Top" Checked="RadioButton_Checked_1"/>
-            <RadioButton Grid.Column="1" Content="RadioButton" HorizontalAlignment="Left" Margin="28,226,0,0" VerticalAlignment="Top"/>
-            <RadioButton Grid.Column="1" Content="RadioButton" HorizontalAlignment="Left" Margin="148,53,0,0" VerticalAlignment="Top"/>
-            <RadioButton Grid.Column="1" Content="RadioButton" HorizontalAlignment="Left" Margin="268,53,0,0" VerticalAlignment="Top"/>
-            <RadioButton Grid.Column="1" Content="RadioButton" HorizontalAlignment="Left" Margin="388,53,0,0" VerticalAlignment="Top"/>
-            <RadioButton Grid.Column="1" Content="RadioButton" HorizontalAlignment="Left" Margin="148,114,0,0" VerticalAlignment="Top"/>
-            <RadioButton Grid.Column="1" Content="RadioButton" HorizontalAlignment="Left" Margin="268,114,0,0" VerticalAlignment="Top"/>
-            <RadioButton Grid.Column="1" Content="RadioButton" HorizontalAlignment="Left" Margin="388,114,0,0" VerticalAlignment="Top"/>
-            <RadioButton Grid.Column="1" Content="RadioButton" HorizontalAlignment="Left" Margin="148,171,0,0" VerticalAlignment="Top"/>
-            <RadioButton Grid.Column="1" Content="RadioButton" HorizontalAlignment="Left" Margin="268,171,0,0" VerticalAlignment="Top"/>
-            <RadioButton Grid.Column="1" Content="RadioButton" HorizontalAlignment="Left" Margin="388,172,0,0" VerticalAlignment="Top"/>
-            <RadioButton Grid.Column="1" Content="RadioButton" HorizontalAlignment="Left" Margin="148,226,0,0" VerticalAlignment="Top"/>
-            <RadioButton Grid.Column="1" Content="RadioButton" HorizontalAlignment="Left" Margin="268,226,0,0" VerticalAlignment="Top"/>
-            <RadioButton Grid.Column="1" Content="RadioButton" HorizontalAlignment="Left" Margin="388,226,0,0" VerticalAlignment="Top"/>
-            <TextBlock HorizontalAlignment="Center" Margin="0,53,0,0" TextWrapping="Wrap" Text="Aanpak" VerticalAlignment="Top"/>
-            <TextBlock HorizontalAlignment="Left" Margin="41,109,0,0" TextWrapping="Wrap" Text="Initiatief" VerticalAlignment="Top"/>
-            <TextBlock HorizontalAlignment="Center" Margin="0,166,0,0" TextWrapping="Wrap" Text="Keuzes maken" VerticalAlignment="Top"/>
-            <TextBlock HorizontalAlignment="Left" Margin="33,225,0,0" TextWrapping="Wrap" Text="Effectiviteit" VerticalAlignment="Top"/>
-            <RadioButton Grid.Column="1" Content="RadioButton" HorizontalAlignment="Left" Margin="28,276,0,0" VerticalAlignment="Top"/>
-            <RadioButton Grid.Column="1" Content="RadioButton" HorizontalAlignment="Left" Margin="28,276,0,0" VerticalAlignment="Top"/>
-            <RadioButton Grid.Column="1" Content="RadioButton" HorizontalAlignment="Left" Margin="388,276,0,0" VerticalAlignment="Top"/>
-            <RadioButton Grid.Column="1" Content="RadioButton" HorizontalAlignment="Left" Margin="268,276,0,0" VerticalAlignment="Top"/>
-            <RadioButton Grid.Column="1" Content="RadioButton" HorizontalAlignment="Left" Margin="148,276,0,0" VerticalAlignment="Top"/>
-            <TextBlock HorizontalAlignment="Center" Margin="0,274,0,0" TextWrapping="Wrap" Text="Zelfkritisch" VerticalAlignment="Top"/>
+            <Label Content="Excellent (9+)" HorizontalAlignment="Left" Margin="251,257,0,0" VerticalAlignment="Top"/>
+            <Label Content="Goed (8)" HorizontalAlignment="Left" Margin="382,257,0,0" VerticalAlignment="Top"/>
+            <Label Content="Voldoende (6)" HorizontalAlignment="Left" Margin="489,257,0,0" VerticalAlignment="Top"/>
+            <Label Content="Niet voldaan (4-)" HorizontalAlignment="Left" Margin="597,257,0,0" VerticalAlignment="Top"/>
+            <TextBox HorizontalAlignment="Center" Margin="81,602,0,0" TextWrapping="Wrap" Text="Opmerkingen" VerticalAlignment="Top" Width="572" Height="54"/>
         </Grid>
-        <Grid HorizontalAlignment="Left" Height="28" Margin="91,229,0,0" VerticalAlignment="Top" Width="138" Background="#FFB2B6B7">
-            <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Height="23"><Run Text="Manage &amp; control"/><LineBreak/><Run/></TextBlock>
-        </Grid>
-        <Label Content="Excellent (9+)" HorizontalAlignment="Left" Margin="251,257,0,0" VerticalAlignment="Top"/>
-        <Label Content="Goed (8)" HorizontalAlignment="Left" Margin="382,257,0,0" VerticalAlignment="Top"/>
-        <Label Content="Voldoende (6)" HorizontalAlignment="Left" Margin="489,257,0,0" VerticalAlignment="Top"/>
-        <Label Content="Niet voldaan (4-)" HorizontalAlignment="Left" Margin="597,257,0,0" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Margin="213,10,0,0" TextWrapping="Wrap" Text="Voeg student toe" VerticalAlignment="Top" Width="107" Height="22"/>
-        <Button Content="Toevoegen" HorizontalAlignment="Left" Margin="334,10,0,0" VerticalAlignment="Top"/>
-        <Button Content="Export naar .CSV" HorizontalAlignment="Left" Margin="12,612,0,0" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Margin="130,595,0,0" TextWrapping="Wrap" Text="Opmerkingen" VerticalAlignment="Top" Width="572" Height="54"/>
-
     </Grid>
 </Window>

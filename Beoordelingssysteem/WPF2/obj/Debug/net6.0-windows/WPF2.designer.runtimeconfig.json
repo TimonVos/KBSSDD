@@ -12,8 +12,8 @@
       }
     ],
     "additionalProbingPaths": [
-      "C:\\Users\\dilan\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\dilan\\.nuget\\packages"
+      "C:\\Users\\xcort\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\xcort\\.nuget\\packages"
     ],
     "configProperties": {
       "Microsoft.NETCore.DotNetHostPolicy.SetAppPaths": true

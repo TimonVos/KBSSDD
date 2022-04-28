@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\dilan\\Source\\Repos\\TimonVos\\KBSSDD\\Beoordelingssysteem\\Model\\Model.csproj": {}
+    "C:\\Programming\\KBSDD\\Beoordelingssysteem\\Model\\Model.csproj": {}
   },
   "projects": {
-    "C:\\Users\\dilan\\Source\\Repos\\TimonVos\\KBSSDD\\Beoordelingssysteem\\Model\\Model.csproj": {
+    "C:\\Programming\\KBSDD\\Beoordelingssysteem\\Model\\Model.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\dilan\\Source\\Repos\\TimonVos\\KBSSDD\\Beoordelingssysteem\\Model\\Model.csproj",
+        "projectUniqueName": "C:\\Programming\\KBSDD\\Beoordelingssysteem\\Model\\Model.csproj",
         "projectName": "Model",
-        "projectPath": "C:\\Users\\dilan\\Source\\Repos\\TimonVos\\KBSSDD\\Beoordelingssysteem\\Model\\Model.csproj",
-        "packagesPath": "C:\\Users\\dilan\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\dilan\\Source\\Repos\\TimonVos\\KBSSDD\\Beoordelingssysteem\\Model\\obj\\",
+        "projectPath": "C:\\Programming\\KBSDD\\Beoordelingssysteem\\Model\\Model.csproj",
+        "packagesPath": "C:\\Users\\xcort\\.nuget\\packages\\",
+        "outputPath": "C:\\Programming\\KBSDD\\Beoordelingssysteem\\Model\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\dilan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\xcort\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -54,7 +54,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     }
