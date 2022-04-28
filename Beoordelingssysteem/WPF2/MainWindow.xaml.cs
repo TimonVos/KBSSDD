@@ -45,5 +45,10 @@ namespace WPF
         {
 
         }
+
+        private void RadioButton_Checked_3()
+        {
+
+        }
     }
 }

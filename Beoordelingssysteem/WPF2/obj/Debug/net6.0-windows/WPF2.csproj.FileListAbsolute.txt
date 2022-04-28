@@ -26,3 +26,11 @@ D:\Programming\Projects\C#\KBSDD\Beoordelingssysteem\WPF2\obj\Debug\net6.0-windo
 D:\Programming\Projects\C#\KBSDD\Beoordelingssysteem\WPF2\obj\Debug\net6.0-windows\WPF2.pdb
 D:\Programming\Projects\C#\KBSDD\Beoordelingssysteem\WPF2\obj\Debug\net6.0-windows\WPF2.genruntimeconfig.cache
 D:\Programming\Projects\C#\KBSDD\Beoordelingssysteem\WPF2\obj\Debug\net6.0-windows\ref\WPF2.dll
+C:\Users\dilan\Source\Repos\TimonVos\KBSSDD\Beoordelingssysteem\WPF2\obj\Debug\net6.0-windows\WPF2.csproj.AssemblyReference.cache
+C:\Users\dilan\Source\Repos\TimonVos\KBSSDD\Beoordelingssysteem\WPF2\obj\Debug\net6.0-windows\MainWindow.g.cs
+C:\Users\dilan\Source\Repos\TimonVos\KBSSDD\Beoordelingssysteem\WPF2\obj\Debug\net6.0-windows\App.g.cs
+C:\Users\dilan\Source\Repos\TimonVos\KBSSDD\Beoordelingssysteem\WPF2\obj\Debug\net6.0-windows\WPF2_MarkupCompile.cache
+C:\Users\dilan\Source\Repos\TimonVos\KBSSDD\Beoordelingssysteem\WPF2\obj\Debug\net6.0-windows\WPF2_MarkupCompile.lref
+C:\Users\dilan\Source\Repos\TimonVos\KBSSDD\Beoordelingssysteem\WPF2\obj\Debug\net6.0-windows\WPF2.dll
+C:\Users\dilan\Source\Repos\TimonVos\KBSSDD\Beoordelingssysteem\WPF2\obj\Debug\net6.0-windows\refint\WPF2.dll
+C:\Users\dilan\Source\Repos\TimonVos\KBSSDD\Beoordelingssysteem\WPF2\obj\Debug\net6.0-windows\WPF2.pdb

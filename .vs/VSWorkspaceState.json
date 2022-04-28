@@ -2,8 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\Beoordelingssysteem",
-    "\\Beoordelingssysteem\\Model"
+    "\\Beoordelingssysteem\\Model",
+    "\\Beoordelingssysteem\\WPF2"
   ],
-  "SelectedNode": "\\Beoordelingssysteem\\Model\\Form.cs",
+  "SelectedNode": "\\Beoordelingssysteem\\WPF2\\MainWindow.xaml",
   "PreviewInSolutionExplorer": false
 }
