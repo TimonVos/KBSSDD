@@ -6,9 +6,8 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
-using Model;
 
-namespace WPF
+namespace Model
 {
     public class Form
     {
@@ -25,7 +24,6 @@ namespace WPF
         /// Small array for the control questions for knock-out criteria of a project.
         /// </summary>
         private string[] ?ControlQuestions { get; set; }
-        private ObservableCollection<string> ?_competenceList;
         #endregion
 
         #region StandardFormFiller
@@ -43,12 +41,16 @@ namespace WPF
                 "Het portfolio en alle broncode."
             };
             ControlQuestions = tempString1;
-            Criterium tempCriterium = new Criterium();
             Competence tempCompetence = new Competence();
             this.Competences = new Dictionary<Competence, int>();
-            tempCriterium.RatingsDictionary = new Dictionary<Rating, string>();
-            tempCompetence.Criteriums = new List<Criterium>();
             tempCompetence.Name = "Analyseren";
+            string[] criteria =
+            {
+                "Systematische methoden",
+                "Business case beschreven",
+                "Productbacklog aangevuld",
+                "Sprintbacklog voldoende detail"
+            };
             string[] criteriumDescriptions = { 
                 "Er zijn geschikte systematische methoden gekozen voor requirements " +
                 "analyse en deze zijn op navolgbare wijze uitgevoerd. Met andere woorden, " +
@@ -117,8 +119,17 @@ namespace WPF
                 "zodat deze minder aandacht behoeven tijdens de meeting. "
             };
             int i = 0;
+            tempCompetence.Criteriums = new List<Criterium>();
             foreach (string criteriumDescription in criteriumDescriptions)
             {
+                int k = i;
+                Criterium tempCriterium = new Criterium();
+                tempCriterium.RatingsDictionary = new Dictionary<Rating, string>();
+                if (i > 0)
+                {
+                    k = k / 3;
+                }
+                tempCriterium.Name = criteria[k];
                 tempCriterium.Description = criteriumDescription;
                 for (int j = 0; j < 3; j++)
                 {
@@ -139,13 +150,51 @@ namespace WPF
                     tempRating.Description = ratingDescriptions[i + j];
                     tempCriterium.RatingsDictionary.Add(tempRating, header);
                 }
+                tempCompetence.Criteriums.Add(tempCriterium);
                 i += 3;
             }
-            tempCompetence.Criteriums.Add(tempCriterium);
             this.Competences.Add(tempCompetence, 10);
-            tempCompetence = new Competence();
-            tempCompetence.Name = "Manage & Control";
-            this.Competences.Add(tempCompetence, 10);
+            Competence tempCompetence2 = new Competence();
+            tempCompetence2.Name = "Manage & Control";
+            tempCompetence2.Criteriums = new List<Criterium>();
+            criteria[0] = "test1";
+            ratingDescriptions[0] = "test3";
+            criteriumDescriptions[0] = "test2";
+            i = 0;
+            foreach (string criteriumDescription in criteriumDescriptions)
+            {
+                int k = i;
+                Criterium tempCriterium = new Criterium();
+                tempCriterium.RatingsDictionary = new Dictionary<Rating, string>();
+                if (i > 0)
+                {
+                    k = k / 3;
+                }
+                tempCriterium.Name = criteria[k];
+                tempCriterium.Description = criteriumDescription;
+                for (int j = 0; j < 3; j++)
+                {
+                    string header = "";
+                    switch (j)
+                    {
+                        case 0:
+                            header = "Ontwikkelpunt";
+                            break;
+                        case 1:
+                            header = "Competent";
+                            break;
+                        case 2:
+                            header = "Voorbeeldig";
+                            break;
+                    }
+                    Rating tempRating = new Rating();
+                    tempRating.Description = ratingDescriptions[i + j];
+                    tempCriterium.RatingsDictionary.Add(tempRating, header);
+                }
+                tempCompetence2.Criteriums.Add(tempCriterium);
+                i += 3;
+            }
+            this.Competences.Add(tempCompetence2, 10);
         }
         #endregion
     }

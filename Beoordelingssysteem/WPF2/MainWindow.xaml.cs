@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Model;
+using ViewModel;
 
 namespace WPF
 {
@@ -28,37 +29,9 @@ namespace WPF
 
         private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-        }
-
-        private void RadioButton_Checked(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void RadioButton_Checked_1(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void RadioButton_Checked_2(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void RadioButton_Checked_3()
-        {
-
-        }
-
-        private void CompetenceSelection_Selected(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void CompetenceSelection_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
             SelectedCompetence.Content = CompetenceSelection.SelectedItem.ToString();
             MainFormGrid.Visibility = Visibility.Visible;
+            FormContext.selectCompetence((Competence)CompetenceSelection.SelectedItem);
         }
     }
 }

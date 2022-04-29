@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "pdG/ve+2OCcBfQR/cWGY3jSDKqm8+OUwp3DFKu7ErPit5n/7RsGDthvFwOhM/XroEZPtgHFp0oFG+Bm7BgepRA==",
+  "dgSpecHash": "6kHYPyv6w8b1yZnOduCLM3dgcf0rklSgFfsLUNSKRB/HhdkYB5WE7PUZ9sPUB1Sw6WsOVwjFmjb/pHLG6dVAyw==",
   "success": true,
-  "projectFilePath": "C:\\Programming\\KBSDD\\Beoordelingssysteem\\UnitTests\\UnitTests.csproj",
+  "projectFilePath": "D:\\Programming\\Projects\\C#\\KBSDD\\Beoordelingssysteem\\UnitTests\\UnitTests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\xcort\\.nuget\\packages\\coverlet.collector\\3.1.0\\coverlet.collector.3.1.0.nupkg.sha512",
     "C:\\Users\\xcort\\.nuget\\packages\\microsoft.codecoverage\\16.11.0\\microsoft.codecoverage.16.11.0.nupkg.sha512",

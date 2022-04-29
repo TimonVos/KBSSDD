@@ -11,6 +11,19 @@
         "runtime": {
           "bin/placeholder/Model.dll": {}
         }
+      },
+      "ViewModel/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Model": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/ViewModel.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ViewModel.dll": {}
+        }
       }
     }
   },
@@ -19,11 +32,16 @@
       "type": "project",
       "path": "../Model/Model.csproj",
       "msbuildProject": "../Model/Model.csproj"
+    },
+    "ViewModel/1.0.0": {
+      "type": "project",
+      "path": "../ViewModel/ViewModel.csproj",
+      "msbuildProject": "../ViewModel/ViewModel.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0-windows7.0": [
-      "Model >= 1.0.0"
+      "ViewModel >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -32,11 +50,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Programming\\KBSDD\\Beoordelingssysteem\\WPF2\\WPF2.csproj",
-      "projectName": "WPF2",
-      "projectPath": "C:\\Programming\\KBSDD\\Beoordelingssysteem\\WPF2\\WPF2.csproj",
+      "projectUniqueName": "D:\\Programming\\Projects\\C#\\KBSDD\\Beoordelingssysteem\\WPF2\\View.csproj",
+      "projectName": "View",
+      "projectPath": "D:\\Programming\\Projects\\C#\\KBSDD\\Beoordelingssysteem\\WPF2\\View.csproj",
       "packagesPath": "C:\\Users\\xcort\\.nuget\\packages\\",
-      "outputPath": "C:\\Programming\\KBSDD\\Beoordelingssysteem\\WPF2\\obj\\",
+      "outputPath": "D:\\Programming\\Projects\\C#\\KBSDD\\Beoordelingssysteem\\WPF2\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\xcort\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -53,8 +71,8 @@
         "net6.0-windows7.0": {
           "targetAlias": "net6.0-windows",
           "projectReferences": {
-            "C:\\Programming\\KBSDD\\Beoordelingssysteem\\Model\\Model.csproj": {
-              "projectPath": "C:\\Programming\\KBSDD\\Beoordelingssysteem\\Model\\Model.csproj"
+            "D:\\Programming\\Projects\\C#\\KBSDD\\Beoordelingssysteem\\ViewModel\\ViewModel.csproj": {
+              "projectPath": "D:\\Programming\\Projects\\C#\\KBSDD\\Beoordelingssysteem\\ViewModel\\ViewModel.csproj"
             }
           }
         }
@@ -86,7 +104,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
       }
     }
   }
