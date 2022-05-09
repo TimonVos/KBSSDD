@@ -10,3 +10,15 @@ C:\Programming\KBSDD\Beoordelingssysteem\Model2\obj\Debug\net6.0\Model.dll
 C:\Programming\KBSDD\Beoordelingssysteem\Model2\obj\Debug\net6.0\refint\Model.dll
 C:\Programming\KBSDD\Beoordelingssysteem\Model2\obj\Debug\net6.0\Model.pdb
 C:\Programming\KBSDD\Beoordelingssysteem\Model2\obj\Debug\net6.0\ref\Model.dll
+D:\Programming\Projects\C#\KBSDD\Beoordelingssysteem\Model2\bin\Debug\net6.0\Model.deps.json
+D:\Programming\Projects\C#\KBSDD\Beoordelingssysteem\Model2\bin\Debug\net6.0\Model.dll
+D:\Programming\Projects\C#\KBSDD\Beoordelingssysteem\Model2\bin\Debug\net6.0\Model.pdb
+D:\Programming\Projects\C#\KBSDD\Beoordelingssysteem\Model2\obj\Debug\net6.0\Model.csproj.AssemblyReference.cache
+D:\Programming\Projects\C#\KBSDD\Beoordelingssysteem\Model2\obj\Debug\net6.0\Model.GeneratedMSBuildEditorConfig.editorconfig
+D:\Programming\Projects\C#\KBSDD\Beoordelingssysteem\Model2\obj\Debug\net6.0\Model.AssemblyInfoInputs.cache
+D:\Programming\Projects\C#\KBSDD\Beoordelingssysteem\Model2\obj\Debug\net6.0\Model.AssemblyInfo.cs
+D:\Programming\Projects\C#\KBSDD\Beoordelingssysteem\Model2\obj\Debug\net6.0\Model.csproj.CoreCompileInputs.cache
+D:\Programming\Projects\C#\KBSDD\Beoordelingssysteem\Model2\obj\Debug\net6.0\Model.dll
+D:\Programming\Projects\C#\KBSDD\Beoordelingssysteem\Model2\obj\Debug\net6.0\refint\Model.dll
+D:\Programming\Projects\C#\KBSDD\Beoordelingssysteem\Model2\obj\Debug\net6.0\Model.pdb
+D:\Programming\Projects\C#\KBSDD\Beoordelingssysteem\Model2\obj\Debug\net6.0\ref\Model.dll

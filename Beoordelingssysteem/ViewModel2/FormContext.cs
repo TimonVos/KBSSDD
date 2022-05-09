@@ -6,12 +6,20 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Input;
+using Microsoft.Toolkit.Mvvm.Input;
 using Model;
 
 namespace ViewModel
 {
     public class FormContext : INotifyPropertyChanged
     {
+        #region RatingSelected
+
+        public ICommand RatingCommand { get; set; }
+
+        #endregion
         #region FormCreation
         /// <summary>
         /// Form object required to remember data filled in menus
@@ -23,6 +31,11 @@ namespace ViewModel
         public FormContext()
         {
             CreateForm();
+            RatingCommand = new RelayCommand<String>((String? criterium) =>
+            {
+                
+            });
+
         }
         /// <summary>
         /// Initializes Form object, currently uses standardFormFiller

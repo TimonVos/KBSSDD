@@ -1,12 +1,6 @@
 D:\Programming\Projects\C#\KBSDD\Beoordelingssysteem\WPF2\obj\Debug\net6.0-windows\View.csproj.AssemblyReference.cache
 D:\Programming\Projects\C#\KBSDD\Beoordelingssysteem\WPF2\obj\Debug\net6.0-windows\App.g.cs
 D:\Programming\Projects\C#\KBSDD\Beoordelingssysteem\WPF2\obj\Debug\net6.0-windows\View_MarkupCompile.cache
-D:\Programming\Projects\C#\KBSDD\Beoordelingssysteem\WPF2\bin\Debug\net6.0-windows\Model.deps.json
-D:\Programming\Projects\C#\KBSDD\Beoordelingssysteem\WPF2\bin\Debug\net6.0-windows\Model.runtimeconfig.json
-D:\Programming\Projects\C#\KBSDD\Beoordelingssysteem\WPF2\bin\Debug\net6.0-windows\ViewModel.deps.json
-D:\Programming\Projects\C#\KBSDD\Beoordelingssysteem\WPF2\bin\Debug\net6.0-windows\ViewModel.runtimeconfig.json
-D:\Programming\Projects\C#\KBSDD\Beoordelingssysteem\WPF2\bin\Debug\net6.0-windows\Model.exe
-D:\Programming\Projects\C#\KBSDD\Beoordelingssysteem\WPF2\bin\Debug\net6.0-windows\ViewModel.exe
 D:\Programming\Projects\C#\KBSDD\Beoordelingssysteem\WPF2\bin\Debug\net6.0-windows\View.exe
 D:\Programming\Projects\C#\KBSDD\Beoordelingssysteem\WPF2\bin\Debug\net6.0-windows\View.dll.config
 D:\Programming\Projects\C#\KBSDD\Beoordelingssysteem\WPF2\bin\Debug\net6.0-windows\View.deps.json
@@ -56,3 +50,5 @@ C:\Programming\KBSDD\Beoordelingssysteem\WPF2\obj\Debug\net6.0-windows\refint\Vi
 C:\Programming\KBSDD\Beoordelingssysteem\WPF2\obj\Debug\net6.0-windows\View.pdb
 C:\Programming\KBSDD\Beoordelingssysteem\WPF2\obj\Debug\net6.0-windows\View.genruntimeconfig.cache
 C:\Programming\KBSDD\Beoordelingssysteem\WPF2\obj\Debug\net6.0-windows\ref\View.dll
+D:\Programming\Projects\C#\KBSDD\Beoordelingssysteem\WPF2\bin\Debug\net6.0-windows\Microsoft.Toolkit.Mvvm.dll
+D:\Programming\Projects\C#\KBSDD\Beoordelingssysteem\WPF2\bin\Debug\net6.0-windows\Microsoft.Xaml.Behaviors.dll
