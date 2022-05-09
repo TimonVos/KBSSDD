@@ -32,7 +32,7 @@
             <Button Content="Export naar Word" Width="100" Height="25" Margin="0,0,150,150"/>
             <Button Content="Export naar .CSV" Width="100" Height="25" Margin="0,50,150,125"/>
         </Grid>
-        <Grid HorizontalAlignment="Center" Name="MainFormGrid" Visibility="Visible" Width="780" Margin="0,223,0,117">
+        <Grid HorizontalAlignment="Center" Name="MainFormGrid" Visibility="Visible" Width="780" Margin="0,223,0,0" Height="486" VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="159*"/>
                 <ColumnDefinition Width="101*"/>
@@ -64,7 +64,7 @@
             <Label Content="Voldoende (6)" HorizontalAlignment="Left" Margin="0,0,0,406" VerticalAlignment="Bottom" Grid.Column="1"/>
             <Label Content="Niet voldaan (4-)" HorizontalAlignment="Left" Margin="114,0,0,408" VerticalAlignment="Bottom" Grid.Column="1"/>
             <TextBox HorizontalAlignment="Left" Margin="96,385,0,0" TextWrapping="Wrap" Text="Opmerkingen" VerticalAlignment="Top" Width="572" Height="54" Grid.ColumnSpan="2"/>
-            <ItemsControl Name="CompetenceRating" Margin="74,85,90,99" Grid.ColumnSpan="2" ItemsSource="{Binding CriteriumList}">
+            <ItemsControl Name="CompetenceRating" Margin="74,85,90,99" Grid.ColumnSpan="2"  ItemsSource="{Binding CriteriumList}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <Grid Margin="0,0,0,5">
@@ -96,10 +96,10 @@
                                 </ItemsControl.ItemsPanel>
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
-                                    <TextBlock  Margin="0,0,0,0" Grid.RowSpan="2" TextWrapping="Wrap">
-                                            <TextBlock.Text>
+                                        <RadioButton GroupName="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Grid}}}" Margin="0,0,0,0" Grid.RowSpan="2">
+                                            <RadioButton.Content>
                                                 <Binding Path="Value" StringFormat="Beoordeling : {0}"></Binding>
-                                            </TextBlock.Text>
+                                            </RadioButton.Content>
                                             <ToolTipService.ToolTip>
                                                 <TextBlock Width="150" TextWrapping="Wrap">
                                                     <TextBlock.Text>
@@ -107,7 +107,7 @@
                                                     </TextBlock.Text>
                                                 </TextBlock>
                                             </ToolTipService.ToolTip>
-                                        </TextBlock>
+                                        </RadioButton>
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
                             </ItemsControl>

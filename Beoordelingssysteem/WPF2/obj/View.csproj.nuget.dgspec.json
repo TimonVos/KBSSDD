@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Programming\\Projects\\C#\\KBSDD\\Beoordelingssysteem\\WPF2\\View.csproj": {}
+    "C:\\Programming\\KBSDD\\Beoordelingssysteem\\WPF2\\View.csproj": {}
   },
   "projects": {
-    "D:\\Programming\\Projects\\C#\\KBSDD\\Beoordelingssysteem\\Model\\Model.csproj": {
+    "C:\\Programming\\KBSDD\\Beoordelingssysteem\\Model2\\Model.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Programming\\Projects\\C#\\KBSDD\\Beoordelingssysteem\\Model\\Model.csproj",
+        "projectUniqueName": "C:\\Programming\\KBSDD\\Beoordelingssysteem\\Model2\\Model.csproj",
         "projectName": "Model",
-        "projectPath": "D:\\Programming\\Projects\\C#\\KBSDD\\Beoordelingssysteem\\Model\\Model.csproj",
+        "projectPath": "C:\\Programming\\KBSDD\\Beoordelingssysteem\\Model2\\Model.csproj",
         "packagesPath": "C:\\Users\\xcort\\.nuget\\packages\\",
-        "outputPath": "D:\\Programming\\Projects\\C#\\KBSDD\\Beoordelingssysteem\\Model\\obj\\",
+        "outputPath": "C:\\Programming\\KBSDD\\Beoordelingssysteem\\Model2\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\xcort\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -54,76 +54,18 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Programming\\Projects\\C#\\KBSDD\\Beoordelingssysteem\\ViewModel\\ViewModel.csproj": {
+    "C:\\Programming\\KBSDD\\Beoordelingssysteem\\ViewModel2\\ViewModel.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Programming\\Projects\\C#\\KBSDD\\Beoordelingssysteem\\ViewModel\\ViewModel.csproj",
+        "projectUniqueName": "C:\\Programming\\KBSDD\\Beoordelingssysteem\\ViewModel2\\ViewModel.csproj",
         "projectName": "ViewModel",
-        "projectPath": "D:\\Programming\\Projects\\C#\\KBSDD\\Beoordelingssysteem\\ViewModel\\ViewModel.csproj",
+        "projectPath": "C:\\Programming\\KBSDD\\Beoordelingssysteem\\ViewModel2\\ViewModel.csproj",
         "packagesPath": "C:\\Users\\xcort\\.nuget\\packages\\",
-        "outputPath": "D:\\Programming\\Projects\\C#\\KBSDD\\Beoordelingssysteem\\ViewModel\\obj\\",
-        "projectStyle": "PackageReference",
-        "configFilePaths": [
-          "C:\\Users\\xcort\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
-        ],
-        "originalTargetFrameworks": [
-          "net6.0"
-        ],
-        "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
-        },
-        "frameworks": {
-          "net6.0": {
-            "targetAlias": "net6.0",
-            "projectReferences": {
-              "D:\\Programming\\Projects\\C#\\KBSDD\\Beoordelingssysteem\\Model\\Model.csproj": {
-                "projectPath": "D:\\Programming\\Projects\\C#\\KBSDD\\Beoordelingssysteem\\Model\\Model.csproj"
-              }
-            }
-          }
-        },
-        "warningProperties": {
-          "warnAsError": [
-            "NU1605"
-          ]
-        }
-      },
-      "frameworks": {
-        "net6.0": {
-          "targetAlias": "net6.0",
-          "imports": [
-            "net461",
-            "net462",
-            "net47",
-            "net471",
-            "net472",
-            "net48"
-          ],
-          "assetTargetFallback": true,
-          "warn": true,
-          "frameworkReferences": {
-            "Microsoft.NETCore.App": {
-              "privateAssets": "all"
-            }
-          },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
-        }
-      }
-    },
-    "D:\\Programming\\Projects\\C#\\KBSDD\\Beoordelingssysteem\\WPF2\\View.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "D:\\Programming\\Projects\\C#\\KBSDD\\Beoordelingssysteem\\WPF2\\View.csproj",
-        "projectName": "View",
-        "projectPath": "D:\\Programming\\Projects\\C#\\KBSDD\\Beoordelingssysteem\\WPF2\\View.csproj",
-        "packagesPath": "C:\\Users\\xcort\\.nuget\\packages\\",
-        "outputPath": "D:\\Programming\\Projects\\C#\\KBSDD\\Beoordelingssysteem\\WPF2\\obj\\",
+        "outputPath": "C:\\Programming\\KBSDD\\Beoordelingssysteem\\ViewModel2\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\xcort\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -140,8 +82,8 @@
           "net6.0-windows7.0": {
             "targetAlias": "net6.0-windows",
             "projectReferences": {
-              "D:\\Programming\\Projects\\C#\\KBSDD\\Beoordelingssysteem\\ViewModel\\ViewModel.csproj": {
-                "projectPath": "D:\\Programming\\Projects\\C#\\KBSDD\\Beoordelingssysteem\\ViewModel\\ViewModel.csproj"
+              "C:\\Programming\\KBSDD\\Beoordelingssysteem\\Model2\\Model.csproj": {
+                "projectPath": "C:\\Programming\\KBSDD\\Beoordelingssysteem\\Model2\\Model.csproj"
               }
             }
           }
@@ -173,7 +115,68 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Programming\\KBSDD\\Beoordelingssysteem\\WPF2\\View.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Programming\\KBSDD\\Beoordelingssysteem\\WPF2\\View.csproj",
+        "projectName": "View",
+        "projectPath": "C:\\Programming\\KBSDD\\Beoordelingssysteem\\WPF2\\View.csproj",
+        "packagesPath": "C:\\Users\\xcort\\.nuget\\packages\\",
+        "outputPath": "C:\\Programming\\KBSDD\\Beoordelingssysteem\\WPF2\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\xcort\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0-windows7.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0-windows7.0": {
+            "targetAlias": "net6.0-windows",
+            "projectReferences": {
+              "C:\\Programming\\KBSDD\\Beoordelingssysteem\\ViewModel2\\ViewModel.csproj": {
+                "projectPath": "C:\\Programming\\KBSDD\\Beoordelingssysteem\\ViewModel2\\ViewModel.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0-windows7.0": {
+          "targetAlias": "net6.0-windows",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            },
+            "Microsoft.WindowsDesktop.App.WPF": {
+              "privateAssets": "none"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     }

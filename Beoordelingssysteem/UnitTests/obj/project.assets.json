@@ -882,16 +882,6 @@
         "runtime": {
           "lib/netstandard1.3/System.Xml.XDocument.dll": {}
         }
-      },
-      "Model/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v6.0",
-        "compile": {
-          "bin/placeholder/Model.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/Model.dll": {}
-        }
       }
     }
   },
@@ -3823,17 +3813,11 @@
         "system.xml.xdocument.4.0.11.nupkg.sha512",
         "system.xml.xdocument.nuspec"
       ]
-    },
-    "Model/1.0.0": {
-      "type": "project",
-      "path": "../Model/Model.csproj",
-      "msbuildProject": "../Model/Model.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
       "Microsoft.NET.Test.Sdk >= 16.11.0",
-      "Model >= 1.0.0",
       "NUnit >= 3.13.2",
       "NUnit3TestAdapter >= 4.0.0",
       "coverlet.collector >= 3.1.0"
@@ -3845,11 +3829,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Programming\\Projects\\C#\\KBSDD\\Beoordelingssysteem\\UnitTests\\UnitTests.csproj",
+      "projectUniqueName": "C:\\Programming\\KBSDD\\Beoordelingssysteem\\UnitTests\\UnitTests.csproj",
       "projectName": "UnitTests",
-      "projectPath": "D:\\Programming\\Projects\\C#\\KBSDD\\Beoordelingssysteem\\UnitTests\\UnitTests.csproj",
+      "projectPath": "C:\\Programming\\KBSDD\\Beoordelingssysteem\\UnitTests\\UnitTests.csproj",
       "packagesPath": "C:\\Users\\xcort\\.nuget\\packages\\",
-      "outputPath": "D:\\Programming\\Projects\\C#\\KBSDD\\Beoordelingssysteem\\UnitTests\\obj\\",
+      "outputPath": "C:\\Programming\\KBSDD\\Beoordelingssysteem\\UnitTests\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\xcort\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -3865,11 +3849,7 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "projectReferences": {
-            "D:\\Programming\\Projects\\C#\\KBSDD\\Beoordelingssysteem\\Model\\Model.csproj": {
-              "projectPath": "D:\\Programming\\Projects\\C#\\KBSDD\\Beoordelingssysteem\\Model\\Model.csproj"
-            }
-          }
+          "projectReferences": {}
         }
       },
       "warningProperties": {
@@ -3914,7 +3894,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
       }
     }
   }

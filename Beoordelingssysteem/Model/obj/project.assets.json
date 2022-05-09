@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Programming\\Projects\\C#\\KBSDD\\Beoordelingssysteem\\Model\\Model.csproj",
+      "projectUniqueName": "C:\\Programming\\KBSDD\\Beoordelingssysteem\\Model\\Model.csproj",
       "projectName": "Model",
-      "projectPath": "D:\\Programming\\Projects\\C#\\KBSDD\\Beoordelingssysteem\\Model\\Model.csproj",
+      "projectPath": "C:\\Programming\\KBSDD\\Beoordelingssysteem\\Model\\Model.csproj",
       "packagesPath": "C:\\Users\\xcort\\.nuget\\packages\\",
-      "outputPath": "D:\\Programming\\Projects\\C#\\KBSDD\\Beoordelingssysteem\\Model\\obj\\",
+      "outputPath": "C:\\Programming\\KBSDD\\Beoordelingssysteem\\Model\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\xcort\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -60,7 +60,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
       }
     }
   }
