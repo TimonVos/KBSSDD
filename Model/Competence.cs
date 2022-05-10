@@ -17,6 +17,11 @@ namespace Model
             Weight = weight;
         }
 
+        public Competence() : this("", 0)
+        {
+
+        }
+
         public override string ToString()
         {
             return $"{Name} ({Weight:n2}%)";

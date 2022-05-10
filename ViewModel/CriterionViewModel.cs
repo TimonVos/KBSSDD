@@ -13,10 +13,16 @@ namespace ViewModel
     {
         public Criterion? Model { get; set; }
         public CompetenceViewModel? Competence { get; set; }
+        public IEnumerable<IndicatorViewModel>? Indicators { get; set; }
 
         public CriterionViewModel()
         {
 
+        }
+
+        public override string ToString()
+        {
+            return Model?.ToString() ?? "-";
         }
     }
 }

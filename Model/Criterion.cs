@@ -18,5 +18,15 @@ namespace Model
             Description = description;
             Competence = competence;
         }
+
+        public Criterion() : this("", "", new Competence())
+        {
+
+        }
+
+        public override string ToString()
+        {
+            return $"{Name}";
+        }
     }
 }

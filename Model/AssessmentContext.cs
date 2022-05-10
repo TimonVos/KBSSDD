@@ -53,10 +53,9 @@
             foreach (var competence in Competences)
             {
                 var criteriaCount = _random.Next(3, 13);
-                var criteria = new List<Criterion>();
 
                 for (int i = 0; i < criteriaCount; i++)
-                    criteria.Add(new Criterion(Faker.Lorem.Sentence(1), Faker.Lorem.Paragraph(), competence));
+                    Criteria.Add(new Criterion(Faker.Lorem.Sentence(1), Faker.Lorem.Paragraph(), competence));
             }
         }
 

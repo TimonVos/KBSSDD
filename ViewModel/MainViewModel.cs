@@ -1,15 +1,17 @@
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Windows;
+using System.Windows.Input;
+using Microsoft.Toolkit.Mvvm.Input;
 using Model;
 
 namespace ViewModel
 {
     public class MainViewModel : INotifyPropertyChanged
     {
-        public IEnumerable<CompetenceViewModel>? Competences {
+        public IEnumerable<CompetenceViewModel>? Competences
+        {
             get => _competences;
             set
             {
@@ -35,7 +37,8 @@ namespace ViewModel
                 }
             }
         }
-        public IEnumerable<CriterionViewModel>? Criteria {
+        public IEnumerable<CriterionViewModel>? Criteria
+        {
             get => _criteria;
             set
             {
@@ -58,31 +61,66 @@ namespace ViewModel
                 }
             }
         }
-        public IEnumerable<IndicatorViewModel>? Indicators {
-            get => _indicators;
-            set
-            {
-                if (value != _indicators)
-                {
-                    _indicators = value;
-                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Indicators)));
-                }
-            }
-        }
+
+        public ICommand IndicatorRadioButton_CheckedCommand { get; set; }
+        public ICommand IndicatorRadioButton_LoadedCommand { get; set; }
+
 
         private IEnumerable<CompetenceViewModel>? _competences;
         private CompetenceViewModel? _activeCompetence;
         private IEnumerable<CriterionViewModel>? _criteria;
         private CriterionViewModel? _activeCriterion;
-        private IEnumerable<IndicatorViewModel>? _indicators;
 
         private AssessmentFactory factory;
+
+        public ISubject DummySubject { get; set; } = new Student(123, "John");
 
         public MainViewModel()
         {
             factory = new AssessmentFactory();
 
             Competences = factory.CreateCompetences();
+
+            IndicatorRadioButton_CheckedCommand = new RelayCommand<IndicatorViewModel>(IndicatorRadioButton_CheckedCommandHandler);
+            IndicatorRadioButton_LoadedCommand = new RelayCommand<IndicatorViewModel>(IndicatorRadioButton_LoadedCommandHandler);
+        }
+
+        private void IndicatorRadioButton_CheckedCommandHandler(IndicatorViewModel? indicator)
+        {
+            var context = factory.Context;
+
+            var rating = context.Ratings.FirstOrDefault(rating =>
+                rating.Subject == DummySubject &&
+                rating.Criterion == indicator?.Criterion?.Model
+            );
+
+            if (rating is not null && indicator?.Model is not null)
+            {
+                rating.Indicator = indicator.Model;
+            }
+            else
+            {
+                context.Ratings.Add(
+                    new Rating(
+                        DummySubject,
+                        indicator?.Criterion?.Model ?? new Criterion(),
+                        indicator?.Model ?? new Indicator()
+                    ));
+            }
+        }
+
+        private void IndicatorRadioButton_LoadedCommandHandler(IndicatorViewModel? indicator)
+        {
+            var context = factory.Context;
+
+            var rating = context.Ratings.FirstOrDefault(rating =>
+                rating.Subject == DummySubject &&
+                rating.Criterion == indicator?.Criterion?.Model
+            );
+
+            if (rating is not null && indicator?.Model is not null)
+                if (rating.Indicator == indicator.Model)
+                    indicator.IsCheckd = true;
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;

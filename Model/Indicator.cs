@@ -16,6 +16,11 @@ namespace Model
             Rating = rating;
         }
 
+        public Indicator() : this("", 0)
+        {
+
+        }
+
         public override string ToString()
         {
             return $"{Name} ({Rating})";

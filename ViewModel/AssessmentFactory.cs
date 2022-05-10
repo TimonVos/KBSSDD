@@ -6,11 +6,11 @@ namespace ViewModel
 {
     internal class AssessmentFactory
     {
-        private AssessmentContext assessmentContext;
+        public AssessmentContext Context { get; set; }
 
         public AssessmentFactory()
         {
-            assessmentContext = new AssessmentContext();
+            Context = new AssessmentContext();
         }
 
         public CompetenceViewModel CreateCompetence(Competence competence)
@@ -24,7 +24,11 @@ namespace ViewModel
 
         public CriterionViewModel CreateCriterion(Criterion criterion, CompetenceViewModel competenceViewModel)
         {
-            return new CriterionViewModel() { Model = criterion, Competence = competenceViewModel };
+            var critrionViewModel = new CriterionViewModel() { Model = criterion, Competence = competenceViewModel };
+
+            critrionViewModel.Indicators = CreateIndicators(critrionViewModel);
+
+            return critrionViewModel;
         }
 
         public CriterionViewModel CreateCriterion(Indicator criterion)
@@ -32,19 +36,29 @@ namespace ViewModel
             return new CriterionViewModel();
         }
 
+        public IndicatorViewModel CreateIndicator(Indicator indicator, CriterionViewModel criterion)
+        {
+            return new IndicatorViewModel() { Model = indicator, Criterion = criterion };
+        }
+
         public IEnumerable<CompetenceViewModel> CreateCompetences()
         {
-            return assessmentContext.Competences.Select(CreateCompetence);
+            return Context.Competences.Select(CreateCompetence);
         }
 
         public IEnumerable<CriterionViewModel>? CreateCriteria(CompetenceViewModel competenceViewModel)
         {
             if (competenceViewModel.Model is not null)
-                return assessmentContext
+                return Context
                     .GetCriteria(competenceViewModel.Model)
                     .Select(criterion => CreateCriterion(criterion, competenceViewModel));
 
             return null;
+        }
+
+        public IEnumerable<IndicatorViewModel> CreateIndicators(CriterionViewModel criterion)
+        {
+            return Context.Indicators.Select(indicator => CreateIndicator(indicator, criterion));
         }
     }
 }
