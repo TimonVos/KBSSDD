@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -10,29 +11,30 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Model;
 using ViewModel;
 
-namespace WPF
+namespace View
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for GroupAdministration.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class GroupAdministration : Window
     {
-        public MainWindow()
+        public GroupAdministration(FormContext data)
         {
             InitializeComponent();
         }
-        
+
+        private void Groups_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            GroupDelete.Visibility = Visibility.Visible;
+            StudentGrid.Visibility = Visibility.Visible;
+        }
 
         private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            SelectedCompetence.Content = CompetenceSelection.SelectedItem.ToString();
-            MainFormGrid.Visibility = Visibility.Visible;
-            FormContext.selectCompetence((Competence)CompetenceSelection.SelectedItem);
+            StudentDelete.Visibility= Visibility.Visible;
         }
     }
 }

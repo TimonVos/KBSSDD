@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    public class Criterium
+    public class Criterion
     {
         #region Properties
 
@@ -16,8 +16,8 @@ namespace Model
         public string? Description { get; set; }
         public List<string>? RatingsList;
 
-        private Dictionary<Rating, string>? _ratingsDictionary;
-        public Dictionary<Rating, string>? RatingsDictionary
+        private Dictionary<Indicator, string>? _ratingsDictionary;
+        public Dictionary<Indicator, string>? RatingsDictionary
         {
             get => _ratingsDictionary;
             set

@@ -6,41 +6,19 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Input;
-using Microsoft.Toolkit.Mvvm.Input;
 using Model;
 
 namespace ViewModel
 {
-    public class FormContext : INotifyPropertyChanged
+    internal class AssessmentFormViewModel : INotifyPropertyChanged
     {
-        #region RatingSelected
-
-        public ICommand RatingCommand { get; set; }
-
-        #endregion
-        #region FormCreation
-        /// <summary>
-        /// Form object required to remember data filled in menus
-        /// </summary>
-        private Form _form;
-        /// <summary>
-        /// Constructor, uses CreateForm to setup the Form object
-        /// </summary>
-        public FormContext()
+        public AssessmentFormViewModel()
         {
             CreateForm();
-            RatingCommand = new RelayCommand<String>((String? criterium) =>
-            {
-                
-            });
-
         }
-        /// <summary>
-        /// Initializes Form object, currently uses standardFormFiller
-        /// Form will later be filled by the Formtype from the database
-        /// </summary>
+        private FormViewModel? FormViewModel { get; set; }
+        private GroupViewModel? GroupViewModel { get; set; }
+        private Form _form;
         private void CreateForm()
         {
             _form = new Form();
@@ -50,14 +28,17 @@ namespace ViewModel
             {
                 tempList.Add(comp.Name);
             }
-                
+
             CompetenceList = new ObservableCollection<Competence>(_form.Competences.Keys);
             CriteriumList = new ObservableCollection<Criterion>();
         }
 
-        #endregion
+        public event PropertyChangedEventHandler? PropertyChanged;
 
-        #region Collections
+        protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
         /// <summary>
         /// List of competences that will be rated on current form
         /// </summary>
@@ -87,22 +68,6 @@ namespace ViewModel
             }
         }
         /// <summary>
-        /// Clears previous list of Criteria and replaces it with the selected Competence's Criterium list.
-        /// </summary>
-        /// <param name="comp"> Competence that is currently being selected in Competence list</param>
-        public static void selectCompetence(Competence comp)
-        {
-            if (_criteriumList.Count > 0)
-            {
-                _criteriumList.Clear();
-            }
-            foreach (Criterion c in comp.Criteriums)
-            {
-                _criteriumList.Add(c);
-            }
-        }
-
-        /// <summary>
         /// List of available ratings for each criteria
         /// </summary>
         private static ObservableCollection<Indicator>? _ratingsList;
@@ -116,24 +81,5 @@ namespace ViewModel
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(_ratingsList)));
             }
         }
-        #endregion
-
-        #region ToolTip
-
-        private string _toolTip;
-
-        public string ToolTip
-        {
-            get => _toolTip;
-            set
-            {
-                _toolTip = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(_toolTip)));
-            }
-        }
-
-        #endregion
-        public event PropertyChangedEventHandler? PropertyChanged;
-
     }
 }

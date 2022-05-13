@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    public class Rating
+    internal interface Subject
     {
-        public Competence Competence { get; set; }
-        public Indicator Indicator { get; set; }
+        public int? Grade { get; set; }
+        public string? Name { get; set; }
     }
 }

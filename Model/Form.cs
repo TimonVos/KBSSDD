@@ -119,12 +119,12 @@ namespace Model
                 "zodat deze minder aandacht behoeven tijdens de meeting. "
             };
             int i = 0;
-            tempCompetence.Criteriums = new List<Criterium>();
+            tempCompetence.Criteriums = new List<Criterion>();
             foreach (string criteriumDescription in criteriumDescriptions)
             {
                 int k = i;
-                Criterium tempCriterium = new Criterium();
-                tempCriterium.RatingsDictionary = new Dictionary<Rating, string>();
+                Criterion tempCriterium = new Criterion();
+                tempCriterium.RatingsDictionary = new Dictionary<Indicator, string>();
                 if (i > 0)
                 {
                     k = k / 3;
@@ -146,7 +146,7 @@ namespace Model
                             header = "Voorbeeldig";
                             break;
                     }
-                    Rating tempRating = new Rating();
+                    Indicator tempRating = new Indicator();
                     tempRating.Description = ratingDescriptions[i + j];
                     tempCriterium.RatingsDictionary.Add(tempRating, header);
                 }
@@ -156,7 +156,7 @@ namespace Model
             this.Competences.Add(tempCompetence, 10);
             Competence tempCompetence2 = new Competence();
             tempCompetence2.Name = "Manage & Control";
-            tempCompetence2.Criteriums = new List<Criterium>();
+            tempCompetence2.Criteriums = new List<Criterion>();
             criteria[0] = "test1";
             ratingDescriptions[0] = "test3";
             criteriumDescriptions[0] = "test2";
@@ -164,8 +164,8 @@ namespace Model
             foreach (string criteriumDescription in criteriumDescriptions)
             {
                 int k = i;
-                Criterium tempCriterium = new Criterium();
-                tempCriterium.RatingsDictionary = new Dictionary<Rating, string>();
+                Criterion tempCriterium = new Criterion();
+                tempCriterium.RatingsDictionary = new Dictionary<Indicator, string>();
                 if (i > 0)
                 {
                     k = k / 3;
@@ -187,7 +187,7 @@ namespace Model
                             header = "Voorbeeldig";
                             break;
                     }
-                    Rating tempRating = new Rating();
+                    Indicator tempRating = new Indicator();
                     tempRating.Description = ratingDescriptions[i + j];
                     tempCriterium.RatingsDictionary.Add(tempRating, header);
                 }
