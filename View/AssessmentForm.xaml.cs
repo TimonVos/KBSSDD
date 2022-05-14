@@ -31,12 +31,12 @@ namespace View
         {
             SelectedCompetence.Content = CompetenceSelection.SelectedItem.ToString();
             MainFormGrid.Visibility = Visibility.Visible;
-            FormContext.selectCompetence((Competence)CompetenceSelection.SelectedItem);
+            //FormContext.selectCompetence((Competence)CompetenceSelection.SelectedItem);
         }
 
         private void GroupAdmin_Click(object sender, RoutedEventArgs e)
         {
-            GroupAdministration newWindow = new GroupAdministration((FormContext)this.DataContext);
+            GroupAdministration newWindow = new GroupAdministration();
             newWindow.ShowDialog();
         }
     }

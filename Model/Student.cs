@@ -12,5 +12,9 @@ namespace Model
         public string? Name { get; set; }
         public string? StudentNumber { get; set; }
 
+        public override string ToString()
+        {
+            return Name ?? "Naam onbekend";
+        }
     }
 }

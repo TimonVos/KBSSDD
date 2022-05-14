@@ -21,20 +21,22 @@ namespace View
     /// </summary>
     public partial class GroupAdministration : Window
     {
-        public GroupAdministration(FormContext data)
+        public GroupAdministration()
         {
             InitializeComponent();
         }
 
-        private void Groups_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            GroupDelete.Visibility = Visibility.Visible;
-            StudentGrid.Visibility = Visibility.Visible;
-        }
 
         private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             StudentDelete.Visibility= Visibility.Visible;
+        }
+
+        
+        private void Groups_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            GroupDelete.Visibility = Visibility.Visible;
+            StudentGrid.Visibility = Visibility.Visible;
         }
     }
 }

@@ -10,15 +10,19 @@ using Model;
 
 namespace ViewModel
 {
-    internal class AssessmentFormViewModel : INotifyPropertyChanged
+    public class AssessmentFormViewModel : INotifyPropertyChanged
     {
         public AssessmentFormViewModel()
         {
             CreateForm();
+            
         }
         private FormViewModel? FormViewModel { get; set; }
-        private GroupViewModel? GroupViewModel { get; set; }
+        private Project _project;
+        public GroupViewModel? GroupViewModel { get; set; }
+        
         private Form _form;
+        private ProjectViewModel? ProjectViewModel { get; set; }
         private void CreateForm()
         {
             _form = new Form();

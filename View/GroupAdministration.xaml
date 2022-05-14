@@ -17,19 +17,26 @@
         <Grid VerticalAlignment="Center" HorizontalAlignment="Center" Height="394" RenderTransformOrigin="0.5,0.5" Width="500">
             <Label x:Name="Title" Content="Groep Administratie" Margin="128,34,128,314" FontSize="24" FontWeight="Bold" RenderTransformOrigin="0.5,0.5"/>
             <Grid HorizontalAlignment="Center" Height="268" Margin="0,80,0,0" VerticalAlignment="Top" Width="480" Background="#FFB2B6B7">
-                <ListBox x:Name="Groups" HorizontalAlignment="Left" Height="139" Margin="10,31,0,0" VerticalAlignment="Top" Width="140" ItemsSource="{Binding GroupList}" d:ItemsSource="{d:SampleData ItemCount=5}" RenderTransformOrigin="0.5,0.5" >
+                <ListBox x:Name="Groups" HorizontalAlignment="Left" Height="139" Margin="10,31,0,0" VerticalAlignment="Top" Width="140" ItemsSource="{Binding GroupList}" d:ItemsSource="{d:SampleData ItemCount=5}" RenderTransformOrigin="0.5,0.5" SelectionChanged="Groups_SelectionChanged" >
                 <b:Interaction.Triggers>
                     <b:EventTrigger EventName="SelectionChanged">
-                            <b:InvokeCommandAction Command="{Binding GroupCommand}" CommandParameter="{Binding ElementName=Groups, Path=SelectedItem}">
+                            <b:InvokeCommandAction Command="{Binding GroupSelectionCommand}" CommandParameter="{Binding ElementName=Groups, Path=SelectedItem}">
                         </b:InvokeCommandAction>
                     </b:EventTrigger>
                 </b:Interaction.Triggers>
                 </ListBox>
                 <Label x:Name="GroupLabel" Content="Selecteer groep" HorizontalAlignment="Left" Margin="34,5,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5"/>
                 <Button x:Name="NewGroup" Content="Groep toevoegen" HorizontalAlignment="Left" Margin="32,175,0,0" VerticalAlignment="Top"/>
-                <Button x:Name="GroupDelete" Content="Verwijder groep" HorizontalAlignment="Left" Margin="36,200,0,0" VerticalAlignment="Top" Visibility="Hidden"/>
+                <Button x:Name="GroupDelete" Content="Verwijder groep" HorizontalAlignment="Left" Margin="36,200,0,0" VerticalAlignment="Top" Visibility="Hidden">
+                    <b:Interaction.Triggers>
+                        <b:EventTrigger EventName="Click">
+                            <b:InvokeCommandAction Command="{Binding GroupDeleteCommand}" CommandParameter="{Binding ElementName=Groups, Path=SelectedItem}">
+                            </b:InvokeCommandAction>
+                        </b:EventTrigger>
+                    </b:Interaction.Triggers>
+                </Button>
                 <Grid Name="StudentGrid" Visibility="Hidden">
-                    <ListBox d:ItemsSource="{d:SampleData ItemCount=5}" ItemsSource="{Binding SelectedGroup.Students}" Margin="330,31,10,98" SelectionChanged="ListBox_SelectionChanged"/>
+                    <ListBox d:ItemsSource="{d:SampleData ItemCount=5}" ItemsSource="{Binding StudentList}" Margin="330,31,10,98" SelectionChanged="ListBox_SelectionChanged"/>
                     <Label x:Name="StudentLabel" Content="Selecteer student" HorizontalAlignment="Left" Margin="350,5,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5"/>
                     <Button x:Name="Newstudent" Content="Student toevoegen" HorizontalAlignment="Left" Margin="348,175,0,0" VerticalAlignment="Top"/>
                     <Button x:Name="StudentDelete" Content="Verwijder student" HorizontalAlignment="Left" Margin="353,200,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.181,0.652" Visibility="Hidden"/>

@@ -13,10 +13,6 @@ namespace Model
     {
         #region Properties
         /// <summary>
-        /// Automatically calculated grade of the rated form.
-        /// </summary>
-        private int FinalGrade;
-        /// <summary>
         /// Dictionary of competences to be rated, each provided with a integer to indicate weight towards final grade.
         /// </summary>
         public Dictionary<Competence, int> ?Competences { get; set; }
