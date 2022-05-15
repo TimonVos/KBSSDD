@@ -7,6 +7,27 @@
         mc:Ignorable="d"
         Title="GroupSelection" Height="450" Width="800">
     <Grid>
-        <ListBox d:ItemsSource="{d:SampleData ItemCount=5}" Margin="610,10,10,319" SelectionChanged="ListBox_SelectionChanged"/>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Border BorderBrush="Black" Background="Gray" CornerRadius="2
+                " BorderThickness="1" Margin="-14,0,0,0" HorizontalAlignment="Left" Width="295"/>
+
+        <ListBox x:Name="GroupListBox" Margin="33,53,0,0" SelectionChanged="ListBox_SelectionChanged" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Width="232" Height="206" VerticalAlignment="Top">
+            <ListBoxItem Content=""></ListBoxItem>
+            <ListBoxItem Content=""></ListBoxItem>
+        </ListBox>
+        <TextBox x:Name="AddGroupTextBox" Margin="33,276,0,0" TextWrapping="Wrap" Text="Groep" VerticalContentAlignment="Center" RenderTransformOrigin="0.493,0.496" HorizontalAlignment="Left" Width="177" Height="36" VerticalAlignment="Top"/>
+        <Button x:Name="AddGroupButton" Content="Voeg toe" Margin="213,276,0,0" RenderTransformOrigin="0.543,0.479" Height="36" VerticalAlignment="Top" HorizontalAlignment="Left" Width="52"/>
+        <Button Content="Verwijder geselecteerde groep" HorizontalAlignment="Left" Margin="33,317,0,0" VerticalAlignment="Top" Height="39" Width="232" Click="Button_Click"/>
+        <ListBox x:Name="StudentListBox" Margin="286,10,0,140" SelectionChanged="ListBox_SelectionChanged" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Width="235">
+            <ListBoxItem Content="Student1"/>
+            <ListBoxItem Content="Student2"/>
+        </ListBox>
+        <TextBox x:Name="StudentNumberTextBox" Margin="290,300,0,0" TextWrapping="Wrap" Text="Studentnummer" VerticalContentAlignment="Center" RenderTransformOrigin="0.493,0.496" HorizontalAlignment="Left" Width="114" Height="36" VerticalAlignment="Top"/>
+        <Button x:Name="AddStudentButton" Content="Voeg toe" Margin="748,138,0,0" RenderTransformOrigin="0.543,0.479" Height="36" VerticalAlignment="Top" HorizontalAlignment="Left" Width="52"/>
+        <Button Content="Verwijder geselecteerde student" HorizontalAlignment="Left" Margin="289,385,0,0" VerticalAlignment="Top" Height="39" Width="111" Click="Button_Click"/>
+        <TextBox x:Name="StudentNameTextBox" Margin="409,299,0,0" TextWrapping="Wrap" Text="Naam Student" VerticalContentAlignment="Center" RenderTransformOrigin="0.493,0.496" HorizontalAlignment="Left" Width="112" Height="36" VerticalAlignment="Top"/>
     </Grid>
 </Window>
