@@ -4,12 +4,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.1.32407.343
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "View", "View\View.csproj", "{54BE33B5-F47D-4FBC-B556-8A190E81248B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{7274772A-16F0-4937-9345-A3E48B7938CE} = {7274772A-16F0-4937-9345-A3E48B7938CE}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Model", "Model\Model.csproj", "{B22D157F-730A-4C4D-A4C9-C682F0D7B924}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ViewModel", "ViewModel\ViewModel.csproj", "{7274772A-16F0-4937-9345-A3E48B7938CE}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A47A5A5D-A931-4F74-82C1-16E242D01E77} = {A47A5A5D-A931-4F74-82C1-16E242D01E77}
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service", "Services\Service.csproj", "{A47A5A5D-A931-4F74-82C1-16E242D01E77}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Service", "Services\Service.csproj", "{A47A5A5D-A931-4F74-82C1-16E242D01E77}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B22D157F-730A-4C4D-A4C9-C682F0D7B924} = {B22D157F-730A-4C4D-A4C9-C682F0D7B924}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
