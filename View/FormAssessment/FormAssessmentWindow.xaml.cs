@@ -10,17 +10,16 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace View
+namespace View.FormAssessment
 {
     /// <summary>
-    /// Interaction logic for ShowAssessmentFormView.xaml
+    /// Interaction logic for FormAssessmentWindow.xaml
     /// </summary>
-    public partial class ShowAssessmentFormView : UserControl
+    public partial class FormAssessmentWindow : Window
     {
-        public ShowAssessmentFormView()
+        public FormAssessmentWindow()
         {
             InitializeComponent();
         }

@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace View
+namespace View.FormAssessment
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for ShowAssessmentForm.xaml
     /// </summary>
-    public partial class FormAssessmentWindow : Window
+    public partial class ShowAssessmentUserControl : UserControl
     {
-        public FormAssessmentWindow()
+        public ShowAssessmentUserControl()
         {
             InitializeComponent();
         }

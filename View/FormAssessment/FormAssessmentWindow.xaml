@@ -1,12 +1,13 @@
-﻿<Window x:Class="View.FormAssessmentWindow"
+﻿<Window x:Class="View.FormAssessment.FormAssessmentWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:View"
+        xmlns:local="clr-namespace:View.FormAssessment"
+        xmlns:view="clr-namespace:View.FormAssessment"
         mc:Ignorable="d"
         Title="Beoordeling formulier" Height="650" Width="890">
     <Grid>
-        <local:ShowAssessmentFormView/>
+        <view:ShowAssessmentUserControl/>
     </Grid>
 </Window>
