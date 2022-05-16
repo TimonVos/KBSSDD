@@ -17,5 +17,9 @@
         public virtual ICollection<Student> Students { get; set; }
         public ICollection<FormAssessment> Assessments { get; set; }
 
+        public override string ToString()
+        {
+            return $"Groep {GroupNumber}";
+        }
     }
 }

@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:View.FormAssessment"
              mc:Ignorable="d" 
              d:DesignHeight="650" Width="890">
+
     <Grid Background="#FF3A3A3A">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>
@@ -29,7 +30,7 @@
             <Label.Content>Beoordeling formulier</Label.Content>
             <Label.HorizontalAlignment>Center</Label.HorizontalAlignment>
         </Label>
-        <ListBox Grid.Row="1" Grid.Column="0" d:ItemsSource="{d:SampleData ItemCount=5}" Width="150" Height="125" Margin="5"></ListBox>
+        <ComboBox Grid.Row="1" Grid.Column="0" Width="150" Height="125" Margin="5"></ComboBox>
         <Button Grid.Row="2" Grid.Column="0" Height="25" Width="125" Content="Groepen beheren"></Button>
         <Grid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Grid.RowSpan="3" Width="500" Height="175" Margin="15,15,15,0" Background="#FFB2B6B7">
             <Grid.ColumnDefinitions>

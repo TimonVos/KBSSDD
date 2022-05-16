@@ -5,14 +5,14 @@
     /// </summary>
     public class Competence
     {
-        public Competence(int competenceId, string competenceName, string competenceDescription, int competenceWeight, int formId, ICollection<AppearsFrom> appearsFrom, ICollection<Criterion> criteriums)
+        public Competence(int competenceId, string competenceName, string competenceDescription, int competenceWeight, int formId, ICollection<AppearsFrom> appearsFrom, ICollection<Criterion> criteria)
         {
             CompetenceId = competenceId;
             CompetenceName = competenceName;
             CompetenceDescription = competenceDescription;
             CompetenceWeight = competenceWeight;
             FormId = formId;
-            Criteriums = criteriums;
+            Criteria = criteria;
             this.AppearsFrom = new HashSet<AppearsFrom>();
         }
 
@@ -23,6 +23,6 @@
 
         public int FormId { get; set; }
         public ICollection<AppearsFrom> AppearsFrom { get; set; } 
-        public ICollection<Criterion> Criteriums { get; set; }
+        public ICollection<Criterion> Criteria { get; set; }
     }
 }

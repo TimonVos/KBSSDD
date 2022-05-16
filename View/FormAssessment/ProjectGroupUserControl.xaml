@@ -1,0 +1,17 @@
+﻿<UserControl x:Class="View.FormAssessment.ProjectGroupUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:View.FormAssessment"
+             xmlns:viewModel="clr-namespace:ViewModel.FormAssessment;assembly=ViewModel"
+             mc:Ignorable="d" 
+             d:DataContext="{d:DesignInstance viewModel:FormAssessmentViewModel}">
+    <StackPanel  Width="150" Margin="5">
+        <ComboBox 
+            Background="DarkGray"
+            d:ItemsSource="{d:SampleData ItemCount=6}" 
+            ItemsSource="{Binding AssessmentContext.Groups}" >
+        </ComboBox>
+    </StackPanel>
+</UserControl>
