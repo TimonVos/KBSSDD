@@ -70,26 +70,24 @@
         <ItemsControl d:ItemsSource="{d:SampleData ItemCount=5}" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="4" Background="#FFB2B6B7" BorderThickness="3" BorderBrush="AliceBlue">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <Grid>
-                        <ItemsControl d:ItemsSource="{d:SampleData ItemCount=4}">
-                            <ItemsControl.ItemsPanel>
-                                <ItemsPanelTemplate>
-                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment ="Left"/>
-                                </ItemsPanelTemplate>
-                            </ItemsControl.ItemsPanel>
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <Grid Width="180" Height="50">
-                                        <Border>
-                                            <Border.BorderThickness>3</Border.BorderThickness>
-                                            <Border.BorderBrush>AliceBlue</Border.BorderBrush>
-                                        </Border>
-                                        <RadioButton HorizontalAlignment="Center" VerticalAlignment="Center" Content="{Binding}"></RadioButton>
-                                    </Grid>
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
-                    </Grid>
+                    <ItemsControl>
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment ="Left"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Width="180" Height="50">
+                                    <Border>
+                                        <Border.BorderThickness>3</Border.BorderThickness>
+                                        <Border.BorderBrush>AliceBlue</Border.BorderBrush>
+                                    </Border>
+                                    <RadioButton HorizontalAlignment="Center" VerticalAlignment="Center" Content="{Binding}"></RadioButton>
+                                </Grid>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
