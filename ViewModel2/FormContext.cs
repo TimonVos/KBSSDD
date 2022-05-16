@@ -2,11 +2,6 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Input;
 using Microsoft.Toolkit.Mvvm.Input;
 using Model;
@@ -33,7 +28,7 @@ namespace ViewModel
             CreateForm();
             RatingCommand = new RelayCommand<String>((String? criterium) =>
             {
-                
+
             });
 
         }
@@ -50,7 +45,7 @@ namespace ViewModel
             {
                 tempList.Add(comp.Name);
             }
-                
+
             CompetenceList = new ObservableCollection<Competence>(_form.Competences.Keys);
             CriteriumList = new ObservableCollection<Criterium>();
         }

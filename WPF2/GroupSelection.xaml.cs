@@ -1,16 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+﻿using System.Windows;
+using ViewModel;
+
 
 namespace View
 {
@@ -21,17 +11,20 @@ namespace View
     {
         public GroupSelection()
         {
-            InitializeComponent();
+            this.InitializeComponent();
+            this.DataContext = new GroupSelectionViewModel();
+
+            this._viewModel = new GroupSelectionViewModel();
+
+            this.GroupListBox.ItemsSource = this._viewModel.Groups;
+            this.StudentListBox.ItemsSource = this._viewModel.Students;
         }
 
-        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void StartAssessment(object sender, RoutedEventArgs e)
         {
-
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
+            this.Visibility = Visibility.Hidden;
+            var AssessmentWindow = new Window();
+            AssessmentWindow.Show();
         }
     }
 }

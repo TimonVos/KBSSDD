@@ -1,13 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Model
+﻿namespace Model
 {
     public class Form
     {
@@ -19,11 +10,11 @@ namespace Model
         /// <summary>
         /// Dictionary of competences to be rated, each provided with a integer to indicate weight towards final grade.
         /// </summary>
-        public Dictionary<Competence, int> ?Competences { get; set; }
+        public Dictionary<Competence, int>? Competences { get; set; }
         /// <summary>
         /// Small array for the control questions for knock-out criteria of a project.
         /// </summary>
-        private string[] ?ControlQuestions { get; set; }
+        private string[]? ControlQuestions { get; set; }
         #endregion
 
         #region StandardFormFiller
@@ -51,7 +42,7 @@ namespace Model
                 "Productbacklog aangevuld",
                 "Sprintbacklog voldoende detail"
             };
-            string[] criteriumDescriptions = { 
+            string[] criteriumDescriptions = {
                 "Er zijn geschikte systematische methoden gekozen voor requirements " +
                 "analyse en deze zijn op navolgbare wijze uitgevoerd. Met andere woorden, " +
                 "hoe is het probleem helder gekregen. Als bewijsmateriaal kun je o.a. denken aan " +
