@@ -69,6 +69,7 @@ namespace Service.Database
             Criteria = new List<Criterion>();
             Criterion crit1 = new Criterion(0, "Systematische methoden", "Er zijn geschikte systematische methoden gekozen voor requirements analyse en deze zijn op navolgbare wijze uitgevoerd. Met andere woorden, hoe is het probleem helder gekregen. Als bewijsmateriaal kun je o.a. denken aan interviewverslagen en UML-diagrammen.",
                 0, comp1, CriterionAssessments);
+            Criteria.Add(crit1);
 
             CriterionAssessments = new List<CriterionAssessment>();
             string temp = "Bereidt gesprekken niet voor. Koppelt niet terug aan betrokkenen. Maakt geen gebruik van UML of vergelijkbare diagrammen. Verdiept zich niet in het domein. Houdt geen rekening met niet - functionele eisen.";
@@ -80,6 +81,17 @@ namespace Service.Database
             CriterionAssessments.Add(critassess2);
             temp = "Bereidt gesprekken goed voor en koppelt de resultaten terug aan betrokkenen.Maakt gebruik van verschillende UML diagrammen om het probleem vanuit verschillende gezichtspunten te benaderen. Kiest de juiste diagrammen voor de context.Verdiept zich uitgebreid in het domein en gebruikt daarvoor verschillende bronnen.Houdt expliciet rekening met niet - functionele eisen.";
             CriterionAssessment critassess3 = new CriterionAssessment(2, temp, 2, indi1, 0, crit1);
+            foreach (Competence comp in Competences)
+            {
+                comp.Criteria = Criteria;
+                foreach (Criterion crit in comp.Criteria)
+                {
+                    crit.CriterionAssessments = new List<CriterionAssessment>();
+                    crit.CriterionAssessments.Add(critassess1);
+                    crit.CriterionAssessments.Add(critassess2);
+                    crit.CriterionAssessments.Add(critassess3);
+                }
+            }
         }
     }
 }

@@ -7,24 +7,15 @@
              xmlns:formAssessment="clr-namespace:ViewModel.FormAssessment;assembly=ViewModel"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance formAssessment:FormAssessmentViewModel}">
-
-    <ItemsControl ItemsSource="{Binding CriterionViewModels}">
-        <ItemsControl.ItemsPanel>
-            <ItemsPanelTemplate>
-                <WrapPanel/>
-            </ItemsPanelTemplate>
-        </ItemsControl.ItemsPanel>
-        <ItemsControl.ItemTemplate>
-            <DataTemplate>
-                <Border>
-                    <Border.BorderBrush>Black</Border.BorderBrush>
-                    <Border.BorderThickness>2</Border.BorderThickness>
-                    <Grid Background="DarkGray" Width="150" Height="40">
-                        <RadioButton Content="{Binding Title}" 
-                                     FontSize="20"/>
+    <Grid>
+        <ListBox Background="DarkGray" ItemsSource="{Binding SelectedCompetenceViewModel.Criteria}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid Height="30" Width="150">
+                        <RadioButton Content="{Binding Title}"></RadioButton>
                     </Grid>
-                </Border>
-            </DataTemplate>
-        </ItemsControl.ItemTemplate>
-    </ItemsControl>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </Grid>
 </UserControl>

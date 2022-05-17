@@ -83,7 +83,6 @@
             Height="125"
             Margin="5" Width="160" 
             ItemsSource="{Binding CompetenceViewModels}">
-            <
         </ListBox>
         <ItemsControl Grid.Row ="2" Grid.Column="1" Grid.ColumnSpan="5" 
                       ItemsSource="{Binding IndicatorViewModels}">
@@ -97,7 +96,7 @@
                     <Border>
                         <Border.BorderBrush>Black</Border.BorderBrush>
                         <Border.BorderThickness>2</Border.BorderThickness>
-                        <TextBlock Background="Blue" Height="30" Width="150" 
+                        <TextBlock Background="Blue" Height="30" Width="150"
                                    Text="{Binding Title}" 
                                    TextAlignment="Center"
                                    FontSize="20"/>

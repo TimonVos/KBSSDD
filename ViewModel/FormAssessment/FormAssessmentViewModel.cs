@@ -14,7 +14,7 @@ namespace ViewModel.FormAssessment
 {
     public class FormAssessmentViewModel : ViewModelBase
     {
-        public GroupViewModel ProjectGroupViewModel { get; set; }
+        public ProjectGroupViewModel ProjectGroupViewModel { get; set; }
         public AssessmentContext AssessmentContext { get; set; }
 
 
@@ -43,14 +43,17 @@ namespace ViewModel.FormAssessment
         public IEnumerable<CompetenceViewModel> CompetenceViewModels { get; set; }
 
         public IEnumerable<IndicatorViewModel> IndicatorViewModels { get; set; }
-        public IEnumerable<CriterionViewModel> CriterionViewModels { get; set; }
+        public IEnumerable<ProjectGroupViewModel> ProjectGroupViewModels { get; set; }
 
         public FormAssessmentViewModel()
         {
-            ProjectGroupViewModel = Factory.CreateGroup();
+            ProjectGroupViewModels = Factory.CreateGroups(Factory.AssessmentContext.Groups);
             CompetenceViewModels = Factory.CreateCompetences(Factory.AssessmentContext.Competences);
             IndicatorViewModels = Factory.CreateIndicators(Factory.AssessmentContext.Indicators);
-            CriterionViewModels = Factory.CreateCriteria(Factory.AssessmentContext.Criteria);
+            foreach(CompetenceViewModel compvm in CompetenceViewModels)
+            {
+                compvm.Criteria = Factory.CreateCriteria(compvm.CompetenceModel.Criteria);
+            }
         }
     }
 }

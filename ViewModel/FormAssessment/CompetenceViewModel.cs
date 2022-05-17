@@ -7,7 +7,7 @@ using Model;
 
 namespace ViewModel.FormAssessment
 {
-    public class CompetenceViewModel
+    public class CompetenceViewModel : ViewModelBase
     {
         public string Title
         {
@@ -19,7 +19,17 @@ namespace ViewModel.FormAssessment
             get => CompetenceModel.CompetenceDescription;
         }
         public Competence CompetenceModel { get; set; }
-        public IEnumerable<CriterionViewModel> Criteria { get; set; }
+        private IEnumerable<CriterionViewModel> _criteria;
+        public IEnumerable<CriterionViewModel> Criteria 
+        {
+            get => _criteria;
+            set
+            {
+                _criteria = value;
+                OnPropertyChanged(nameof(Criteria));
+            }
+        }
+
 
         public override string ToString()
         {

@@ -17,9 +17,21 @@ namespace ViewModel.FormAssessment
             return new FormAssessmentViewModel();
         }
 
-        public GroupViewModel CreateGroup()
+        public ProjectGroupViewModel CreateGroup(ProjectGroup group)
         {
-            return new GroupViewModel();
+            ProjectGroupViewModel temp = new ProjectGroupViewModel();
+            temp.GroupModel = group;
+            return temp;
+        }
+
+        public IEnumerable<ProjectGroupViewModel> CreateGroups(IEnumerable<ProjectGroup> groups)
+        {
+            List<ProjectGroupViewModel> temp = new List<ProjectGroupViewModel>();
+            foreach(ProjectGroup group in groups)
+            {
+                temp.Add(CreateGroup(group));
+            }
+            return temp;
         }
 
         public StudentViewModel CreateStudent()

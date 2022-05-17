@@ -7,7 +7,7 @@ using Model;
 
 namespace ViewModel.FormAssessment
 {
-    public class CriterionViewModel
+    public class CriterionViewModel : ViewModelBase
     {
         public string Title
         {
@@ -19,6 +19,7 @@ namespace ViewModel.FormAssessment
             get => CriterionModel.CriterionDescription;
         }
         public Criterion CriterionModel { get; set; }
+
         
     }
 }

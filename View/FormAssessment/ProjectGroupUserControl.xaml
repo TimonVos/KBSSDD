@@ -11,7 +11,7 @@
         <ComboBox 
             Background="DarkGray"
             d:ItemsSource="{d:SampleData ItemCount=6}" 
-            ItemsSource="{Binding AssessmentContext.Groups}" >
+            ItemsSource="{Binding ProjectGroupViewModels}" >
         </ComboBox>
     </StackPanel>
 </UserControl>
