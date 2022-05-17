@@ -12,12 +12,8 @@ namespace View
         public GroupSelection()
         {
             this.InitializeComponent();
+
             this.DataContext = new GroupSelectionViewModel();
-
-            this._viewModel = new GroupSelectionViewModel();
-
-            this.GroupListBox.ItemsSource = this._viewModel.Groups;
-            this.StudentListBox.ItemsSource = this._viewModel.Students;
         }
 
         private void StartAssessment(object sender, RoutedEventArgs e)
@@ -25,6 +21,11 @@ namespace View
             this.Visibility = Visibility.Hidden;
             var AssessmentWindow = new Window();
             AssessmentWindow.Show();
+        }
+
+        private void DeleteSelectedStudent(object sender, RoutedEventArgs e)
+        {
+            
         }
     }
 }

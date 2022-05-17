@@ -3,26 +3,29 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:View"
+        xmlns:local="clr-namespace:ViewModel;assembly=ViewModel"
         mc:Ignorable="d"
-        Title="GroupSelection" Height="450" Width="600">
+        Title="GroupSelection" Height="450" Width="575">
+    <Window.DataContext>
+        <local:GroupSelectionViewModel/>
+    </Window.DataContext>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
         </Grid.RowDefinitions>
 
         <Border Background="Gray" CornerRadius="2" BorderThickness="1" Margin="-14,0,0,0" HorizontalAlignment="Left" Width="295" ></Border>
-        <ListBox x:Name="GroupListBox" Margin="33,53,0,175" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Width="232"  IsSynchronizedWithCurrentItem="true"></ListBox>
-        <TextBox x:Name="AddGroupTextBox" Margin="33,0,0,122" TextWrapping="Wrap" Text="{}" VerticalContentAlignment="Center" RenderTransformOrigin="0.493,0.496" HorizontalAlignment="Left" Width="177" Height="36" VerticalAlignment="Bottom"/>
-        <Button x:Name="AddGroupButton" Content="Voeg toe" Margin="213,0,0,122" RenderTransformOrigin="0.543,0.479" Height="36" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="52"/>
-        <Button x:Name="DeleteSelectedGroupButton" Content="Verwijder geselecteerde groep" HorizontalAlignment="Left" Margin="33,0,0,78" VerticalAlignment="Bottom" Height="39" Width="232"/>
+        <ListBox    x:Name="GroupListBox"               Margin="33,53,0,175" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Width="232"  IsSynchronizedWithCurrentItem="true" ItemsSource="{Binding Groups}"></ListBox>
+        <TextBox    x:Name="AddGroupTextBox"            Margin="33,0,0,122" TextWrapping="Wrap" Text="{}" VerticalContentAlignment="Center" RenderTransformOrigin="0.493,0.496" HorizontalAlignment="Left" Width="177" Height="36" VerticalAlignment="Bottom"/>
+        <Button     x:Name="AddGroupButton"             Margin="213,0,0,122" Content="Voeg toe"  RenderTransformOrigin="0.543,0.479" Height="36" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="52"/>
+        <Button     x:Name="DeleteSelectedGroupButton"  Margin="33,0,0,78"  Content="Verwijder geselecteerde groep" HorizontalAlignment="Left"  VerticalAlignment="Bottom" Height="39" Width="232"/>
         
         
-        <ListBox x:Name="StudentListBox" Margin="297,10,0,139" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Width="231"></ListBox>
-        <TextBox x:Name="StudentNumberTextBox" Margin="297,0,0,98" TextWrapping="Wrap" Text="Studentnummer" VerticalContentAlignment="Center" RenderTransformOrigin="0.493,0.496" HorizontalAlignment="Left" Width="114" Height="36" VerticalAlignment="Bottom"/>
-        <Button x:Name="AddStudentButton" Content="Voeg toe" Margin="297,0,0,58" RenderTransformOrigin="0.543,0.479" Height="36" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="231" />
-        <Button x:Name="DeleteSelectedStudentButton" Content="Verwijder geselecteerde student" HorizontalAlignment="Left" Margin="297,0,0,10" Width="231" Height="40" VerticalAlignment="Bottom"/>
-        <TextBox x:Name="StudentNameTextBox" Margin="416,0,0,98" TextWrapping="Wrap" Text="Naam Student" VerticalContentAlignment="Center" RenderTransformOrigin="0.493,0.496" HorizontalAlignment="Left" Width="112" Height="36" VerticalAlignment="Bottom"/>
-        <Button x:Name="StartAssessmentButton" Content="Start Met Beoordeling" HorizontalAlignment="Left" Margin="140,0,0,19" VerticalAlignment="Bottom" Height="31" Width="125" Click="StartAssessment"/>
+        <ListBox    x:Name="StudentListBox"                 Margin="297,10,0,139"   RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Width="231" ItemsSource="{Binding Students}"></ListBox>
+        <TextBox    x:Name="StudentNumberTextBox"           Margin="297,0,0,98"     TextWrapping="Wrap" Text="{Binding StudentNumber}" VerticalContentAlignment="Center" RenderTransformOrigin="0.493,0.496" HorizontalAlignment="Left" Width="114" Height="36" VerticalAlignment="Bottom"/>
+        <Button     x:Name="AddStudentButton"               Margin="297,0,0,58"     Content="Voeg toe" RenderTransformOrigin="0.543,0.479" Height="36" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="231" />
+        <Button     x:Name="DeleteSelectedStudentButton"    Margin="297,0,0,10"     Content="Verwijder geselecteerde student" HorizontalAlignment="Left"  Width="231" Height="40" VerticalAlignment="Bottom" Click="DeleteSelectedStudent"/>
+        <TextBox    x:Name="StudentNameTextBox"             Margin="416,0,0,98"     TextWrapping="Wrap" Text="{Binding StudentName}" VerticalContentAlignment="Center" RenderTransformOrigin="0.493,0.496" HorizontalAlignment="Left" Width="112" Height="36" VerticalAlignment="Bottom"/>
+        <Button     x:Name="StartAssessmentButton"          Margin="140,0,0,19"     Content="Start Met Beoordeling" HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="31" Width="125" Click="StartAssessment"/>
     </Grid>
 </Window>

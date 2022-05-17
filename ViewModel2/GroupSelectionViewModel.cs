@@ -22,6 +22,9 @@ namespace ViewModel
         public ArrayList Groups { get; set; }
         public ArrayList Students { get; set; }
 
+        public string StudentName { get; set; }
+        public string StudentNumber { get; set; }
+
         public GroupSelectionViewModel()
         {
             GroupTextBox = "Group";
@@ -30,12 +33,16 @@ namespace ViewModel
 
             });
 
+            StudentName = "Student Naam";
+            StudentNumber = "Student Nummer";
 
             // dummy data for the listboxes
             Groups = new ArrayList()
             {
-                "ur mom",
-                "ur dad"
+                "Groep 1",
+                "Groep 2",
+                "Groep 3",
+                "Groep 4"
             };
 
             Students = new ArrayList()
@@ -44,9 +51,5 @@ namespace ViewModel
                 "S1155295 (Dilano Bartijn)"
             };
         }
-
-
-
-
     }
 }
