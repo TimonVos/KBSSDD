@@ -14,21 +14,7 @@ namespace ViewModel.FormAssessment
 {
     public class FormAssessmentViewModel : ViewModelBase
     {
-        public ProjectGroupViewModel ProjectGroupViewModel { get; set; }
-        public AssessmentContext AssessmentContext { get; set; }
-
-
-        private CriterionViewModel _selectedCriterionViewModel;
-        public CriterionViewModel SelectedCriterionViewModel
-        {
-            get => _selectedCriterionViewModel;
-            set
-            {
-                _selectedCriterionViewModel = value;
-                OnPropertyChanged(nameof(SelectedCriterionViewModel));
-            }
-        }
-
+ 
         private CompetenceViewModel _selectedCompetenceViewModel;
         public CompetenceViewModel SelectedCompetenceViewModel
         {
@@ -53,6 +39,14 @@ namespace ViewModel.FormAssessment
             foreach(CompetenceViewModel compvm in CompetenceViewModels)
             {
                 compvm.Criteria = Factory.CreateCriteria(compvm.CompetenceModel.Criteria);
+            }
+            foreach (CompetenceViewModel compvm in CompetenceViewModels)
+            {
+                foreach (CriterionViewModel critvm in compvm.Criteria)
+                {
+                    critvm.CriterionAssessments =
+                        Factory.CreateCriterionAssessments(critvm.CriterionModel.CriterionAssessments);
+                }
             }
         }
     }

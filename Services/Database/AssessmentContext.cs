@@ -71,16 +71,23 @@ namespace Service.Database
                 0, comp1, CriterionAssessments);
             Criteria.Add(crit1);
 
+
+
+            Criterion crit2 = new Criterion(1, "Business Case",
+                "De business case (de rechtvaardiging van het project, de probleemstelling, de opdracht) is beschreven en afgestemd met de opdrachtgever.",
+            0, comp1, CriterionAssessments);
+            Criteria.Add(crit2);
+
             CriterionAssessments = new List<CriterionAssessment>();
             string temp = "Bereidt gesprekken niet voor. Koppelt niet terug aan betrokkenen. Maakt geen gebruik van UML of vergelijkbare diagrammen. Verdiept zich niet in het domein. Houdt geen rekening met niet - functionele eisen.";
             CriterionAssessment critassess1 = new CriterionAssessment(0, temp, 0, indi1, 0, crit1);
             CriterionAssessments.Add(critassess1);
             temp =
                 "Bereidt gesprekken enigszins voor en koppelt in enige mate terug aan betrokkenen. Maakt gebruik van hooguit één soort diagram (bijv. domeinmodel of use case diagram). Verdiept zich enigszins in het domein, bijvoorbeeld door het bestuderen van vergelijkbare systemen. Houdt impliciet rekening met niet-functionele eisen.";
-            CriterionAssessment critassess2 = new CriterionAssessment(1, temp, 1, indi1, 0, crit1);
+            CriterionAssessment critassess2 = new CriterionAssessment(1, temp, 1, indi2, 0, crit1);
             CriterionAssessments.Add(critassess2);
             temp = "Bereidt gesprekken goed voor en koppelt de resultaten terug aan betrokkenen.Maakt gebruik van verschillende UML diagrammen om het probleem vanuit verschillende gezichtspunten te benaderen. Kiest de juiste diagrammen voor de context.Verdiept zich uitgebreid in het domein en gebruikt daarvoor verschillende bronnen.Houdt expliciet rekening met niet - functionele eisen.";
-            CriterionAssessment critassess3 = new CriterionAssessment(2, temp, 2, indi1, 0, crit1);
+            CriterionAssessment critassess3 = new CriterionAssessment(2, temp, 2, indi3, 0, crit1);
             foreach (Competence comp in Competences)
             {
                 comp.Criteria = Criteria;

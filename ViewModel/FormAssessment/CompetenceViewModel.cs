@@ -18,6 +18,18 @@ namespace ViewModel.FormAssessment
         {
             get => CompetenceModel.CompetenceDescription;
         }
+
+        private CriterionViewModel _selectedCriterionViewModel;
+        public CriterionViewModel SelectedCriterionViewModel
+        {
+            get => _selectedCriterionViewModel;
+            set
+            {
+                _selectedCriterionViewModel = value;
+                OnPropertyChanged(nameof(SelectedCriterionViewModel));
+            }
+        }
+
         public Competence CompetenceModel { get; set; }
         private IEnumerable<CriterionViewModel> _criteria;
         public IEnumerable<CriterionViewModel> Criteria 

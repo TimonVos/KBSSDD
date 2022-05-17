@@ -7,14 +7,15 @@
         xmlns:viewModel="clr-namespace:ViewModel.FormAssessment;assembly=ViewModel"
         xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
-        Title="Beoordeling formulier" Height="650" Width="890">
+        Title="Beoordeling formulier" Height="750" Width="900"
+        Background="#FF3A3A3A">
     <Window.Resources>
         <viewModel:FormAssessmentViewModel x:Key="ViewModel"/>
     </Window.Resources>
     <Window.DataContext>
         <Binding Source="{StaticResource ResourceKey=ViewModel}"></Binding>
     </Window.DataContext>
-    <Grid Background="#FF3A3A3A">
+    <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Margin="15">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="auto"></RowDefinition>
@@ -34,43 +35,44 @@
             <ColumnDefinition Width="auto"></ColumnDefinition>
             <ColumnDefinition Width="auto"></ColumnDefinition>
         </Grid.ColumnDefinitions>
+        <Label Grid.Column="0" Grid.Row="0" 
+               Grid.ColumnSpan="7" 
+               VerticalAlignment="Center" 
+               VerticalContentAlignment="Center" 
+               HorizontalAlignment="Center"
+               HorizontalContentAlignment="Center"
+               FontWeight="ExtraBlack"
+               FontSize="20"
+               Content="Beoordelingssformulier"></Label>
         <view:ProjectGroupUserControl Grid.Row="1" Grid.Column="0" 
                                       DataContext="{Binding}">
         </view:ProjectGroupUserControl>
         <Button Name="ManageStudentsButton" Content="Groepen beheren" 
                 Height="30" Grid.Row="1" Grid.Column="0" Margin="20,50"></Button>
-        <Border Grid.Row="4" Grid.RowSpan="3" Margin="5">
+        <Border Grid.Column="0" Grid.Row="2" Grid.RowSpan="3" >
             <Border.BorderBrush>AliceBlue</Border.BorderBrush>
             <Border.BorderThickness>3</Border.BorderThickness>
-            <Grid  Height="450"  Background="DarkGray">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"></RowDefinition>
-                    <RowDefinition Height="auto"></RowDefinition>
-                    <RowDefinition Height="auto"></RowDefinition>
-                </Grid.RowDefinitions>
-                <Label Grid.Row="0" Margin="5" 
-                       HorizontalAlignment="Center" VerticalAlignment="Center"
-                       Width="175" Height="25" 
-                       Content="{Binding SelectedCompetenceViewModel.Title}"/>
-                <Label Grid.Row="1" Margin="5" 
-                       HorizontalAlignment="Center" 
-                       VerticalAlignment="Center" Width="175" Height="25" 
-                       Content="Criteria: "/>
-                <TextBlock Grid.Row="2">
-                    <TextBlock.Text>
-                        <MultiBinding StringFormat="{}{0} + &#x0a; + {1} + &#x0a; + {2}">
-                            <Binding Path="SelectedCompetenceViewModel.Description"/>
-                            <Binding Path="SelectedCriterionViewModel.Title"/>
-                            <Binding Path="SelectedCriterionViewModel.Description"/>
-                        </MultiBinding>
-                    </TextBlock.Text>
-                </TextBlock>
-            </Grid>
+            <ScrollViewer CanContentScroll="True" VerticalScrollBarVisibility="Auto">
+                <StackPanel MaxHeight="400" Width="200" Margin="5" Background="DarkGray">
+                    <Label  Margin="5" 
+                            HorizontalAlignment="Center" VerticalAlignment="Center"
+                            HorizontalContentAlignment="Center"
+                            VerticalContentAlignment="Center"
+                           MaxWidth="175" MaxHeight="25" 
+                           Content="{Binding SelectedCompetenceViewModel.Title}"/>
+                    <Label  Margin="5" 
+                           HorizontalAlignment="Center" 
+                           HorizontalContentAlignment="Center"
+                           VerticalContentAlignment="Center"
+                           VerticalAlignment="Center" MaxWidth="175" MaxHeight="25" 
+                           Content="Criteria: "/>
+                    <view:CriteriaInformationUserControl ></view:CriteriaInformationUserControl>
+                </StackPanel>
+            </ScrollViewer>
         </Border>
         <Grid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" 
-              Width="350" Height="125" Background="DarkGray" 
+              MaxWidth="350" MaxHeight="125" Background="DarkGray" 
               Margin="0,25,50,0">
-
         </Grid>
         <ListBox 
             SelectionMode="Single"
@@ -82,28 +84,32 @@
             Grid.Row="1" Grid.Column ="5" 
             Height="125"
             Margin="5" Width="160" 
-            ItemsSource="{Binding CompetenceViewModels}">
+            ItemsSource="{Binding CompetenceViewModels}"
+            SelectedIndex="0">
         </ListBox>
-        <ItemsControl Grid.Row ="2" Grid.Column="1" Grid.ColumnSpan="5" 
+        <StackPanel Grid.Row ="2" Grid.Column="1">
+            <ItemsControl 
                       ItemsSource="{Binding IndicatorViewModels}">
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <WrapPanel/>
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <Border>
-                        <Border.BorderBrush>Black</Border.BorderBrush>
-                        <Border.BorderThickness>2</Border.BorderThickness>
-                        <TextBlock Background="Blue" Height="30" Width="150"
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border>
+                            <Border.BorderBrush>Black</Border.BorderBrush>
+                            <Border.BorderThickness>2</Border.BorderThickness>
+                            <TextBlock Background="Blue"
                                    Text="{Binding Title}" 
                                    TextAlignment="Center"
+                                   Width="150" Height="30"
                                    FontSize="20"/>
-                    </Border>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
-        <view:CriteriaUserControl Grid.Row="4" Grid.Column="1" Grid.RowSpan="3" Grid.ColumnSpan="5"></view:CriteriaUserControl>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+            <view:CriteriaUserControl></view:CriteriaUserControl>
+        </StackPanel>
     </Grid>
 </Window>

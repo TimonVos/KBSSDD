@@ -8,12 +8,33 @@
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance formAssessment:FormAssessmentViewModel}">
     <Grid>
-        <ListBox Background="DarkGray" ItemsSource="{Binding SelectedCompetenceViewModel.Criteria}">
+        <ListBox SelectionMode="Single"
+                 SelectedItem="{Binding SelectedCompetenceViewModel.SelectedCriterionViewModel , Mode=TwoWay}"
+                 Background="#FF3A3A3A" 
+                 ItemsSource="{Binding SelectedCompetenceViewModel.Criteria}" 
+                 BorderThickness="0">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Grid Height="30" Width="150">
-                        <RadioButton Content="{Binding Title}"></RadioButton>
-                    </Grid>
+                    <ItemsControl ItemsSource="{Binding CriterionAssessments}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border>
+                                    <Border.BorderBrush>Black</Border.BorderBrush>
+                                    <Border.BorderThickness>2</Border.BorderThickness>
+                                    <Grid Background="DarkGray" Width="150" Height="30">
+                                        <RadioButton 
+                                            GroupName="{Binding CriterionAssessmentModel.Criterion}"
+                                            Content="{Binding Indicator.Title}"/>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>

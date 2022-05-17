@@ -9,8 +9,8 @@
              d:DataContext="{d:DesignInstance viewModel:FormAssessmentViewModel}">
     <StackPanel  Width="150" Margin="5">
         <ComboBox 
+            SelectedIndex="0"
             Background="DarkGray"
-            d:ItemsSource="{d:SampleData ItemCount=6}" 
             ItemsSource="{Binding ProjectGroupViewModels}" >
         </ComboBox>
     </StackPanel>

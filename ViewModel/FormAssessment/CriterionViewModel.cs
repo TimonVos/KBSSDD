@@ -20,6 +20,18 @@ namespace ViewModel.FormAssessment
         }
         public Criterion CriterionModel { get; set; }
 
-        
+        private IEnumerable<CriterionAssessmentViewModel> _criterionAssessments;
+
+        public IEnumerable<CriterionAssessmentViewModel> CriterionAssessments
+        {
+            get => _criterionAssessments;
+
+            set
+            {
+                _criterionAssessments = value;
+                OnPropertyChanged(nameof(CriterionAssessments));
+            }
+        }
+
     }
 }

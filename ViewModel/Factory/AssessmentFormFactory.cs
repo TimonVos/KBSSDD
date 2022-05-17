@@ -75,6 +75,26 @@ namespace ViewModel.FormAssessment
             return temp;
         }
 
+        public CriterionAssessmentViewModel CreateCriterionAssessment(CriterionAssessment critassess, Indicator indi)
+        {
+            CriterionAssessmentViewModel temp = new CriterionAssessmentViewModel();
+            temp.CriterionAssessmentModel = critassess;
+            temp.Indicator = CreateIndicator(indi);
+            return temp;
+        }
+
+
+        public IEnumerable<CriterionAssessmentViewModel> CreateCriterionAssessments(
+            IEnumerable<CriterionAssessment> criterionAssessments)
+        {
+            List<CriterionAssessmentViewModel> temp = new List<CriterionAssessmentViewModel>();
+            foreach (CriterionAssessment critassess in criterionAssessments)
+            {
+                temp.Add(CreateCriterionAssessment(critassess, critassess.Indicator));
+            }
+            return temp;
+        }
+
         public IndicatorViewModel CreateIndicator(Indicator indi)
         {
             IndicatorViewModel temp = new IndicatorViewModel();
