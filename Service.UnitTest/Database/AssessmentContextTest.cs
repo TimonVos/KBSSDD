@@ -60,8 +60,6 @@ namespace Service.UnitTest.Database
             var group = context.Groups
                 .Where(g => g.GroupId == _groups[0].GroupId)
                 .First();
-
-            Console.WriteLine($"{group.Name} {group.Students.Count} setup");
         }
 
         /// <summary>
@@ -105,8 +103,6 @@ namespace Service.UnitTest.Database
 
             Assert.IsNotNull(group);
             Assert.That(group.Name, Is.EqualTo(_group?.Name));
-
-            Console.WriteLine(group.Name);
         }
 
         /// <summary>
@@ -143,8 +139,6 @@ namespace Service.UnitTest.Database
                 .FirstOrDefault() ?? new Group();
 
             Assert.That(group.Name, Is.EqualTo(groupCompare?.Name));
-
-            Console.WriteLine(group.Name);
         }
 
         /// <summary>
@@ -192,9 +186,12 @@ namespace Service.UnitTest.Database
                 .Where(g => g.GroupId == _groups[0].GroupId)
                 .First();
 
-            Console.WriteLine($"{group.Name} {group.Students.Count} setup");
-
             Assert.That(group.Students.Count, Is.EqualTo(_groups[0].Students.Count));
+
+            Console.WriteLine($"Group {group.Name} has the following students:");
+            foreach (var student in group.Students)
+                Console.WriteLine(student.Name);
+
         }
 
         [TearDown]

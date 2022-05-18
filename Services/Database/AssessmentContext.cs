@@ -23,11 +23,9 @@ namespace Service.Database
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
-            modelBuilder.Entity<Group>()
-                        .HasMany(g => g.Students)
-                        .WithMany(s => s.Groups).UsingEntity("GroupStudent");
-
+#if DEBUG
+            Seeder.debug(modelBuilder);
+#endif
         }
     }
 }

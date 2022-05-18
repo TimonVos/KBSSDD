@@ -2,19 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Service.Database;
 
 #nullable disable
 
-namespace Service.Migrations
+namespace Service.Database.Migrations
 {
     [DbContext(typeof(AssessmentContext))]
-    [Migration("20220518070304_Initial")]
-    partial class Initial
+    partial class AssessmentContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -36,6 +34,18 @@ namespace Service.Migrations
                     b.HasIndex("StudentsNumber");
 
                     b.ToTable("GroupStudent");
+
+                    b.HasData(
+                        new
+                        {
+                            GroupsGroupId = 1,
+                            StudentsNumber = 116000
+                        },
+                        new
+                        {
+                            GroupsGroupId = 1,
+                            StudentsNumber = 116001
+                        });
                 });
 
             modelBuilder.Entity("Model.Group", b =>
@@ -55,6 +65,14 @@ namespace Service.Migrations
                     b.HasKey("GroupId");
 
                     b.ToTable("Groups");
+
+                    b.HasData(
+                        new
+                        {
+                            GroupId = 1,
+                            Name = "Foo",
+                            Number = 1
+                        });
                 });
 
             modelBuilder.Entity("Model.Student", b =>
@@ -69,6 +87,18 @@ namespace Service.Migrations
                     b.HasKey("Number");
 
                     b.ToTable("Students");
+
+                    b.HasData(
+                        new
+                        {
+                            Number = 116000,
+                            Name = "John"
+                        },
+                        new
+                        {
+                            Number = 116001,
+                            Name = "Jane"
+                        });
                 });
 
             modelBuilder.Entity("GroupStudent", b =>

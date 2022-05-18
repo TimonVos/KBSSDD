@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace Service.Migrations
+namespace Service.Database.Migrations
 {
     public partial class Initial : Migration
     {
@@ -57,6 +57,31 @@ namespace Service.Migrations
                         principalColumn: "Number",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.InsertData(
+                table: "Groups",
+                columns: new[] { "GroupId", "Name", "Number" },
+                values: new object[] { 1, "Foo", 1 });
+
+            migrationBuilder.InsertData(
+                table: "Students",
+                columns: new[] { "Number", "Name" },
+                values: new object[] { 116000, "John" });
+
+            migrationBuilder.InsertData(
+                table: "Students",
+                columns: new[] { "Number", "Name" },
+                values: new object[] { 116001, "Jane" });
+
+            migrationBuilder.InsertData(
+                table: "GroupStudent",
+                columns: new[] { "GroupsGroupId", "StudentsNumber" },
+                values: new object[] { 1, 116000 });
+
+            migrationBuilder.InsertData(
+                table: "GroupStudent",
+                columns: new[] { "GroupsGroupId", "StudentsNumber" },
+                values: new object[] { 1, 116001 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_GroupStudent_StudentsNumber",
