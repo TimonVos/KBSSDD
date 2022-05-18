@@ -11,11 +11,16 @@ namespace Model
             Groups = groups;
         }
 
+        public Project(string projectName,int projectId)
+        {
+            ProjectName=projectName;
+            ProjectId=projectId;
+        }
+
         public string ProjectName { get; set; }
         public string ProjectCode { get; set; }
         public int ProjectId { get; set; }
         public ICollection<ProjectGroup> Groups { get; set; }
 
-        
     }
 }
