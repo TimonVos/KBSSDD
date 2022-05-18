@@ -10,11 +10,7 @@ namespace Model
     {
         public int GroupId { get; set; }
         public int Number { get; set; }
-        public string Name { get; set; }
-
-        public Group()
-        {
-
-        }
+        public string? Name { get; set; }
+        public virtual ICollection<Student> Students { get; set; } = new HashSet<Student>();
     }
 }

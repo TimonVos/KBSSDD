@@ -1,30 +1,67 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.EntityFrameworkCore;
 using Model;
 using Service.Database;
-using Faker;
 
 namespace Service.UnitTest.Database
 {
+    /// <summary>
+    /// Test the Entity Framework for:
+    /// <list type="bullet">
+    ///   <item>CRUD (Create, Read, Update and Delete) capabilities</item>
+    ///   <item>One to one, one to many and many to many relationships</item>
+    /// </list>
+    /// 
+    /// </summary>
     public class AssessmentContextTest
     {
-        /// <summary>
-        /// Entity Framework database context.
-        /// </summary>
-        private AssessmentContext _context;
         /// <summary>
         /// Holds the temporary instance of a model for CRUD testing.
         /// </summary>
         private Group? _group;
+        private List<Student> _students;
+        private List<Group> _groups;
 
         [SetUp]
         public void Setup()
         {
-            _context = new AssessmentContext();
+            using var context = new AssessmentContext();
+
+            var studentNumber = context.Students.Max(s => (int?)s.Number) ?? 1;
+
+            _students = new List<Student>
+            {
+                new Student { Name = Faker.Name.FullName(), Number = studentNumber++ },
+                new Student { Name = Faker.Name.FullName(), Number = studentNumber++ },
+                new Student { Name = Faker.Name.FullName(), Number = studentNumber++ },
+                new Student { Name = Faker.Name.FullName(), Number = studentNumber++ },
+                new Student { Name = Faker.Name.FullName(), Number = studentNumber++ },
+            };
+
+            _groups = new List<Group>
+            {
+                new Group { Name = Faker.Company.Name(), Number = Faker.RandomNumber.Next(1, 6) },
+                new Group { Name = Faker.Company.Name(), Number = Faker.RandomNumber.Next(1, 6) },
+                new Group { Name = Faker.Company.Name(), Number = Faker.RandomNumber.Next(1, 6) },
+            };
+
+            _students.ForEach(s => context.Add(s));
+            _groups.ForEach(g => context.Add(g));
+            context.SaveChanges();
+
+            _groups[0].Students.Add(_students[0]);
+            _groups[0].Students.Add(_students[1]);
+            _groups[1].Students.Add(_students[2]);
+            _groups[1].Students.Add(_students[3]);
+
+            context.Groups.Update(_groups[0]);
+            context.Groups.Update(_groups[1]);
+            context.SaveChanges();
+
+            var group = context.Groups
+                .Where(g => g.GroupId == _groups[0].GroupId)
+                .First();
+
+            Console.WriteLine($"{group.Name} {group.Students.Count} setup");
         }
 
         /// <summary>
@@ -33,10 +70,12 @@ namespace Service.UnitTest.Database
         [Test, Order(1), NonParallelizable]
         public void AssessmentContext_CanCreate()
         {
-            _context.Add(new Group { Name = Faker.Company.Name(), Number = Faker.RandomNumber.Next(1, 6) });
-            _context.SaveChanges();
+            using var context = new AssessmentContext();
 
-            Group? group = _context.Groups
+            context.Add(new Group { Name = Faker.Company.Name(), Number = Faker.RandomNumber.Next(1, 6) });
+            context.SaveChanges();
+
+            Group? group = context.Groups
                 .OrderByDescending(g => g.GroupId)
                 .FirstOrDefault();
 
@@ -52,7 +91,15 @@ namespace Service.UnitTest.Database
         [Test, Order(2), NonParallelizable]
         public void AssessmentContext_CanRead()
         {
-            Group? group = _context.Groups
+            using var context = new AssessmentContext();
+
+            if (_group is null)
+            {
+                Assert.Fail("Test model instance is null");
+                return;
+            }
+
+            Group? group = context.Groups
                 .Where(g => g.GroupId == _group.GroupId)
                 .FirstOrDefault();
 
@@ -69,7 +116,15 @@ namespace Service.UnitTest.Database
 
         public void AssessmentContext_CanUpdate()
         {
-            Group? group = _context.Groups
+            using var context = new AssessmentContext();
+
+            if (_group is null)
+            {
+                Assert.Fail("Test model instance is null");
+                return;
+            }
+
+            Group? group = context.Groups
                 .Where(g => g.GroupId == _group.GroupId)
                 .FirstOrDefault();
 
@@ -81,9 +136,9 @@ namespace Service.UnitTest.Database
 
             group.Name = Faker.Company.Name();
             group.Number = Faker.RandomNumber.Next(1, 6);
-            _context.SaveChanges();
+            context.SaveChanges();
 
-            Group? groupCompare = _context.Groups
+            Group? groupCompare = context.Groups
                 .Where(g => g.GroupId == group.GroupId)
                 .FirstOrDefault() ?? new Group();
 
@@ -98,7 +153,15 @@ namespace Service.UnitTest.Database
         [Test, Order(4), NonParallelizable]
         public void AssessmentContext_CanDelete()
         {
-            Group? group = _context.Groups
+            using var context = new AssessmentContext();
+
+            if (_group is null)
+            {
+                Assert.Fail("Test model instance is null");
+                return;
+            }
+
+            Group? group = context.Groups
                 .Where(g => g.GroupId == _group.GroupId)
                 .FirstOrDefault();
 
@@ -108,20 +171,40 @@ namespace Service.UnitTest.Database
                 return;
             }
 
-            _context.Remove(group);
-            _context.SaveChanges();
+            context.Remove(group);
+            context.SaveChanges();
 
-            group = _context.Groups
+            group = context.Groups
                  .Where(g => g.GroupId == _group.GroupId)
                  .FirstOrDefault();
 
             Assert.IsNull(group);
         }
 
+        [Test]
+        public void AsessmentContext_CanQueryManyToMany()
+        {
+            // TODO create seeder
+            var context = new AssessmentContext();
+
+            var group = context.Groups
+                .Include(group => group.Students)
+                .Where(g => g.GroupId == _groups[0].GroupId)
+                .First();
+
+            Console.WriteLine($"{group.Name} {group.Students.Count} setup");
+
+            Assert.That(group.Students.Count, Is.EqualTo(_groups[0].Students.Count));
+        }
+
         [TearDown]
         public void TearDown()
         {
-            _context.Dispose();
+            var context = new AssessmentContext();
+
+            _students.ForEach(s => context.Remove(s));
+            _groups.ForEach(g => context.Remove(g));
+            context.SaveChanges();
         }
     }
 }

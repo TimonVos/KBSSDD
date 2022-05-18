@@ -1,17 +1,15 @@
-﻿namespace Model
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+
+namespace Model
 {
     public class Student
     {
-        public Student(int studentId, string studentName)
-        {
-            StudentId = studentId;
-            StudentName = studentName;
-            this.Groups = new HashSet<ProjectGroup>();
-        }
-        public int StudentId { get; set; }
-        public string StudentName { get; set; }
-
-        public virtual ICollection<ProjectGroup> Groups { get; set; }
-
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int Number { get; set; }
+        [Required]
+        public string Name { get; set; } = string.Empty;
+        public ICollection<Group> Groups { get; set; } = new HashSet<Group>();
     }
 }
