@@ -26,7 +26,10 @@ namespace Model
         /// <summary>
         /// Entity set of <see cref="Student"/>.
         /// </summary>
-        public virtual ICollection<Student> Students { get; set; } = new HashSet<Student>();
-        public List<GroupStudent> GroupStudents { get; set; }
+        public ICollection<Student> Students { get; set; } = new HashSet<Student>();
+        /// <summary>
+        /// Join table of <see cref="Group"/> and <see cref="Student"/>.
+        /// </summary>
+        public ICollection<GroupStudent> GroupStudents { get; set; } = new HashSet<GroupStudent>();
     }
 }

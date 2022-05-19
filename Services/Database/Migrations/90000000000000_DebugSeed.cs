@@ -13,31 +13,45 @@ namespace Service.Database.Migrations
                 columns: new[] { "GroupId", "Name", "Number" },
                 values: new object[,]
                 {
-                    { 1, "Labadie, Rolfson and Hahn", 2 },
-                    { 2, "Hayes LLC", 6 },
-                    { 3, "Ruecker-Mosciski", 2 },
-                    { 4, "Wilderman Inc and Sons", 5 },
-                    { 5, "DuBuque, Veum and Koepp", 4 },
-                    { 6, "Russel, Hoeger and Steuber", 3 },
-                    { 7, "Graham, Goldner and Casper", 3 },
-                    { 8, "Shanahan-Fritsch", 5 },
-                    { 9, "Heaney, Champlin and Keeling", 5 },
-                    { 10, "Abbott-Jewess", 2 },
-                    { 11, "Mueller, Morissette and Kris", 5 },
-                    { 12, "Bernier LLC", 6 },
-                    { 13, "Stamm-Runolfsson", 4 },
-                    { 14, "Sipes Group", 3 },
-                    { 15, "O'Hara, VonRueden and Dare", 3 },
-                    { 16, "Trantow, Rosenbaum and Kohler", 6 },
-                    { 17, "Hansen, Bernhard and Hammes", 3 },
-                    { 18, "Hagenes-Bashirian", 6 },
-                    { 19, "Conroy Inc and Sons", 3 },
-                    { 20, "Dicki-Mitchell", 2 },
-                    { 21, "Gottlieb-Osinski", 1 },
-                    { 22, "Heaney LLC", 2 },
-                    { 23, "Feest, Howell and Swift", 5 },
-                    { 24, "Conroy, Hand and Jewess", 5 },
-                    { 25, "Anderson-Goyette", 6 }
+                    { 1, "Champlin, Franecki and Leannon", 4 },
+                    { 2, "Bogisich, Hahn and Metz", 1 },
+                    { 3, "Howell Group", 5 },
+                    { 4, "Breitenberg Inc and Sons", 2 },
+                    { 5, "Herzog, Brekke and Bahringer", 5 },
+                    { 6, "Auer-Pouros", 2 },
+                    { 7, "Treutel LLC", 2 },
+                    { 8, "Denesik, Wintheiser and Trantow", 1 },
+                    { 9, "Cruickshank LLC", 6 },
+                    { 10, "Schultz Inc and Sons", 2 },
+                    { 11, "Stokes-Heller", 4 },
+                    { 12, "Rosenbaum Group", 5 },
+                    { 13, "Langosh Group", 6 },
+                    { 14, "Hettinger Group", 4 },
+                    { 15, "Wunsch-Bailey", 6 },
+                    { 16, "Shanahan, Lakin and Klocko", 3 },
+                    { 17, "Herzog-Sawayn", 5 },
+                    { 18, "Jacobson, Hauck and Schimmel", 4 },
+                    { 19, "Rodriguez Group", 4 },
+                    { 20, "Muller-Konopelski", 4 },
+                    { 21, "Schowalter-Barton", 2 },
+                    { 22, "Swaniawski, Grant and Abernathy", 5 },
+                    { 23, "Larson, Collier and Bergstrom", 5 },
+                    { 24, "Wisoky, D'Amore and Lowe", 4 },
+                    { 25, "Huels, Fay and Bayer", 5 },
+                    { 26, "Deckow Group", 5 },
+                    { 27, "Bernhard, Schultz and Stracke", 5 },
+                    { 28, "Cormier Group", 4 },
+                    { 29, "Rice, Gottlieb and Jaskolski", 1 },
+                    { 30, "Kautzer Group", 6 },
+                    { 31, "Bradtke, Schuppe and Mann", 2 },
+                    { 32, "Keeling-Waters", 4 },
+                    { 33, "McCullough-Yost", 4 },
+                    { 34, "Zulauf-Feeney", 3 },
+                    { 35, "Mohr, Cronin and Hagenes", 4 },
+                    { 36, "Crooks Inc and Sons", 6 },
+                    { 37, "Heaney, Schaefer and Grimes", 1 },
+                    { 38, "Harvey-Breitenberg", 2 },
+                    { 39, "Durgan, Mertz and Schmidt", 1 }
                 });
 
             migrationBuilder.InsertData(
@@ -45,23 +59,9 @@ namespace Service.Database.Migrations
                 columns: new[] { "StudentNumber", "Name" },
                 values: new object[,]
                 {
-                    { 115007, "Arch Blick III" },
-                    { 115012, "Brionna McLaughlin" },
-                    { 115018, "Mr. Kattie Blanche Emmerich" },
-                    { 115019, "Ms. Elsa Aaron Stamm" },
-                    { 115020, "Dr. Eliane Lance Cassin I" },
-                    { 115023, "Prof. Dell Gianni Herman V" },
-                    { 115039, "Anya Parker" },
-                    { 115045, "Deonte Fritsch DDS" },
-                    { 115046, "Ursula Margarita Koelpin IV" },
-                    { 115047, "Donna Adolfo Larson Jr." },
-                    { 115051, "Gus Marks" },
-                    { 115052, "Astrid Daniel" },
-                    { 115056, "Alva Elmo Gleason II" },
-                    { 115057, "Prof. Wilhelm Mariana Legros PhD" },
-                    { 115059, "Ms. Clarissa Rowe MD" },
-                    { 115065, "Hobart Quigley" },
-                    { 115071, "Elwin Bauch" }
+                    { 115001, "Dejah Quitzon" },
+                    { 115004, "Nigel Thiel" },
+                    { 115007, "Bettye Jacobs" }
                 });
 
             migrationBuilder.InsertData(
@@ -69,48 +69,48 @@ namespace Service.Database.Migrations
                 columns: new[] { "StudentNumber", "Name" },
                 values: new object[,]
                 {
-                    { 115076, "Katelin Maggio" },
-                    { 115087, "Dominic Hoeger" },
-                    { 115088, "Ms. Louvenia Simonis" },
-                    { 115089, "Mr. Roslyn Beatty DVM" },
-                    { 115091, "Ms. Lambert Ryan" },
-                    { 115092, "Cierra Crist" },
-                    { 115095, "Wilfredo Magnus Reynolds II" },
-                    { 115101, "Kevin Dwight Quigley DVM" },
-                    { 115102, "Ms. Queen Alyce Crooks" },
-                    { 115103, "Etha Hermiston" },
-                    { 115104, "Ms. Jaquelin Wilkinson" },
-                    { 115106, "Kiarra Rath" },
-                    { 115118, "Dr. Clay Samir Schuppe" },
-                    { 115123, "Fiona Kassulke" },
-                    { 115125, "Ms. Mariana Alf Walker II" },
-                    { 115128, "Mrs. Alex McKenzie I" },
-                    { 115134, "Cyrus Hilpert" },
-                    { 115140, "Emilie Berge" },
-                    { 115144, "Shawna Rowe" },
-                    { 115145, "Ms. Jacques Milan Lakin II" },
-                    { 115157, "Ms. Guadalupe Pauline Hansen" },
-                    { 115158, "Dixie Schoen" },
-                    { 115163, "Alanis Olson" },
-                    { 115167, "Spencer Cummerata" },
-                    { 115172, "Noemie Konopelski" },
-                    { 115174, "Koby Walter" },
-                    { 115176, "Doyle Block" },
-                    { 115181, "Brenda Wunsch" },
-                    { 115200, "Alexane Miller DVM" },
-                    { 115218, "Mrs. Eve Sonya Becker DDS" },
-                    { 115227, "Russ Armstrong" },
-                    { 115230, "Rubye Heaney" },
-                    { 115231, "Mrs. Gwendolyn Windler" },
-                    { 115240, "Serena West" },
-                    { 115248, "Mrs. Scotty Edna Runte" },
-                    { 115252, "Miss Vickie Paucek" },
-                    { 115256, "Domingo Little" },
-                    { 115261, "Darien Gibson" },
-                    { 115265, "Alessandro Frami" },
-                    { 115272, "Kara Marianne Dickinson III" },
-                    { 115283, "Prof. Elton Kameron D'Amore DDS" },
-                    { 115288, "Mrs. Kaya Cortney Blick V" }
+                    { 115009, "Hudson Hilpert" },
+                    { 115012, "Billie Hahn" },
+                    { 115023, "Ms. Jadyn Jamar Ratke" },
+                    { 115027, "Johan Heidenreich Sr." },
+                    { 115032, "Elmore Waters" },
+                    { 115034, "Miss Dock Rocky Lubowitz Sr." },
+                    { 115036, "Myles Ryleigh Christiansen PhD" },
+                    { 115043, "Demario Heidenreich" },
+                    { 115045, "Jerrell Hodkiewicz I" },
+                    { 115047, "Korbin Maggio" },
+                    { 115058, "Glen Harris" },
+                    { 115076, "Omer O'Hara" },
+                    { 115079, "Nat Pattie Cruickshank I" },
+                    { 115089, "Vesta Von" },
+                    { 115095, "Ms. Kattie Wilkinson" },
+                    { 115096, "Mr. Veda Cartwright Sr." },
+                    { 115107, "Prof. Vallie Kenna Gutkowski II" },
+                    { 115108, "Isai Champlin" },
+                    { 115113, "Taya Leffler" },
+                    { 115121, "Mrs. Gust Schmitt" },
+                    { 115125, "Marcelle Durgan" },
+                    { 115129, "Andrew Schulist PhD" },
+                    { 115130, "Natalia Donnelly" },
+                    { 115138, "Vaughn Stracke" },
+                    { 115141, "Dr. Dianna Ziemann" },
+                    { 115143, "Sienna Ziemann" },
+                    { 115144, "Constantin Aisha Kerluke Jr." },
+                    { 115154, "Edgardo Heathcote" },
+                    { 115161, "Ms. Timmy Schneider" },
+                    { 115165, "Ms. Malachi Brenden Fadel Sr." },
+                    { 115166, "Emily Jakubowski Jr." },
+                    { 115169, "Prof. Karianne Mason Harber" },
+                    { 115170, "Floy Bartell" },
+                    { 115180, "Emiliano Mosciski" },
+                    { 115185, "Savannah Anderson" },
+                    { 115194, "Korbin Roberts" },
+                    { 115200, "Mr. Fausto Davis" },
+                    { 115204, "Dr. Filomena Prohaska DVM" },
+                    { 115211, "Isabel Metz" },
+                    { 115212, "Prof. Allene Timothy McClure DDS" },
+                    { 115215, "Andres Stokes" },
+                    { 115216, "Loyce Casper V" }
                 });
 
             migrationBuilder.InsertData(
@@ -118,38 +118,164 @@ namespace Service.Database.Migrations
                 columns: new[] { "StudentNumber", "Name" },
                 values: new object[,]
                 {
-                    { 115292, "Thaddeus Tia Hand PhD" },
-                    { 115294, "Miss Jaida Kian Mante V" },
-                    { 115299, "Hilario Kreiger" },
-                    { 115302, "Ambrose Murazik III" },
-                    { 115303, "Pierre Bruen" },
-                    { 115308, "Dominic Nolan" },
-                    { 115309, "Devan Kaitlyn Kiehn MD" },
-                    { 115314, "Ronaldo Halvorson" },
-                    { 115329, "Mrs. Bernard Jimmy Wintheiser MD" },
-                    { 115337, "Miss Isidro Gonzalo Pfannerstill" },
-                    { 115339, "Teagan Jace Grimes PhD" },
-                    { 115342, "Muhammad Sporer" },
-                    { 115345, "Myrtie Ritchie" },
-                    { 115346, "Chanelle Lindgren" },
-                    { 115350, "Louvenia Cole" },
-                    { 115353, "Rey Kuphal" },
-                    { 115367, "Selena Tate Wehner DDS" },
-                    { 115368, "Terrance Kessler" },
-                    { 115372, "Hope Kessler" },
-                    { 115376, "Elvis Weimann" },
-                    { 115380, "Dina Schimmel" },
-                    { 115385, "Prof. Icie Bernita Connelly" },
-                    { 115395, "Prof. Onie Natasha Corkery Jr." },
-                    { 115397, "Prof. Kaycee Marks" },
-                    { 115409, "Jazmyne Upton" },
-                    { 115414, "Ms. Audra Ward DVM" },
-                    { 115418, "Ally Sanford" },
-                    { 115435, "Timmy Parisian" },
-                    { 115438, "Matilde Christiansen" },
-                    { 115442, "Antonette Schroeder" },
-                    { 115444, "Jaqueline Rodriguez" },
-                    { 115448, "Dr. Ludie Efrain Wunsch PhD" }
+                    { 115220, "Claudine Feil" },
+                    { 115221, "Emilie Bode" },
+                    { 115225, "Delia Cummerata" },
+                    { 115233, "Joanny Lindgren Sr." },
+                    { 115234, "Prof. Toby O'Keefe DDS" },
+                    { 115235, "Lauryn Altenwerth" },
+                    { 115246, "Dayne Metz" },
+                    { 115248, "Karli Ratke" },
+                    { 115253, "Kenya White" },
+                    { 115255, "Isobel Pollich" },
+                    { 115256, "Ms. Brenna Roosevelt West II" },
+                    { 115261, "Mylene Ledner" },
+                    { 115264, "Dr. Devante O'Reilly" },
+                    { 115266, "Mr. Mazie Dibbert" },
+                    { 115269, "Graciela Bayer" },
+                    { 115270, "Ms. Allan Llewellyn Krajcik I" },
+                    { 115272, "Sean Schuster" },
+                    { 115279, "Mrs. Ashlynn Herman" },
+                    { 115285, "Ms. Cathrine Garett Walter DVM" },
+                    { 115286, "Prof. Earline Grant" },
+                    { 115293, "Mrs. Craig Boyle IV" },
+                    { 115302, "Daren Rau" },
+                    { 115305, "Jordi Padberg" },
+                    { 115306, "Dorothy Roberts" },
+                    { 115307, "Ms. Kennith Justina Casper" },
+                    { 115315, "Miss Luna Nola Herzog III" },
+                    { 115317, "Zachary Bogisich" },
+                    { 115324, "Mrs. Javon Witting" },
+                    { 115329, "Orion Hauck" },
+                    { 115334, "Harry Langworth DVM" },
+                    { 115336, "Alfonzo Dayana O'Conner V" },
+                    { 115341, "Karina Cormier" },
+                    { 115344, "Margarett Metz" },
+                    { 115349, "Brain Braun" },
+                    { 115354, "Alysha Rowe" },
+                    { 115357, "Gilberto Metz" },
+                    { 115359, "Amara Marquardt" },
+                    { 115365, "Cydney Tillman" },
+                    { 115368, "Daija Bahringer" },
+                    { 115372, "Minerva Williamson" },
+                    { 115378, "Mrs. Gerry Orin Hamill" },
+                    { 115390, "Ms. Shanel Morar II" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Students",
+                columns: new[] { "StudentNumber", "Name" },
+                values: new object[,]
+                {
+                    { 115397, "Mr. Arlo Funk" },
+                    { 115401, "Vernie Parker" },
+                    { 115413, "Dejuan Klein" },
+                    { 115414, "Prof. Megane Funk" },
+                    { 115422, "Prof. Gerda Josue Durgan Jr." },
+                    { 115425, "Ms. Zachariah Hoeger" },
+                    { 115430, "Rosemary Sanford" },
+                    { 115437, "Marlene Rippin" },
+                    { 115441, "Mrs. Judge Bode" },
+                    { 115444, "Lyric Bernier" },
+                    { 115454, "Prof. Alison Littel" },
+                    { 115456, "Barrett Rempel" },
+                    { 115457, "Gus Sauer" },
+                    { 115466, "Madonna Murray" },
+                    { 115475, "Miss Hiram Claudia Zboncak" },
+                    { 115482, "Okey Kutch" },
+                    { 115483, "Columbus Emard" },
+                    { 115486, "Gabe Schaefer" },
+                    { 115494, "Matt Weimann" },
+                    { 115498, "Velda Hortense Murazik IV" },
+                    { 115500, "Ms. Mattie Aidan Turner II" },
+                    { 115508, "Edwina Schoen" },
+                    { 115537, "Miss Noemie Hodkiewicz" },
+                    { 115538, "Prof. Lynn Torrey Sawayn DDS" },
+                    { 115540, "Berry Schultz" },
+                    { 115542, "Davon Connelly" },
+                    { 115554, "Jerald Larson" },
+                    { 115563, "Loyal Streich" },
+                    { 115566, "Annamarie Howe" },
+                    { 115573, "Birdie McGlynn" },
+                    { 115585, "Mrs. Rosemary Osborne Rogahn" },
+                    { 115587, "Prof. Kamron Graham V" },
+                    { 115588, "Mr. Frederic Taya Legros" },
+                    { 115598, "Marquis Rohan" },
+                    { 115599, "Mrs. Bella Lauren Wiza IV" },
+                    { 115609, "Evans Parker" },
+                    { 115612, "Pete Catherine Bruen V" },
+                    { 115613, "Mr. Jayson Virgie Mitchell" },
+                    { 115614, "Marcelle Rice" },
+                    { 115619, "Lucious Ebert" },
+                    { 115620, "Robin Friesen" },
+                    { 115631, "Aryanna Will" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Students",
+                columns: new[] { "StudentNumber", "Name" },
+                values: new object[,]
+                {
+                    { 115638, "Julie Kutch" },
+                    { 115644, "Damon Smith" },
+                    { 115650, "Vilma Ziemann V" },
+                    { 115663, "Aubree Gusikowski" },
+                    { 115669, "Baron Toy" },
+                    { 115670, "Annamae Torphy" },
+                    { 115674, "Hyman Turcotte" },
+                    { 115687, "Jordyn Spencer" },
+                    { 115703, "Mrs. Myriam Hal Schuster I" },
+                    { 115708, "Hank Nicolas" },
+                    { 115709, "Mr. Colton Connelly DDS" },
+                    { 115711, "Dr. Brando Glenda Casper Jr." },
+                    { 115731, "Ms. Mark Hyatt" },
+                    { 115732, "Ray Block PhD" },
+                    { 115736, "Leone Mueller" },
+                    { 115737, "Amani Howell" },
+                    { 115741, "Junior Aylin Wintheiser I" },
+                    { 115760, "Laisha Bartell" },
+                    { 115763, "Frieda Huels" },
+                    { 115765, "Dr. Justyn Sheldon Kuhic" },
+                    { 115769, "Fabian O'Kon" },
+                    { 115770, "Mr. Tanya Morar" },
+                    { 115773, "Melany Cartwright MD" },
+                    { 115781, "Chaz Gusikowski" },
+                    { 115782, "Dr. Michaela Swift DVM" },
+                    { 115785, "Narciso Greenfelder" },
+                    { 115786, "Dane Smitham" },
+                    { 115789, "Ms. Alan McClure" },
+                    { 115792, "Marisol Nitzsche" },
+                    { 115793, "Dock Friesen" },
+                    { 115799, "Lou Morissette" },
+                    { 115810, "Elwyn Abshire" },
+                    { 115816, "Sanford Fritsch" },
+                    { 115823, "Rosalind Russel" },
+                    { 115832, "Hester D'Amore" },
+                    { 115834, "Miss Laney Parker DDS" },
+                    { 115840, "Orpha Hoppe" },
+                    { 115846, "Noble Padberg" },
+                    { 115855, "Arturo Ziemann" },
+                    { 115864, "Faustino Bernier" },
+                    { 115868, "Mrs. Kristian Hailie Haley" },
+                    { 115873, "Mrs. Marilie Grant Bechtelar" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Students",
+                columns: new[] { "StudentNumber", "Name" },
+                values: new object[,]
+                {
+                    { 115874, "Prof. Leslie Jessie Carroll PhD" },
+                    { 115879, "Gretchen Jamarcus Carroll II" },
+                    { 115882, "Mr. Tyrique Margot Raynor" },
+                    { 115883, "Millie Ferry" },
+                    { 115887, "Fanny Ullrich" },
+                    { 115889, "Mariano Sheridan Corwin III" },
+                    { 115896, "Titus Kuvalis" },
+                    { 115899, "Miss Ocie Jakubowski IV" },
+                    { 115903, "Alexanne Stamm" },
+                    { 115906, "Flo Genesis Collier PhD" },
+                    { 115909, "Anthony Bartell" }
                 });
 
             migrationBuilder.InsertData(
@@ -157,48 +283,48 @@ namespace Service.Database.Migrations
                 columns: new[] { "GroupId", "StudentNumber" },
                 values: new object[,]
                 {
-                    { 1, 115052 },
-                    { 1, 115056 },
-                    { 1, 115118 },
-                    { 1, 115134 },
-                    { 1, 115145 },
-                    { 1, 115157 },
-                    { 1, 115339 },
-                    { 1, 115350 },
-                    { 2, 115020 },
-                    { 2, 115047 },
-                    { 2, 115088 },
-                    { 2, 115103 },
-                    { 2, 115118 },
-                    { 2, 115125 },
-                    { 2, 115292 },
-                    { 2, 115367 },
-                    { 3, 115007 },
-                    { 3, 115140 },
-                    { 3, 115283 },
-                    { 3, 115303 },
-                    { 3, 115367 },
-                    { 3, 115385 },
-                    { 4, 115039 },
-                    { 4, 115047 },
-                    { 4, 115200 },
-                    { 4, 115218 },
-                    { 4, 115292 },
-                    { 4, 115409 },
-                    { 4, 115418 },
-                    { 5, 115288 },
-                    { 5, 115438 },
-                    { 6, 115023 },
-                    { 6, 115059 },
-                    { 6, 115089 },
-                    { 6, 115303 },
-                    { 6, 115368 },
-                    { 6, 115385 },
-                    { 7, 115045 },
-                    { 7, 115056 },
-                    { 7, 115104 },
-                    { 7, 115230 },
-                    { 7, 115372 }
+                    { 1, 115058 },
+                    { 1, 115341 },
+                    { 1, 115401 },
+                    { 1, 115425 },
+                    { 1, 115457 },
+                    { 1, 115483 },
+                    { 1, 115554 },
+                    { 1, 115846 },
+                    { 2, 115307 },
+                    { 2, 115444 },
+                    { 2, 115899 },
+                    { 3, 115023 },
+                    { 3, 115269 },
+                    { 3, 115609 },
+                    { 3, 115670 },
+                    { 3, 115711 },
+                    { 3, 115769 },
+                    { 3, 115873 },
+                    { 3, 115903 },
+                    { 4, 115194 },
+                    { 4, 115248 },
+                    { 4, 115413 },
+                    { 4, 115873 },
+                    { 5, 115095 },
+                    { 5, 115264 },
+                    { 5, 115770 },
+                    { 6, 115317 },
+                    { 6, 115401 },
+                    { 6, 115425 },
+                    { 6, 115482 },
+                    { 7, 115001 },
+                    { 7, 115027 },
+                    { 7, 115096 },
+                    { 7, 115154 },
+                    { 7, 115246 },
+                    { 7, 115272 },
+                    { 7, 115315 },
+                    { 7, 115482 },
+                    { 8, 115036 },
+                    { 8, 115058 },
+                    { 8, 115349 },
+                    { 8, 115500 }
                 });
 
             migrationBuilder.InsertData(
@@ -206,97 +332,48 @@ namespace Service.Database.Migrations
                 columns: new[] { "GroupId", "StudentNumber" },
                 values: new object[,]
                 {
-                    { 8, 115007 },
-                    { 8, 115076 },
-                    { 8, 115088 },
-                    { 8, 115163 },
-                    { 8, 115218 },
-                    { 8, 115303 },
-                    { 8, 115342 },
-                    { 9, 115118 },
-                    { 9, 115128 },
-                    { 9, 115134 },
-                    { 9, 115172 },
-                    { 9, 115231 },
-                    { 9, 115256 },
-                    { 9, 115292 },
-                    { 9, 115353 },
-                    { 10, 115046 },
-                    { 10, 115091 },
-                    { 10, 115167 },
-                    { 10, 115380 },
-                    { 10, 115385 },
-                    { 10, 115409 },
-                    { 11, 115012 },
-                    { 11, 115018 },
-                    { 11, 115145 },
-                    { 11, 115283 },
-                    { 11, 115302 },
-                    { 12, 115018 },
-                    { 12, 115218 },
-                    { 12, 115314 },
-                    { 12, 115350 },
-                    { 12, 115353 },
-                    { 13, 115071 },
-                    { 13, 115240 },
-                    { 13, 115329 },
-                    { 13, 115350 },
-                    { 13, 115397 },
-                    { 14, 115101 },
-                    { 14, 115395 },
-                    { 15, 115012 },
-                    { 15, 115057 },
-                    { 15, 115299 },
-                    { 15, 115418 }
-                });
-
-            migrationBuilder.InsertData(
-                table: "GroupStudent",
-                columns: new[] { "GroupId", "StudentNumber" },
-                values: new object[,]
-                {
+                    { 8, 115566 },
+                    { 8, 115614 },
+                    { 8, 115864 },
+                    { 9, 115138 },
+                    { 9, 115211 },
+                    { 9, 115264 },
+                    { 9, 115306 },
+                    { 9, 115765 },
+                    { 10, 115089 },
+                    { 10, 115141 },
+                    { 10, 115293 },
+                    { 10, 115305 },
+                    { 10, 115401 },
+                    { 10, 115770 },
+                    { 11, 115007 },
+                    { 11, 115058 },
+                    { 11, 115079 },
+                    { 11, 115108 },
+                    { 11, 115889 },
+                    { 12, 115166 },
+                    { 12, 115220 },
+                    { 12, 115221 },
+                    { 12, 115466 },
+                    { 12, 115494 },
+                    { 12, 115508 },
+                    { 12, 115554 },
+                    { 12, 115573 },
+                    { 13, 115336 },
+                    { 13, 115855 },
+                    { 14, 115306 },
+                    { 14, 115414 },
+                    { 14, 115486 },
+                    { 14, 115731 },
+                    { 15, 115007 },
+                    { 15, 115169 },
+                    { 15, 115261 },
+                    { 15, 115542 },
                     { 16, 115125 },
-                    { 16, 115385 },
-                    { 17, 115051 },
-                    { 17, 115227 },
-                    { 17, 115248 },
-                    { 17, 115385 },
-                    { 17, 115435 },
-                    { 18, 115134 },
-                    { 18, 115174 },
-                    { 18, 115200 },
-                    { 18, 115283 },
-                    { 18, 115288 },
-                    { 18, 115329 },
-                    { 18, 115376 },
-                    { 18, 115414 },
-                    { 19, 115039 },
-                    { 19, 115059 },
-                    { 19, 115174 },
-                    { 19, 115227 },
-                    { 19, 115252 },
-                    { 19, 115292 },
-                    { 19, 115302 },
-                    { 19, 115329 },
-                    { 20, 115007 },
-                    { 20, 115134 },
-                    { 20, 115376 },
-                    { 20, 115409 },
-                    { 21, 115056 },
-                    { 21, 115144 },
-                    { 21, 115218 },
-                    { 21, 115395 },
-                    { 22, 115076 },
-                    { 22, 115102 },
-                    { 22, 115174 },
-                    { 22, 115248 },
-                    { 22, 115292 },
-                    { 23, 115176 },
-                    { 23, 115418 },
-                    { 24, 115007 },
-                    { 24, 115039 },
-                    { 24, 115103 },
-                    { 24, 115157 }
+                    { 16, 115235 },
+                    { 16, 115810 },
+                    { 16, 115896 },
+                    { 17, 115045 }
                 });
 
             migrationBuilder.InsertData(
@@ -304,17 +381,138 @@ namespace Service.Database.Migrations
                 columns: new[] { "GroupId", "StudentNumber" },
                 values: new object[,]
                 {
-                    { 24, 115283 },
-                    { 24, 115302 },
-                    { 24, 115303 },
-                    { 24, 115337 },
-                    { 25, 115018 },
-                    { 25, 115023 },
-                    { 25, 115051 },
-                    { 25, 115181 },
-                    { 25, 115265 },
-                    { 25, 115367 },
-                    { 25, 115368 }
+                    { 17, 115058 },
+                    { 17, 115185 },
+                    { 17, 115454 },
+                    { 17, 115846 },
+                    { 18, 115012 },
+                    { 18, 115154 },
+                    { 18, 115253 },
+                    { 18, 115494 },
+                    { 18, 115598 },
+                    { 18, 115816 },
+                    { 19, 115004 },
+                    { 19, 115185 },
+                    { 19, 115269 },
+                    { 19, 115286 },
+                    { 19, 115475 },
+                    { 19, 115619 },
+                    { 19, 115741 },
+                    { 19, 115879 },
+                    { 20, 115154 },
+                    { 20, 115264 },
+                    { 20, 115482 },
+                    { 20, 115770 },
+                    { 20, 115899 },
+                    { 21, 115211 },
+                    { 21, 115264 },
+                    { 21, 115736 },
+                    { 21, 115883 },
+                    { 22, 115121 },
+                    { 22, 115141 },
+                    { 22, 115279 },
+                    { 22, 115365 },
+                    { 22, 115500 },
+                    { 22, 115588 },
+                    { 22, 115614 },
+                    { 22, 115674 },
+                    { 23, 115007 },
+                    { 23, 115113 },
+                    { 23, 115422 },
+                    { 23, 115540 },
+                    { 23, 115619 },
+                    { 23, 115840 },
+                    { 24, 115143 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "GroupStudent",
+                columns: new[] { "GroupId", "StudentNumber" },
+                values: new object[,]
+                {
+                    { 24, 115540 },
+                    { 24, 115588 },
+                    { 25, 115248 },
+                    { 25, 115789 },
+                    { 26, 115095 },
+                    { 26, 115154 },
+                    { 26, 115357 },
+                    { 26, 115430 },
+                    { 26, 115650 },
+                    { 26, 115879 },
+                    { 27, 115154 },
+                    { 27, 115215 },
+                    { 27, 115344 },
+                    { 27, 115444 },
+                    { 27, 115585 },
+                    { 28, 115004 },
+                    { 28, 115212 },
+                    { 28, 115840 },
+                    { 28, 115864 },
+                    { 29, 115036 },
+                    { 29, 115096 },
+                    { 29, 115113 },
+                    { 29, 115315 },
+                    { 29, 115483 },
+                    { 29, 115889 },
+                    { 30, 115125 },
+                    { 30, 115269 },
+                    { 30, 115359 },
+                    { 30, 115483 },
+                    { 30, 115663 },
+                    { 30, 115709 },
+                    { 30, 115769 },
+                    { 31, 115194 },
+                    { 31, 115270 },
+                    { 31, 115563 },
+                    { 31, 115566 },
+                    { 31, 115792 },
+                    { 31, 115882 },
+                    { 32, 115009 },
+                    { 32, 115095 },
+                    { 32, 115220 },
+                    { 32, 115773 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "GroupStudent",
+                columns: new[] { "GroupId", "StudentNumber" },
+                values: new object[,]
+                {
+                    { 32, 115785 },
+                    { 32, 115906 },
+                    { 33, 115225 },
+                    { 33, 115253 },
+                    { 33, 115256 },
+                    { 33, 115307 },
+                    { 33, 115799 },
+                    { 33, 115834 },
+                    { 33, 115887 },
+                    { 34, 115165 },
+                    { 34, 115687 },
+                    { 34, 115711 },
+                    { 34, 115903 },
+                    { 35, 115045 },
+                    { 35, 115256 },
+                    { 35, 115269 },
+                    { 35, 115619 },
+                    { 35, 115864 },
+                    { 36, 115234 },
+                    { 36, 115425 },
+                    { 37, 115269 },
+                    { 37, 115354 },
+                    { 37, 115359 },
+                    { 37, 115542 },
+                    { 37, 115883 },
+                    { 38, 115001 },
+                    { 38, 115108 },
+                    { 38, 115703 },
+                    { 38, 115816 },
+                    { 39, 115266 },
+                    { 39, 115422 },
+                    { 39, 115466 },
+                    { 39, 115874 },
+                    { 39, 115896 }
                 });
         }
 
@@ -323,422 +521,397 @@ namespace Service.Database.Migrations
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 1, 115052 });
+                keyValues: new object[] { 1, 115058 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 1, 115056 });
+                keyValues: new object[] { 1, 115341 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 1, 115118 });
+                keyValues: new object[] { 1, 115401 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 1, 115134 });
+                keyValues: new object[] { 1, 115425 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 1, 115145 });
+                keyValues: new object[] { 1, 115457 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 1, 115157 });
+                keyValues: new object[] { 1, 115483 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 1, 115339 });
+                keyValues: new object[] { 1, 115554 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 1, 115350 });
+                keyValues: new object[] { 1, 115846 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 2, 115020 });
+                keyValues: new object[] { 2, 115307 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 2, 115047 });
+                keyValues: new object[] { 2, 115444 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 2, 115088 });
+                keyValues: new object[] { 2, 115899 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 2, 115103 });
+                keyValues: new object[] { 3, 115023 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 2, 115118 });
+                keyValues: new object[] { 3, 115269 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 2, 115125 });
+                keyValues: new object[] { 3, 115609 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 2, 115292 });
+                keyValues: new object[] { 3, 115670 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 2, 115367 });
+                keyValues: new object[] { 3, 115711 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 3, 115007 });
+                keyValues: new object[] { 3, 115769 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 3, 115140 });
+                keyValues: new object[] { 3, 115873 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 3, 115283 });
+                keyValues: new object[] { 3, 115903 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 3, 115303 });
+                keyValues: new object[] { 4, 115194 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 3, 115367 });
+                keyValues: new object[] { 4, 115248 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 3, 115385 });
+                keyValues: new object[] { 4, 115413 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 4, 115039 });
+                keyValues: new object[] { 4, 115873 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 4, 115047 });
+                keyValues: new object[] { 5, 115095 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 4, 115200 });
+                keyValues: new object[] { 5, 115264 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 4, 115218 });
+                keyValues: new object[] { 5, 115770 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 4, 115292 });
+                keyValues: new object[] { 6, 115317 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 4, 115409 });
+                keyValues: new object[] { 6, 115401 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 4, 115418 });
+                keyValues: new object[] { 6, 115425 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 5, 115288 });
+                keyValues: new object[] { 6, 115482 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 5, 115438 });
+                keyValues: new object[] { 7, 115001 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 6, 115023 });
+                keyValues: new object[] { 7, 115027 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 6, 115059 });
+                keyValues: new object[] { 7, 115096 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 6, 115089 });
+                keyValues: new object[] { 7, 115154 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 6, 115303 });
+                keyValues: new object[] { 7, 115246 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 6, 115368 });
+                keyValues: new object[] { 7, 115272 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 6, 115385 });
+                keyValues: new object[] { 7, 115315 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 7, 115045 });
+                keyValues: new object[] { 7, 115482 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 7, 115056 });
+                keyValues: new object[] { 8, 115036 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 7, 115104 });
+                keyValues: new object[] { 8, 115058 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 7, 115230 });
+                keyValues: new object[] { 8, 115349 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 7, 115372 });
+                keyValues: new object[] { 8, 115500 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 8, 115007 });
+                keyValues: new object[] { 8, 115566 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 8, 115076 });
+                keyValues: new object[] { 8, 115614 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 8, 115088 });
+                keyValues: new object[] { 8, 115864 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 8, 115163 });
+                keyValues: new object[] { 9, 115138 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 8, 115218 });
+                keyValues: new object[] { 9, 115211 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 8, 115303 });
+                keyValues: new object[] { 9, 115264 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 8, 115342 });
+                keyValues: new object[] { 9, 115306 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 9, 115118 });
+                keyValues: new object[] { 9, 115765 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 9, 115128 });
+                keyValues: new object[] { 10, 115089 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 9, 115134 });
+                keyValues: new object[] { 10, 115141 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 9, 115172 });
+                keyValues: new object[] { 10, 115293 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 9, 115231 });
+                keyValues: new object[] { 10, 115305 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 9, 115256 });
+                keyValues: new object[] { 10, 115401 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 9, 115292 });
+                keyValues: new object[] { 10, 115770 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 9, 115353 });
+                keyValues: new object[] { 11, 115007 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 10, 115046 });
+                keyValues: new object[] { 11, 115058 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 10, 115091 });
+                keyValues: new object[] { 11, 115079 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 10, 115167 });
+                keyValues: new object[] { 11, 115108 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 10, 115380 });
+                keyValues: new object[] { 11, 115889 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 10, 115385 });
+                keyValues: new object[] { 12, 115166 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 10, 115409 });
+                keyValues: new object[] { 12, 115220 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 11, 115012 });
+                keyValues: new object[] { 12, 115221 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 11, 115018 });
+                keyValues: new object[] { 12, 115466 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 11, 115145 });
+                keyValues: new object[] { 12, 115494 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 11, 115283 });
+                keyValues: new object[] { 12, 115508 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 11, 115302 });
+                keyValues: new object[] { 12, 115554 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 12, 115018 });
+                keyValues: new object[] { 12, 115573 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 12, 115218 });
+                keyValues: new object[] { 13, 115336 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 12, 115314 });
+                keyValues: new object[] { 13, 115855 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 12, 115350 });
+                keyValues: new object[] { 14, 115306 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 12, 115353 });
+                keyValues: new object[] { 14, 115414 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 13, 115071 });
+                keyValues: new object[] { 14, 115486 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 13, 115240 });
+                keyValues: new object[] { 14, 115731 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 13, 115329 });
+                keyValues: new object[] { 15, 115007 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 13, 115350 });
+                keyValues: new object[] { 15, 115169 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 13, 115397 });
+                keyValues: new object[] { 15, 115261 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 14, 115101 });
-
-            migrationBuilder.DeleteData(
-                table: "GroupStudent",
-                keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 14, 115395 });
-
-            migrationBuilder.DeleteData(
-                table: "GroupStudent",
-                keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 15, 115012 });
-
-            migrationBuilder.DeleteData(
-                table: "GroupStudent",
-                keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 15, 115057 });
-
-            migrationBuilder.DeleteData(
-                table: "GroupStudent",
-                keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 15, 115299 });
-
-            migrationBuilder.DeleteData(
-                table: "GroupStudent",
-                keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 15, 115418 });
+                keyValues: new object[] { 15, 115542 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
@@ -748,352 +921,887 @@ namespace Service.Database.Migrations
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 16, 115385 });
+                keyValues: new object[] { 16, 115235 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 17, 115051 });
+                keyValues: new object[] { 16, 115810 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 17, 115227 });
+                keyValues: new object[] { 16, 115896 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 17, 115248 });
+                keyValues: new object[] { 17, 115045 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 17, 115385 });
+                keyValues: new object[] { 17, 115058 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 17, 115435 });
+                keyValues: new object[] { 17, 115185 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 18, 115134 });
+                keyValues: new object[] { 17, 115454 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 18, 115174 });
+                keyValues: new object[] { 17, 115846 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 18, 115200 });
+                keyValues: new object[] { 18, 115012 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 18, 115283 });
+                keyValues: new object[] { 18, 115154 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 18, 115288 });
+                keyValues: new object[] { 18, 115253 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 18, 115329 });
+                keyValues: new object[] { 18, 115494 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 18, 115376 });
+                keyValues: new object[] { 18, 115598 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 18, 115414 });
+                keyValues: new object[] { 18, 115816 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 19, 115039 });
+                keyValues: new object[] { 19, 115004 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 19, 115059 });
+                keyValues: new object[] { 19, 115185 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 19, 115174 });
+                keyValues: new object[] { 19, 115269 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 19, 115227 });
+                keyValues: new object[] { 19, 115286 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 19, 115252 });
+                keyValues: new object[] { 19, 115475 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 19, 115292 });
+                keyValues: new object[] { 19, 115619 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 19, 115302 });
+                keyValues: new object[] { 19, 115741 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 19, 115329 });
+                keyValues: new object[] { 19, 115879 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 20, 115007 });
+                keyValues: new object[] { 20, 115154 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 20, 115134 });
+                keyValues: new object[] { 20, 115264 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 20, 115376 });
+                keyValues: new object[] { 20, 115482 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 20, 115409 });
+                keyValues: new object[] { 20, 115770 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 21, 115056 });
+                keyValues: new object[] { 20, 115899 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 21, 115144 });
+                keyValues: new object[] { 21, 115211 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 21, 115218 });
+                keyValues: new object[] { 21, 115264 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 21, 115395 });
+                keyValues: new object[] { 21, 115736 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 22, 115076 });
+                keyValues: new object[] { 21, 115883 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 22, 115102 });
+                keyValues: new object[] { 22, 115121 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 22, 115174 });
+                keyValues: new object[] { 22, 115141 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 22, 115248 });
+                keyValues: new object[] { 22, 115279 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 22, 115292 });
+                keyValues: new object[] { 22, 115365 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 23, 115176 });
+                keyValues: new object[] { 22, 115500 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 23, 115418 });
+                keyValues: new object[] { 22, 115588 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 24, 115007 });
+                keyValues: new object[] { 22, 115614 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 24, 115039 });
+                keyValues: new object[] { 22, 115674 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 24, 115103 });
+                keyValues: new object[] { 23, 115007 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 24, 115157 });
+                keyValues: new object[] { 23, 115113 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 24, 115283 });
+                keyValues: new object[] { 23, 115422 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 24, 115302 });
+                keyValues: new object[] { 23, 115540 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 24, 115303 });
+                keyValues: new object[] { 23, 115619 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 24, 115337 });
+                keyValues: new object[] { 23, 115840 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 25, 115018 });
+                keyValues: new object[] { 24, 115143 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 25, 115023 });
+                keyValues: new object[] { 24, 115540 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 25, 115051 });
+                keyValues: new object[] { 24, 115588 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 25, 115181 });
+                keyValues: new object[] { 25, 115248 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 25, 115265 });
+                keyValues: new object[] { 25, 115789 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 25, 115367 });
+                keyValues: new object[] { 26, 115095 });
 
             migrationBuilder.DeleteData(
                 table: "GroupStudent",
                 keyColumns: new[] { "GroupId", "StudentNumber" },
-                keyValues: new object[] { 25, 115368 });
+                keyValues: new object[] { 26, 115154 });
+
+            migrationBuilder.DeleteData(
+                table: "GroupStudent",
+                keyColumns: new[] { "GroupId", "StudentNumber" },
+                keyValues: new object[] { 26, 115357 });
+
+            migrationBuilder.DeleteData(
+                table: "GroupStudent",
+                keyColumns: new[] { "GroupId", "StudentNumber" },
+                keyValues: new object[] { 26, 115430 });
+
+            migrationBuilder.DeleteData(
+                table: "GroupStudent",
+                keyColumns: new[] { "GroupId", "StudentNumber" },
+                keyValues: new object[] { 26, 115650 });
+
+            migrationBuilder.DeleteData(
+                table: "GroupStudent",
+                keyColumns: new[] { "GroupId", "StudentNumber" },
+                keyValues: new object[] { 26, 115879 });
+
+            migrationBuilder.DeleteData(
+                table: "GroupStudent",
+                keyColumns: new[] { "GroupId", "StudentNumber" },
+                keyValues: new object[] { 27, 115154 });
+
+            migrationBuilder.DeleteData(
+                table: "GroupStudent",
+                keyColumns: new[] { "GroupId", "StudentNumber" },
+                keyValues: new object[] { 27, 115215 });
+
+            migrationBuilder.DeleteData(
+                table: "GroupStudent",
+                keyColumns: new[] { "GroupId", "StudentNumber" },
+                keyValues: new object[] { 27, 115344 });
+
+            migrationBuilder.DeleteData(
+                table: "GroupStudent",
+                keyColumns: new[] { "GroupId", "StudentNumber" },
+                keyValues: new object[] { 27, 115444 });
+
+            migrationBuilder.DeleteData(
+                table: "GroupStudent",
+                keyColumns: new[] { "GroupId", "StudentNumber" },
+                keyValues: new object[] { 27, 115585 });
+
+            migrationBuilder.DeleteData(
+                table: "GroupStudent",
+                keyColumns: new[] { "GroupId", "StudentNumber" },
+                keyValues: new object[] { 28, 115004 });
+
+            migrationBuilder.DeleteData(
+                table: "GroupStudent",
+                keyColumns: new[] { "GroupId", "StudentNumber" },
+                keyValues: new object[] { 28, 115212 });
+
+            migrationBuilder.DeleteData(
+                table: "GroupStudent",
+                keyColumns: new[] { "GroupId", "StudentNumber" },
+                keyValues: new object[] { 28, 115840 });
+
+            migrationBuilder.DeleteData(
+                table: "GroupStudent",
+                keyColumns: new[] { "GroupId", "StudentNumber" },
+                keyValues: new object[] { 28, 115864 });
+
+            migrationBuilder.DeleteData(
+                table: "GroupStudent",
+                keyColumns: new[] { "GroupId", "StudentNumber" },
+                keyValues: new object[] { 29, 115036 });
+
+            migrationBuilder.DeleteData(
+                table: "GroupStudent",
+                keyColumns: new[] { "GroupId", "StudentNumber" },
+                keyValues: new object[] { 29, 115096 });
+
+            migrationBuilder.DeleteData(
+                table: "GroupStudent",
+                keyColumns: new[] { "GroupId", "StudentNumber" },
+                keyValues: new object[] { 29, 115113 });
+
+            migrationBuilder.DeleteData(
+                table: "GroupStudent",
+                keyColumns: new[] { "GroupId", "StudentNumber" },
+                keyValues: new object[] { 29, 115315 });
+
+            migrationBuilder.DeleteData(
+                table: "GroupStudent",
+                keyColumns: new[] { "GroupId", "StudentNumber" },
+                keyValues: new object[] { 29, 115483 });
+
+            migrationBuilder.DeleteData(
+                table: "GroupStudent",
+                keyColumns: new[] { "GroupId", "StudentNumber" },
+                keyValues: new object[] { 29, 115889 });
+
+            migrationBuilder.DeleteData(
+                table: "GroupStudent",
+                keyColumns: new[] { "GroupId", "StudentNumber" },
+                keyValues: new object[] { 30, 115125 });
+
+            migrationBuilder.DeleteData(
+                table: "GroupStudent",
+                keyColumns: new[] { "GroupId", "StudentNumber" },
+                keyValues: new object[] { 30, 115269 });
+
+            migrationBuilder.DeleteData(
+                table: "GroupStudent",
+                keyColumns: new[] { "GroupId", "StudentNumber" },
+                keyValues: new object[] { 30, 115359 });
+
+            migrationBuilder.DeleteData(
+                table: "GroupStudent",
+                keyColumns: new[] { "GroupId", "StudentNumber" },
+                keyValues: new object[] { 30, 115483 });
+
+            migrationBuilder.DeleteData(
+                table: "GroupStudent",
+                keyColumns: new[] { "GroupId", "StudentNumber" },
+                keyValues: new object[] { 30, 115663 });
+
+            migrationBuilder.DeleteData(
+                table: "GroupStudent",
+                keyColumns: new[] { "GroupId", "StudentNumber" },
+                keyValues: new object[] { 30, 115709 });
+
+            migrationBuilder.DeleteData(
+                table: "GroupStudent",
+                keyColumns: new[] { "GroupId", "StudentNumber" },
+                keyValues: new object[] { 30, 115769 });
+
+            migrationBuilder.DeleteData(
+                table: "GroupStudent",
+                keyColumns: new[] { "GroupId", "StudentNumber" },
+                keyValues: new object[] { 31, 115194 });
+
+            migrationBuilder.DeleteData(
+                table: "GroupStudent",
+                keyColumns: new[] { "GroupId", "StudentNumber" },
+                keyValues: new object[] { 31, 115270 });
+
+            migrationBuilder.DeleteData(
+                table: "GroupStudent",
+                keyColumns: new[] { "GroupId", "StudentNumber" },
+                keyValues: new object[] { 31, 115563 });
+
+            migrationBuilder.DeleteData(
+                table: "GroupStudent",
+                keyColumns: new[] { "GroupId", "StudentNumber" },
+                keyValues: new object[] { 31, 115566 });
+
+            migrationBuilder.DeleteData(
+                table: "GroupStudent",
+                keyColumns: new[] { "GroupId", "StudentNumber" },
+                keyValues: new object[] { 31, 115792 });
+
+            migrationBuilder.DeleteData(
+                table: "GroupStudent",
+                keyColumns: new[] { "GroupId", "StudentNumber" },
+                keyValues: new object[] { 31, 115882 });
+
+            migrationBuilder.DeleteData(
+                table: "GroupStudent",
+                keyColumns: new[] { "GroupId", "StudentNumber" },
+                keyValues: new object[] { 32, 115009 });
+
+            migrationBuilder.DeleteData(
+                table: "GroupStudent",
+                keyColumns: new[] { "GroupId", "StudentNumber" },
+                keyValues: new object[] { 32, 115095 });
+
+            migrationBuilder.DeleteData(
+                table: "GroupStudent",
+                keyColumns: new[] { "GroupId", "StudentNumber" },
+                keyValues: new object[] { 32, 115220 });
+
+            migrationBuilder.DeleteData(
+                table: "GroupStudent",
+                keyColumns: new[] { "GroupId", "StudentNumber" },
+                keyValues: new object[] { 32, 115773 });
+
+            migrationBuilder.DeleteData(
+                table: "GroupStudent",
+                keyColumns: new[] { "GroupId", "StudentNumber" },
+                keyValues: new object[] { 32, 115785 });
+
+            migrationBuilder.DeleteData(
+                table: "GroupStudent",
+                keyColumns: new[] { "GroupId", "StudentNumber" },
+                keyValues: new object[] { 32, 115906 });
+
+            migrationBuilder.DeleteData(
+                table: "GroupStudent",
+                keyColumns: new[] { "GroupId", "StudentNumber" },
+                keyValues: new object[] { 33, 115225 });
+
+            migrationBuilder.DeleteData(
+                table: "GroupStudent",
+                keyColumns: new[] { "GroupId", "StudentNumber" },
+                keyValues: new object[] { 33, 115253 });
+
+            migrationBuilder.DeleteData(
+                table: "GroupStudent",
+                keyColumns: new[] { "GroupId", "StudentNumber" },
+                keyValues: new object[] { 33, 115256 });
+
+            migrationBuilder.DeleteData(
+                table: "GroupStudent",
+                keyColumns: new[] { "GroupId", "StudentNumber" },
+                keyValues: new object[] { 33, 115307 });
+
+            migrationBuilder.DeleteData(
+                table: "GroupStudent",
+                keyColumns: new[] { "GroupId", "StudentNumber" },
+                keyValues: new object[] { 33, 115799 });
+
+            migrationBuilder.DeleteData(
+                table: "GroupStudent",
+                keyColumns: new[] { "GroupId", "StudentNumber" },
+                keyValues: new object[] { 33, 115834 });
+
+            migrationBuilder.DeleteData(
+                table: "GroupStudent",
+                keyColumns: new[] { "GroupId", "StudentNumber" },
+                keyValues: new object[] { 33, 115887 });
+
+            migrationBuilder.DeleteData(
+                table: "GroupStudent",
+                keyColumns: new[] { "GroupId", "StudentNumber" },
+                keyValues: new object[] { 34, 115165 });
+
+            migrationBuilder.DeleteData(
+                table: "GroupStudent",
+                keyColumns: new[] { "GroupId", "StudentNumber" },
+                keyValues: new object[] { 34, 115687 });
+
+            migrationBuilder.DeleteData(
+                table: "GroupStudent",
+                keyColumns: new[] { "GroupId", "StudentNumber" },
+                keyValues: new object[] { 34, 115711 });
+
+            migrationBuilder.DeleteData(
+                table: "GroupStudent",
+                keyColumns: new[] { "GroupId", "StudentNumber" },
+                keyValues: new object[] { 34, 115903 });
+
+            migrationBuilder.DeleteData(
+                table: "GroupStudent",
+                keyColumns: new[] { "GroupId", "StudentNumber" },
+                keyValues: new object[] { 35, 115045 });
+
+            migrationBuilder.DeleteData(
+                table: "GroupStudent",
+                keyColumns: new[] { "GroupId", "StudentNumber" },
+                keyValues: new object[] { 35, 115256 });
+
+            migrationBuilder.DeleteData(
+                table: "GroupStudent",
+                keyColumns: new[] { "GroupId", "StudentNumber" },
+                keyValues: new object[] { 35, 115269 });
+
+            migrationBuilder.DeleteData(
+                table: "GroupStudent",
+                keyColumns: new[] { "GroupId", "StudentNumber" },
+                keyValues: new object[] { 35, 115619 });
+
+            migrationBuilder.DeleteData(
+                table: "GroupStudent",
+                keyColumns: new[] { "GroupId", "StudentNumber" },
+                keyValues: new object[] { 35, 115864 });
+
+            migrationBuilder.DeleteData(
+                table: "GroupStudent",
+                keyColumns: new[] { "GroupId", "StudentNumber" },
+                keyValues: new object[] { 36, 115234 });
+
+            migrationBuilder.DeleteData(
+                table: "GroupStudent",
+                keyColumns: new[] { "GroupId", "StudentNumber" },
+                keyValues: new object[] { 36, 115425 });
+
+            migrationBuilder.DeleteData(
+                table: "GroupStudent",
+                keyColumns: new[] { "GroupId", "StudentNumber" },
+                keyValues: new object[] { 37, 115269 });
+
+            migrationBuilder.DeleteData(
+                table: "GroupStudent",
+                keyColumns: new[] { "GroupId", "StudentNumber" },
+                keyValues: new object[] { 37, 115354 });
+
+            migrationBuilder.DeleteData(
+                table: "GroupStudent",
+                keyColumns: new[] { "GroupId", "StudentNumber" },
+                keyValues: new object[] { 37, 115359 });
+
+            migrationBuilder.DeleteData(
+                table: "GroupStudent",
+                keyColumns: new[] { "GroupId", "StudentNumber" },
+                keyValues: new object[] { 37, 115542 });
+
+            migrationBuilder.DeleteData(
+                table: "GroupStudent",
+                keyColumns: new[] { "GroupId", "StudentNumber" },
+                keyValues: new object[] { 37, 115883 });
+
+            migrationBuilder.DeleteData(
+                table: "GroupStudent",
+                keyColumns: new[] { "GroupId", "StudentNumber" },
+                keyValues: new object[] { 38, 115001 });
+
+            migrationBuilder.DeleteData(
+                table: "GroupStudent",
+                keyColumns: new[] { "GroupId", "StudentNumber" },
+                keyValues: new object[] { 38, 115108 });
+
+            migrationBuilder.DeleteData(
+                table: "GroupStudent",
+                keyColumns: new[] { "GroupId", "StudentNumber" },
+                keyValues: new object[] { 38, 115703 });
+
+            migrationBuilder.DeleteData(
+                table: "GroupStudent",
+                keyColumns: new[] { "GroupId", "StudentNumber" },
+                keyValues: new object[] { 38, 115816 });
+
+            migrationBuilder.DeleteData(
+                table: "GroupStudent",
+                keyColumns: new[] { "GroupId", "StudentNumber" },
+                keyValues: new object[] { 39, 115266 });
+
+            migrationBuilder.DeleteData(
+                table: "GroupStudent",
+                keyColumns: new[] { "GroupId", "StudentNumber" },
+                keyValues: new object[] { 39, 115422 });
+
+            migrationBuilder.DeleteData(
+                table: "GroupStudent",
+                keyColumns: new[] { "GroupId", "StudentNumber" },
+                keyValues: new object[] { 39, 115466 });
+
+            migrationBuilder.DeleteData(
+                table: "GroupStudent",
+                keyColumns: new[] { "GroupId", "StudentNumber" },
+                keyValues: new object[] { 39, 115874 });
+
+            migrationBuilder.DeleteData(
+                table: "GroupStudent",
+                keyColumns: new[] { "GroupId", "StudentNumber" },
+                keyValues: new object[] { 39, 115896 });
 
             migrationBuilder.DeleteData(
                 table: "Students",
                 keyColumn: "StudentNumber",
-                keyValue: 115019);
+                keyValue: 115032);
 
             migrationBuilder.DeleteData(
                 table: "Students",
                 keyColumn: "StudentNumber",
-                keyValue: 115065);
+                keyValue: 115034);
 
             migrationBuilder.DeleteData(
                 table: "Students",
                 keyColumn: "StudentNumber",
-                keyValue: 115087);
+                keyValue: 115043);
 
             migrationBuilder.DeleteData(
                 table: "Students",
                 keyColumn: "StudentNumber",
-                keyValue: 115092);
+                keyValue: 115047);
 
             migrationBuilder.DeleteData(
                 table: "Students",
                 keyColumn: "StudentNumber",
-                keyValue: 115095);
+                keyValue: 115076);
 
             migrationBuilder.DeleteData(
                 table: "Students",
                 keyColumn: "StudentNumber",
-                keyValue: 115106);
+                keyValue: 115107);
 
             migrationBuilder.DeleteData(
                 table: "Students",
                 keyColumn: "StudentNumber",
-                keyValue: 115123);
+                keyValue: 115129);
 
             migrationBuilder.DeleteData(
                 table: "Students",
                 keyColumn: "StudentNumber",
-                keyValue: 115158);
+                keyValue: 115130);
 
             migrationBuilder.DeleteData(
                 table: "Students",
                 keyColumn: "StudentNumber",
-                keyValue: 115261);
+                keyValue: 115144);
 
             migrationBuilder.DeleteData(
                 table: "Students",
                 keyColumn: "StudentNumber",
-                keyValue: 115272);
+                keyValue: 115161);
 
             migrationBuilder.DeleteData(
                 table: "Students",
                 keyColumn: "StudentNumber",
-                keyValue: 115294);
+                keyValue: 115170);
 
             migrationBuilder.DeleteData(
                 table: "Students",
                 keyColumn: "StudentNumber",
-                keyValue: 115308);
+                keyValue: 115180);
 
             migrationBuilder.DeleteData(
                 table: "Students",
                 keyColumn: "StudentNumber",
-                keyValue: 115309);
+                keyValue: 115200);
 
             migrationBuilder.DeleteData(
                 table: "Students",
                 keyColumn: "StudentNumber",
-                keyValue: 115345);
+                keyValue: 115204);
 
             migrationBuilder.DeleteData(
                 table: "Students",
                 keyColumn: "StudentNumber",
-                keyValue: 115346);
+                keyValue: 115216);
 
             migrationBuilder.DeleteData(
                 table: "Students",
                 keyColumn: "StudentNumber",
-                keyValue: 115442);
+                keyValue: 115233);
 
             migrationBuilder.DeleteData(
                 table: "Students",
                 keyColumn: "StudentNumber",
-                keyValue: 115444);
+                keyValue: 115255);
 
             migrationBuilder.DeleteData(
                 table: "Students",
                 keyColumn: "StudentNumber",
-                keyValue: 115448);
+                keyValue: 115285);
+
+            migrationBuilder.DeleteData(
+                table: "Students",
+                keyColumn: "StudentNumber",
+                keyValue: 115302);
+
+            migrationBuilder.DeleteData(
+                table: "Students",
+                keyColumn: "StudentNumber",
+                keyValue: 115324);
+
+            migrationBuilder.DeleteData(
+                table: "Students",
+                keyColumn: "StudentNumber",
+                keyValue: 115329);
+
+            migrationBuilder.DeleteData(
+                table: "Students",
+                keyColumn: "StudentNumber",
+                keyValue: 115334);
+
+            migrationBuilder.DeleteData(
+                table: "Students",
+                keyColumn: "StudentNumber",
+                keyValue: 115368);
+
+            migrationBuilder.DeleteData(
+                table: "Students",
+                keyColumn: "StudentNumber",
+                keyValue: 115372);
+
+            migrationBuilder.DeleteData(
+                table: "Students",
+                keyColumn: "StudentNumber",
+                keyValue: 115378);
+
+            migrationBuilder.DeleteData(
+                table: "Students",
+                keyColumn: "StudentNumber",
+                keyValue: 115390);
+
+            migrationBuilder.DeleteData(
+                table: "Students",
+                keyColumn: "StudentNumber",
+                keyValue: 115397);
+
+            migrationBuilder.DeleteData(
+                table: "Students",
+                keyColumn: "StudentNumber",
+                keyValue: 115437);
+
+            migrationBuilder.DeleteData(
+                table: "Students",
+                keyColumn: "StudentNumber",
+                keyValue: 115441);
+
+            migrationBuilder.DeleteData(
+                table: "Students",
+                keyColumn: "StudentNumber",
+                keyValue: 115456);
+
+            migrationBuilder.DeleteData(
+                table: "Students",
+                keyColumn: "StudentNumber",
+                keyValue: 115498);
+
+            migrationBuilder.DeleteData(
+                table: "Students",
+                keyColumn: "StudentNumber",
+                keyValue: 115537);
+
+            migrationBuilder.DeleteData(
+                table: "Students",
+                keyColumn: "StudentNumber",
+                keyValue: 115538);
+
+            migrationBuilder.DeleteData(
+                table: "Students",
+                keyColumn: "StudentNumber",
+                keyValue: 115587);
+
+            migrationBuilder.DeleteData(
+                table: "Students",
+                keyColumn: "StudentNumber",
+                keyValue: 115599);
+
+            migrationBuilder.DeleteData(
+                table: "Students",
+                keyColumn: "StudentNumber",
+                keyValue: 115612);
+
+            migrationBuilder.DeleteData(
+                table: "Students",
+                keyColumn: "StudentNumber",
+                keyValue: 115613);
+
+            migrationBuilder.DeleteData(
+                table: "Students",
+                keyColumn: "StudentNumber",
+                keyValue: 115620);
+
+            migrationBuilder.DeleteData(
+                table: "Students",
+                keyColumn: "StudentNumber",
+                keyValue: 115631);
+
+            migrationBuilder.DeleteData(
+                table: "Students",
+                keyColumn: "StudentNumber",
+                keyValue: 115638);
+
+            migrationBuilder.DeleteData(
+                table: "Students",
+                keyColumn: "StudentNumber",
+                keyValue: 115644);
+
+            migrationBuilder.DeleteData(
+                table: "Students",
+                keyColumn: "StudentNumber",
+                keyValue: 115669);
+
+            migrationBuilder.DeleteData(
+                table: "Students",
+                keyColumn: "StudentNumber",
+                keyValue: 115708);
+
+            migrationBuilder.DeleteData(
+                table: "Students",
+                keyColumn: "StudentNumber",
+                keyValue: 115732);
+
+            migrationBuilder.DeleteData(
+                table: "Students",
+                keyColumn: "StudentNumber",
+                keyValue: 115737);
+
+            migrationBuilder.DeleteData(
+                table: "Students",
+                keyColumn: "StudentNumber",
+                keyValue: 115760);
+
+            migrationBuilder.DeleteData(
+                table: "Students",
+                keyColumn: "StudentNumber",
+                keyValue: 115763);
+
+            migrationBuilder.DeleteData(
+                table: "Students",
+                keyColumn: "StudentNumber",
+                keyValue: 115781);
+
+            migrationBuilder.DeleteData(
+                table: "Students",
+                keyColumn: "StudentNumber",
+                keyValue: 115782);
+
+            migrationBuilder.DeleteData(
+                table: "Students",
+                keyColumn: "StudentNumber",
+                keyValue: 115786);
+
+            migrationBuilder.DeleteData(
+                table: "Students",
+                keyColumn: "StudentNumber",
+                keyValue: 115793);
+
+            migrationBuilder.DeleteData(
+                table: "Students",
+                keyColumn: "StudentNumber",
+                keyValue: 115823);
+
+            migrationBuilder.DeleteData(
+                table: "Students",
+                keyColumn: "StudentNumber",
+                keyValue: 115832);
+
+            migrationBuilder.DeleteData(
+                table: "Students",
+                keyColumn: "StudentNumber",
+                keyValue: 115868);
+
+            migrationBuilder.DeleteData(
+                table: "Students",
+                keyColumn: "StudentNumber",
+                keyValue: 115909);
 
             migrationBuilder.DeleteData(
                 table: "Groups",
@@ -1221,9 +1929,94 @@ namespace Service.Database.Migrations
                 keyValue: 25);
 
             migrationBuilder.DeleteData(
+                table: "Groups",
+                keyColumn: "GroupId",
+                keyValue: 26);
+
+            migrationBuilder.DeleteData(
+                table: "Groups",
+                keyColumn: "GroupId",
+                keyValue: 27);
+
+            migrationBuilder.DeleteData(
+                table: "Groups",
+                keyColumn: "GroupId",
+                keyValue: 28);
+
+            migrationBuilder.DeleteData(
+                table: "Groups",
+                keyColumn: "GroupId",
+                keyValue: 29);
+
+            migrationBuilder.DeleteData(
+                table: "Groups",
+                keyColumn: "GroupId",
+                keyValue: 30);
+
+            migrationBuilder.DeleteData(
+                table: "Groups",
+                keyColumn: "GroupId",
+                keyValue: 31);
+
+            migrationBuilder.DeleteData(
+                table: "Groups",
+                keyColumn: "GroupId",
+                keyValue: 32);
+
+            migrationBuilder.DeleteData(
+                table: "Groups",
+                keyColumn: "GroupId",
+                keyValue: 33);
+
+            migrationBuilder.DeleteData(
+                table: "Groups",
+                keyColumn: "GroupId",
+                keyValue: 34);
+
+            migrationBuilder.DeleteData(
+                table: "Groups",
+                keyColumn: "GroupId",
+                keyValue: 35);
+
+            migrationBuilder.DeleteData(
+                table: "Groups",
+                keyColumn: "GroupId",
+                keyValue: 36);
+
+            migrationBuilder.DeleteData(
+                table: "Groups",
+                keyColumn: "GroupId",
+                keyValue: 37);
+
+            migrationBuilder.DeleteData(
+                table: "Groups",
+                keyColumn: "GroupId",
+                keyValue: 38);
+
+            migrationBuilder.DeleteData(
+                table: "Groups",
+                keyColumn: "GroupId",
+                keyValue: 39);
+
+            migrationBuilder.DeleteData(
+                table: "Students",
+                keyColumn: "StudentNumber",
+                keyValue: 115001);
+
+            migrationBuilder.DeleteData(
+                table: "Students",
+                keyColumn: "StudentNumber",
+                keyValue: 115004);
+
+            migrationBuilder.DeleteData(
                 table: "Students",
                 keyColumn: "StudentNumber",
                 keyValue: 115007);
+
+            migrationBuilder.DeleteData(
+                table: "Students",
+                keyColumn: "StudentNumber",
+                keyValue: 115009);
 
             migrationBuilder.DeleteData(
                 table: "Students",
@@ -1233,22 +2026,17 @@ namespace Service.Database.Migrations
             migrationBuilder.DeleteData(
                 table: "Students",
                 keyColumn: "StudentNumber",
-                keyValue: 115018);
-
-            migrationBuilder.DeleteData(
-                table: "Students",
-                keyColumn: "StudentNumber",
-                keyValue: 115020);
-
-            migrationBuilder.DeleteData(
-                table: "Students",
-                keyColumn: "StudentNumber",
                 keyValue: 115023);
 
             migrationBuilder.DeleteData(
                 table: "Students",
                 keyColumn: "StudentNumber",
-                keyValue: 115039);
+                keyValue: 115027);
+
+            migrationBuilder.DeleteData(
+                table: "Students",
+                keyColumn: "StudentNumber",
+                keyValue: 115036);
 
             migrationBuilder.DeleteData(
                 table: "Students",
@@ -1258,52 +2046,12 @@ namespace Service.Database.Migrations
             migrationBuilder.DeleteData(
                 table: "Students",
                 keyColumn: "StudentNumber",
-                keyValue: 115046);
+                keyValue: 115058);
 
             migrationBuilder.DeleteData(
                 table: "Students",
                 keyColumn: "StudentNumber",
-                keyValue: 115047);
-
-            migrationBuilder.DeleteData(
-                table: "Students",
-                keyColumn: "StudentNumber",
-                keyValue: 115051);
-
-            migrationBuilder.DeleteData(
-                table: "Students",
-                keyColumn: "StudentNumber",
-                keyValue: 115052);
-
-            migrationBuilder.DeleteData(
-                table: "Students",
-                keyColumn: "StudentNumber",
-                keyValue: 115056);
-
-            migrationBuilder.DeleteData(
-                table: "Students",
-                keyColumn: "StudentNumber",
-                keyValue: 115057);
-
-            migrationBuilder.DeleteData(
-                table: "Students",
-                keyColumn: "StudentNumber",
-                keyValue: 115059);
-
-            migrationBuilder.DeleteData(
-                table: "Students",
-                keyColumn: "StudentNumber",
-                keyValue: 115071);
-
-            migrationBuilder.DeleteData(
-                table: "Students",
-                keyColumn: "StudentNumber",
-                keyValue: 115076);
-
-            migrationBuilder.DeleteData(
-                table: "Students",
-                keyColumn: "StudentNumber",
-                keyValue: 115088);
+                keyValue: 115079);
 
             migrationBuilder.DeleteData(
                 table: "Students",
@@ -1313,32 +2061,27 @@ namespace Service.Database.Migrations
             migrationBuilder.DeleteData(
                 table: "Students",
                 keyColumn: "StudentNumber",
-                keyValue: 115091);
+                keyValue: 115095);
 
             migrationBuilder.DeleteData(
                 table: "Students",
                 keyColumn: "StudentNumber",
-                keyValue: 115101);
+                keyValue: 115096);
 
             migrationBuilder.DeleteData(
                 table: "Students",
                 keyColumn: "StudentNumber",
-                keyValue: 115102);
+                keyValue: 115108);
 
             migrationBuilder.DeleteData(
                 table: "Students",
                 keyColumn: "StudentNumber",
-                keyValue: 115103);
+                keyValue: 115113);
 
             migrationBuilder.DeleteData(
                 table: "Students",
                 keyColumn: "StudentNumber",
-                keyValue: 115104);
-
-            migrationBuilder.DeleteData(
-                table: "Students",
-                keyColumn: "StudentNumber",
-                keyValue: 115118);
+                keyValue: 115121);
 
             migrationBuilder.DeleteData(
                 table: "Students",
@@ -1348,92 +2091,92 @@ namespace Service.Database.Migrations
             migrationBuilder.DeleteData(
                 table: "Students",
                 keyColumn: "StudentNumber",
-                keyValue: 115128);
+                keyValue: 115138);
 
             migrationBuilder.DeleteData(
                 table: "Students",
                 keyColumn: "StudentNumber",
-                keyValue: 115134);
+                keyValue: 115141);
 
             migrationBuilder.DeleteData(
                 table: "Students",
                 keyColumn: "StudentNumber",
-                keyValue: 115140);
+                keyValue: 115143);
 
             migrationBuilder.DeleteData(
                 table: "Students",
                 keyColumn: "StudentNumber",
-                keyValue: 115144);
+                keyValue: 115154);
 
             migrationBuilder.DeleteData(
                 table: "Students",
                 keyColumn: "StudentNumber",
-                keyValue: 115145);
+                keyValue: 115165);
 
             migrationBuilder.DeleteData(
                 table: "Students",
                 keyColumn: "StudentNumber",
-                keyValue: 115157);
+                keyValue: 115166);
 
             migrationBuilder.DeleteData(
                 table: "Students",
                 keyColumn: "StudentNumber",
-                keyValue: 115163);
+                keyValue: 115169);
 
             migrationBuilder.DeleteData(
                 table: "Students",
                 keyColumn: "StudentNumber",
-                keyValue: 115167);
+                keyValue: 115185);
 
             migrationBuilder.DeleteData(
                 table: "Students",
                 keyColumn: "StudentNumber",
-                keyValue: 115172);
+                keyValue: 115194);
 
             migrationBuilder.DeleteData(
                 table: "Students",
                 keyColumn: "StudentNumber",
-                keyValue: 115174);
+                keyValue: 115211);
 
             migrationBuilder.DeleteData(
                 table: "Students",
                 keyColumn: "StudentNumber",
-                keyValue: 115176);
+                keyValue: 115212);
 
             migrationBuilder.DeleteData(
                 table: "Students",
                 keyColumn: "StudentNumber",
-                keyValue: 115181);
+                keyValue: 115215);
 
             migrationBuilder.DeleteData(
                 table: "Students",
                 keyColumn: "StudentNumber",
-                keyValue: 115200);
+                keyValue: 115220);
 
             migrationBuilder.DeleteData(
                 table: "Students",
                 keyColumn: "StudentNumber",
-                keyValue: 115218);
+                keyValue: 115221);
 
             migrationBuilder.DeleteData(
                 table: "Students",
                 keyColumn: "StudentNumber",
-                keyValue: 115227);
+                keyValue: 115225);
 
             migrationBuilder.DeleteData(
                 table: "Students",
                 keyColumn: "StudentNumber",
-                keyValue: 115230);
+                keyValue: 115234);
 
             migrationBuilder.DeleteData(
                 table: "Students",
                 keyColumn: "StudentNumber",
-                keyValue: 115231);
+                keyValue: 115235);
 
             migrationBuilder.DeleteData(
                 table: "Students",
                 keyColumn: "StudentNumber",
-                keyValue: 115240);
+                keyValue: 115246);
 
             migrationBuilder.DeleteData(
                 table: "Students",
@@ -1443,7 +2186,7 @@ namespace Service.Database.Migrations
             migrationBuilder.DeleteData(
                 table: "Students",
                 keyColumn: "StudentNumber",
-                keyValue: 115252);
+                keyValue: 115253);
 
             migrationBuilder.DeleteData(
                 table: "Students",
@@ -1453,117 +2196,122 @@ namespace Service.Database.Migrations
             migrationBuilder.DeleteData(
                 table: "Students",
                 keyColumn: "StudentNumber",
-                keyValue: 115265);
+                keyValue: 115261);
 
             migrationBuilder.DeleteData(
                 table: "Students",
                 keyColumn: "StudentNumber",
-                keyValue: 115283);
+                keyValue: 115264);
 
             migrationBuilder.DeleteData(
                 table: "Students",
                 keyColumn: "StudentNumber",
-                keyValue: 115288);
+                keyValue: 115266);
 
             migrationBuilder.DeleteData(
                 table: "Students",
                 keyColumn: "StudentNumber",
-                keyValue: 115292);
+                keyValue: 115269);
 
             migrationBuilder.DeleteData(
                 table: "Students",
                 keyColumn: "StudentNumber",
-                keyValue: 115299);
+                keyValue: 115270);
 
             migrationBuilder.DeleteData(
                 table: "Students",
                 keyColumn: "StudentNumber",
-                keyValue: 115302);
+                keyValue: 115272);
 
             migrationBuilder.DeleteData(
                 table: "Students",
                 keyColumn: "StudentNumber",
-                keyValue: 115303);
+                keyValue: 115279);
 
             migrationBuilder.DeleteData(
                 table: "Students",
                 keyColumn: "StudentNumber",
-                keyValue: 115314);
+                keyValue: 115286);
 
             migrationBuilder.DeleteData(
                 table: "Students",
                 keyColumn: "StudentNumber",
-                keyValue: 115329);
+                keyValue: 115293);
 
             migrationBuilder.DeleteData(
                 table: "Students",
                 keyColumn: "StudentNumber",
-                keyValue: 115337);
+                keyValue: 115305);
 
             migrationBuilder.DeleteData(
                 table: "Students",
                 keyColumn: "StudentNumber",
-                keyValue: 115339);
+                keyValue: 115306);
 
             migrationBuilder.DeleteData(
                 table: "Students",
                 keyColumn: "StudentNumber",
-                keyValue: 115342);
+                keyValue: 115307);
 
             migrationBuilder.DeleteData(
                 table: "Students",
                 keyColumn: "StudentNumber",
-                keyValue: 115350);
+                keyValue: 115315);
 
             migrationBuilder.DeleteData(
                 table: "Students",
                 keyColumn: "StudentNumber",
-                keyValue: 115353);
+                keyValue: 115317);
 
             migrationBuilder.DeleteData(
                 table: "Students",
                 keyColumn: "StudentNumber",
-                keyValue: 115367);
+                keyValue: 115336);
 
             migrationBuilder.DeleteData(
                 table: "Students",
                 keyColumn: "StudentNumber",
-                keyValue: 115368);
+                keyValue: 115341);
 
             migrationBuilder.DeleteData(
                 table: "Students",
                 keyColumn: "StudentNumber",
-                keyValue: 115372);
+                keyValue: 115344);
 
             migrationBuilder.DeleteData(
                 table: "Students",
                 keyColumn: "StudentNumber",
-                keyValue: 115376);
+                keyValue: 115349);
 
             migrationBuilder.DeleteData(
                 table: "Students",
                 keyColumn: "StudentNumber",
-                keyValue: 115380);
+                keyValue: 115354);
 
             migrationBuilder.DeleteData(
                 table: "Students",
                 keyColumn: "StudentNumber",
-                keyValue: 115385);
+                keyValue: 115357);
 
             migrationBuilder.DeleteData(
                 table: "Students",
                 keyColumn: "StudentNumber",
-                keyValue: 115395);
+                keyValue: 115359);
 
             migrationBuilder.DeleteData(
                 table: "Students",
                 keyColumn: "StudentNumber",
-                keyValue: 115397);
+                keyValue: 115365);
 
             migrationBuilder.DeleteData(
                 table: "Students",
                 keyColumn: "StudentNumber",
-                keyValue: 115409);
+                keyValue: 115401);
+
+            migrationBuilder.DeleteData(
+                table: "Students",
+                keyColumn: "StudentNumber",
+                keyValue: 115413);
 
             migrationBuilder.DeleteData(
                 table: "Students",
@@ -1573,17 +2321,317 @@ namespace Service.Database.Migrations
             migrationBuilder.DeleteData(
                 table: "Students",
                 keyColumn: "StudentNumber",
-                keyValue: 115418);
+                keyValue: 115422);
 
             migrationBuilder.DeleteData(
                 table: "Students",
                 keyColumn: "StudentNumber",
-                keyValue: 115435);
+                keyValue: 115425);
 
             migrationBuilder.DeleteData(
                 table: "Students",
                 keyColumn: "StudentNumber",
-                keyValue: 115438);
+                keyValue: 115430);
+
+            migrationBuilder.DeleteData(
+                table: "Students",
+                keyColumn: "StudentNumber",
+                keyValue: 115444);
+
+            migrationBuilder.DeleteData(
+                table: "Students",
+                keyColumn: "StudentNumber",
+                keyValue: 115454);
+
+            migrationBuilder.DeleteData(
+                table: "Students",
+                keyColumn: "StudentNumber",
+                keyValue: 115457);
+
+            migrationBuilder.DeleteData(
+                table: "Students",
+                keyColumn: "StudentNumber",
+                keyValue: 115466);
+
+            migrationBuilder.DeleteData(
+                table: "Students",
+                keyColumn: "StudentNumber",
+                keyValue: 115475);
+
+            migrationBuilder.DeleteData(
+                table: "Students",
+                keyColumn: "StudentNumber",
+                keyValue: 115482);
+
+            migrationBuilder.DeleteData(
+                table: "Students",
+                keyColumn: "StudentNumber",
+                keyValue: 115483);
+
+            migrationBuilder.DeleteData(
+                table: "Students",
+                keyColumn: "StudentNumber",
+                keyValue: 115486);
+
+            migrationBuilder.DeleteData(
+                table: "Students",
+                keyColumn: "StudentNumber",
+                keyValue: 115494);
+
+            migrationBuilder.DeleteData(
+                table: "Students",
+                keyColumn: "StudentNumber",
+                keyValue: 115500);
+
+            migrationBuilder.DeleteData(
+                table: "Students",
+                keyColumn: "StudentNumber",
+                keyValue: 115508);
+
+            migrationBuilder.DeleteData(
+                table: "Students",
+                keyColumn: "StudentNumber",
+                keyValue: 115540);
+
+            migrationBuilder.DeleteData(
+                table: "Students",
+                keyColumn: "StudentNumber",
+                keyValue: 115542);
+
+            migrationBuilder.DeleteData(
+                table: "Students",
+                keyColumn: "StudentNumber",
+                keyValue: 115554);
+
+            migrationBuilder.DeleteData(
+                table: "Students",
+                keyColumn: "StudentNumber",
+                keyValue: 115563);
+
+            migrationBuilder.DeleteData(
+                table: "Students",
+                keyColumn: "StudentNumber",
+                keyValue: 115566);
+
+            migrationBuilder.DeleteData(
+                table: "Students",
+                keyColumn: "StudentNumber",
+                keyValue: 115573);
+
+            migrationBuilder.DeleteData(
+                table: "Students",
+                keyColumn: "StudentNumber",
+                keyValue: 115585);
+
+            migrationBuilder.DeleteData(
+                table: "Students",
+                keyColumn: "StudentNumber",
+                keyValue: 115588);
+
+            migrationBuilder.DeleteData(
+                table: "Students",
+                keyColumn: "StudentNumber",
+                keyValue: 115598);
+
+            migrationBuilder.DeleteData(
+                table: "Students",
+                keyColumn: "StudentNumber",
+                keyValue: 115609);
+
+            migrationBuilder.DeleteData(
+                table: "Students",
+                keyColumn: "StudentNumber",
+                keyValue: 115614);
+
+            migrationBuilder.DeleteData(
+                table: "Students",
+                keyColumn: "StudentNumber",
+                keyValue: 115619);
+
+            migrationBuilder.DeleteData(
+                table: "Students",
+                keyColumn: "StudentNumber",
+                keyValue: 115650);
+
+            migrationBuilder.DeleteData(
+                table: "Students",
+                keyColumn: "StudentNumber",
+                keyValue: 115663);
+
+            migrationBuilder.DeleteData(
+                table: "Students",
+                keyColumn: "StudentNumber",
+                keyValue: 115670);
+
+            migrationBuilder.DeleteData(
+                table: "Students",
+                keyColumn: "StudentNumber",
+                keyValue: 115674);
+
+            migrationBuilder.DeleteData(
+                table: "Students",
+                keyColumn: "StudentNumber",
+                keyValue: 115687);
+
+            migrationBuilder.DeleteData(
+                table: "Students",
+                keyColumn: "StudentNumber",
+                keyValue: 115703);
+
+            migrationBuilder.DeleteData(
+                table: "Students",
+                keyColumn: "StudentNumber",
+                keyValue: 115709);
+
+            migrationBuilder.DeleteData(
+                table: "Students",
+                keyColumn: "StudentNumber",
+                keyValue: 115711);
+
+            migrationBuilder.DeleteData(
+                table: "Students",
+                keyColumn: "StudentNumber",
+                keyValue: 115731);
+
+            migrationBuilder.DeleteData(
+                table: "Students",
+                keyColumn: "StudentNumber",
+                keyValue: 115736);
+
+            migrationBuilder.DeleteData(
+                table: "Students",
+                keyColumn: "StudentNumber",
+                keyValue: 115741);
+
+            migrationBuilder.DeleteData(
+                table: "Students",
+                keyColumn: "StudentNumber",
+                keyValue: 115765);
+
+            migrationBuilder.DeleteData(
+                table: "Students",
+                keyColumn: "StudentNumber",
+                keyValue: 115769);
+
+            migrationBuilder.DeleteData(
+                table: "Students",
+                keyColumn: "StudentNumber",
+                keyValue: 115770);
+
+            migrationBuilder.DeleteData(
+                table: "Students",
+                keyColumn: "StudentNumber",
+                keyValue: 115773);
+
+            migrationBuilder.DeleteData(
+                table: "Students",
+                keyColumn: "StudentNumber",
+                keyValue: 115785);
+
+            migrationBuilder.DeleteData(
+                table: "Students",
+                keyColumn: "StudentNumber",
+                keyValue: 115789);
+
+            migrationBuilder.DeleteData(
+                table: "Students",
+                keyColumn: "StudentNumber",
+                keyValue: 115792);
+
+            migrationBuilder.DeleteData(
+                table: "Students",
+                keyColumn: "StudentNumber",
+                keyValue: 115799);
+
+            migrationBuilder.DeleteData(
+                table: "Students",
+                keyColumn: "StudentNumber",
+                keyValue: 115810);
+
+            migrationBuilder.DeleteData(
+                table: "Students",
+                keyColumn: "StudentNumber",
+                keyValue: 115816);
+
+            migrationBuilder.DeleteData(
+                table: "Students",
+                keyColumn: "StudentNumber",
+                keyValue: 115834);
+
+            migrationBuilder.DeleteData(
+                table: "Students",
+                keyColumn: "StudentNumber",
+                keyValue: 115840);
+
+            migrationBuilder.DeleteData(
+                table: "Students",
+                keyColumn: "StudentNumber",
+                keyValue: 115846);
+
+            migrationBuilder.DeleteData(
+                table: "Students",
+                keyColumn: "StudentNumber",
+                keyValue: 115855);
+
+            migrationBuilder.DeleteData(
+                table: "Students",
+                keyColumn: "StudentNumber",
+                keyValue: 115864);
+
+            migrationBuilder.DeleteData(
+                table: "Students",
+                keyColumn: "StudentNumber",
+                keyValue: 115873);
+
+            migrationBuilder.DeleteData(
+                table: "Students",
+                keyColumn: "StudentNumber",
+                keyValue: 115874);
+
+            migrationBuilder.DeleteData(
+                table: "Students",
+                keyColumn: "StudentNumber",
+                keyValue: 115879);
+
+            migrationBuilder.DeleteData(
+                table: "Students",
+                keyColumn: "StudentNumber",
+                keyValue: 115882);
+
+            migrationBuilder.DeleteData(
+                table: "Students",
+                keyColumn: "StudentNumber",
+                keyValue: 115883);
+
+            migrationBuilder.DeleteData(
+                table: "Students",
+                keyColumn: "StudentNumber",
+                keyValue: 115887);
+
+            migrationBuilder.DeleteData(
+                table: "Students",
+                keyColumn: "StudentNumber",
+                keyValue: 115889);
+
+            migrationBuilder.DeleteData(
+                table: "Students",
+                keyColumn: "StudentNumber",
+                keyValue: 115896);
+
+            migrationBuilder.DeleteData(
+                table: "Students",
+                keyColumn: "StudentNumber",
+                keyValue: 115899);
+
+            migrationBuilder.DeleteData(
+                table: "Students",
+                keyColumn: "StudentNumber",
+                keyValue: 115903);
+
+            migrationBuilder.DeleteData(
+                table: "Students",
+                keyColumn: "StudentNumber",
+                keyValue: 115906);
         }
     }
 }

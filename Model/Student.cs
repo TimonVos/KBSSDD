@@ -26,6 +26,6 @@ namespace Model
         /// <summary>
         /// <inheritdoc cref="Group.GroupStudents"/>
         /// </summary>
-        public List<GroupStudent> GroupStudents { get; set; }
+        public ICollection<GroupStudent> GroupStudents { get; set; } = new HashSet<GroupStudent>();
     }
 }
