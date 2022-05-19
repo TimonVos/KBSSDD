@@ -21,33 +21,6 @@ namespace Service.Database.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("GroupStudent", b =>
-                {
-                    b.Property<int>("GroupsGroupId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("StudentsNumber")
-                        .HasColumnType("int");
-
-                    b.HasKey("GroupsGroupId", "StudentsNumber");
-
-                    b.HasIndex("StudentsNumber");
-
-                    b.ToTable("GroupStudent");
-
-                    b.HasData(
-                        new
-                        {
-                            GroupsGroupId = 1,
-                            StudentsNumber = 116000
-                        },
-                        new
-                        {
-                            GroupsGroupId = 1,
-                            StudentsNumber = 116001
-                        });
-                });
-
             modelBuilder.Entity("Model.Group", b =>
                 {
                     b.Property<int>("GroupId")
@@ -65,55 +38,64 @@ namespace Service.Database.Migrations
                     b.HasKey("GroupId");
 
                     b.ToTable("Groups");
+                });
 
-                    b.HasData(
-                        new
-                        {
-                            GroupId = 1,
-                            Name = "Foo",
-                            Number = 1
-                        });
+            modelBuilder.Entity("Model.GroupStudent", b =>
+                {
+                    b.Property<int>("GroupId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StudentNumber")
+                        .HasColumnType("int");
+
+                    b.HasKey("GroupId", "StudentNumber");
+
+                    b.HasIndex("StudentNumber");
+
+                    b.ToTable("GroupStudent");
                 });
 
             modelBuilder.Entity("Model.Student", b =>
                 {
-                    b.Property<int>("Number")
+                    b.Property<int>("StudentNumber")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Number");
+                    b.HasKey("StudentNumber");
 
                     b.ToTable("Students");
-
-                    b.HasData(
-                        new
-                        {
-                            Number = 116000,
-                            Name = "John"
-                        },
-                        new
-                        {
-                            Number = 116001,
-                            Name = "Jane"
-                        });
                 });
 
-            modelBuilder.Entity("GroupStudent", b =>
+            modelBuilder.Entity("Model.GroupStudent", b =>
                 {
-                    b.HasOne("Model.Group", null)
-                        .WithMany()
-                        .HasForeignKey("GroupsGroupId")
+                    b.HasOne("Model.Group", "Group")
+                        .WithMany("GroupStudents")
+                        .HasForeignKey("GroupId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Model.Student", null)
-                        .WithMany()
-                        .HasForeignKey("StudentsNumber")
+                    b.HasOne("Model.Student", "Student")
+                        .WithMany("GroupStudents")
+                        .HasForeignKey("StudentNumber")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Group");
+
+                    b.Navigation("Student");
+                });
+
+            modelBuilder.Entity("Model.Group", b =>
+                {
+                    b.Navigation("GroupStudents");
+                });
+
+            modelBuilder.Entity("Model.Student", b =>
+                {
+                    b.Navigation("GroupStudents");
                 });
 #pragma warning restore 612, 618
         }

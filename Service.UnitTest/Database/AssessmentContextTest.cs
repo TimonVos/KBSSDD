@@ -25,16 +25,15 @@ namespace Service.UnitTest.Database
         public void Setup()
         {
             using var context = new AssessmentContext();
-
-            var studentNumber = context.Students.Max(s => (int?)s.Number) ?? 1;
+            var studentNumber = (context.Students.Max(s => (int?)s.StudentNumber) ?? 1) + 1;
 
             _students = new List<Student>
             {
-                new Student { Name = Faker.Name.FullName(), Number = studentNumber++ },
-                new Student { Name = Faker.Name.FullName(), Number = studentNumber++ },
-                new Student { Name = Faker.Name.FullName(), Number = studentNumber++ },
-                new Student { Name = Faker.Name.FullName(), Number = studentNumber++ },
-                new Student { Name = Faker.Name.FullName(), Number = studentNumber++ },
+                new Student { Name = Faker.Name.FullName(), StudentNumber = studentNumber++ },
+                new Student { Name = Faker.Name.FullName(), StudentNumber = studentNumber++ },
+                new Student { Name = Faker.Name.FullName(), StudentNumber = studentNumber++ },
+                new Student { Name = Faker.Name.FullName(), StudentNumber = studentNumber++ },
+                new Student { Name = Faker.Name.FullName(), StudentNumber = studentNumber++ },
             };
 
             _groups = new List<Group>
@@ -58,8 +57,10 @@ namespace Service.UnitTest.Database
             context.SaveChanges();
 
             var group = context.Groups
-                .Where(g => g.GroupId == _groups[0].GroupId)
-                .First();
+                .Where(g => g.GroupId == 1)
+                .FirstOrDefault();
+
+            Console.WriteLine($"group 1 name: {group?.Name ?? "-"}");
         }
 
         /// <summary>

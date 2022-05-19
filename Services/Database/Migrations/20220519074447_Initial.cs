@@ -26,67 +26,42 @@ namespace Service.Database.Migrations
                 name: "Students",
                 columns: table => new
                 {
-                    Number = table.Column<int>(type: "int", nullable: false),
+                    StudentNumber = table.Column<int>(type: "int", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Students", x => x.Number);
+                    table.PrimaryKey("PK_Students", x => x.StudentNumber);
                 });
 
             migrationBuilder.CreateTable(
                 name: "GroupStudent",
                 columns: table => new
                 {
-                    GroupsGroupId = table.Column<int>(type: "int", nullable: false),
-                    StudentsNumber = table.Column<int>(type: "int", nullable: false)
+                    GroupId = table.Column<int>(type: "int", nullable: false),
+                    StudentNumber = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_GroupStudent", x => new { x.GroupsGroupId, x.StudentsNumber });
+                    table.PrimaryKey("PK_GroupStudent", x => new { x.GroupId, x.StudentNumber });
                     table.ForeignKey(
-                        name: "FK_GroupStudent_Groups_GroupsGroupId",
-                        column: x => x.GroupsGroupId,
+                        name: "FK_GroupStudent_Groups_GroupId",
+                        column: x => x.GroupId,
                         principalTable: "Groups",
                         principalColumn: "GroupId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_GroupStudent_Students_StudentsNumber",
-                        column: x => x.StudentsNumber,
+                        name: "FK_GroupStudent_Students_StudentNumber",
+                        column: x => x.StudentNumber,
                         principalTable: "Students",
-                        principalColumn: "Number",
+                        principalColumn: "StudentNumber",
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.InsertData(
-                table: "Groups",
-                columns: new[] { "GroupId", "Name", "Number" },
-                values: new object[] { 1, "Foo", 1 });
-
-            migrationBuilder.InsertData(
-                table: "Students",
-                columns: new[] { "Number", "Name" },
-                values: new object[] { 116000, "John" });
-
-            migrationBuilder.InsertData(
-                table: "Students",
-                columns: new[] { "Number", "Name" },
-                values: new object[] { 116001, "Jane" });
-
-            migrationBuilder.InsertData(
-                table: "GroupStudent",
-                columns: new[] { "GroupsGroupId", "StudentsNumber" },
-                values: new object[] { 1, 116000 });
-
-            migrationBuilder.InsertData(
-                table: "GroupStudent",
-                columns: new[] { "GroupsGroupId", "StudentsNumber" },
-                values: new object[] { 1, 116001 });
-
             migrationBuilder.CreateIndex(
-                name: "IX_GroupStudent_StudentsNumber",
+                name: "IX_GroupStudent_StudentNumber",
                 table: "GroupStudent",
-                column: "StudentsNumber");
+                column: "StudentNumber");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

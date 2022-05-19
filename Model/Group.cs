@@ -12,5 +12,6 @@ namespace Model
         public int Number { get; set; }
         public string? Name { get; set; }
         public virtual ICollection<Student> Students { get; set; } = new HashSet<Student>();
+        public List<GroupStudent> GroupStudents { get; set; }
     }
 }

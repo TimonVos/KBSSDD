@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Service.Properties;
 using Model;
+using Service.Database.Configuration;
+using Service.Properties;
 
 namespace Service.Database
 {
@@ -9,7 +10,8 @@ namespace Service.Database
         public DbSet<Group> Groups { get; set; }
         public DbSet<Student> Students { get; set; }
 
-        public static string ConnectionString {
+        public static string ConnectionString
+        {
             get => Settings.Default.ConnectionString;
             set
             {
@@ -23,8 +25,9 @@ namespace Service.Database
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.ApplyConfiguration(new GroupConfiguration());
 #if DEBUG
-            Seeder.debug(modelBuilder);
+            // Seeder.Seed(modelBuilder);
 #endif
         }
     }
