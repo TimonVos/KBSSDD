@@ -1,20 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
-using Microsoft.Toolkit.Mvvm.Input;
+﻿using System.Collections.Generic;
 using Model;
-using Service.Database;
 using ViewModel.GroupAdmin;
 
 namespace ViewModel.FormAssessment
 {
     public class FormAssessmentViewModel : ViewModelBase
     {
- 
+
+        #region ViewModels
         private CompetenceViewModel _selectedCompetenceViewModel;
         public CompetenceViewModel SelectedCompetenceViewModel
         {
@@ -28,8 +21,23 @@ namespace ViewModel.FormAssessment
         }
         public IEnumerable<CompetenceViewModel> CompetenceViewModels { get; set; }
 
+        private IEnumerable<SelectedCriterionAssessmentViewModel> _selectedCriterionAssessmentViewModels;
+        public IEnumerable<SelectedCriterionAssessmentViewModel> SelectedCriterionAssessmentViewModels
+        {
+            get => _selectedCriterionAssessmentViewModels;
+            set
+            {
+                _selectedCriterionAssessmentViewModels = value;
+                OnPropertyChanged(nameof(_selectedCriterionAssessmentViewModels));
+            }
+        }
         public IEnumerable<IndicatorViewModel> IndicatorViewModels { get; set; }
         public IEnumerable<ProjectGroupViewModel> ProjectGroupViewModels { get; set; }
+
+        #endregion
+        public Form FormModel { get; set; }
+        
+        
 
         public FormAssessmentViewModel()
         {
@@ -48,6 +56,9 @@ namespace ViewModel.FormAssessment
                         Factory.CreateCriterionAssessments(critvm.CriterionModel.CriterionAssessments);
                 }
             }
+
+            SelectedCriterionAssessmentViewModels =
+                Factory.CreateSelectedAssessments(Factory.AssessmentContext.SelectedAssessments);
         }
     }
 }

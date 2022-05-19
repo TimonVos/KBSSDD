@@ -36,6 +36,7 @@
             <ColumnDefinition Width="auto"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Label Grid.Column="0" Grid.Row="0" 
+               Name="FormTitle"
                Grid.ColumnSpan="7" 
                VerticalAlignment="Center" 
                VerticalContentAlignment="Center" 
@@ -44,7 +45,8 @@
                FontWeight="ExtraBlack"
                FontSize="20"
                Content="Beoordelingssformulier"></Label>
-        <view:ProjectGroupUserControl Grid.Row="1" Grid.Column="0" 
+        <view:ProjectGroupUserControl x:Name="GroupUserControl"
+                                      Grid.Row="1" Grid.Column="0" 
                                       DataContext="{Binding}">
         </view:ProjectGroupUserControl>
         <Button Name="ManageStudentsButton" Content="Groepen beheren" 
@@ -71,8 +73,9 @@
             </ScrollViewer>
         </Border>
         <Grid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" 
-              MaxWidth="350" MaxHeight="125" Background="DarkGray" 
+              Width="350" Height="125" Background="DarkGray" 
               Margin="0,25,50,0">
+            <view:GradeInformationUserControl></view:GradeInformationUserControl>
         </Grid>
         <ListBox 
             SelectionMode="Single"

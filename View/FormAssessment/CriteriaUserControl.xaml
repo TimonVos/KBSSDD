@@ -29,7 +29,7 @@
                                     <Grid Background="DarkGray" Width="150" Height="30">
                                         <RadioButton 
                                             GroupName="{Binding CriterionAssessmentModel.Criterion}"
-                                            Content="{Binding Indicator.Title}"/>
+                                            Content="{Binding Indicator.Title}" Checked="RadioButton_Checked"/>
                                     </Grid>
                                 </Border>
                             </DataTemplate>

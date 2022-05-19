@@ -13,7 +13,7 @@ namespace Service.Database
         public List<AppearsFrom> AppearsFrom { get; set; }
         public List<Criterion> Criteria { get; set; }
         public List<CriterionAssessment> CriterionAssessments { get; set; }
-
+        public List<SelectedCriterionAssessment> SelectedAssessments { get; set; }
         public List<Indicator> Indicators { get; set; }
 
 
@@ -26,6 +26,7 @@ namespace Service.Database
         /// </summary>
         private void standardForm()
         {
+            SelectedAssessments = new List<SelectedCriterionAssessment>();
             Groups = new List<ProjectGroup>();
             Project = new Project("OOSDDH", "OOSDDH2", 0, Groups);
             ProjectGroup group1 = new ProjectGroup(0, 1, Project);

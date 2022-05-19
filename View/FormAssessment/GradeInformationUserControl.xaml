@@ -1,0 +1,27 @@
+﻿<UserControl x:Class="View.FormAssessment.GradeInformationUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:View.FormAssessment"
+             xmlns:formAssessment="clr-namespace:ViewModel.FormAssessment;assembly=ViewModel"
+             mc:Ignorable="d" 
+             d:DataContext="{d:DesignInstance formAssessment:FormAssessmentViewModel}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <ListView ItemsSource="{Binding SelectedCompetenceViewModel}">
+            <DataTemplate>
+                <Grid>
+                    <Label ContentStringFormat="Competentie: {0}" Content="{Binding SelectedCompetenceViewModel.Title}"></Label>
+                    <Label ContentStringFormat="Competentie: {0}" Content="{Binding SelectedCompetenceViewModel.Title}"></Label>
+                </Grid>
+            </DataTemplate>
+        </ListView>
+    </Grid>
+</UserControl>

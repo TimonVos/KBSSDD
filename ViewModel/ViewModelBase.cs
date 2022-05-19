@@ -10,6 +10,9 @@ using ViewModel.FormAssessment;
 
 namespace ViewModel
 {
+    /// <summary>
+    /// Base viewmodel class for all viewmodels to inherit property changed functionality
+    /// </summary>
     public class ViewModelBase : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler? PropertyChanged;

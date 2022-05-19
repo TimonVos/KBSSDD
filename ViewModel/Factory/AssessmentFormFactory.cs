@@ -12,9 +12,11 @@ namespace ViewModel.FormAssessment
     {
         public AssessmentContext? AssessmentContext = new AssessmentContext();
 
-        public FormAssessmentViewModel CreateForm()
+        public FormAssessmentViewModel CreateForm(Form form)
         {
-            return new FormAssessmentViewModel();
+            FormAssessmentViewModel temp = new FormAssessmentViewModel();
+            temp.FormModel = form;
+            return temp;
         }
 
         public ProjectGroupViewModel CreateGroup(ProjectGroup group)
@@ -92,6 +94,26 @@ namespace ViewModel.FormAssessment
             {
                 temp.Add(CreateCriterionAssessment(critassess, critassess.Indicator));
             }
+            return temp;
+        }
+
+        public SelectedCriterionAssessmentViewModel CreateSelectedAssessment(
+            SelectedCriterionAssessment selectedAssessment)
+        {
+            SelectedCriterionAssessmentViewModel temp = new SelectedCriterionAssessmentViewModel();
+            temp.SelectedAssessmentModel = selectedAssessment;
+            return temp;
+        }
+
+        public IEnumerable<SelectedCriterionAssessmentViewModel> CreateSelectedAssessments(
+            IEnumerable<SelectedCriterionAssessment> selectedAssessments)
+        {
+            List<SelectedCriterionAssessmentViewModel> temp = new List<SelectedCriterionAssessmentViewModel>();
+            foreach (SelectedCriterionAssessment selectedAssessment in selectedAssessments)
+            {
+                temp.Add(CreateSelectedAssessment(selectedAssessment));
+            }
+
             return temp;
         }
 

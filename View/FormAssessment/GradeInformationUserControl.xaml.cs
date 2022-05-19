@@ -16,18 +16,13 @@ using System.Windows.Shapes;
 namespace View.FormAssessment
 {
     /// <summary>
-    /// Interaction logic for CriteriaUserControl.xaml
+    /// Interaction logic for GradeInformationUserControl.xaml
     /// </summary>
-    public partial class CriteriaUserControl : UserControl
+    public partial class GradeInformationUserControl : UserControl
     {
-        public CriteriaUserControl()
+        public GradeInformationUserControl()
         {
             InitializeComponent();
-        }
-
-        private void RadioButton_Checked(object sender, RoutedEventArgs e)
-        {
-            
         }
     }
 }
