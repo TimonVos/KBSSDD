@@ -2,23 +2,32 @@
 using Microsoft.EntityFrameworkCore;
 using Model;
 
-namespace Service.Database
+namespace Service.Database.Seeding
 {
-    internal static class Seeder
+    /// <summary>
+    /// Seed the database with random data.
+    /// </summary>
+    public class DebugSeeder : SeederBase
     {
-        internal static void Seed(ModelBuilder modelBuilder)
+        public override void Seed(ModelBuilder modelBuilder)
         {
             var groupsCount = Faker.RandomNumber.Next(10, 40);
             var studentsCount = Faker.RandomNumber.Next(60, 240);
+
             var groups = Groups(modelBuilder, groupsCount);
             var students = Students(modelBuilder, studentsCount);
             GroupStudents(modelBuilder, groups, students);
-
-            Console.WriteLine($"Groups: {groupsCount}");
-            Console.WriteLine($"Students: {studentsCount}");
         }
 
-        internal static List<Group> Groups(ModelBuilder modelBuilder, int groupsCount = 4)
+        /// <summary>
+        /// Adds seed data to <see cref="Group"/> and returns it as <see cref="List{T}"/>.
+        /// </summary>
+        /// <remarks>
+        /// </remarks>
+        /// <param name="modelBuilder"></param>
+        /// <param name="groupsCount">Number of groups to generate</param>
+        /// <returns><see cref="List{T}}"/> containing <see cref="Group"/> elements.</returns>
+        private static List<Group> Groups(ModelBuilder modelBuilder, int groupsCount = 4)
         {
             var groups = new List<Group>();
 
@@ -30,7 +39,13 @@ namespace Service.Database
             return groups;
         }
 
-        internal static List<Student> Students(ModelBuilder modelBuilder, int studentsCount = 24)
+        /// <summary>
+        /// Adds seed data to <see cref="Student"/> and returns it as <see cref="List{T}"/>.
+        /// </summary>
+        /// <param name="modelBuilder"></param>
+        /// <param name="studentsCount"></param>
+        /// <returns><see cref="List{T}}"/> containing <see cref="Student"/> elements.</returns>
+        private static List<Student> Students(ModelBuilder modelBuilder, int studentsCount = 24)
         {
             (int Min, int Max) studentNumberRange = (115000, 115000 + studentsCount * 5);
             var students = new List<Student>();
@@ -52,7 +67,13 @@ namespace Service.Database
             return students;
         }
 
-        internal static void GroupStudents(ModelBuilder modelBuilder, List<Group> groups, List<Student> students)
+        /// <summary>
+        /// Adds seed data to <see cref="GroupStudent"/> join.
+        /// </summary>
+        /// <param name="modelBuilder"></param>
+        /// <param name="groups"><see cref="List{T}"/> of <see cref="Group"/> to use.</param>
+        /// <param name="students"></param>
+        private static void GroupStudents(ModelBuilder modelBuilder, List<Group> groups, List<Student> students)
         {
             var groupStudents = new List<GroupStudent>();
 

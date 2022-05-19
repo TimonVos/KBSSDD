@@ -4,6 +4,9 @@ using Model;
 
 namespace Service.Database.Configuration
 {
+    /// <summary>
+    /// Configuration for <see cref="GroupStudent"/>.
+    /// </summary>
     internal class GroupConfiguration : IEntityTypeConfiguration<Group>
     {
         public void Configure(EntityTypeBuilder<Group> builder)

@@ -55,12 +55,6 @@ namespace Service.UnitTest.Database
             context.Groups.Update(_groups[0]);
             context.Groups.Update(_groups[1]);
             context.SaveChanges();
-
-            var group = context.Groups
-                .Where(g => g.GroupId == 1)
-                .FirstOrDefault();
-
-            Console.WriteLine($"group 1 name: {group?.Name ?? "-"}");
         }
 
         /// <summary>
