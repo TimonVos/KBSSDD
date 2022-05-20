@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Bogus;
+using Microsoft.EntityFrameworkCore;
 using Model;
 using Service.Database;
 
@@ -7,13 +8,14 @@ namespace Service.UnitTest.Database
     /// <summary>
     /// Test the Entity Framework for:
     /// <list type="bullet">
-    ///   <item>CRUD (Create, Read, Update and Delete) capabilities</item>
-    ///   <item>One to one, one to many and many to many relationships</item>
+    ///   <item>CRUD (Create, Read, Update and Delete) capabilities.</item>
+    ///   <item>Many to many relationships.</item>
     /// </list>
     /// 
     /// </summary>
     public class AssessmentContextTest
     {
+        private Faker _faker = new Faker();
         /// <summary>
         /// Holds the temporary instance of a model for CRUD testing.
         /// </summary>
@@ -29,18 +31,18 @@ namespace Service.UnitTest.Database
 
             _students = new List<Student>
             {
-                new Student { Name = Faker.Name.FullName(), StudentNumber = studentNumber++ },
-                new Student { Name = Faker.Name.FullName(), StudentNumber = studentNumber++ },
-                new Student { Name = Faker.Name.FullName(), StudentNumber = studentNumber++ },
-                new Student { Name = Faker.Name.FullName(), StudentNumber = studentNumber++ },
-                new Student { Name = Faker.Name.FullName(), StudentNumber = studentNumber++ },
+                new Student { Name = _faker.Name.FullName(), StudentNumber = studentNumber++ },
+                new Student { Name = _faker.Name.FullName(), StudentNumber = studentNumber++ },
+                new Student { Name = _faker.Name.FullName(), StudentNumber = studentNumber++ },
+                new Student { Name = _faker.Name.FullName(), StudentNumber = studentNumber++ },
+                new Student { Name = _faker.Name.FullName(), StudentNumber = studentNumber++ },
             };
 
             _groups = new List<Group>
             {
-                new Group { Name = Faker.Company.Name(), Number = Faker.RandomNumber.Next(1, 6) },
-                new Group { Name = Faker.Company.Name(), Number = Faker.RandomNumber.Next(1, 6) },
-                new Group { Name = Faker.Company.Name(), Number = Faker.RandomNumber.Next(1, 6) },
+                new Group { Name = _faker.Company.CompanyName(), Number = _faker.Random.Number(1, 6) },
+                new Group { Name = _faker.Company.CompanyName(), Number = _faker.Random.Number(1, 6) },
+                new Group { Name = _faker.Company.CompanyName(), Number = _faker.Random.Number(1, 6) },
             };
 
             _students.ForEach(s => context.Add(s));
@@ -65,7 +67,7 @@ namespace Service.UnitTest.Database
         {
             using var context = new AssessmentContext();
 
-            context.Add(new Group { Name = Faker.Company.Name(), Number = Faker.RandomNumber.Next(1, 6) });
+            context.Add(new Group { Name = _faker.Company.CompanyName(), Number = _faker.Random.Number(1, 6) });
             context.SaveChanges();
 
             Group? group = context.Groups
@@ -107,6 +109,7 @@ namespace Service.UnitTest.Database
 
         public void AssessmentContext_CanUpdate()
         {
+            var faker = new Faker();
             using var context = new AssessmentContext();
 
             if (_group is null)
@@ -125,8 +128,8 @@ namespace Service.UnitTest.Database
                 return;
             }
 
-            group.Name = Faker.Company.Name();
-            group.Number = Faker.RandomNumber.Next(1, 6);
+            group.Name = faker.Company.CompanyName();
+            group.Number = faker.Random.Number(1, 6);
             context.SaveChanges();
 
             Group? groupCompare = context.Groups

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Bogus;
 using Microsoft.EntityFrameworkCore;
 
 namespace Service.Database.Seeding
@@ -12,6 +13,7 @@ namespace Service.Database.Seeding
     /// </summary>
     public abstract class SeederBase
     {
+        protected Faker Faker = new Faker();
         /// <summary>
         /// <inheritDoc cref="DbContext.OnModelCreating"/>
         /// </summary>

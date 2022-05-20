@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="ConnectionString" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Data Source=(LocalDB)\MSSQLLocalDB;DataBase=assessment;Integrated Security=True;Connect Timeout=30;AttachDbFileName=C:\temp\assessment.mdf;</Value>
+      <Value Profile="(Default)">Data Source=(LocalDB)\MSSQLLocalDB;Integrated Security=True;DataBase=assessment;</Value>
     </Setting>
   </Settings>
 </SettingsFile>

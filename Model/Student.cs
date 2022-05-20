@@ -18,7 +18,7 @@ namespace Model
         /// Full name of a student.
         /// </summary>
         [Required]
-        public string Name { get; set; } = string.Empty;
+        public string Name { get; set; }
         /// <summary>
         /// Entity set of <see cref="Group"/>.
         /// </summary>

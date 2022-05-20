@@ -23,6 +23,20 @@ namespace Service.Database.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Indicators",
+                columns: table => new
+                {
+                    IndicatorId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Value = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Indicators", x => x.IndicatorId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Students",
                 columns: table => new
                 {
@@ -62,12 +76,21 @@ namespace Service.Database.Migrations
                 name: "IX_GroupStudent_StudentNumber",
                 table: "GroupStudent",
                 column: "StudentNumber");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Indicators_Name",
+                table: "Indicators",
+                column: "Name",
+                unique: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
                 name: "GroupStudent");
+
+            migrationBuilder.DropTable(
+                name: "Indicators");
 
             migrationBuilder.DropTable(
                 name: "Groups");

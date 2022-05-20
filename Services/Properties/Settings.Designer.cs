@@ -25,8 +25,7 @@ namespace Service.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\\MSSQLLocalDB;DataBase=assessment;Integrated Security=True;C" +
-            "onnect Timeout=30;AttachDbFileName=C:\\temp\\assessment.mdf;")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\\MSSQLLocalDB;Integrated Security=True;DataBase=assessment;")]
         public string ConnectionString {
             get {
                 return ((string)(this["ConnectionString"]));

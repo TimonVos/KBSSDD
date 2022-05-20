@@ -1,4 +1,5 @@
 ﻿#if DEBUG
+using Bogus;
 using Microsoft.EntityFrameworkCore;
 using Model;
 
@@ -9,30 +10,31 @@ namespace Service.Database.Seeding
     /// </summary>
     public class DebugSeeder : SeederBase
     {
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
+        /// <param name="modelBuilder"></param>
         public override void Seed(ModelBuilder modelBuilder)
         {
-            var groupsCount = Faker.RandomNumber.Next(10, 40);
-            var studentsCount = Faker.RandomNumber.Next(60, 240);
-
-            var groups = Groups(modelBuilder, groupsCount);
-            var students = Students(modelBuilder, studentsCount);
+            var groups = Groups(modelBuilder, Faker.Random.Number(10, 40));
+            var students = Students(modelBuilder, Faker.Random.Number(60, 240));
             GroupStudents(modelBuilder, groups, students);
+            var indicators = Indicators(modelBuilder, Faker.Random.Number(3, 9));
+
         }
 
         /// <summary>
         /// Adds seed data to <see cref="Group"/> and returns it as <see cref="List{T}"/>.
         /// </summary>
-        /// <remarks>
-        /// </remarks>
         /// <param name="modelBuilder"></param>
         /// <param name="groupsCount">Number of groups to generate</param>
         /// <returns><see cref="List{T}}"/> containing <see cref="Group"/> elements.</returns>
-        private static List<Group> Groups(ModelBuilder modelBuilder, int groupsCount = 4)
+        private List<Group> Groups(ModelBuilder modelBuilder, int groupsCount = 4)
         {
             var groups = new List<Group>();
 
-            for (var i = 1; i < groupsCount; i++)
-                groups.Add(new Group { GroupId = i, Name = Faker.Company.Name(), Number = Faker.RandomNumber.Next(1, 6) });
+            for (var i = 1; i <= groupsCount; i++)
+                groups.Add(new Group { GroupId = i, Name = Faker.Name.FullName(), Number = Faker.Random.Number(1, 6) });
 
             modelBuilder.Entity<Group>().HasData(groups);
 
@@ -45,7 +47,7 @@ namespace Service.Database.Seeding
         /// <param name="modelBuilder"></param>
         /// <param name="studentsCount"></param>
         /// <returns><see cref="List{T}}"/> containing <see cref="Student"/> elements.</returns>
-        private static List<Student> Students(ModelBuilder modelBuilder, int studentsCount = 24)
+        private List<Student> Students(ModelBuilder modelBuilder, int studentsCount = 24)
         {
             (int Min, int Max) studentNumberRange = (115000, 115000 + studentsCount * 5);
             var students = new List<Student>();
@@ -54,7 +56,7 @@ namespace Service.Database.Seeding
             for (var i = 0; i < studentsCount; i++)
             {
                 int studentNumber;
-                do studentNumber = Faker.RandomNumber.Next(studentNumberRange.Min, studentNumberRange.Max);
+                do studentNumber = Faker.Random.Number(studentNumberRange.Min, studentNumberRange.Max);
                 while (studentNumbers.Contains(studentNumber));
                 studentNumbers.Add(studentNumber);
             }
@@ -73,19 +75,19 @@ namespace Service.Database.Seeding
         /// <param name="modelBuilder"></param>
         /// <param name="groups"><see cref="List{T}"/> of <see cref="Group"/> to use.</param>
         /// <param name="students"></param>
-        private static void GroupStudents(ModelBuilder modelBuilder, List<Group> groups, List<Student> students)
+        private void GroupStudents(ModelBuilder modelBuilder, List<Group> groups, List<Student> students)
         {
             var groupStudents = new List<GroupStudent>();
 
             foreach (var group in groups)
             {
                 var currentStudents = new List<Student>();
-                var groupSize = Faker.RandomNumber.Next(2, 8);
+                var groupSize = Faker.Random.Number(2, 8);
 
                 for (var i = 0; i < groupSize; i++)
                 {
                     Student student;
-                    do student = students[Faker.RandomNumber.Next(0, students.Count() - 1)];
+                    do student = students[Faker.Random.Number(0, students.Count() - 1)];
                     while (currentStudents.Contains(student));
                     currentStudents.Add(student);
                 }
@@ -95,6 +97,23 @@ namespace Service.Database.Seeding
             }
 
             modelBuilder.Entity<GroupStudent>().HasData(groupStudents);
+        }
+
+        /// <summary>
+        /// Adds seed data to <see cref="Indicator"/>.
+        /// </summary>
+        /// <param name="modelBuilder"></param>
+        /// <param name="indicatorsCount">Number of indicators to generate</param>
+        private List<Indicator> Indicators(ModelBuilder modelBuilder, int indicatorsCount)
+        {
+            var indicators = new List<Indicator>();
+
+            for (var i = 1; i <= indicatorsCount; i++)
+                indicators.Add(new Indicator { IndicatorId = i, Name = Faker.Random.Word(), Value = Faker.Random.Number(1, 10) });
+
+            modelBuilder.Entity<Indicator>().HasData(indicators);
+
+            return indicators;
         }
     }
 }

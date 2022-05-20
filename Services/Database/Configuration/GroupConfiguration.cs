@@ -11,7 +11,8 @@ namespace Service.Database.Configuration
     {
         public void Configure(EntityTypeBuilder<Group> builder)
         {
-            builder.HasMany(gs => gs.Students)
+            builder
+                .HasMany(gs => gs.Students)
                 .WithMany(s => s.Groups)
                 .UsingEntity<GroupStudent>(
                     r => r

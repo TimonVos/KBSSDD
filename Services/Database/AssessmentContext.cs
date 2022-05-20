@@ -12,11 +12,16 @@ namespace Service.Database
         /// <summary>
         /// <see cref="Group"/> entity set.
         /// </summary>
-        public DbSet<Group> Groups { get; set; }
+        public DbSet<Group> Groups { get; set; } = default!;
         /// <summary>
         /// <see cref="Student"/> entity set.
         /// </summary>
-        public DbSet<Student> Students { get; set; }
+        public DbSet<Student> Students { get; set; } = default!;
+        /// <summary>
+        /// <see cref="Indicator"/> entity set.
+        /// </summary>
+        public DbSet<Indicator> Indicators { get; set; } = default!;
+
 
         #endregion
 
@@ -47,8 +52,10 @@ namespace Service.Database
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new GroupConfiguration());
+            modelBuilder.ApplyConfiguration(new IndicatorConfiguration());
+
 #if DEBUG
-            // new Seeding.DebugSeeder().Seed(modelBuilder);
+            new Seeding.DebugSeeder().Seed(modelBuilder);
 #endif
         }
     }

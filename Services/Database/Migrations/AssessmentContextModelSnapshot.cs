@@ -55,6 +55,29 @@ namespace Service.Database.Migrations
                     b.ToTable("GroupStudent");
                 });
 
+            modelBuilder.Entity("Model.Indicator", b =>
+                {
+                    b.Property<int>("IndicatorId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IndicatorId"), 1L, 1);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("Value")
+                        .HasColumnType("int");
+
+                    b.HasKey("IndicatorId");
+
+                    b.HasIndex("Name")
+                        .IsUnique();
+
+                    b.ToTable("Indicators");
+                });
+
             modelBuilder.Entity("Model.Student", b =>
                 {
                     b.Property<int>("StudentNumber")
