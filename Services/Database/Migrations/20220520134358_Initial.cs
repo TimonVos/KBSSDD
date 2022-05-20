@@ -9,6 +9,19 @@ namespace Service.Database.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "Forms",
+                columns: table => new
+                {
+                    FormId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Forms", x => x.FormId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Groups",
                 columns: table => new
                 {
@@ -29,7 +42,7 @@ namespace Service.Database.Migrations
                     IndicatorId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Value = table.Column<int>(type: "int", nullable: false)
+                    Value = table.Column<double>(type: "float", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -46,6 +59,30 @@ namespace Service.Database.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Students", x => x.StudentNumber);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "FormIndicators",
+                columns: table => new
+                {
+                    FormId = table.Column<int>(type: "int", nullable: false),
+                    IndicatorId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_FormIndicators", x => new { x.FormId, x.IndicatorId });
+                    table.ForeignKey(
+                        name: "FK_FormIndicators_Forms_FormId",
+                        column: x => x.FormId,
+                        principalTable: "Forms",
+                        principalColumn: "FormId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_FormIndicators_Indicators_IndicatorId",
+                        column: x => x.IndicatorId,
+                        principalTable: "Indicators",
+                        principalColumn: "IndicatorId",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -73,6 +110,11 @@ namespace Service.Database.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_FormIndicators_IndicatorId",
+                table: "FormIndicators",
+                column: "IndicatorId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_GroupStudent_StudentNumber",
                 table: "GroupStudent",
                 column: "StudentNumber");
@@ -87,7 +129,13 @@ namespace Service.Database.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "FormIndicators");
+
+            migrationBuilder.DropTable(
                 name: "GroupStudent");
+
+            migrationBuilder.DropTable(
+                name: "Forms");
 
             migrationBuilder.DropTable(
                 name: "Indicators");

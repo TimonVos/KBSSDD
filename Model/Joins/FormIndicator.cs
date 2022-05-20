@@ -7,24 +7,24 @@ using System.Threading.Tasks;
 namespace Model
 {
     /// <summary>
-    /// Join table of <see cref="Model.Form"/> and <see cref="Model.Indicator"/>.
+    /// Join table of form and indicator.
     /// </summary>
     public class FormIndicator
     {
         /// <summary>
-        /// Primary and foreign key of <see cref="Model.Form"/>
+        /// Primary and foreign key of form.
         /// </summary>
         public int FormId { get; set; }
         /// <summary>
-        /// Corresponding <see cref="Model.Form"/> entity.
+        /// Corresponding form entity.
         /// </summary>
         public Form Form { get; set; } = null!;
         /// <summary>
-        /// Primary and foreign key of <see cref="Model.Indicator"/>
+        /// Primary and foreign key of indicator.
         /// </summary>
         public int IndicatorId { get; set; }
         /// <summary>
-        /// Corresponding <see cref="Model.Indicator"/> entity.
+        /// Corresponding indicator entity.
         /// </summary>
         public Indicator Indicator { get; set; } = null!;
     }

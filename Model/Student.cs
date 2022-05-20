@@ -20,11 +20,11 @@ namespace Model
         [Required]
         public string Name { get; set; } = null!;
         /// <summary>
-        /// Entity set of <see cref="Group"/> this student belongs to.
+        /// Entity set of groups this student belongs to.
         /// </summary>
         public ICollection<Group> Groups { get; set; } = new HashSet<Group>();
         /// <summary>
-        /// <inheritdoc cref="Group.GroupStudents"/>
+        /// Join table of group and student.
         /// </summary>
         public ICollection<GroupStudent> GroupStudents { get; set; } = new HashSet<GroupStudent>();
     }

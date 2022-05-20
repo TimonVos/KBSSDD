@@ -6,22 +6,33 @@ using Service.Database;
 
 namespace Service.UnitTest.Database.Model
 {
+    [TestFixture]
     internal class IndicatorTest
     {
         private Faker _faker = new Faker();
+        private Faker<Indicator> _indicatorFaker;
+        private Faker<Form> _formFaker;
 
         [SetUp]
         public void Setup()
         {
+            _indicatorFaker = new Faker<Indicator>()
+                .RuleFor(f => f.Name, f => f.Lorem.Random.Word())
+                .RuleFor(f => f.Value, f => f.Lorem.Random.Number(1, 10));
 
+            _formFaker = new Faker<Form>()
+                .RuleFor(f => f.Description, f => f.Lorem.Paragraph());
         }
+
+        #region Assert attributes
 
         [Test]
         public void Indicators_id_cannot_be_inserted()
         {
             using var context = new AssessmentContext();
 
-            var indicator = new Indicator { IndicatorId = 1, Name = _faker.Random.Word(), Value = 3 };
+            var indicator = _indicatorFaker.Generate();
+            indicator.IndicatorId = 1;
 
             context.Indicators.Add(indicator);
 
@@ -68,11 +79,15 @@ namespace Service.UnitTest.Database.Model
                 Assert.That(sqlException.Number, Is.EqualTo(2601));
         }
 
+        #endregion
+
+        #region Assert CRUD
+
         [Test]
         public void Indicators_can_be_created()
         {
             using var context = new AssessmentContext();
-            var indicator = new Indicator { Name = _faker.Random.Word(), Value = _faker.Random.Number(1, 10) };
+            var indicator = _indicatorFaker.Generate();
             context.Indicators.Add(indicator);
             context.SaveChanges();
 
@@ -89,7 +104,7 @@ namespace Service.UnitTest.Database.Model
         public void Indicators_can_be_read()
         {
             using var context = new AssessmentContext();
-            var indicator = new Indicator { Name = _faker.Random.Word(), Value = _faker.Random.Number(1, 10) };
+            var indicator = _indicatorFaker.Generate();
             context.Indicators.Add(indicator);
             context.SaveChanges();
 
@@ -112,7 +127,7 @@ namespace Service.UnitTest.Database.Model
         public void Indicators_can_be_updated()
         {
             using var context = new AssessmentContext();
-            var indicator = new Indicator { Name = _faker.Random.Word(), Value = _faker.Random.Number(1, 10) };
+            var indicator = _indicatorFaker.Generate();
             context.Indicators.Add(indicator);
             context.SaveChanges();
 
@@ -144,7 +159,7 @@ namespace Service.UnitTest.Database.Model
         public void Indicators_can_be_deleted()
         {
             using var context = new AssessmentContext();
-            var indicator = new Indicator { Name = _faker.Random.Word(), Value = _faker.Random.Number(1, 10) };
+            var indicator = _indicatorFaker.Generate();
             context.Indicators.Add(indicator);
             context.SaveChanges();
 
@@ -156,6 +171,39 @@ namespace Service.UnitTest.Database.Model
                          select i).FirstOrDefault();
             Assert.That(indicator, Is.Null);
         }
+
+        #endregion
+
+        #region Assert relationships
+
+        [Test]
+        public void Indicators_can_belong_to_forms()
+        {
+            using var context = new AssessmentContext();
+            var indicatorsA = _indicatorFaker.Generate(2);
+            var formA = _formFaker.Generate();
+            indicatorsA.ForEach(i => i.Forms.Add(formA));
+            context.Indicators.AddRange(indicatorsA);
+            context.Forms.Add(formA);
+            context.SaveChanges();
+
+            using var formsContext = new AssessmentContext();
+            var indicatorsB = (from i in formsContext.Indicators 
+                               join fi in formsContext.FormIndicators on i equals fi.Indicator
+                               where fi.FormId == formA.FormId 
+                               select i).Include(i => i.Forms).ToList();
+            Assert.Multiple(() =>
+            {
+                Assert.That(indicatorsB.Count, Is.EqualTo(indicatorsA.Count));
+                indicatorsB.ForEach(i => Assert.That(i.Forms.First().FormId, Is.EqualTo(formA.FormId)));
+            });
+
+            context.RemoveRange(indicatorsA);
+            context.Remove(formA);
+            context.SaveChanges();
+        }
+
+        #endregion
 
         [TearDown]
         public void TearDown()

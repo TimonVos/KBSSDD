@@ -17,7 +17,7 @@ namespace Model
         /// </summary>
         public int CriterionId { get; set; }
         /// <summary>
-        /// <see cref="Model.Competence"/> the criterion belongs to.
+        /// Competence the criterion belongs to.
         /// </summary>
         public Competence Competence { get; set; } = null!;
         /// <summary>
@@ -31,8 +31,15 @@ namespace Model
         [Required]
         public string Description { get; set; } = null!;
         /// <summary>
-        /// Entity set of <see cref="Crtierion"/> this competence has.
+        /// Entity set of criteria this competence has.
         /// </summary>
         public ICollection<Criterion> Requirements { get; set; } = default!;
+/*        /// <summary>
+        /// Entity set of ratings where this criterion is rated.
+        /// </summary>
+        /// <remarks>
+        /// Can only be used for statistical purposes and not in practice.
+        /// </remarks>
+        public ICollection<Rating> Ratings { get; set; } = default!;*/
     }
 }

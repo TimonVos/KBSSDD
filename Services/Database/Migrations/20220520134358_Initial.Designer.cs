@@ -11,7 +11,7 @@ using Service.Database;
 namespace Service.Database.Migrations
 {
     [DbContext(typeof(AssessmentContext))]
-    [Migration("20220520093247_Initial")]
+    [Migration("20220520134358_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -22,6 +22,37 @@ namespace Service.Database.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+
+            modelBuilder.Entity("Model.Form", b =>
+                {
+                    b.Property<int>("FormId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("FormId"), 1L, 1);
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("FormId");
+
+                    b.ToTable("Forms");
+                });
+
+            modelBuilder.Entity("Model.FormIndicator", b =>
+                {
+                    b.Property<int>("FormId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IndicatorId")
+                        .HasColumnType("int");
+
+                    b.HasKey("FormId", "IndicatorId");
+
+                    b.HasIndex("IndicatorId");
+
+                    b.ToTable("FormIndicators");
+                });
 
             modelBuilder.Entity("Model.Group", b =>
                 {
@@ -69,8 +100,8 @@ namespace Service.Database.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<int>("Value")
-                        .HasColumnType("int");
+                    b.Property<double>("Value")
+                        .HasColumnType("float");
 
                     b.HasKey("IndicatorId");
 
@@ -94,6 +125,25 @@ namespace Service.Database.Migrations
                     b.ToTable("Students");
                 });
 
+            modelBuilder.Entity("Model.FormIndicator", b =>
+                {
+                    b.HasOne("Model.Form", "Form")
+                        .WithMany("FromIndicators")
+                        .HasForeignKey("FormId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Model.Indicator", "Indicator")
+                        .WithMany("FromIndicators")
+                        .HasForeignKey("IndicatorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Form");
+
+                    b.Navigation("Indicator");
+                });
+
             modelBuilder.Entity("Model.GroupStudent", b =>
                 {
                     b.HasOne("Model.Group", "Group")
@@ -113,9 +163,19 @@ namespace Service.Database.Migrations
                     b.Navigation("Student");
                 });
 
+            modelBuilder.Entity("Model.Form", b =>
+                {
+                    b.Navigation("FromIndicators");
+                });
+
             modelBuilder.Entity("Model.Group", b =>
                 {
                     b.Navigation("GroupStudents");
+                });
+
+            modelBuilder.Entity("Model.Indicator", b =>
+                {
+                    b.Navigation("FromIndicators");
                 });
 
             modelBuilder.Entity("Model.Student", b =>

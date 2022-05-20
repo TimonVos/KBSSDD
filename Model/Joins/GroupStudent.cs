@@ -8,24 +8,24 @@ using System.Threading.Tasks;
 namespace Model
 {
     /// <summary>
-    /// Join table of <see cref="Model.Group"/> and <see cref="Model.Student"/>.
+    /// Join table of student and student.
     /// </summary>
     public class GroupStudent
     {
         /// <summary>
-        /// Primary and foreign key of <see cref="Model.Group"/>
+        /// Primary and foreign key of group.
         /// </summary>
         public int GroupId { get; set; }
         /// <summary>
-        /// Corresponding <see cref="Model.Group"/> entity.
+        /// Corresponding group entity.
         /// </summary>
         public Group Group { get; set; } = null!;
         /// <summary>
-        /// Primary and foreign key of <see cref="Model.Group"/>
+        /// Primary and foreign key of group.
         /// </summary>
         public int StudentNumber { get; set; }
         /// <summary>
-        /// Corresponding <see cref="Model.Student"/> entity.
+        /// Corresponding student entity.
         /// </summary>
         public Student Student { get; set; } = null!;
     }

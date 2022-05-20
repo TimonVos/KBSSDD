@@ -17,7 +17,7 @@ namespace Model
         /// </summary>
         public int CompetenceId { get; set; }
         /// <summary>
-        /// <see cref="Model.Form"/> the competence belongs to.
+        /// Form the competence belongs to.
         /// </summary>
         public Form Form { get; set; } = null!;
         /// <summary>
@@ -37,11 +37,10 @@ namespace Model
         /// <summary>
         /// A description of valid evidences for the competence.
         /// </summary>
-        /// 
         [Required]
         public string Evidence { get; set; } = null!;
         /// <summary>
-        /// Entity set of <see cref="Criterion"/> this competence has.
+        /// Entity set of criteria this competence has.
         /// </summary>
         public ICollection<Criterion> Criteria { get; set; } = default!;
     }

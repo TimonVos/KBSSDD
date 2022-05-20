@@ -20,12 +20,20 @@ namespace Model
         /// </summary>
         public string? Description { get; set; }
         /// <summary>
-        /// Entity set of <see cref="Competence"/> this form has.
+        /// Entity set of <see cref="Indicator"/> this group has.
         /// </summary>
-        public ICollection<Competence> Competences { get; set; } = default!;
+        public ICollection<Indicator> Indicators { get; set; } = new HashSet<Indicator>();
         /// <summary>
-        /// Entity set of <see cref="Project"/> this form belongs to.
+        /// Join table of form and indicator.
         /// </summary>
-        public ICollection<Project> Projects { get; set; } = default!;
+        public ICollection<FormIndicator> FromIndicators { get; set; } = new HashSet<FormIndicator>();
+        /*        /// <summary>
+                /// Entity set of competences this form has.
+                /// </summary>
+                public ICollection<Competence> Competences { get; set; } = default!;
+                /// <summary>
+                /// Entity set of projects this form belongs to.
+                /// </summary>
+                public ICollection<Project> Projects { get; set; } = default!;*/
     }
 }

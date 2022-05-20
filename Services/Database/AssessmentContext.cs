@@ -7,26 +7,8 @@ namespace Service.Database
 {
     public partial class AssessmentContext : DbContext
     {
-        #region Entity sets
-
         /// <summary>
-        /// <see cref="Group"/> entity set.
-        /// </summary>
-        public DbSet<Group> Groups { get; set; } = default!;
-        /// <summary>
-        /// <see cref="Student"/> entity set.
-        /// </summary>
-        public DbSet<Student> Students { get; set; } = default!;
-        /// <summary>
-        /// <see cref="Indicator"/> entity set.
-        /// </summary>
-        public DbSet<Indicator> Indicators { get; set; } = default!;
-
-
-        #endregion
-
-        /// <summary>
-        /// User configuration for the connection string.
+        /// User setting for the connection string.
         /// </summary>
         public static string ConnectionString
         {
@@ -37,6 +19,55 @@ namespace Service.Database
                 Settings.Default.Save();
             }
         }
+
+        #region Entity sets
+
+        /// <summary>
+        /// Group entity set.
+        /// </summary>
+        public DbSet<Group> Groups { get; set; } = default!;
+        /// <summary>
+        /// Student entity set.
+        /// </summary>
+        public DbSet<Student> Students { get; set; } = default!;
+        /// <summary>
+        /// Indicator entity set.
+        /// </summary>
+        public DbSet<Indicator> Indicators { get; set; } = default!;
+        /// <summary>
+        /// Form entity set.
+        /// </summary>
+        public DbSet<Form> Forms { get; set; } = default!;
+        /// <summary>
+        /// FormIndicator entity set.
+        /// </summary>
+        public DbSet<FormIndicator> FormIndicators { get; set; } = default!;
+        /*        /// <summary>
+                /// <see cref="Competence"/> entity set.
+                /// </summary>
+                public DbSet<Competence> Competences { get; set; } = default!;*/
+        /*        /// <summary>
+                /// <see cref="Criterion"/> entity set.
+                /// </summary>
+                public DbSet<Criterion> Criteria { get; set; } = default!;*/
+        /*        /// <summary>        /// <see cref="Requirement"/> entity set.
+                /// </summary>
+                public DbSet<Requirement> Requirements { get; set; } = default!;*/
+
+        /*        /// <summary>
+                /// <see cref="Rating"/> entity set.
+                /// </summary>
+                public DbSet<Rating> Ratings { get; set; } = default!;*/
+        /*        /// <summary>
+                /// <see cref="Assessment"/> entity set.
+                /// </summary>
+                public DbSet<Assessment> Assessments { get; set; } = default!;*/
+        /*        /// <summary>
+                /// <see cref="Project"/> entity set.
+                /// </summary>
+                public DbSet<Project> Projects { get; set; } = default!;*/
+
+        #endregion
 
         /// <summary>
         /// <inheritdoc/>
@@ -53,9 +84,11 @@ namespace Service.Database
         {
             modelBuilder.ApplyConfiguration(new GroupConfiguration());
             modelBuilder.ApplyConfiguration(new IndicatorConfiguration());
+            modelBuilder.ApplyConfiguration(new FormConfiguration());
+            // modelBuilder.ApplyConfiguration(new RatingConfiguration());
 
 #if DEBUG
-            new Seeding.DebugSeeder().Seed(modelBuilder);
+            // new Seeding.DebugSeeder().Seed(modelBuilder);
 #endif
         }
     }

@@ -14,7 +14,7 @@ namespace Model
         /// <summary>
         /// Primary key.
         /// </summary>
-        public int ReuirementId { get; set; }
+        public int RequirementId { get; set; }
         /// <summary>
         /// Corresponding criterion.
         /// </summary>
@@ -27,12 +27,12 @@ namespace Model
         /// Description of the requirement.
         /// </summary>
         public string Description { get; set; } = null!;
-        /// <summary>
-        /// Entity set of <see cref="Rating"/> this requirement has been reviewd in.
+/*        /// <summary>
+        /// Entity set of rating this requirement has been reviewd in.
         /// </summary>
         /// <remarks>
         /// Can only be used for statistical purposes and not in practice.
         /// </remarks>
-        public IEnumerable<Rating> Ratings { get; set; } = default!;
+        public IEnumerable<Rating> Ratings { get; set; } = default!;*/
     }
 }

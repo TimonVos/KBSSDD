@@ -16,7 +16,7 @@ namespace Model
         /// </summary>
         public int ProjectId { get; set; }
         /// <summary>
-        /// <see cref="Model.Form"/> the project belongs to.
+        /// From the project belongs to.
         /// </summary>
         public Form Form { get; set; } = default!;
         /// <summary>
@@ -28,7 +28,7 @@ namespace Model
         /// </summary>
         public string Code { get; set; } = null!;
         /// <summary>
-        /// Entity set of <see cref="Model.Assessment"/> this project is used in.
+        /// Entity set of assessment this project is used in.
         /// </summary>
         /// <remarks>
         /// Can only be used for statistical purposes and not in practice.

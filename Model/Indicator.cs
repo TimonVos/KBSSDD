@@ -27,12 +27,12 @@ namespace Model
         /// </summary>
         public double Value { get; set; }
         /// <summary>
-        /// Entity set of <see cref="Form"/> this group has.
+        /// Entity set of form this group has.
         /// </summary>
-        public ICollection<Form> Forms { get; set; } = default!;
+        public ICollection<Form> Forms { get; set; } = new HashSet<Form>();
         /// <summary>
-        /// Join table of <see cref="Form"/> and <see cref="Indicator"/>.
+        /// Join table of form and indicator.
         /// </summary>
-        public ICollection<FormIndicator> FromIndicators { get; set; } = default!;
+        public ICollection<FormIndicator> FromIndicators { get; set; } = new HashSet<FormIndicator>();
     }
 }
