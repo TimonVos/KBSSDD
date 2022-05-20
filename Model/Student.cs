@@ -18,9 +18,9 @@ namespace Model
         /// Full name of a student.
         /// </summary>
         [Required]
-        public string Name { get; set; }
+        public string Name { get; set; } = null!;
         /// <summary>
-        /// Entity set of <see cref="Group"/>.
+        /// Entity set of <see cref="Group"/> this student belongs to.
         /// </summary>
         public ICollection<Group> Groups { get; set; } = new HashSet<Group>();
         /// <summary>

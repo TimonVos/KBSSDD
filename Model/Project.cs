@@ -1,21 +1,38 @@
-﻿
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
 namespace Model
 {
+    /// <summary>
+    /// Project that is chosen by groups that will have a form chosen by the teacher.
+    /// </summary>
     public class Project
     {
-        public Project(string projectName, string projectCode, int projectId, ICollection<ProjectGroup> groups)
-        {
-            ProjectName = projectName;
-            ProjectCode = projectCode;
-            ProjectId = projectId;
-            Groups = groups;
-        }
-
-        public string ProjectName { get; set; }
-        public string ProjectCode { get; set; }
+        /// <summary>
+        /// Primary key.
+        /// </summary>
         public int ProjectId { get; set; }
-        public ICollection<ProjectGroup> Groups { get; set; }
-
-        
+        /// <summary>
+        /// <see cref="Model.Form"/> the project belongs to.
+        /// </summary>
+        public Form Form { get; set; } = default!;
+        /// <summary>
+        /// Name of the project.
+        /// </summary>
+        public string Name { get; set; } = null!;
+        /// <summary>
+        /// Subject code of the project.
+        /// </summary>
+        public string Code { get; set; } = null!;
+        /// <summary>
+        /// Entity set of <see cref="Model.Assessment"/> this project is used in.
+        /// </summary>
+        /// <remarks>
+        /// Can only be used for statistical purposes and not in practice.
+        /// </remarks>
+        public IEnumerable<Assessment> Assessments { get; set; } = default!;
     }
 }

@@ -1,21 +1,31 @@
-﻿namespace Model
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Model
 {
     /// <summary>
-    /// Model for the form to be displayed and used during the assessment of a project
+    /// Reusable form for different projects.
     /// </summary>
     public class Form
     {
-        public Form(int formId, ICollection<ControlQuestion> controlQuestions, ICollection<Competence> competences)
-        {
-            FormId = formId;
-            ControlQuestions = controlQuestions;
-            Competences = competences;
-        }
-
+        /// <summary>
+        /// Primary key.
+        /// </summary>
         public int FormId { get; set; }
-        
-        public ICollection<ControlQuestion> ControlQuestions { get; set; }
-        public ICollection<Competence> Competences { get; set; }
-
+        /// <summary>
+        /// Descripion of the form.
+        /// </summary>
+        public string? Description { get; set; }
+        /// <summary>
+        /// Entity set of <see cref="Competence"/> this form has.
+        /// </summary>
+        public ICollection<Competence> Competences { get; set; } = default!;
+        /// <summary>
+        /// Entity set of <see cref="Project"/> this form belongs to.
+        /// </summary>
+        public ICollection<Project> Projects { get; set; } = default!;
     }
 }

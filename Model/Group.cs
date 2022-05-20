@@ -24,12 +24,16 @@ namespace Model
         /// </summary>
         public string? Name { get; set; }
         /// <summary>
-        /// Entity set of <see cref="Student"/>.
+        /// Entity set of <see cref="Student"/> this group has.
         /// </summary>
-        public ICollection<Student> Students { get; set; } = new HashSet<Student>();
+        public ICollection<Student> Students { get; set; } = default!;
         /// <summary>
         /// Join table of <see cref="Group"/> and <see cref="Student"/>.
         /// </summary>
-        public ICollection<GroupStudent> GroupStudents { get; set; } = new HashSet<GroupStudent>();
+        public ICollection<GroupStudent> GroupStudents { get; set; } = default!;
+        /// <summary>
+        /// Entity set of <see cref="Assessment"/> this group has.
+        /// </summary>
+        public ICollection<Assessment> Assessments { get; set; } = default!;
     }
 }
