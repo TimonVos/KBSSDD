@@ -5,9 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:View.FormAssessment"
         xmlns:view="clr-namespace:View.FormAssessment"
+        xmlns:vm="clr-namespace:ViewModel;assembly=ViewModel"
         mc:Ignorable="d"
         Title="Beoordeling formulier" Height="650" Width="890">
-    <Grid>
+
+    <Window.DataContext>
+        <vm:ViewModel/>
+    </Window.DataContext>
+    
+    <StackPanel>
         <view:ShowAssessmentUserControl/>
-    </Grid>
+        <TextBox Text="{Binding ConnectionString}"/>
+    </StackPanel>
 </Window>

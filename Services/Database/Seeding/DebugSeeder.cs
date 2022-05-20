@@ -34,7 +34,7 @@ namespace Service.Database.Seeding
             var groups = new List<Group>();
 
             for (var i = 1; i <= groupsCount; i++)
-                groups.Add(new Group { GroupId = i, Name = Faker.Name.FullName(), Number = Faker.Random.Number(1, 6) });
+                groups.Add(new Group { GroupId = i, Name = Faker.Company.CompanyName(), Number = Faker.Random.Number(1, 6) });
 
             modelBuilder.Entity<Group>().HasData(groups);
 
