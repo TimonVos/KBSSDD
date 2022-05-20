@@ -180,16 +180,17 @@ namespace Service.UnitTest.Database
             var context = new AssessmentContext();
 
             var group = context.Groups
-                .Include(group => group.Students)
+                .Include(g => g.Students)
                 .Where(g => g.GroupId == _groups[0].GroupId)
                 .First();
 
+            var student = context.Students
+                .Include(s => s.Groups)
+                .Where(s => s.StudentNumber == _students[0].StudentNumber)
+                .First();
+
             Assert.That(group.Students.Count, Is.EqualTo(_groups[0].Students.Count));
-
-            Console.WriteLine($"Group {group.Name} has the following students:");
-            foreach (var student in group.Students)
-                Console.WriteLine(student.Name);
-
+            Assert.That(student.Groups.Count, Is.EqualTo(1));
         }
 
         [TearDown]
