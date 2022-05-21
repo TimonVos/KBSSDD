@@ -11,7 +11,7 @@ using Service.Database;
 namespace Service.Database.Migrations
 {
     [DbContext(typeof(AssessmentContext))]
-    [Migration("20220521064807_Initial")]
+    [Migration("20220521081409_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -174,6 +174,37 @@ namespace Service.Database.Migrations
                     b.ToTable("Indicators");
                 });
 
+            modelBuilder.Entity("Model.Requirement", b =>
+                {
+                    b.Property<int>("RequirementId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RequirementId"), 1L, 1);
+
+                    b.Property<int>("CriterionId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("IndicatorId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("RequirementId");
+
+                    b.HasIndex("CriterionId");
+
+                    b.HasIndex("IndicatorId");
+
+                    b.ToTable("Requirements");
+                });
+
             modelBuilder.Entity("Model.Student", b =>
                 {
                     b.Property<int>("StudentNumber")
@@ -202,7 +233,7 @@ namespace Service.Database.Migrations
             modelBuilder.Entity("Model.Criterion", b =>
                 {
                     b.HasOne("Model.Competence", "Competence")
-                        .WithMany()
+                        .WithMany("Criteria")
                         .HasForeignKey("CompetenceId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -246,6 +277,35 @@ namespace Service.Database.Migrations
                     b.Navigation("Group");
 
                     b.Navigation("Student");
+                });
+
+            modelBuilder.Entity("Model.Requirement", b =>
+                {
+                    b.HasOne("Model.Criterion", "Criterion")
+                        .WithMany("Requirements")
+                        .HasForeignKey("CriterionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Model.Indicator", "Indicator")
+                        .WithMany()
+                        .HasForeignKey("IndicatorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Criterion");
+
+                    b.Navigation("Indicator");
+                });
+
+            modelBuilder.Entity("Model.Competence", b =>
+                {
+                    b.Navigation("Criteria");
+                });
+
+            modelBuilder.Entity("Model.Criterion", b =>
+                {
+                    b.Navigation("Requirements");
                 });
 
             modelBuilder.Entity("Model.Form", b =>

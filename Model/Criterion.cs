@@ -34,16 +34,16 @@ namespace Model
         /// </summary>
         [Required]
         public string Description { get; set; } = null!;
-/*        /// <summary>
+        /// <summary>
         /// Entity set of requirements this competence has.
         /// </summary>
-        public ICollection<Requirement> Requirements { get; set; } = new HashSet<Requirement>();*/
-/*        /// <summary>
-        /// Entity set of ratings where this criterion is rated.
-        /// </summary>
-        /// <remarks>
-        /// Can only be used for statistical purposes and not in practice.
-        /// </remarks>
-        public ICollection<Rating> Ratings { get; set; } = default!;*/
+        public ICollection<Requirement> Requirements { get; set; } = new HashSet<Requirement>();
+        /*        /// <summary>
+                /// Entity set of ratings where this criterion is rated.
+                /// </summary>
+                /// <remarks>
+                /// Can only be used for statistical purposes and not in practice.
+                /// </remarks>
+                public ICollection<Rating> Ratings { get; set; } = default!;*/
     }
 }

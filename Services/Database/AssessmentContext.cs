@@ -54,9 +54,10 @@ namespace Service.Database
         /// <see cref="Criterion"/> entity set.
         /// </summary>
         public DbSet<Criterion> Criteria { get; set; } = default!;
-        /*        /// <summary>        /// <see cref="Requirement"/> entity set.
-                /// </summary>
-                public DbSet<Requirement> Requirements { get; set; } = default!;*/
+        /// <summary>        
+        /// <see cref="Requirement"/> entity set.
+        /// </summary>
+        public DbSet<Requirement> Requirements { get; set; } = default!;
         /*        /// <summary>
         /// <see cref="Project"/> entity set.
         /// </summary>

@@ -43,9 +43,9 @@ namespace Model
         /// </summary>
         [Required]
         public string Evidence { get; set; } = null!;
-/*        /// <summary>
+        /// <summary>
         /// Entity set of criteria this competence has.
         /// </summary>
-        public ICollection<Criterion> Criteria { get; set; } = default!;*/
+        public ICollection<Criterion> Criteria { get; set; } = new HashSet<Criterion>();
     }
 }

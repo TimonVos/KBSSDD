@@ -16,13 +16,25 @@ namespace Model
         /// </summary>
         public int RequirementId { get; set; }
         /// <summary>
+        /// Criterion foreign key.
+        /// </summary>
+        public int CriterionId { get; set; }
+        /// <summary>
         /// Corresponding criterion.
         /// </summary>
         public Criterion Criterion { get; set; } = null!;
         /// <summary>
+        /// Indicator foreign key.
+        /// </summary>
+        public int IndicatorId { get; set; }
+        /// <summary>
         /// Corresponding indicator.
         /// </summary>
         public Indicator Indicator { get; set; } = null!;
+        /// <summary>
+        /// Consise name of the requirement.
+        /// </summary>
+        public string Name { get; set; } = null!;
         /// <summary>
         /// Description of the requirement.
         /// </summary>

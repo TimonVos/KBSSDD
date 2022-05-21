@@ -12,6 +12,7 @@ namespace Service.UnitTest.Database.Model
         private Faker _faker = new Faker();
         private Faker<Form> _formFaker;
         private Faker<Competence> _competenceFaker;
+        private Faker<Criterion> _criterionFaker;
 
         [SetUp]
         public void Setup()
@@ -25,6 +26,10 @@ namespace Service.UnitTest.Database.Model
                 .RuleFor(c => c.Description, f => f.Lorem.Paragraph())
                 .RuleFor(c => c.Evidence, f => f.Lorem.Paragraph())
                 .RuleFor(c => c.Weight, f => f.Random.Float());
+
+            _criterionFaker = new Faker<Criterion>()
+                .RuleFor(f => f.Name, f => f.Lorem.Sentence())
+                .RuleFor(f => f.Description, f => f.Lorem.Paragraph());
         }
 
         #region Assert attributes
@@ -220,8 +225,8 @@ namespace Service.UnitTest.Database.Model
                     select f).FirstOrDefault();
             readContext.Remove(form!);
             updateForm = (from f in readContext.Forms
-                    where f == updateForm
-                    select f).FirstOrDefault();
+                          where f == updateForm
+                          select f).FirstOrDefault();
             readContext.Remove(updateForm!);
             readContext.SaveChanges();
         }
@@ -246,8 +251,8 @@ namespace Service.UnitTest.Database.Model
             Assert.That(competence, Is.Null);
 
             form = (from f in deleteContext.Forms
-                          where f == form
-                          select f).FirstOrDefault();
+                    where f == form
+                    select f).FirstOrDefault();
             deleteContext.Remove(form!);
             deleteContext.SaveChanges();
         }
@@ -263,8 +268,8 @@ namespace Service.UnitTest.Database.Model
             var competencesA = _competenceFaker.Generate(2);
             var formA = _formFaker.Generate();
             competencesA.ForEach(c => c.Form = formA);
-            context.Competences.AddRange(competencesA);
             context.Forms.Add(formA);
+            context.Competences.AddRange(competencesA);
             context.SaveChanges();
 
             using var formsContext = new AssessmentContext();
@@ -278,6 +283,37 @@ namespace Service.UnitTest.Database.Model
             });
 
             context.RemoveRange(competencesA);
+            context.Remove(formA);
+            context.SaveChanges();
+        }
+
+        [Test]
+        public void Competences_can_have_critera()
+        {
+            using var context = new AssessmentContext();
+            var formA = _formFaker.Generate();
+            var competenceA = _competenceFaker.Generate();
+            competenceA.Form = formA;
+            var criteriaA = _criterionFaker.Generate(2);
+            criteriaA.ForEach(c => c.Competence = competenceA);
+            context.Forms.Add(formA);
+            context.Competences.Add(competenceA);
+            context.Criteria.AddRange(criteriaA);
+            context.SaveChanges();
+
+            using var formsContext = new AssessmentContext();
+            var competenceB = (from c in formsContext.Competences
+                                where c == competenceA
+                                select c).Include(c => c.Criteria).FirstOrDefault();
+            Assert.Multiple(() =>
+            {
+                Assert.That(competenceB, Is.Not.Null);
+                Assert.That(competenceB?.Criteria.Count, Is.EqualTo(criteriaA.Count));
+                Assert.That((from a in criteriaA 
+                            join b in competenceB!.Criteria on a.CriterionId equals b.CriterionId 
+                            select a).Count, Is.EqualTo(criteriaA.Count));
+            });
+
             context.Remove(formA);
             context.SaveChanges();
         }
