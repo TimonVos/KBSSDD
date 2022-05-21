@@ -59,6 +59,13 @@ namespace ViewModel.FormAssessment
             return temp;
         }
 
+        public AssessmentViewModel CreateAssessment(Assessment assess)
+        {
+            AssessmentViewModel temp = new AssessmentViewModel();
+            temp.AssessmentModel = assess;
+            return temp;
+        }
+
         public CriterionViewModel CreateCriterion(Criterion crit)
         {
             CriterionViewModel temp = new CriterionViewModel();
@@ -77,39 +84,39 @@ namespace ViewModel.FormAssessment
             return temp;
         }
 
-        public CriterionAssessmentViewModel CreateCriterionAssessment(CriterionAssessment critassess, Indicator indi)
+        public RequirementViewModel CreateCriterionAssessment(Requirement critassess, Indicator indi)
         {
-            CriterionAssessmentViewModel temp = new CriterionAssessmentViewModel();
+            RequirementViewModel temp = new RequirementViewModel();
             temp.CriterionAssessmentModel = critassess;
             temp.Indicator = CreateIndicator(indi);
             return temp;
         }
 
 
-        public IEnumerable<CriterionAssessmentViewModel> CreateCriterionAssessments(
-            IEnumerable<CriterionAssessment> criterionAssessments)
+        public IEnumerable<RequirementViewModel> CreateCriterionAssessments(
+            IEnumerable<Requirement> criterionAssessments)
         {
-            List<CriterionAssessmentViewModel> temp = new List<CriterionAssessmentViewModel>();
-            foreach (CriterionAssessment critassess in criterionAssessments)
+            List<RequirementViewModel> temp = new List<RequirementViewModel>();
+            foreach (Requirement critassess in criterionAssessments)
             {
                 temp.Add(CreateCriterionAssessment(critassess, critassess.Indicator));
             }
             return temp;
         }
 
-        public SelectedCriterionAssessmentViewModel CreateSelectedAssessment(
-            SelectedCriterionAssessment selectedAssessment)
+        public RatingViewModel CreateSelectedAssessment(
+            Rating selectedAssessment)
         {
-            SelectedCriterionAssessmentViewModel temp = new SelectedCriterionAssessmentViewModel();
+            RatingViewModel temp = new RatingViewModel();
             temp.SelectedAssessmentModel = selectedAssessment;
             return temp;
         }
 
-        public IEnumerable<SelectedCriterionAssessmentViewModel> CreateSelectedAssessments(
-            IEnumerable<SelectedCriterionAssessment> selectedAssessments)
+        public IEnumerable<RatingViewModel> CreateSelectedAssessments(
+            IEnumerable<Rating> selectedAssessments)
         {
-            List<SelectedCriterionAssessmentViewModel> temp = new List<SelectedCriterionAssessmentViewModel>();
-            foreach (SelectedCriterionAssessment selectedAssessment in selectedAssessments)
+            List<RatingViewModel> temp = new List<RatingViewModel>();
+            foreach (Rating selectedAssessment in selectedAssessments)
             {
                 temp.Add(CreateSelectedAssessment(selectedAssessment));
             }

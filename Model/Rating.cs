@@ -6,18 +6,18 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    public class SelectedCriterionAssessment
+    public class Rating
     {
-        public SelectedCriterionAssessment(int assessmentId, FormAssessment assessment, CriterionAssessment criterionAssessment)
+        public Rating(int assessmentId, FormAssessment assessment, Requirement requirement)
         {
             AssessmentId = assessmentId;
             Assessment = assessment;
-            CriterionAssessment = criterionAssessment;
+            Requirement = requirement;
         }
 
         public int AssessmentId { get; set; }
         public FormAssessment Assessment { get; set; }
-        public virtual CriterionAssessment CriterionAssessment { get; set; }
+        public virtual Requirement Requirement { get; set; }
 
     }
 }

@@ -21,14 +21,14 @@ namespace ViewModel.FormAssessment
         }
         public IEnumerable<CompetenceViewModel> CompetenceViewModels { get; set; }
 
-        private IEnumerable<SelectedCriterionAssessmentViewModel> _selectedCriterionAssessmentViewModels;
-        public IEnumerable<SelectedCriterionAssessmentViewModel> SelectedCriterionAssessmentViewModels
+        private IEnumerable<RatingViewModel> _ratingViewModels;
+        public IEnumerable<RatingViewModel> RatingViewModels
         {
-            get => _selectedCriterionAssessmentViewModels;
+            get => _ratingViewModels;
             set
             {
-                _selectedCriterionAssessmentViewModels = value;
-                OnPropertyChanged(nameof(_selectedCriterionAssessmentViewModels));
+                _ratingViewModels = value;
+                OnPropertyChanged(nameof(RatingViewModels));
             }
         }
         public IEnumerable<IndicatorViewModel> IndicatorViewModels { get; set; }
@@ -36,8 +36,35 @@ namespace ViewModel.FormAssessment
 
         #endregion
         public Form FormModel { get; set; }
-        
-        
+        private AssessmentViewModel _assessmentViewModel;
+
+        public AssessmentViewModel AssessmentViewModel
+        {
+            get => _assessmentViewModel;
+            set
+            {
+                _assessmentViewModel = value;
+                OnPropertyChanged(nameof(AssessmentViewModel));
+            }
+        }
+
+        private List<double> _competenceGrades;
+        public List<double> CompetenceGrades
+        {
+            get
+            {
+                foreach (CompetenceViewModel comp in CompetenceViewModels)
+                {
+                    _competenceGrades.Add(comp.getCompetenceGrade(Factory.AssessmentContext, AssessmentViewModel.AssessmentModel));
+                }
+                return _competenceGrades;
+            }
+            set
+            {
+                _competenceGrades = value;
+                OnPropertyChanged(nameof(CompetenceGrades));
+            }
+        }
 
         public FormAssessmentViewModel()
         {
@@ -57,8 +84,9 @@ namespace ViewModel.FormAssessment
                 }
             }
 
-            SelectedCriterionAssessmentViewModels =
-                Factory.CreateSelectedAssessments(Factory.AssessmentContext.SelectedAssessments);
+            RatingViewModels =
+                Factory.CreateSelectedAssessments(Factory.AssessmentContext.Ratings);
+
         }
     }
 }

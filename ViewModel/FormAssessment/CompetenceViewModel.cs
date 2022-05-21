@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Navigation;
 using Model;
+using Service.Database;
 
 namespace ViewModel.FormAssessment
 {
     public class CompetenceViewModel : ViewModelBase
     {
+        
         public string Title
         {
             get => CompetenceModel.CompetenceName;
@@ -17,6 +20,16 @@ namespace ViewModel.FormAssessment
         public string Description
         {
             get => CompetenceModel.CompetenceDescription;
+        }
+
+        public double CompetenceGrade
+        {
+            get => Helper.getCompetenceGrade(Factory.AssessmentContext, new Assessment(), CompetenceModel);
+        }
+
+        public double getCompetenceGrade(AssessmentContext context, Assessment assess)
+        {
+            return Helper.getCompetenceGrade(context, assess, CompetenceModel);
         }
 
         private CriterionViewModel _selectedCriterionViewModel;

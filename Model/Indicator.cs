@@ -5,15 +5,17 @@
     /// </summary>
     public class Indicator
     {
-        public Indicator(int indicatorId, string name, ICollection<CriterionAssessment> criterionAssessment)
+        public Indicator(int indicatorId, string name, ICollection<Requirement> criterionAssessment, int grade)
         {
             IndicatorId = indicatorId;
             Name = name;
             CriterionAssessment = criterionAssessment;
+            GradeEquivalent = grade;
         }
 
         public int IndicatorId { get; set; }
         public string Name { get; set; }
-        public ICollection<CriterionAssessment> CriterionAssessment { get; set; }
+        public int GradeEquivalent { get; set; }
+        public ICollection<Requirement> CriterionAssessment { get; set; }
     }
 }

@@ -9,9 +9,9 @@ namespace Model
     /// <summary>
     /// Model for the selectable assessments for a criterion on assessment form
     /// </summary>
-    public class CriterionAssessment
+    public class Requirement
     {
-        public CriterionAssessment(int criterionAssessmentId, string criterionAssessmentDescription, int indicatorId, Indicator indicator, int criterionId, Criterion criterion)
+        public Requirement(int criterionAssessmentId, string criterionAssessmentDescription, int indicatorId, Indicator indicator, int criterionId, Criterion criterion)
         {
             CriterionAssessmentId = criterionAssessmentId;
             CriterionAssessmentDescription = criterionAssessmentDescription;

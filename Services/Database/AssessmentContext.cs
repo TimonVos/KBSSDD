@@ -12,9 +12,10 @@ namespace Service.Database
         public List<Competence> Competences { get; set; }
         public List<AppearsFrom> AppearsFrom { get; set; }
         public List<Criterion> Criteria { get; set; }
-        public List<CriterionAssessment> CriterionAssessments { get; set; }
-        public List<SelectedCriterionAssessment> SelectedAssessments { get; set; }
+        public List<Requirement> CriterionAssessments { get; set; }
+        public List<Rating> Ratings { get; set; }
         public List<Indicator> Indicators { get; set; }
+        public List<Assessment> Assessments { get; set; }
 
 
         public AssessmentContext()
@@ -26,7 +27,7 @@ namespace Service.Database
         /// </summary>
         private void standardForm()
         {
-            SelectedAssessments = new List<SelectedCriterionAssessment>();
+            Ratings = new List<Rating>();
             Groups = new List<ProjectGroup>();
             Project = new Project("OOSDDH", "OOSDDH2", 0, Groups);
             ProjectGroup group1 = new ProjectGroup(0, 1, Project);
@@ -60,9 +61,9 @@ namespace Service.Database
             AppearsFrom.Add(apf2);
 
             Indicators = new List<Indicator>();
-            Indicator indi1 = new Indicator(0, "Ontwikkelpunt", CriterionAssessments);
-            Indicator indi2 = new Indicator(1, "Competent", CriterionAssessments);
-            Indicator indi3 = new Indicator(2, "Voorbeeldig", CriterionAssessments);
+            Indicator indi1 = new Indicator(0, "Ontwikkelpunt", CriterionAssessments, 3);
+            Indicator indi2 = new Indicator(1, "Competent", CriterionAssessments, 7);
+            Indicator indi3 = new Indicator(2, "Voorbeeldig", CriterionAssessments, 9);
             Indicators.Add(indi1);
             Indicators.Add(indi2);
             Indicators.Add(indi3);
@@ -79,22 +80,22 @@ namespace Service.Database
             0, comp1, CriterionAssessments);
             Criteria.Add(crit2);
 
-            CriterionAssessments = new List<CriterionAssessment>();
+            CriterionAssessments = new List<Requirement>();
             string temp = "Bereidt gesprekken niet voor. Koppelt niet terug aan betrokkenen. Maakt geen gebruik van UML of vergelijkbare diagrammen. Verdiept zich niet in het domein. Houdt geen rekening met niet - functionele eisen.";
-            CriterionAssessment critassess1 = new CriterionAssessment(0, temp, 0, indi1, 0, crit1);
+            Requirement critassess1 = new Requirement(0, temp, 0, indi1, 0, crit1);
             CriterionAssessments.Add(critassess1);
             temp =
                 "Bereidt gesprekken enigszins voor en koppelt in enige mate terug aan betrokkenen. Maakt gebruik van hooguit één soort diagram (bijv. domeinmodel of use case diagram). Verdiept zich enigszins in het domein, bijvoorbeeld door het bestuderen van vergelijkbare systemen. Houdt impliciet rekening met niet-functionele eisen.";
-            CriterionAssessment critassess2 = new CriterionAssessment(1, temp, 1, indi2, 0, crit1);
+            Requirement critassess2 = new Requirement(1, temp, 1, indi2, 0, crit1);
             CriterionAssessments.Add(critassess2);
             temp = "Bereidt gesprekken goed voor en koppelt de resultaten terug aan betrokkenen.Maakt gebruik van verschillende UML diagrammen om het probleem vanuit verschillende gezichtspunten te benaderen. Kiest de juiste diagrammen voor de context.Verdiept zich uitgebreid in het domein en gebruikt daarvoor verschillende bronnen.Houdt expliciet rekening met niet - functionele eisen.";
-            CriterionAssessment critassess3 = new CriterionAssessment(2, temp, 2, indi3, 0, crit1);
+            Requirement critassess3 = new Requirement(2, temp, 2, indi3, 0, crit1);
             foreach (Competence comp in Competences)
             {
                 comp.Criteria = Criteria;
                 foreach (Criterion crit in comp.Criteria)
                 {
-                    crit.CriterionAssessments = new List<CriterionAssessment>();
+                    crit.CriterionAssessments = new List<Requirement>();
                     crit.CriterionAssessments.Add(critassess1);
                     crit.CriterionAssessments.Add(critassess2);
                     crit.CriterionAssessments.Add(critassess3);

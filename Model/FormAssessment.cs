@@ -16,7 +16,7 @@
         public int GroupId { get; set; }
         public ProjectGroup Group { get; set; }
 
-        public ICollection<SelectedCriterionAssessment> SelectedAssessments { get; set; }
+        public ICollection<Rating> SelectedAssessments { get; set; }
 
     }
 }

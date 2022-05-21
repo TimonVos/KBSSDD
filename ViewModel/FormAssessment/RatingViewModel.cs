@@ -7,11 +7,11 @@ using Model;
 
 namespace ViewModel.FormAssessment
 {
-    public class SelectedCriterionAssessmentViewModel
+    public class RatingViewModel
     {
-        public SelectedCriterionAssessment SelectedAssessmentModel { get; set; }
+        public Rating SelectedAssessmentModel { get; set; }
 
-        public SelectedCriterionAssessmentViewModel()
+        public RatingViewModel()
         {
         }
     }

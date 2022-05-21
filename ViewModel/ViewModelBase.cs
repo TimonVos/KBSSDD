@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using Service.AssessmentServices;
 using Service.Database;
 using ViewModel.FormAssessment;
 
@@ -18,6 +19,7 @@ namespace ViewModel
         public event PropertyChangedEventHandler? PropertyChanged;
 
         protected AssessmentFormFactory Factory = new AssessmentFormFactory();
+        protected AssessmentHelper Helper = new AssessmentHelper();
 
         protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
         {

@@ -16,12 +16,21 @@
             <ColumnDefinition Width="Auto"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <ListView ItemsSource="{Binding SelectedCompetenceViewModel}">
-            <DataTemplate>
-                <Grid>
-                    <Label ContentStringFormat="Competentie: {0}" Content="{Binding SelectedCompetenceViewModel.Title}"></Label>
-                    <Label ContentStringFormat="Competentie: {0}" Content="{Binding SelectedCompetenceViewModel.Title}"></Label>
-                </Grid>
-            </DataTemplate>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock>
+                            <TextBlock.Text>
+                                <Binding Path="Title" StringFormat="Competentie: {0}, Cijfer: "/>
+                            </TextBlock.Text>
+                        </TextBlock>
+                        <TextBlock>
+                            <Binding Path="CompetenceGrade"></Binding>
+                        </TextBlock>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            
         </ListView>
     </Grid>
 </UserControl>

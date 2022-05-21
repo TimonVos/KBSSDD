@@ -5,7 +5,7 @@
     /// </summary>
     public class Criterion
     {
-        public Criterion(int criterionId, string criterionName, string criterionDescription, int competenceId, Competence competence, ICollection<CriterionAssessment> criterionAssessments)
+        public Criterion(int criterionId, string criterionName, string criterionDescription, int competenceId, Competence competence, ICollection<Requirement> criterionAssessments)
         {
             CriterionId = criterionId;
             CriterionName = criterionName;
@@ -20,7 +20,7 @@
         public string CriterionDescription { get; set; }
         public int CompetenceId { get; set; }
         public Competence Competence { get; set; }
-        public ICollection<CriterionAssessment> CriterionAssessments { get; set; }
+        public ICollection<Requirement> CriterionAssessments { get; set; }
 
     }
 }
