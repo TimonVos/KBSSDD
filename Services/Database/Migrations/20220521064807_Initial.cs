@@ -14,6 +14,7 @@ namespace Service.Database.Migrations
                 {
                     FormId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
@@ -62,6 +63,29 @@ namespace Service.Database.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Competences",
+                columns: table => new
+                {
+                    CompetenceId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FormId = table.Column<int>(type: "int", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Weight = table.Column<double>(type: "float", nullable: false),
+                    Evidence = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Competences", x => x.CompetenceId);
+                    table.ForeignKey(
+                        name: "FK_Competences_Forms_FormId",
+                        column: x => x.FormId,
+                        principalTable: "Forms",
+                        principalColumn: "FormId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "FormIndicators",
                 columns: table => new
                 {
@@ -86,7 +110,7 @@ namespace Service.Database.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "GroupStudent",
+                name: "GroupStudents",
                 columns: table => new
                 {
                     GroupId = table.Column<int>(type: "int", nullable: false),
@@ -94,20 +118,51 @@ namespace Service.Database.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_GroupStudent", x => new { x.GroupId, x.StudentNumber });
+                    table.PrimaryKey("PK_GroupStudents", x => new { x.GroupId, x.StudentNumber });
                     table.ForeignKey(
-                        name: "FK_GroupStudent_Groups_GroupId",
+                        name: "FK_GroupStudents_Groups_GroupId",
                         column: x => x.GroupId,
                         principalTable: "Groups",
                         principalColumn: "GroupId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_GroupStudent_Students_StudentNumber",
+                        name: "FK_GroupStudents_Students_StudentNumber",
                         column: x => x.StudentNumber,
                         principalTable: "Students",
                         principalColumn: "StudentNumber",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.CreateTable(
+                name: "Criteria",
+                columns: table => new
+                {
+                    CriterionId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CompetenceId = table.Column<int>(type: "int", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Criteria", x => x.CriterionId);
+                    table.ForeignKey(
+                        name: "FK_Criteria_Competences_CompetenceId",
+                        column: x => x.CompetenceId,
+                        principalTable: "Competences",
+                        principalColumn: "CompetenceId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Competences_FormId",
+                table: "Competences",
+                column: "FormId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Criteria_CompetenceId",
+                table: "Criteria",
+                column: "CompetenceId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_FormIndicators_IndicatorId",
@@ -115,8 +170,8 @@ namespace Service.Database.Migrations
                 column: "IndicatorId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_GroupStudent_StudentNumber",
-                table: "GroupStudent",
+                name: "IX_GroupStudents_StudentNumber",
+                table: "GroupStudents",
                 column: "StudentNumber");
 
             migrationBuilder.CreateIndex(
@@ -129,13 +184,16 @@ namespace Service.Database.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "Criteria");
+
+            migrationBuilder.DropTable(
                 name: "FormIndicators");
 
             migrationBuilder.DropTable(
-                name: "GroupStudent");
+                name: "GroupStudents");
 
             migrationBuilder.DropTable(
-                name: "Forms");
+                name: "Competences");
 
             migrationBuilder.DropTable(
                 name: "Indicators");
@@ -145,6 +203,9 @@ namespace Service.Database.Migrations
 
             migrationBuilder.DropTable(
                 name: "Students");
+
+            migrationBuilder.DropTable(
+                name: "Forms");
         }
     }
 }

@@ -31,6 +31,10 @@ namespace Service.Database
         /// </summary>
         public DbSet<Student> Students { get; set; } = default!;
         /// <summary>
+        /// GroupStudent entity set.
+        /// </summary>
+        public DbSet<GroupStudent> GroupStudents { get; set; } = default!;
+        /// <summary>
         /// Indicator entity set.
         /// </summary>
         public DbSet<Indicator> Indicators { get; set; } = default!;
@@ -42,30 +46,30 @@ namespace Service.Database
         /// FormIndicator entity set.
         /// </summary>
         public DbSet<FormIndicator> FormIndicators { get; set; } = default!;
-        /*        /// <summary>
-                /// <see cref="Competence"/> entity set.
-                /// </summary>
-                public DbSet<Competence> Competences { get; set; } = default!;*/
-        /*        /// <summary>
-                /// <see cref="Criterion"/> entity set.
-                /// </summary>
-                public DbSet<Criterion> Criteria { get; set; } = default!;*/
+        /// <summary>
+        /// <see cref="Competence"/> entity set.
+        /// </summary>
+        public DbSet<Competence> Competences { get; set; } = default!;
+        /// <summary>
+        /// <see cref="Criterion"/> entity set.
+        /// </summary>
+        public DbSet<Criterion> Criteria { get; set; } = default!;
         /*        /// <summary>        /// <see cref="Requirement"/> entity set.
                 /// </summary>
                 public DbSet<Requirement> Requirements { get; set; } = default!;*/
-
         /*        /// <summary>
-                /// <see cref="Rating"/> entity set.
-                /// </summary>
-                public DbSet<Rating> Ratings { get; set; } = default!;*/
+        /// <see cref="Project"/> entity set.
+        /// </summary>
+        public DbSet<Project> Projects { get; set; } = default!;*/
         /*        /// <summary>
                 /// <see cref="Assessment"/> entity set.
                 /// </summary>
                 public DbSet<Assessment> Assessments { get; set; } = default!;*/
         /*        /// <summary>
-                /// <see cref="Project"/> entity set.
-                /// </summary>
-                public DbSet<Project> Projects { get; set; } = default!;*/
+        /// <see cref="Rating"/> entity set.
+        /// </summary>
+        public DbSet<Rating> Ratings { get; set; } = default!;*/
+
 
         #endregion
 

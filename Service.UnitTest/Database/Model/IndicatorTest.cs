@@ -38,7 +38,7 @@ namespace Service.UnitTest.Database.Model
             context.Indicators.Add(indicator);
 
             var exception = Assert.Throws<DbUpdateException>(() => context.SaveChanges());
-            Assert.IsInstanceOf<SqlException>(exception.InnerException);
+            Assert.That(exception.InnerException, Is.InstanceOf<SqlException>());
             SqlException? sqlException = (SqlException?)(exception.InnerException);
             if (sqlException is not null)
                 Assert.That(sqlException.Number, Is.EqualTo(544));
@@ -54,7 +54,7 @@ namespace Service.UnitTest.Database.Model
             context.Indicators.Add(indicator);
 
             var exception = Assert.Throws<DbUpdateException>(() => context.SaveChanges());
-            Assert.IsInstanceOf<SqlException>(exception.InnerException);
+            Assert.That(exception.InnerException, Is.InstanceOf<SqlException>());
             SqlException? sqlException = (SqlException?)(exception.InnerException);
             if (sqlException is not null)
             {
@@ -77,7 +77,7 @@ namespace Service.UnitTest.Database.Model
             context.Indicators.Add(copy);
 
             var exception = Assert.Throws<DbUpdateException>(() => context.SaveChanges());
-            Assert.IsInstanceOf<SqlException>(exception.InnerException);
+            Assert.That(exception.InnerException, Is.InstanceOf<SqlException>());
             SqlException? sqlException = (SqlException?)(exception.InnerException);
             if (sqlException is not null)
                 Assert.That(sqlException.Number, Is.EqualTo(2601));
@@ -97,7 +97,7 @@ namespace Service.UnitTest.Database.Model
 
             using var createContext = new AssessmentContext();
             indicator = (from i in createContext.Indicators
-                         where i.IndicatorId == indicator.IndicatorId
+                         where i == indicator
                          select i).FirstOrDefault();
             Assert.That(indicator, Is.Not.Null);
             createContext.Remove(indicator!);
@@ -114,7 +114,7 @@ namespace Service.UnitTest.Database.Model
 
             using var readContext = new AssessmentContext();
             var read = (from i in readContext.Indicators
-                        where i.IndicatorId == indicator.IndicatorId
+                        where i == indicator
                         select i).FirstOrDefault();
             Assert.Multiple(() =>
             {
@@ -137,9 +137,9 @@ namespace Service.UnitTest.Database.Model
 
             using var updateContext = new AssessmentContext();
             var update = (from i in updateContext.Indicators
-                          where i.IndicatorId == indicator.IndicatorId
+                          where i == indicator
                           select i).FirstOrDefault();
-            Assert.IsNotNull(update);
+            Assert.That(update, Is.Not.Null);
             update.Name = _faker.Random.Word();
             update.Value = _faker.Random.Number(1, 10);
             updateContext.SaveChanges();

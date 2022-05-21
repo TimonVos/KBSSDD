@@ -11,7 +11,7 @@ using Service.Database;
 namespace Service.Database.Migrations
 {
     [DbContext(typeof(AssessmentContext))]
-    [Migration("20220520134358_Initial")]
+    [Migration("20220521064807_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -23,6 +23,65 @@ namespace Service.Database.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
+            modelBuilder.Entity("Model.Competence", b =>
+                {
+                    b.Property<int>("CompetenceId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CompetenceId"), 1L, 1);
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Evidence")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("FormId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("Weight")
+                        .HasColumnType("float");
+
+                    b.HasKey("CompetenceId");
+
+                    b.HasIndex("FormId");
+
+                    b.ToTable("Competences");
+                });
+
+            modelBuilder.Entity("Model.Criterion", b =>
+                {
+                    b.Property<int>("CriterionId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CriterionId"), 1L, 1);
+
+                    b.Property<int>("CompetenceId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("CriterionId");
+
+                    b.HasIndex("CompetenceId");
+
+                    b.ToTable("Criteria");
+                });
+
             modelBuilder.Entity("Model.Form", b =>
                 {
                     b.Property<int>("FormId")
@@ -32,6 +91,10 @@ namespace Service.Database.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("FormId"), 1L, 1);
 
                     b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("FormId");
@@ -85,7 +148,7 @@ namespace Service.Database.Migrations
 
                     b.HasIndex("StudentNumber");
 
-                    b.ToTable("GroupStudent");
+                    b.ToTable("GroupStudents");
                 });
 
             modelBuilder.Entity("Model.Indicator", b =>
@@ -123,6 +186,28 @@ namespace Service.Database.Migrations
                     b.HasKey("StudentNumber");
 
                     b.ToTable("Students");
+                });
+
+            modelBuilder.Entity("Model.Competence", b =>
+                {
+                    b.HasOne("Model.Form", "Form")
+                        .WithMany("Competences")
+                        .HasForeignKey("FormId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Form");
+                });
+
+            modelBuilder.Entity("Model.Criterion", b =>
+                {
+                    b.HasOne("Model.Competence", "Competence")
+                        .WithMany()
+                        .HasForeignKey("CompetenceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Competence");
                 });
 
             modelBuilder.Entity("Model.FormIndicator", b =>
@@ -165,6 +250,8 @@ namespace Service.Database.Migrations
 
             modelBuilder.Entity("Model.Form", b =>
                 {
+                    b.Navigation("Competences");
+
                     b.Navigation("FromIndicators");
                 });
 

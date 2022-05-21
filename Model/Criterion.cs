@@ -17,6 +17,10 @@ namespace Model
         /// </summary>
         public int CriterionId { get; set; }
         /// <summary>
+        /// Competence foreign key the criterion belongs to.
+        /// </summary>
+        public int CompetenceId { get; set; }
+        /// <summary>
         /// Competence the criterion belongs to.
         /// </summary>
         public Competence Competence { get; set; } = null!;
@@ -30,10 +34,10 @@ namespace Model
         /// </summary>
         [Required]
         public string Description { get; set; } = null!;
-        /// <summary>
-        /// Entity set of criteria this competence has.
+/*        /// <summary>
+        /// Entity set of requirements this competence has.
         /// </summary>
-        public ICollection<Criterion> Requirements { get; set; } = default!;
+        public ICollection<Requirement> Requirements { get; set; } = new HashSet<Requirement>();*/
 /*        /// <summary>
         /// Entity set of ratings where this criterion is rated.
         /// </summary>
