@@ -35,10 +35,10 @@ namespace Model
         /// Entity set of competences this form has.
         /// </summary>
         public ICollection<Competence> Competences { get; set; } = new HashSet<Competence>();
-        /*        /// <summary>
-                /// Entity set of projects this form belongs to.
-                /// </summary>
-                public ICollection<Project> Projects { get; set; } = default!;*/
+        /// <summary>
+        /// Entity set of projects this form belongs to.
+        /// </summary>
+        public ICollection<Project> Projects { get; set; } = new HashSet<Project>();
 
     }
 }

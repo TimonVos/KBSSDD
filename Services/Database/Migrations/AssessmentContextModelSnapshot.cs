@@ -21,6 +21,29 @@ namespace Service.Database.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
+            modelBuilder.Entity("Model.Assessment", b =>
+                {
+                    b.Property<int>("AssessmentId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AssessmentId"), 1L, 1);
+
+                    b.Property<int>("GroupId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProjectId")
+                        .HasColumnType("int");
+
+                    b.HasKey("AssessmentId");
+
+                    b.HasIndex("GroupId");
+
+                    b.HasIndex("ProjectId");
+
+                    b.ToTable("Assessments");
+                });
+
             modelBuilder.Entity("Model.Competence", b =>
                 {
                     b.Property<int>("CompetenceId")
@@ -172,6 +195,32 @@ namespace Service.Database.Migrations
                     b.ToTable("Indicators");
                 });
 
+            modelBuilder.Entity("Model.Project", b =>
+                {
+                    b.Property<int>("ProjectId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProjectId"), 1L, 1);
+
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("FormId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ProjectId");
+
+                    b.HasIndex("FormId");
+
+                    b.ToTable("Projects");
+                });
+
             modelBuilder.Entity("Model.Requirement", b =>
                 {
                     b.Property<int>("RequirementId")
@@ -215,6 +264,25 @@ namespace Service.Database.Migrations
                     b.HasKey("StudentNumber");
 
                     b.ToTable("Students");
+                });
+
+            modelBuilder.Entity("Model.Assessment", b =>
+                {
+                    b.HasOne("Model.Group", "Group")
+                        .WithMany("Assessments")
+                        .HasForeignKey("GroupId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Model.Project", "Project")
+                        .WithMany("Assessments")
+                        .HasForeignKey("ProjectId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Group");
+
+                    b.Navigation("Project");
                 });
 
             modelBuilder.Entity("Model.Competence", b =>
@@ -277,6 +345,17 @@ namespace Service.Database.Migrations
                     b.Navigation("Student");
                 });
 
+            modelBuilder.Entity("Model.Project", b =>
+                {
+                    b.HasOne("Model.Form", "Form")
+                        .WithMany("Projects")
+                        .HasForeignKey("FormId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Form");
+                });
+
             modelBuilder.Entity("Model.Requirement", b =>
                 {
                     b.HasOne("Model.Criterion", "Criterion")
@@ -311,16 +390,25 @@ namespace Service.Database.Migrations
                     b.Navigation("Competences");
 
                     b.Navigation("FromIndicators");
+
+                    b.Navigation("Projects");
                 });
 
             modelBuilder.Entity("Model.Group", b =>
                 {
+                    b.Navigation("Assessments");
+
                     b.Navigation("GroupStudents");
                 });
 
             modelBuilder.Entity("Model.Indicator", b =>
                 {
                     b.Navigation("FromIndicators");
+                });
+
+            modelBuilder.Entity("Model.Project", b =>
+                {
+                    b.Navigation("Assessments");
                 });
 
             modelBuilder.Entity("Model.Student", b =>

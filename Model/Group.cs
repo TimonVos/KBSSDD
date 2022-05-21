@@ -31,9 +31,9 @@ namespace Model
         /// Join table of group and student.
         /// </summary>
         public ICollection<GroupStudent> GroupStudents { get; set; } = new HashSet<GroupStudent>();
-        /*        /// <summary>
-                /// Entity set of as this group has.
-                /// </summary>
-                public ICollection<Assessment> Assessments { get; set; } = default!;*/
+        /// <summary>
+        /// Entity set of as this group has.
+        /// </summary>
+        public ICollection<Assessment> Assessments { get; set; } = new HashSet<Assessment>();
     }
 }

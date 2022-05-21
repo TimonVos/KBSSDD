@@ -16,6 +16,10 @@ namespace Model
         /// </summary>
         public int ProjectId { get; set; }
         /// <summary>
+        /// From primary key the project belongs to.
+        /// </summary>
+        public int FormId { get; set; }
+        /// <summary>
         /// From the project belongs to.
         /// </summary>
         public Form Form { get; set; } = default!;
@@ -33,6 +37,6 @@ namespace Model
         /// <remarks>
         /// Can only be used for statistical purposes and not in practice.
         /// </remarks>
-        public IEnumerable<Assessment> Assessments { get; set; } = default!;
+        public IEnumerable<Assessment> Assessments { get; set; } = new HashSet<Assessment>();
     }
 }

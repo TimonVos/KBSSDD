@@ -58,14 +58,14 @@ namespace Service.Database
         /// <see cref="Requirement"/> entity set.
         /// </summary>
         public DbSet<Requirement> Requirements { get; set; } = default!;
-        /*        /// <summary>
+        /// <summary>
         /// <see cref="Project"/> entity set.
         /// </summary>
-        public DbSet<Project> Projects { get; set; } = default!;*/
-        /*        /// <summary>
-                /// <see cref="Assessment"/> entity set.
-                /// </summary>
-                public DbSet<Assessment> Assessments { get; set; } = default!;*/
+        public DbSet<Project> Projects { get; set; } = default!;
+        /// <summary>
+        /// <see cref="Assessment"/> entity set.
+        /// </summary>
+        public DbSet<Assessment> Assessments { get; set; } = default!;
         /*        /// <summary>
         /// <see cref="Rating"/> entity set.
         /// </summary>

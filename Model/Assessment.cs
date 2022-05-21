@@ -16,9 +16,17 @@ namespace Model
         /// </summary>
         public int AssessmentId { get; set; }
         /// <summary>
+        /// The assessed group foreign key.
+        /// </summary>
+        public int GroupId { get; set; }
+        /// <summary>
         /// The assessed group.
         /// </summary>
         public Group Group { get; set; } = null!;
+        /// <summary>
+        /// Project foreign key that the group has selected.
+        /// </summary>
+        public int ProjectId { get; set; }
         /// <summary>
         /// Project that the group has selected.
         /// </summary>

@@ -86,6 +86,27 @@ namespace Service.Database.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Projects",
+                columns: table => new
+                {
+                    ProjectId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FormId = table.Column<int>(type: "int", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Code = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Projects", x => x.ProjectId);
+                    table.ForeignKey(
+                        name: "FK_Projects_Forms_FormId",
+                        column: x => x.FormId,
+                        principalTable: "Forms",
+                        principalColumn: "FormId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "FormIndicators",
                 columns: table => new
                 {
@@ -155,6 +176,32 @@ namespace Service.Database.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Assessments",
+                columns: table => new
+                {
+                    AssessmentId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    GroupId = table.Column<int>(type: "int", nullable: false),
+                    ProjectId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Assessments", x => x.AssessmentId);
+                    table.ForeignKey(
+                        name: "FK_Assessments_Groups_GroupId",
+                        column: x => x.GroupId,
+                        principalTable: "Groups",
+                        principalColumn: "GroupId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Assessments_Projects_ProjectId",
+                        column: x => x.ProjectId,
+                        principalTable: "Projects",
+                        principalColumn: "ProjectId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Requirements",
                 columns: table => new
                 {
@@ -183,6 +230,16 @@ namespace Service.Database.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_Assessments_GroupId",
+                table: "Assessments",
+                column: "GroupId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Assessments_ProjectId",
+                table: "Assessments",
+                column: "ProjectId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Competences_FormId",
                 table: "Competences",
                 column: "FormId");
@@ -209,6 +266,11 @@ namespace Service.Database.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
+                name: "IX_Projects_FormId",
+                table: "Projects",
+                column: "FormId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Requirements_CriterionId",
                 table: "Requirements",
                 column: "CriterionId");
@@ -222,6 +284,9 @@ namespace Service.Database.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "Assessments");
+
+            migrationBuilder.DropTable(
                 name: "FormIndicators");
 
             migrationBuilder.DropTable(
@@ -229,6 +294,9 @@ namespace Service.Database.Migrations
 
             migrationBuilder.DropTable(
                 name: "Requirements");
+
+            migrationBuilder.DropTable(
+                name: "Projects");
 
             migrationBuilder.DropTable(
                 name: "Groups");
