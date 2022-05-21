@@ -38,12 +38,12 @@ namespace Model
         /// Entity set of requirements this competence has.
         /// </summary>
         public ICollection<Requirement> Requirements { get; set; } = new HashSet<Requirement>();
-        /*        /// <summary>
-                /// Entity set of ratings where this criterion is rated.
-                /// </summary>
-                /// <remarks>
-                /// Can only be used for statistical purposes and not in practice.
-                /// </remarks>
-                public ICollection<Rating> Ratings { get; set; } = default!;*/
+        /// <summary>
+        /// Entity set of ratings where this criterion is rated.
+        /// </summary>
+        /// <remarks>
+        /// Can only be used for statistical purposes and not in practice.
+        /// </remarks>
+        public ICollection<Rating> Ratings { get; set; } = default!;
     }
 }

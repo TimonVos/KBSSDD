@@ -4,15 +4,16 @@ using Model;
 
 namespace Service.Database.Configuration
 {
-/*    /// <summary>
+    /// <summary>
     /// Configuration for <see cref="GroupStudent"/>.
     /// </summary>
     internal class RatingConfiguration : IEntityTypeConfiguration<Rating>
     {
         public void Configure(EntityTypeBuilder<Rating> builder)
         {
-            builder.HasKey(r => new { r.AssessmentId, r.CriterionId });
+            builder.HasOne(u => u.Criterion).WithMany(u => u.Ratings).IsRequired().OnDelete(DeleteBehavior.Restrict);
+            builder.HasOne(u => u.Requirement).WithMany(u => u.Ratings).IsRequired().OnDelete(DeleteBehavior.Restrict);
+            builder.HasKey(t => new { t.AssessmentId, t.CriterionId });
         }
-    }*/
-
+    }
 }

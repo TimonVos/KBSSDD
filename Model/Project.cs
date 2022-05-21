@@ -37,6 +37,6 @@ namespace Model
         /// <remarks>
         /// Can only be used for statistical purposes and not in practice.
         /// </remarks>
-        public IEnumerable<Assessment> Assessments { get; set; } = new HashSet<Assessment>();
+        public ICollection<Assessment> Assessments { get; set; } = new HashSet<Assessment>();
     }
 }

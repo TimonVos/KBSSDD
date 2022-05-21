@@ -311,7 +311,6 @@ namespace Service.UnitTest.Database.Model
                            select r).FirstOrDefault();
             Assert.That(requirement, Is.Null);
 
-
             form = (from f in deleteContext.Forms
                           where f == form
                           select f).FirstOrDefault();

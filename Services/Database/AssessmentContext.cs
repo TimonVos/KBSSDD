@@ -66,10 +66,10 @@ namespace Service.Database
         /// <see cref="Assessment"/> entity set.
         /// </summary>
         public DbSet<Assessment> Assessments { get; set; } = default!;
-        /*        /// <summary>
+        /// <summary>
         /// <see cref="Rating"/> entity set.
         /// </summary>
-        public DbSet<Rating> Ratings { get; set; } = default!;*/
+        public DbSet<Rating> Ratings { get; set; } = default!;
 
 
         #endregion
@@ -90,7 +90,7 @@ namespace Service.Database
             modelBuilder.ApplyConfiguration(new GroupConfiguration());
             modelBuilder.ApplyConfiguration(new IndicatorConfiguration());
             modelBuilder.ApplyConfiguration(new FormConfiguration());
-            // modelBuilder.ApplyConfiguration(new RatingConfiguration());
+            modelBuilder.ApplyConfiguration(new RatingConfiguration());
 
 #if DEBUG
             // new Seeding.DebugSeeder().Seed(modelBuilder);

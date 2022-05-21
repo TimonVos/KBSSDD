@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Model
 {
     /// <summary>
-    /// Requirements for the <see cref="Model.Indicator"/> of the <see cref="Model.Criterion"/>.
+    /// Requirements for the indicator of the criterion.
     /// </summary>
     public class Requirement
     {
@@ -39,12 +39,12 @@ namespace Model
         /// Description of the requirement.
         /// </summary>
         public string Description { get; set; } = null!;
-/*        /// <summary>
+        /// <summary>
         /// Entity set of rating this requirement has been reviewd in.
         /// </summary>
         /// <remarks>
         /// Can only be used for statistical purposes and not in practice.
-        /// </remarks>
-        public IEnumerable<Rating> Ratings { get; set; } = default!;*/
+        /// </remarks>`
+        public ICollection<Rating> Ratings { get; set; } = new HashSet<Rating>();
     }
 }

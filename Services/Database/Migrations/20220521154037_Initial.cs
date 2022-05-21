@@ -229,6 +229,37 @@ namespace Service.Database.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Ratings",
+                columns: table => new
+                {
+                    AssessmentId = table.Column<int>(type: "int", nullable: false),
+                    CriterionId = table.Column<int>(type: "int", nullable: false),
+                    RequirementId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Ratings", x => new { x.AssessmentId, x.CriterionId });
+                    table.ForeignKey(
+                        name: "FK_Ratings_Assessments_AssessmentId",
+                        column: x => x.AssessmentId,
+                        principalTable: "Assessments",
+                        principalColumn: "AssessmentId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Ratings_Criteria_CriterionId",
+                        column: x => x.CriterionId,
+                        principalTable: "Criteria",
+                        principalColumn: "CriterionId",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Ratings_Requirements_RequirementId",
+                        column: x => x.RequirementId,
+                        principalTable: "Requirements",
+                        principalColumn: "RequirementId",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Assessments_GroupId",
                 table: "Assessments",
@@ -271,6 +302,16 @@ namespace Service.Database.Migrations
                 column: "FormId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Ratings_CriterionId",
+                table: "Ratings",
+                column: "CriterionId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Ratings_RequirementId",
+                table: "Ratings",
+                column: "RequirementId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Requirements_CriterionId",
                 table: "Requirements",
                 column: "CriterionId");
@@ -284,25 +325,28 @@ namespace Service.Database.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Assessments");
-
-            migrationBuilder.DropTable(
                 name: "FormIndicators");
 
             migrationBuilder.DropTable(
                 name: "GroupStudents");
 
             migrationBuilder.DropTable(
-                name: "Requirements");
+                name: "Ratings");
 
             migrationBuilder.DropTable(
-                name: "Projects");
+                name: "Students");
+
+            migrationBuilder.DropTable(
+                name: "Assessments");
+
+            migrationBuilder.DropTable(
+                name: "Requirements");
 
             migrationBuilder.DropTable(
                 name: "Groups");
 
             migrationBuilder.DropTable(
-                name: "Students");
+                name: "Projects");
 
             migrationBuilder.DropTable(
                 name: "Criteria");

@@ -221,6 +221,26 @@ namespace Service.Database.Migrations
                     b.ToTable("Projects");
                 });
 
+            modelBuilder.Entity("Model.Rating", b =>
+                {
+                    b.Property<int>("AssessmentId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CriterionId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RequirementId")
+                        .HasColumnType("int");
+
+                    b.HasKey("AssessmentId", "CriterionId");
+
+                    b.HasIndex("CriterionId");
+
+                    b.HasIndex("RequirementId");
+
+                    b.ToTable("Ratings");
+                });
+
             modelBuilder.Entity("Model.Requirement", b =>
                 {
                     b.Property<int>("RequirementId")
@@ -356,6 +376,33 @@ namespace Service.Database.Migrations
                     b.Navigation("Form");
                 });
 
+            modelBuilder.Entity("Model.Rating", b =>
+                {
+                    b.HasOne("Model.Assessment", "Assessment")
+                        .WithMany("Ratings")
+                        .HasForeignKey("AssessmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Model.Criterion", "Criterion")
+                        .WithMany("Ratings")
+                        .HasForeignKey("CriterionId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Model.Requirement", "Requirement")
+                        .WithMany("Ratings")
+                        .HasForeignKey("RequirementId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Assessment");
+
+                    b.Navigation("Criterion");
+
+                    b.Navigation("Requirement");
+                });
+
             modelBuilder.Entity("Model.Requirement", b =>
                 {
                     b.HasOne("Model.Criterion", "Criterion")
@@ -375,6 +422,11 @@ namespace Service.Database.Migrations
                     b.Navigation("Indicator");
                 });
 
+            modelBuilder.Entity("Model.Assessment", b =>
+                {
+                    b.Navigation("Ratings");
+                });
+
             modelBuilder.Entity("Model.Competence", b =>
                 {
                     b.Navigation("Criteria");
@@ -382,6 +434,8 @@ namespace Service.Database.Migrations
 
             modelBuilder.Entity("Model.Criterion", b =>
                 {
+                    b.Navigation("Ratings");
+
                     b.Navigation("Requirements");
                 });
 
@@ -409,6 +463,11 @@ namespace Service.Database.Migrations
             modelBuilder.Entity("Model.Project", b =>
                 {
                     b.Navigation("Assessments");
+                });
+
+            modelBuilder.Entity("Model.Requirement", b =>
+                {
+                    b.Navigation("Ratings");
                 });
 
             modelBuilder.Entity("Model.Student", b =>

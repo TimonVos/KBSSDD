@@ -31,9 +31,9 @@ namespace Model
         /// Project that the group has selected.
         /// </summary>
         public Project Project { get; set; } = null!;
-/*        /// <summary>
+        /// <summary>
         /// Entity set of ratings the assessment has reviewed.
         /// </summary>
-        public IEnumerable<Rating> Ratings { get; set; } = default!;*/
+        public ICollection<Rating> Ratings { get; set; } = new HashSet<Rating>();
     }
 }
