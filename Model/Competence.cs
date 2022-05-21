@@ -1,28 +1,51 @@
-﻿namespace Model
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Model
 {
     /// <summary>
-    /// Model for the competences on an assessment form.
+    /// Collection of criteria to be assessed for a competence.
     /// </summary>
     public class Competence
     {
-        public Competence(int competenceId, string competenceName, string competenceDescription, int competenceWeight, int formId, ICollection<AppearsFrom> appearsFrom, ICollection<Criterion> criteriums)
-        {
-            CompetenceId = competenceId;
-            CompetenceName = competenceName;
-            CompetenceDescription = competenceDescription;
-            CompetenceWeight = competenceWeight;
-            FormId = formId;
-            Criteriums = criteriums;
-            this.AppearsFrom = new HashSet<AppearsFrom>();
-        }
-
+        /// <summary>
+        /// Primary key.
+        /// </summary>
         public int CompetenceId { get; set; }
-        public string CompetenceName { get; set; }
-        public string CompetenceDescription { get; set; }
-        public int CompetenceWeight { get; set; }
-
+        /// <summary>
+        /// Form foreign key the competence belongs to.
+        /// </summary>
         public int FormId { get; set; }
-        public ICollection<AppearsFrom> AppearsFrom { get; set; } 
-        public ICollection<Criterion> Criteriums { get; set; }
+        /// <summary>
+        /// Form the competence belongs to.
+        /// </summary>
+        public Form Form { get; set; } = null!;
+        /// <summary>
+        /// Consise name of the competence.
+        /// </summary>
+        [Required]
+        public string Name { get; set; } = null!;
+        /// <summary>
+        /// Description of the competence.
+        /// </summary>
+        [Required]
+        public string Description { get; set; } = null!;
+        /// <summary>
+        /// Weight of the competence. Total weight of the form must be 1.0d;
+        /// </summary>
+        public double Weight { get; set; }
+        /// <summary>
+        /// A description of valid evidences for the competence.
+        /// </summary>
+        [Required]
+        public string Evidence { get; set; } = null!;
+        /// <summary>
+        /// Entity set of criteria this competence has.
+        /// </summary>
+        public ICollection<Criterion> Criteria { get; set; } = new HashSet<Criterion>();
     }
 }

@@ -7,7 +7,8 @@
         xmlns:view="clr-namespace:View.FormAssessment"
         mc:Ignorable="d"
         Title="Beoordeling formulier" Height="650" Width="890">
-    <Grid>
+
+    <StackPanel>
         <view:ShowAssessmentUserControl/>
-    </Grid>
+    </StackPanel>
 </Window>

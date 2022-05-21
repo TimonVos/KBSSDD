@@ -6,22 +6,34 @@ using System.Threading.Tasks;
 
 namespace Model
 {
+    /// <summary>
+    /// Assessment of the group and their selected project.
+    /// </summary>
     public class Assessment
     {
-        private readonly ProjectList _projectList;
-
-        public Assessment()
-        {
-            _projectList = new ProjectList();
-        }
         /// <summary>
-        /// Get the projects in the system
+        /// Primary key.
         /// </summary>
-        /// <returns>List of projects currently in the system</returns>
-        public IEnumerable<Project> GetProjects()
-        {
-            return _projectList.GetProjects();
-        }
-
+        public int AssessmentId { get; set; }
+        /// <summary>
+        /// The assessed group foreign key.
+        /// </summary>
+        public int GroupId { get; set; }
+        /// <summary>
+        /// The assessed group.
+        /// </summary>
+        public Group Group { get; set; } = null!;
+        /// <summary>
+        /// Project foreign key that the group has selected.
+        /// </summary>
+        public int ProjectId { get; set; }
+        /// <summary>
+        /// Project that the group has selected.
+        /// </summary>
+        public Project Project { get; set; } = null!;
+        /// <summary>
+        /// Entity set of ratings the assessment has reviewed.
+        /// </summary>
+        public ICollection<Rating> Ratings { get; set; } = new HashSet<Rating>();
     }
 }
