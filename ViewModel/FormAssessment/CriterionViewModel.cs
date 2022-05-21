@@ -11,12 +11,12 @@ namespace ViewModel.FormAssessment
     {
         public string Title
         {
-            get => CriterionModel.CriterionName;
+            get => CriterionModel.Name;
         }
 
         public string Description
         {
-            get => CriterionModel.CriterionDescription;
+            get => CriterionModel.Description;
         }
         public Criterion CriterionModel { get; set; }
 

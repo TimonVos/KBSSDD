@@ -1,4 +1,4 @@
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Model;
 using Service.Database.Configuration;
 using Service.Properties;
@@ -7,6 +7,11 @@ namespace Service.Database
 {
     public partial class AssessmentContext : DbContext
     {
+
+        public AssessmentContext()
+        {
+            
+        }
         /// <summary>
         /// User setting for the connection string.
         /// </summary>

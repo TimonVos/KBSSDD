@@ -4,6 +4,6 @@ namespace ViewModel.GroupAdmin
 {
     public class GroupViewModel
     {
-        public string SelectedGroup { get; set; }
+        public string Title { get; set; }
     }
 }

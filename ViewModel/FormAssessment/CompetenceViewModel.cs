@@ -14,12 +14,12 @@ namespace ViewModel.FormAssessment
         
         public string Title
         {
-            get => CompetenceModel.CompetenceName;
+            get => CompetenceModel.Name;
         }
 
         public string Description
         {
-            get => CompetenceModel.CompetenceDescription;
+            get => CompetenceModel.Description;
         }
 
         public double CompetenceGrade

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -34,7 +34,7 @@ namespace Service.AssessmentServices
             foreach (Rating rating in selectedRatings)
             {
                 critAmount++;
-                grade += rating.Requirement.Indicator.GradeEquivalent;
+                grade += rating.Requirement.Indicator.Value;
             }
 
             return grade / critAmount;

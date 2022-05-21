@@ -6,9 +6,9 @@ namespace ViewModel.GroupAdmin
     {
         public string Title 
         {
-            get => $"Groep {GroupModel.GroupNumber}";
+            get => $"Groep {GroupModel.Number}";
         }
-        public ProjectGroup GroupModel { get; set; }
+        public Group GroupModel { get; set; }
 
         public override string ToString()
         {

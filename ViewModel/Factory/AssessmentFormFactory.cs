@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Documents;
 using Microsoft.EntityFrameworkCore;
 using Model;
@@ -10,26 +11,19 @@ namespace ViewModel.FormAssessment
 {
     public class AssessmentFormFactory
     {
-        public AssessmentContext? AssessmentContext = new AssessmentContext();
-
-        public FormAssessmentViewModel CreateForm(Form form)
-        {
-            FormAssessmentViewModel temp = new FormAssessmentViewModel();
-            temp.FormModel = form;
-            return temp;
-        }
-
-        public ProjectGroupViewModel CreateGroup(ProjectGroup group)
+        public AssessmentContext? Context = new AssessmentContext();
+        
+        public ProjectGroupViewModel CreateGroup()
         {
             ProjectGroupViewModel temp = new ProjectGroupViewModel();
             temp.GroupModel = group;
             return temp;
         }
 
-        public IEnumerable<ProjectGroupViewModel> CreateGroups(IEnumerable<ProjectGroup> groups)
+        public IEnumerable<ProjectGroupViewModel> CreateGroups()
         {
             List<ProjectGroupViewModel> temp = new List<ProjectGroupViewModel>();
-            foreach(ProjectGroup group in groups)
+            foreach(Group group in groups)
             {
                 temp.Add(CreateGroup(group));
             }
@@ -41,10 +35,10 @@ namespace ViewModel.FormAssessment
             return new StudentViewModel();
         }
 
-        public CompetenceViewModel CreateCompetence(Competence comp)
+        public CompetenceViewModel CreateCompetence(Form form)
         {
             CompetenceViewModel temp = new CompetenceViewModel();
-            temp.CompetenceModel = comp;
+            temp.CompetenceModel = Context.Competences.Where(c => c.FormId == form.FormId).FirstOrDefault();
             return temp;
         }
 
@@ -84,7 +78,7 @@ namespace ViewModel.FormAssessment
             return temp;
         }
 
-        public RequirementViewModel CreateCriterionAssessment(Requirement critassess, Indicator indi)
+        public RequirementViewModel CreateRequirement(Requirement critassess, Indicator indi)
         {
             RequirementViewModel temp = new RequirementViewModel();
             temp.CriterionAssessmentModel = critassess;
@@ -93,13 +87,13 @@ namespace ViewModel.FormAssessment
         }
 
 
-        public IEnumerable<RequirementViewModel> CreateCriterionAssessments(
+        public IEnumerable<RequirementViewModel> CreateRequirements(
             IEnumerable<Requirement> criterionAssessments)
         {
             List<RequirementViewModel> temp = new List<RequirementViewModel>();
             foreach (Requirement critassess in criterionAssessments)
             {
-                temp.Add(CreateCriterionAssessment(critassess, critassess.Indicator));
+                temp.Add(CreateRequirement(critassess, critassess.Indicator));
             }
             return temp;
         }
