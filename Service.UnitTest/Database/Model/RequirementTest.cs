@@ -45,7 +45,7 @@ namespace Service.UnitTest.Database.Model
         #region Assert attributes
 
         [Test]
-        public void Requirement_id_cannot_be_inserted()
+        public void Requirements_id_cannot_be_inserted()
         {
             using var context = new AssessmentContext();
 
@@ -65,7 +65,7 @@ namespace Service.UnitTest.Database.Model
         }
 
         [Test]
-        public void Criteria_required_fields_are_not_nullable()
+        public void Requirements_required_fields_are_not_nullable()
         {
             using var context = new AssessmentContext();
             var indicator = _indicatorFaker.Generate();
@@ -127,6 +127,7 @@ namespace Service.UnitTest.Database.Model
 
             context.Criteria.Remove(criterion);
             context.Remove(form);
+            context.Remove(indicator);
             context.SaveChanges();
         }
 
@@ -135,7 +136,7 @@ namespace Service.UnitTest.Database.Model
         #region Assert CRUD
 
         [Test]
-        public void Criteria_can_be_created()
+        public void Requirements_can_be_created()
         {
             using var context = new AssessmentContext();
             var indicator = _indicatorFaker.Generate();
@@ -160,6 +161,8 @@ namespace Service.UnitTest.Database.Model
                           select r).FirstOrDefault();
             Assert.That(requirement, Is.Not.Null);
 
+            context.Remove(indicator);
+            context.SaveChanges();
             form = (from f in createContext.Forms
                     where f == form
                     select f).FirstOrDefault();
@@ -168,7 +171,7 @@ namespace Service.UnitTest.Database.Model
         }
 
         [Test]
-        public void Criteria_can_be_read()
+        public void Requirements_can_be_read()
         {
             using var context = new AssessmentContext();
             var indicator = _indicatorFaker.Generate();
@@ -189,7 +192,7 @@ namespace Service.UnitTest.Database.Model
 
             using var readContext = new AssessmentContext();
             var read = (from r in readContext.Requirements
-                        where r.CriterionId == criterion.CriterionId
+                        where r == requirement
                         select r).Include(r => r.Indicator).Include(r => r.Criterion).FirstOrDefault();
             Assert.Multiple(() =>
             {
@@ -203,6 +206,8 @@ namespace Service.UnitTest.Database.Model
                 Assert.That(requirement.Criterion.CriterionId, Is.EqualTo(read?.Criterion.CriterionId));
             });
 
+            context.Remove(indicator);
+            context.SaveChanges();
             form = (from f in readContext.Forms
                     where f == form
                     select f).FirstOrDefault();
@@ -211,7 +216,7 @@ namespace Service.UnitTest.Database.Model
         }
 
         [Test]
-        public void Criteria_can_be_updated()
+        public void Requirements_can_be_updated()
         {
             using var context = new AssessmentContext();
             var indicator = _indicatorFaker.Generate();
@@ -251,7 +256,7 @@ namespace Service.UnitTest.Database.Model
 
             using var readContext = new AssessmentContext();
             var read = (from r in readContext.Requirements
-                        where r.RequirementId == requirement.RequirementId
+                        where r == requirement
                         select r).Include(r => r.Indicator).Include(r => r.Criterion).FirstOrDefault();
             Assert.Multiple(() =>
             {
@@ -265,15 +270,21 @@ namespace Service.UnitTest.Database.Model
                 Assert.That(read?.Criterion.CriterionId, Is.EqualTo(update?.Criterion.CriterionId));
             });
 
+            updateContext.Remove(updateIndicator);
+            updateContext.SaveChanges();
             form = (from f in readContext.Forms
                     where f == form
                     select f).FirstOrDefault();
+            indicator = (from i in readContext.Indicators
+                         where i == indicator
+                         select i).FirstOrDefault();
+            readContext.Remove(indicator!);
             readContext.Remove(form!);
             readContext.SaveChanges();
         }
 
         [Test]
-        public void Criteria_can_be_deleted()
+        public void Requirements_can_be_deleted()
         {
             using var context = new AssessmentContext();
             var indicator = _indicatorFaker.Generate();
@@ -300,9 +311,14 @@ namespace Service.UnitTest.Database.Model
                            select r).FirstOrDefault();
             Assert.That(requirement, Is.Null);
 
+
             form = (from f in deleteContext.Forms
-                          where f.FormId == form.FormId
+                          where f == form
                           select f).FirstOrDefault();
+            indicator = (from i in deleteContext.Indicators
+                    where i == indicator
+                    select i).FirstOrDefault();
+            deleteContext.Remove(indicator!);
             deleteContext.Remove(form!);
             deleteContext.SaveChanges();
         }

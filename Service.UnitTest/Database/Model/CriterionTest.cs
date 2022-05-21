@@ -13,6 +13,8 @@ namespace Service.UnitTest.Database.Model
         private Faker<Form> _formFaker;
         private Faker<Competence> _competenceFaker;
         private Faker<Criterion> _criterionFaker;
+        private Faker<Requirement> _requirementFaker;
+        private Faker<Indicator> _indicatorFaker;
 
         [SetUp]
         public void Setup()
@@ -30,6 +32,14 @@ namespace Service.UnitTest.Database.Model
             _criterionFaker = new Faker<Criterion>()
                 .RuleFor(f => f.Name, f => f.Lorem.Sentence())
                 .RuleFor(f => f.Description, f => f.Lorem.Paragraph());
+
+            _requirementFaker = new Faker<Requirement>()
+                .RuleFor(f => f.Name, f => f.Lorem.Sentence())
+                .RuleFor(f => f.Description, f => f.Lorem.Paragraph());
+
+            _indicatorFaker = new Faker<Indicator>()
+                .RuleFor(f => f.Name, f => f.Lorem.Random.Word())
+                .RuleFor(f => f.Value, f => f.Lorem.Random.Number(1, 10));
         }
 
         #region Assert attributes
@@ -254,6 +264,44 @@ namespace Service.UnitTest.Database.Model
         #endregion
 
         #region Assert relationships
+
+        [Test]
+        public void Criteria_can_have_requirements()
+        {
+            using var context = new AssessmentContext();
+            var formA = _formFaker.Generate();
+            var competenceA = _competenceFaker.Generate();
+            competenceA.Form = formA;
+            var criterionA = _criterionFaker.Generate();
+            criterionA.Competence = competenceA;
+            var indicatorA = _indicatorFaker.Generate();
+            var requirementsA = _requirementFaker.Generate(2);
+            requirementsA.ForEach(r => criterionA.Requirements.Add(r));
+            requirementsA.ForEach(r => r.Indicator = indicatorA);
+            context.Indicators.Add(indicatorA);
+            context.Forms.Add(formA);
+            context.Competences.Add(competenceA);
+            context.Criteria.Add(criterionA);
+            context.Requirements.AddRange(requirementsA);
+            context.SaveChanges();
+
+            using var requirementsContext = new AssessmentContext();
+            var critierionB = (from r in requirementsContext.Criteria
+                               where r == criterionA
+                               select r).Include(c => c.Requirements).FirstOrDefault();
+            Assert.Multiple(() =>
+            {
+                Assert.That(critierionB, Is.Not.Null);
+                Assert.That(critierionB?.Requirements.Count, Is.EqualTo(requirementsA.Count));
+                Assert.That((from a in requirementsA
+                             join b in critierionB!.Requirements on a.RequirementId equals b.RequirementId
+                             select a).Count, Is.EqualTo(requirementsA.Count));
+            });
+
+            context.Remove(indicatorA);
+            context.Remove(formA);
+            context.SaveChanges();
+        }
 
         #endregion
 

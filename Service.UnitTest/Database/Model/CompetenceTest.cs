@@ -138,7 +138,7 @@ namespace Service.UnitTest.Database.Model
             form = (from f in createContext.Forms
                     where f.FormId == form.FormId
                     select f).FirstOrDefault();
-            createContext.Remove(competence!);
+            createContext.Remove(form!);
             createContext.SaveChanges();
         }
 
@@ -301,8 +301,8 @@ namespace Service.UnitTest.Database.Model
             context.Criteria.AddRange(criteriaA);
             context.SaveChanges();
 
-            using var formsContext = new AssessmentContext();
-            var competenceB = (from c in formsContext.Competences
+            using var criteriaContext = new AssessmentContext();
+            var competenceB = (from c in criteriaContext.Competences
                                 where c == competenceA
                                 select c).Include(c => c.Criteria).FirstOrDefault();
             Assert.Multiple(() =>
