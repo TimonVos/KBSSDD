@@ -16,5 +16,4 @@ namespace Service.Database.Configuration
                 .IsUnique();
         }
     }
-
 }

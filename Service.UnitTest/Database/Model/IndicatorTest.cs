@@ -21,6 +21,7 @@ namespace Service.UnitTest.Database.Model
                 .RuleFor(f => f.Value, f => f.Lorem.Random.Number(1, 10));
 
             _formFaker = new Faker<Form>()
+                .RuleFor(f => f.Name, f => f.Lorem.Paragraph())
                 .RuleFor(f => f.Description, f => f.Lorem.Paragraph());
         }
 
@@ -48,7 +49,7 @@ namespace Service.UnitTest.Database.Model
         {
             using var context = new AssessmentContext();
 
-            var indicator = new Indicator { Value = 3 };
+            var indicator = new Indicator { Value = _faker.Random.Number(1, 10) };
 
             context.Indicators.Add(indicator);
 
@@ -56,7 +57,10 @@ namespace Service.UnitTest.Database.Model
             Assert.IsInstanceOf<SqlException>(exception.InnerException);
             SqlException? sqlException = (SqlException?)(exception.InnerException);
             if (sqlException is not null)
+            {
                 Assert.That(sqlException.Number, Is.EqualTo(515));
+                StringAssert.Contains("Name", sqlException.Message);
+            }
         }
 
         [Test]
@@ -188,9 +192,9 @@ namespace Service.UnitTest.Database.Model
             context.SaveChanges();
 
             using var formsContext = new AssessmentContext();
-            var indicatorsB = (from i in formsContext.Indicators 
+            var indicatorsB = (from i in formsContext.Indicators
                                join fi in formsContext.FormIndicators on i equals fi.Indicator
-                               where fi.FormId == formA.FormId 
+                               where fi.FormId == formA.FormId
                                select i).Include(i => i.Forms).ToList();
             Assert.Multiple(() =>
             {

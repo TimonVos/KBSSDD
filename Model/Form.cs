@@ -16,6 +16,10 @@ namespace Model
         /// </summary>
         public int FormId { get; set; }
         /// <summary>
+        /// Name of the form.
+        /// </summary>
+        public string Name { get; set; } = null!;
+        /// <summary>
         /// Descripion of the form.
         /// </summary>
         public string? Description { get; set; }
@@ -27,13 +31,14 @@ namespace Model
         /// Join table of form and indicator.
         /// </summary>
         public ICollection<FormIndicator> FromIndicators { get; set; } = new HashSet<FormIndicator>();
+        /// <summary>
+        /// Entity set of competences this form has.
+        /// </summary>
+        public ICollection<Competence> Competences { get; set; } = new HashSet<Competence>();
         /*        /// <summary>
-                /// Entity set of competences this form has.
-                /// </summary>
-                public ICollection<Competence> Competences { get; set; } = default!;
-                /// <summary>
                 /// Entity set of projects this form belongs to.
                 /// </summary>
                 public ICollection<Project> Projects { get; set; } = default!;*/
+
     }
 }
