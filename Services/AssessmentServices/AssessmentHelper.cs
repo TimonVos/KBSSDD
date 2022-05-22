@@ -7,11 +7,19 @@ using System.Threading.Tasks;
 using Microsoft.IdentityModel.Tokens;
 using Model;
 using Service.Database;
+using Group = Model.Group;
 
 namespace Service.AssessmentServices
 {
     public class AssessmentHelper
     {
+        public Assessment createNewAssessment(Project proj, Group grp)
+        {
+            Assessment temp = new Assessment();
+            temp.Project = proj;
+            temp.Group = grp;
+            return temp;
+        }
         /// <summary>
         /// Calculates the current grade for the competence
         /// </summary>

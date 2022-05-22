@@ -6,16 +6,16 @@
              xmlns:local="clr-namespace:View.FormAssessment"
              xmlns:formAssessment="clr-namespace:ViewModel.FormAssessment;assembly=ViewModel"
              mc:Ignorable="d"
-             d:DataContext="{d:DesignInstance formAssessment:FormAssessmentViewModel}">
+             d:DataContext="{d:DesignInstance formAssessment:AssessmentFormViewModel}">
     <Grid>
         <ListBox SelectionMode="Single"
-                 SelectedItem="{Binding SelectedCompetenceViewModel.SelectedCriterionViewModel , Mode=TwoWay}"
+                 SelectedItem="{Binding SelectedCompetenceV.SelectedCriterion , Mode=TwoWay}"
                  Background="#FF3A3A3A" 
-                 ItemsSource="{Binding SelectedCompetenceViewModel.Criteria}" 
+                 ItemsSource="{Binding SelectedCompetence.Criteria}" 
                  BorderThickness="0">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <ItemsControl ItemsSource="{Binding CriterionAssessments}">
+                    <ItemsControl ItemsSource="{Binding Requirements}">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <WrapPanel/>
@@ -28,7 +28,7 @@
                                     <Border.BorderThickness>2</Border.BorderThickness>
                                     <Grid Background="DarkGray" Width="150" Height="30">
                                         <RadioButton 
-                                            GroupName="{Binding CriterionAssessmentModel.Criterion}"
+                                            GroupName="{Binding RequirementModel.Criterion}"
                                             Content="{Binding Indicator.Title}" Checked="RadioButton_Checked"/>
                                     </Grid>
                                 </Border>

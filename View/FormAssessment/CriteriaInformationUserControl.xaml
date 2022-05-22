@@ -6,20 +6,20 @@
              xmlns:local="clr-namespace:View.FormAssessment"
              xmlns:formAssessment="clr-namespace:ViewModel.FormAssessment;assembly=ViewModel"
              mc:Ignorable="d" 
-             d:DataContext="{d:DesignInstance formAssessment:FormAssessmentViewModel}">
+             d:DataContext="{d:DesignInstance formAssessment:AssessmentFormViewModel}">
     <StackPanel>
         <TextBlock TextWrapping="Wrap" 
                    VerticalAlignment="Center"
                    HorizontalAlignment="Center"
                    FontWeight="Bold" Margin="5" 
-                   Text="{Binding SelectedCompetenceViewModel.SelectedCriterionViewModel.Title}"/>
+                   Text="{Binding SelectedCompetence.SelectedCriterion.Title}"/>
         <TextBlock TextWrapping="Wrap" 
                    VerticalAlignment="Center"
                    HorizontalAlignment="Center"
                    Margin="5" 
-                   Text="{Binding SelectedCompetenceViewModel.SelectedCriterionViewModel.Description}"/>
+                   Text="{Binding SelectedCompetence.SelectedCriterion.Description}"/>
         <ItemsControl 
-            ItemsSource="{Binding SelectedCompetenceViewModel.SelectedCriterionViewModel.CriterionAssessments}">
+            ItemsSource="{Binding SelectedCompetence.SelectedCriterion.Requirements}">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>

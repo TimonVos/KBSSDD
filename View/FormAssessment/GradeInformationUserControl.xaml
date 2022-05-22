@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:View.FormAssessment"
              xmlns:formAssessment="clr-namespace:ViewModel.FormAssessment;assembly=ViewModel"
              mc:Ignorable="d" 
-             d:DataContext="{d:DesignInstance formAssessment:FormAssessmentViewModel}">
+             d:DataContext="{d:DesignInstance formAssessment:AssessmentFormViewModel}">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
@@ -15,7 +15,7 @@
             <ColumnDefinition Width="Auto"></ColumnDefinition>
             <ColumnDefinition Width="Auto"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <ListView ItemsSource="{Binding SelectedCompetenceViewModel}">
+        <ListView ItemsSource="{Binding }">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>

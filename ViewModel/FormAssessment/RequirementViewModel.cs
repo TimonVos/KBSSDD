@@ -7,31 +7,11 @@ using Model;
 
 namespace ViewModel.FormAssessment
 {
-    public class RequirementViewModel
+    public class RequirementViewModel :ViewModelBase
     {
-        public string Description
-        {
-            get => CriterionAssessmentModel.Description;
-        }
-
-        public string Title
-        {
-            get
-            {
-                return CriterionAssessmentModel.Criterion.Name;
-            }
-        }
-
-        public string GroupName
-        {
-            get
-            {
-                return CriterionAssessmentModel.Criterion.GetHashCode().ToString();
-            }
-        }
-
-        public IndicatorViewModel Indicator { get; set; }
-
-        public Requirement CriterionAssessmentModel { get; set; }
+        public Requirement RequirementModel { get; set; }
+        public string Title { get => RequirementModel.Name; }
+        public string Description { get => RequirementModel.Description; }
+        public IndicatorViewModel Indicator { get => Factory.CreateIndicator(RequirementModel.Indicator); }
     }
 }

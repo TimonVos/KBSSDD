@@ -9,29 +9,14 @@ namespace ViewModel.FormAssessment
 {
     public class CriterionViewModel : ViewModelBase
     {
-        public string Title
-        {
-            get => CriterionModel.Name;
-        }
-
-        public string Description
-        {
-            get => CriterionModel.Description;
-        }
+        public string Title { get => CriterionModel.Name; }
+        public string Description { get => CriterionModel.Description; }
         public Criterion CriterionModel { get; set; }
+        public IEnumerable<RequirementViewModel> Requirements { get; set; }
 
-        private IEnumerable<RequirementViewModel> _criterionAssessments;
-
-        public IEnumerable<RequirementViewModel> CriterionAssessments
+        public CriterionViewModel()
         {
-            get => _criterionAssessments;
-
-            set
-            {
-                _criterionAssessments = value;
-                OnPropertyChanged(nameof(CriterionAssessments));
-            }
+            Requirements = Factory.CreateRequirements(CriterionModel.Requirements);
         }
-
     }
 }

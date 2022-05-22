@@ -6,12 +6,12 @@
              xmlns:local="clr-namespace:View.FormAssessment"
              xmlns:viewModel="clr-namespace:ViewModel.FormAssessment;assembly=ViewModel"
              mc:Ignorable="d" 
-             d:DataContext="{d:DesignInstance viewModel:FormAssessmentViewModel}">
+             d:DataContext="{d:DesignInstance viewModel:AssessmentFormViewModel}">
     <StackPanel  Width="150" Margin="5">
         <ComboBox 
             SelectedIndex="0"
             Background="DarkGray"
-            ItemsSource="{Binding ProjectGroupViewModels}" >
+            ItemsSource="{Binding Groups}" >
         </ComboBox>
     </StackPanel>
 </UserControl>

@@ -10,7 +10,7 @@
         Title="Beoordeling formulier" Height="auto" Width="auto"
         Background="#FF3A3A3A">
     <Window.Resources>
-        <viewModel:FormAssessmentViewModel x:Key="ViewModel"/>
+        <viewModel:AssessmentFormViewModel x:Key="ViewModel"/>
     </Window.Resources>
     <Window.DataContext>
         <Binding Source="{StaticResource ResourceKey=ViewModel}"></Binding>
@@ -61,7 +61,7 @@
                             HorizontalContentAlignment="Center"
                             VerticalContentAlignment="Center"
                            MaxWidth="175" MaxHeight="25" 
-                           Content="{Binding SelectedCompetenceViewModel.Title}"/>
+                           Content="{Binding SelectedCompetence.Title}"/>
                     <Label  Margin="5" 
                            HorizontalAlignment="Center" 
                            HorizontalContentAlignment="Center"
@@ -79,7 +79,7 @@
         </Grid>
         <ListBox 
             SelectionMode="Single"
-            SelectedItem="{Binding SelectedCompetenceViewModel , Mode=TwoWay}"
+            SelectedItem="{Binding SelectedCompetence , Mode=TwoWay}"
             Background="DarkGray" 
             Name="CompetenceList" 
             VerticalAlignment="Center" 
@@ -87,12 +87,12 @@
             Grid.Row="1" Grid.Column ="5" 
             Height="125"
             Margin="5" Width="160" 
-            ItemsSource="{Binding CompetenceViewModels}"
+            ItemsSource="{Binding Form.Competences}"
             SelectedIndex="0">
         </ListBox>
         <StackPanel Grid.Row ="2" Grid.Column="1">
             <ItemsControl 
-                      ItemsSource="{Binding IndicatorViewModels}">
+                      ItemsSource="{Binding Form.Indicators}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel/>

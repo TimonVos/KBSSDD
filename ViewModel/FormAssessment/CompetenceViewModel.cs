@@ -11,54 +11,14 @@ namespace ViewModel.FormAssessment
 {
     public class CompetenceViewModel : ViewModelBase
     {
-        
-        public string Title
-        {
-            get => CompetenceModel.Name;
-        }
-
-        public string Description
-        {
-            get => CompetenceModel.Description;
-        }
-
-        public double CompetenceGrade
-        {
-            get => Helper.getCompetenceGrade(Factory.AssessmentContext, new Assessment(), CompetenceModel);
-        }
-
-        public double getCompetenceGrade(AssessmentContext context, Assessment assess)
-        {
-            return Helper.getCompetenceGrade(context, assess, CompetenceModel);
-        }
-
-        private CriterionViewModel _selectedCriterionViewModel;
-        public CriterionViewModel SelectedCriterionViewModel
-        {
-            get => _selectedCriterionViewModel;
-            set
-            {
-                _selectedCriterionViewModel = value;
-                OnPropertyChanged(nameof(SelectedCriterionViewModel));
-            }
-        }
-
+        public string Title { get => CompetenceModel.Name; }
+        public string Description { get => CompetenceModel.Description; }
+        public IEnumerable<CriterionViewModel> Criteria { get; set; }
         public Competence CompetenceModel { get; set; }
-        private IEnumerable<CriterionViewModel> _criteria;
-        public IEnumerable<CriterionViewModel> Criteria 
+        public CriterionViewModel SelectedCriterion { get; set; }
+        public CompetenceViewModel()
         {
-            get => _criteria;
-            set
-            {
-                _criteria = value;
-                OnPropertyChanged(nameof(Criteria));
-            }
-        }
-
-
-        public override string ToString()
-        {
-            return Title;
+            Criteria = Factory.CreateCriteria(CompetenceModel.Criteria);
         }
     }
 }
