@@ -11,13 +11,15 @@ namespace ViewModel.StartingScreen
     public class StartingScreenFactory
     {
 
-        public AssessmentContext assessmentContext = new AssessmentContext();
+        public AssessmentContext AssessmentContext;
 
-
+        public StartingScreenFactory()
+        {
+            AssessmentContext = new AssessmentContext();
+        }
         public ProjectViewModel CreateProject(Project project)
         {
-            ProjectViewModel temp = new ProjectViewModel();
-            temp.ProjectModel = project;
+            ProjectViewModel temp = new ProjectViewModel(project);
             return temp;
         }
 

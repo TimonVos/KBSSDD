@@ -17,7 +17,7 @@ namespace ViewModel
     {
         public event PropertyChangedEventHandler? PropertyChanged;
 
-        protected StartingScreenFactory Factory = new StartingScreenFactory();
+        protected StartingScreenFactory Factory = new();
 
         protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
         {

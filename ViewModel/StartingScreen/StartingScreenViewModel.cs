@@ -20,7 +20,7 @@ namespace ViewModel.StartingScreen
 
         public StartingScreenViewModel()
         {
-            _projects = Factory.CreateProjects(Factory.assessmentContext.projects);
+            _projects = Factory.CreateProjects(Factory.AssessmentContext.projects);
         }
     }
 }

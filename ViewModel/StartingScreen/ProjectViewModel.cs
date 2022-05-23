@@ -15,6 +15,11 @@ namespace ViewModel.StartingScreen
         }
         public Project ProjectModel { get; set; }
 
+        public ProjectViewModel(Project prjMdl)
+        {
+            ProjectModel = prjMdl;
+        }
+
         public override string ToString()
         {
             return Title;
