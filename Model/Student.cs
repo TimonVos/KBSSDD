@@ -13,5 +13,9 @@
 
         public virtual ICollection<ProjectGroup> Groups { get; set; }
 
+        public override string ToString()
+        {
+            return $"{this.StudentId} - ({this.StudentName})";
+        }
     }
 }

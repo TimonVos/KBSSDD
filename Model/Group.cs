@@ -23,5 +23,10 @@ namespace Model
             this.Name = name;
             Students = new ObservableCollection<Student>();
         }
+
+        public override string ToString()
+        {
+            return this.Name;
+        }
     }
 }
