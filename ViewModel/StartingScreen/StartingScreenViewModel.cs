@@ -1,25 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Service.Database;
-using Model;
-using System.ComponentModel;
+﻿using Model;
 
 
 namespace ViewModel.StartingScreen
 {
-    public class StartingScreenViewModel
+    public class StartingScreenViewModel : ViewModelBase
     {
-        public string Name
+        public string Title
         {
-            get => Project.
+            get => ProjectListModel.ProjectName;
+        }
+        public int Number
+        {
+            get => ProjectListModel.ProjectId;
         }
 
-        public StartingScreenViewModel()
-        {
-         
-        }
+
+        public Project ProjectListModel { get; set; }
+
     }
 }
+
+
