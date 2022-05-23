@@ -19,7 +19,6 @@ namespace ViewModel.Factory
     public class AssessmentFormFactory
     {
         private readonly AssessmentContext? _context;
-        private readonly AssessmentHelper _helper;
 
         /// <summary>
         /// constructor that initializes database context object and other service objects
@@ -27,7 +26,6 @@ namespace ViewModel.Factory
         public AssessmentFormFactory()
         {
             _context = new AssessmentContext();
-            _helper = new AssessmentHelper();
         }
 
         /// <summary>
@@ -37,8 +35,10 @@ namespace ViewModel.Factory
         /// <returns>Form view model with a property set to the form with the correct form id</returns>
         public FormViewModel CreateForm(Form form)
         {
-            FormViewModel temp = new FormViewModel();
-            temp.FormModel = _context.Forms.Where(fm => fm.FormId == form.FormId).ElementAt(0);
+            FormViewModel temp;
+            temp = new FormViewModel(_context.Forms.Where(fm => fm.FormId == form.FormId)
+                .Include(frm => frm.Competences).Include(frm => frm.Indicators)
+                .FirstOrDefault());
             return temp;
         }
         /// <summary>
@@ -48,8 +48,10 @@ namespace ViewModel.Factory
         /// <returns>Newly created competence view model with a property set to the competence with the correct competence id</returns>
         public CompetenceViewModel CreateCompetence(Competence competence)
         {
-            CompetenceViewModel temp = new CompetenceViewModel();
-            temp.CompetenceModel = _context.Competences.Where(comp => comp.CompetenceId == competence.CompetenceId).ElementAt(0);
+            CompetenceViewModel temp;
+            temp = new CompetenceViewModel(_context.Competences.Where(comp => comp.CompetenceId == competence.CompetenceId)
+                .Include(comp => comp.Criteria)
+                .FirstOrDefault());
             return temp;
         }
         /// <summary>
@@ -73,9 +75,10 @@ namespace ViewModel.Factory
         /// <returns>Newly created criterion view model with a property set to the criterion with the correct id</returns>
         public CriterionViewModel CreateCriterion(Criterion criterion)
         {
-            CriterionViewModel temp = new CriterionViewModel();
-            temp.CriterionModel =
-                _context.Criteria.Where(crit => crit.CriterionId == criterion.CriterionId).ElementAt(0);
+            CriterionViewModel temp;
+            temp =
+                new CriterionViewModel(_context.Criteria.Where(crit => crit.CriterionId == criterion.CriterionId)
+                    .Include(crit => crit.Requirements).FirstOrDefault());
             return temp;
         }
         /// <summary>
@@ -99,9 +102,11 @@ namespace ViewModel.Factory
         /// <returns>Newly created requirement view model with a property set to the requirement with the correct id</returns>
         public RequirementViewModel CreateRequirement(Requirement requirement)
         {
-            RequirementViewModel temp = new RequirementViewModel();
-            temp.RequirementModel =
-                _context.Requirements.Where(req => req.RequirementId == requirement.RequirementId).ElementAt(0);
+            RequirementViewModel temp;
+            temp = new RequirementViewModel(_context.Requirements.
+                Where(req => req.RequirementId == requirement.RequirementId).
+                Include(req => req.Indicator).Include(req => req.Criterion).
+                FirstOrDefault())!;
             return temp;
         }
         /// <summary>
@@ -125,8 +130,8 @@ namespace ViewModel.Factory
         /// <returns>Newly created group view model with a property set to the group with the correct id</returns>
         public GroupViewModel CreateGroup(Group group)
         {
-            GroupViewModel temp = new GroupViewModel();
-            temp.GroupModel = _context.Groups.Where(grp => grp.GroupId == group.GroupId).ElementAt(0);
+            GroupViewModel temp;
+            temp= new GroupViewModel(_context.Groups.Where(grp => grp.GroupId == group.GroupId).FirstOrDefault());
             return temp;
         }
         /// <summary>
@@ -151,7 +156,7 @@ namespace ViewModel.Factory
         public StudentViewModel CreateStudent(Student student)
         {
             StudentViewModel temp = new StudentViewModel();
-            temp.StudentModel = _context.Students.Where(std => std.StudentNumber == student.StudentNumber).ElementAt(0);
+            temp.StudentModel = _context.Students.Where(std => std.StudentNumber == student.StudentNumber).FirstOrDefault();
             return temp;
         }
         /// <summary>
@@ -168,14 +173,23 @@ namespace ViewModel.Factory
             }
             return temp;
         }
-
+        /// <summary>
+        /// Create a view model for an indicator to allow the view to see the indicator information
+        /// </summary>
+        /// <param name="indicator">Indicator given by the CreateIndicators function, derived from AssessmentFormViewModel.Form.Indicators</param>
+        /// <returns>Newly created indicator view model with a property set to the indicator with the correct indicator id</returns>
         public IndicatorViewModel CreateIndicator(Indicator indicator)
         {
-            IndicatorViewModel temp = new IndicatorViewModel();
-            temp.IndicatorModel = _context.Indicators.Where(indi => indi.IndicatorId == indicator.IndicatorId)
-                .ElementAt(0);
+            IndicatorViewModel temp;
+            temp = new IndicatorViewModel(_context.Indicators.Where(indi => indi.IndicatorId == indicator.IndicatorId)
+                .FirstOrDefault());
             return temp;
         }
+        /// <summary>
+        /// Create multiple view models for every indicator of a form to allow the view to see each indicator information
+        /// </summary>
+        /// <param name="indicators">List of indicators given by the AssessmentFormViewModel out of the Form.Indicators property</param>
+        /// <returns>List of newly created indicator view models with properties set to indicators with the correct indicator id</returns>
         public IEnumerable<IndicatorViewModel> CreateIndicators(IEnumerable<Indicator> indicators)
         {
             List<IndicatorViewModel> temp = new List<IndicatorViewModel>();
@@ -183,6 +197,46 @@ namespace ViewModel.Factory
             {
                 temp.Add(CreateIndicator(indicator));
             }
+            return temp;
+        }
+
+        public AssessmentViewModel CreateAssessment(Assessment assessment)
+        {
+            AssessmentViewModel temp = new AssessmentViewModel();
+            temp.AssessmentModel = _context.Assessments.
+                Where(assess => assess.AssessmentId == assessment.AssessmentId)
+                .Include(assess => assess.Group)
+                .FirstOrDefault()!;
+            return temp;
+        }
+        public IEnumerable<AssessmentViewModel> CreateAssessments(IEnumerable<Assessment> assessments)
+        {
+            List<AssessmentViewModel> temp = new List<AssessmentViewModel>();
+            foreach (Assessment assessment in assessments)
+            {
+                temp.Add(CreateAssessment(assessment));
+            }
+            return temp;
+        }
+        public FormViewModel GetForm()
+        {
+            FormViewModel temp;
+            temp = new FormViewModel(_context.Forms.
+                Where(frm => frm.FormId == 57).
+                Include(frm => frm.Competences).
+                Include(frm => frm.Indicators).
+                FirstOrDefault())!;
+            return temp;
+        }
+
+        public ProjectViewModel GetProject()
+        {
+            ProjectViewModel temp;
+            temp = new ProjectViewModel(_context.Projects.
+                Where(prj => prj.ProjectId == 5).
+                Include(prj => prj.Form).
+                Include(prj => prj.Assessments).
+                ThenInclude(assess => assess.Group).FirstOrDefault())!;
             return temp;
         }
     }

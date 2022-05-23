@@ -15,5 +15,10 @@ namespace ViewModel.FormAssessment
         }
         public Indicator IndicatorModel { get; set; }
 
+        public IndicatorViewModel(Indicator indiMdl)
+        {
+            IndicatorModel = indiMdl;
+        }
+
     }
 }

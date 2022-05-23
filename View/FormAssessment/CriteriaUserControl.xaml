@@ -9,7 +9,7 @@
              d:DataContext="{d:DesignInstance formAssessment:AssessmentFormViewModel}">
     <Grid>
         <ListBox SelectionMode="Single"
-                 SelectedItem="{Binding SelectedCompetenceV.SelectedCriterion , Mode=TwoWay}"
+                 SelectedItem="{Binding SelectedCompetence.SelectedCriterion , Mode=TwoWay}"
                  Background="#FF3A3A3A" 
                  ItemsSource="{Binding SelectedCompetence.Criteria}" 
                  BorderThickness="0">
@@ -27,9 +27,12 @@
                                     <Border.BorderBrush>Black</Border.BorderBrush>
                                     <Border.BorderThickness>2</Border.BorderThickness>
                                     <Grid Background="DarkGray" Width="150" Height="30">
-                                        <RadioButton 
-                                            GroupName="{Binding RequirementModel.Criterion}"
-                                            Content="{Binding Indicator.Title}" Checked="RadioButton_Checked"/>
+                                        <WrapPanel>
+                                            <RadioButton 
+                                                GroupName="{Binding RequirementModel.Criterion.Name}"
+                                                Content="{Binding Title}" Checked="RadioButton_Checked"/>
+                                        </WrapPanel>
+                                        
                                     </Grid>
                                 </Border>
                             </DataTemplate>

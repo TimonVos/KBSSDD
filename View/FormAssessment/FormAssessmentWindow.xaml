@@ -115,6 +115,8 @@
             <view:CriteriaUserControl></view:CriteriaUserControl>
         </StackPanel>
         <Button Grid.Row="5" Grid.Column="0" Height="30" Width="150" Content="Opslaan"  VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"></Button>
+        <!--
         <TextBox Grid.Row="5" Grid.Column ="1" VerticalAlignment="Center" Height="50" HorizontalContentAlignment="Left" VerticalContentAlignment="Top" Text="Opmerkingen"></TextBox>
-    </Grid>
+        -->    
+</Grid>
 </Window>

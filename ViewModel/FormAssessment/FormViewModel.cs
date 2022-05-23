@@ -15,14 +15,35 @@ namespace ViewModel.FormAssessment
         {
             get => FormModel.Name;
         }
-        public IEnumerable<CompetenceViewModel> Competences { get; set; }
-        public IEnumerable<IndicatorViewModel> Indicators { get; set; }
-        public Form FormModel { get; set; }
+
+        private IEnumerable<CompetenceViewModel> _competences;
+        public IEnumerable<CompetenceViewModel> Competences
+        {
+            get => _competences;
+            set
+            {
+                _competences = value;
+                OnPropertyChanged(nameof(Competences));
+            }
+        }
+        private IEnumerable<IndicatorViewModel> _indicators { get; set; }
+
+        public IEnumerable<IndicatorViewModel> Indicators
+        {
+            get => _indicators;
+            set
+            {
+                _indicators = value;
+                OnPropertyChanged(nameof(Indicators));
+            }
+        }
+        public Form FormModel { get; set; } 
 
         #endregion
 
-        public FormViewModel()
+        public FormViewModel(Form frmModel)
         {
+            FormModel = frmModel;
             Competences = Factory.CreateCompetences(FormModel.Competences);
             Indicators = Factory.CreateIndicators(FormModel.Indicators);
         }

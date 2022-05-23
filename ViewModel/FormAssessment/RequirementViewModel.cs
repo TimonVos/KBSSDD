@@ -13,5 +13,10 @@ namespace ViewModel.FormAssessment
         public string Title { get => RequirementModel.Name; }
         public string Description { get => RequirementModel.Description; }
         public IndicatorViewModel Indicator { get => Factory.CreateIndicator(RequirementModel.Indicator); }
+
+        public RequirementViewModel(Requirement reqMdl)
+        {
+            RequirementModel = reqMdl;
+        }
     }
 }

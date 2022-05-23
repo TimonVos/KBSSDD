@@ -14,8 +14,9 @@ namespace ViewModel.FormAssessment
         public Criterion CriterionModel { get; set; }
         public IEnumerable<RequirementViewModel> Requirements { get; set; }
 
-        public CriterionViewModel()
+        public CriterionViewModel(Criterion crit)
         {
+            CriterionModel = crit;
             Requirements = Factory.CreateRequirements(CriterionModel.Requirements);
         }
     }

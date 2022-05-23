@@ -9,8 +9,9 @@ namespace ViewModel.GroupAdmin
         public Group GroupModel { get; set; }
         public IEnumerable<StudentViewModel> Students { get; set; }
 
-        public GroupViewModel()
+        public GroupViewModel(Group grpMdl)
         {
+            GroupModel = grpMdl;
             Students = Factory.CreateStudents(GroupModel.Students);
         }
 

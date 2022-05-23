@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -37,6 +38,8 @@ namespace Model
         /// <remarks>
         /// Can only be used for statistical purposes and not in practice.
         /// </remarks>
+        [NotMapped]
+        public ICollection<Group> Groups { get => (from a in Assessments where a.ProjectId == this.ProjectId select a.Group).ToList(); }
         public ICollection<Assessment> Assessments { get; set; } = new HashSet<Assessment>();
     }
 }

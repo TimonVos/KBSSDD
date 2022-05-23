@@ -13,13 +13,6 @@ namespace Service.AssessmentServices
 {
     public class AssessmentHelper
     {
-        public Assessment createNewAssessment(Project proj, Group grp)
-        {
-            Assessment temp = new Assessment();
-            temp.Project = proj;
-            temp.Group = grp;
-            return temp;
-        }
         /// <summary>
         /// Calculates the current grade for the competence
         /// </summary>
@@ -27,24 +20,16 @@ namespace Service.AssessmentServices
         /// <param name="assessment">current assessment being calculated for</param>
         /// <param name="comp">current competence currently being graded</param>
         /// <returns>final rating for a competence</returns>
-        public double getCompetenceGrade(AssessmentContext context, Assessment assessment, Competence comp)
+        public double getCompetenceGrade(Competence comp, Assessment assessment)
         {
             double critAmount = 0;
             double grade = 0;
-            IEnumerable<Rating> selectedRatings = new List<Rating>();
-            foreach (Criterion crit in comp.Criteria)
-            {
-                selectedRatings = (from rating in context.Ratings 
-                    where rating.AssessmentId == assessment.AssessmentId 
-                    select rating);
-            }
-
+            IEnumerable<Rating> selectedRatings = assessment.Ratings;
             foreach (Rating rating in selectedRatings)
             {
                 critAmount++;
                 grade += rating.Requirement.Indicator.Value;
             }
-
             return grade / critAmount;
         }
     }
