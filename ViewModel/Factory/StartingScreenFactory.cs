@@ -4,24 +4,29 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Model;
+using Service.Database;
 
 namespace ViewModel.StartingScreen
 {
     public class StartingScreenFactory
     {
-        public StartingScreenViewModel CreateProjectList(Project project)
+
+        public AssessmentContext assessmentContext = new AssessmentContext();
+
+
+        public ProjectViewModel CreateProject(Project project)
         {
-            StartingScreenViewModel temp = new StartingScreenViewModel();
-            temp.ProjectListModel = project;
+            ProjectViewModel temp = new ProjectViewModel();
+            temp.ProjectModel = project;
             return temp;
         }
 
-        public IEnumerable<StartingScreenViewModel> CreateProjectLists(IEnumerable<Project> projects)
+        public IEnumerable<ProjectViewModel> CreateProjects(IEnumerable<Project> projects)
         {
-            List<StartingScreenViewModel> temp = new List<StartingScreenViewModel>();
-            foreach (Project name in projects)
+            List<ProjectViewModel> temp = new List<ProjectViewModel>();
+            foreach (Project prj in projects)
             {
-                temp.Add(CreateProjectList(name));
+                temp.Add(CreateProject(prj));
             }
             return temp;
         }

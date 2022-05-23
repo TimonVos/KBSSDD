@@ -1,22 +1,27 @@
-﻿using Model;
+﻿using System.Collections.Generic;
+using Model;
 
 
 namespace ViewModel.StartingScreen
 {
     public class StartingScreenViewModel : ViewModelBase
     {
-        public string Title
-        {
-            get => ProjectListModel.ProjectName;
+
+        private IEnumerable<ProjectViewModel> _projects;
+        public IEnumerable<ProjectViewModel> Projects 
+        { 
+            get => _projects;
+            set
+            {
+                _projects = value;
+                OnPropertyChanged(nameof(Projects));
+            }
         }
-        public int Number
+
+        public StartingScreenViewModel()
         {
-            get => ProjectListModel.ProjectId;
+            _projects = Factory.CreateProjects(Factory.assessmentContext.projects);
         }
-
-
-        public Project ProjectListModel { get; set; }
-
     }
 }
 
