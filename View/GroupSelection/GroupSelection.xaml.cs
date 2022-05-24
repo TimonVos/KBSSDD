@@ -18,9 +18,7 @@ namespace View
 
         private void StartAssessment(object sender, RoutedEventArgs e)
         {
-            this.Visibility = Visibility.Hidden;
-            var AssessmentWindow = new Window();
-            AssessmentWindow.Show();
+            
         }
 
         private void DeleteSelectedStudent(object sender, RoutedEventArgs e)

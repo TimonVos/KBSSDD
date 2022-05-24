@@ -15,6 +15,7 @@ namespace ViewModel
 
         public RelayCommand AddGroup { get; set; }
         public RelayCommand RemoveGroup { get; set; }
+        public RelayCommand ChangeGroupName { get; set; }
         public ObservableCollection<Group> Groups { get; set; }
 
 
@@ -28,7 +29,7 @@ namespace ViewModel
             get { return _selectedGroup; }
             set { 
                 _selectedGroup = value;
-                this.Students = _selectedGroup.Students;
+                this.Students = new ObservableCollection<Student>(_selectedGroup.Students);
             }
         }
 
@@ -39,7 +40,16 @@ namespace ViewModel
         public RelayCommand AddStudent { get; set; }
         public RelayCommand RemoveStudent { get; set; }
 
-        public ObservableCollection<Student> Students { get; set; }
+        private ObservableCollection<Student> _students;
+
+        public ObservableCollection<Student> Students
+        {
+            get { return _students; }
+            set { _students = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Students)));
+                }
+        }
+
         public Student SelectedStudent { get; set; }
 
         /// <summary>
@@ -58,7 +68,7 @@ namespace ViewModel
             
 
             //GROUPS________________________________________
-            GroupName = "Groep";
+            GroupName = "Groep Naam";
 
             
             Groups.Add(new Group("Groep 1"));
@@ -78,6 +88,11 @@ namespace ViewModel
                 Groups.Remove(SelectedGroup);
             });
 
+            ChangeGroupName = new RelayCommand(() =>
+            {
+                Groups.Select(SelectedGroup);
+            });
+
 
             //STUDENTS______________________________________
             
@@ -87,7 +102,14 @@ namespace ViewModel
 
             AddStudent = new RelayCommand(() =>
             {
-                this.Students.Add(new Student(int.Parse(StudentNumber), StudentName));
+                try
+                {
+                    SelectedGroup.Students.Add(new Student(int.Parse(StudentNumber), StudentName));
+                } catch 
+                {
+                    MessageBox.Show("Voeg een getal in voor het studentnummer");
+                }
+                Students = new ObservableCollection<Student>(_selectedGroup.Students);
             });
 
             RemoveStudent = new RelayCommand(() =>
