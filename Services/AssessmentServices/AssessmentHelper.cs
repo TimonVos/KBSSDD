@@ -1,13 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using Microsoft.IdentityModel.Tokens;
-using Model;
-using Service.Database;
-using Group = Model.Group;
+﻿using Model;
 
 namespace Service.AssessmentServices
 {
@@ -20,17 +11,26 @@ namespace Service.AssessmentServices
         /// <param name="assessment">current assessment being calculated for</param>
         /// <param name="comp">current competence currently being graded</param>
         /// <returns>final rating for a competence</returns>
-        public double getCompetenceGrade(Competence comp, Assessment assessment)
+        public IDictionary<Competence, double> GetGrades(Assessment assessment)
         {
+            IDictionary<Competence, double> temp = new Dictionary<Competence, double>();
             double critAmount = 0;
             double grade = 0;
+            Competence prevComp = assessment.Ratings.FirstOrDefault().Criterion.Competence;
+            
             IEnumerable<Rating> selectedRatings = assessment.Ratings;
             foreach (Rating rating in selectedRatings)
             {
                 critAmount++;
                 grade += rating.Requirement.Indicator.Value;
+                if (prevComp != rating.Criterion.Competence)
+                {
+                    prevComp = rating.Criterion.Competence;
+                    temp.Add(rating.Criterion.Competence ,grade / critAmount);
+                }
             }
-            return grade / critAmount;
+            return temp;
         }
+
     }
 }

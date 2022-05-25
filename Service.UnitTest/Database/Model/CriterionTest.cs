@@ -135,8 +135,8 @@ namespace Service.UnitTest.Database.Model
 
             using var createContext = new AssessmentContext();
             criterion = (from i in createContext.Criteria
-                          where i == criterion
-                          select i).FirstOrDefault();
+                         where i == criterion
+                         select i).FirstOrDefault();
             Assert.That(criterion, Is.Not.Null);
 
             form = (from f in createContext.Forms
@@ -198,8 +198,8 @@ namespace Service.UnitTest.Database.Model
             using var updateContext = new AssessmentContext();
             var updateCompetence = _competenceFaker.Generate();
             form = (from f in updateContext.Forms
-                          where f == form
-                          select f).FirstOrDefault();
+                    where f == form
+                    select f).FirstOrDefault();
             updateCompetence.Form = form!;
             var update = (from c in updateContext.Criteria
                           where c == criterion
@@ -250,8 +250,8 @@ namespace Service.UnitTest.Database.Model
             deleteContext.Remove(criterion);
             deleteContext.SaveChanges();
             criterion = (from i in deleteContext.Criteria
-                          where i == criterion
-                          select i).FirstOrDefault();
+                         where i == criterion
+                         select i).FirstOrDefault();
             Assert.That(criterion, Is.Null);
 
             form = (from f in deleteContext.Forms

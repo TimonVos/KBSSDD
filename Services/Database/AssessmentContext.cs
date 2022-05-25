@@ -10,7 +10,7 @@ namespace Service.Database
 
         public AssessmentContext()
         {
-            
+
         }
         /// <summary>
         /// User setting for the connection string.
