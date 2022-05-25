@@ -158,7 +158,7 @@ namespace Service.UnitTest.Database.Model
             using var createContext = new AssessmentContext();
             requirement = (from r in createContext.Requirements
                            where r == requirement
-                          select r).FirstOrDefault();
+                           select r).FirstOrDefault();
             Assert.That(requirement, Is.Not.Null);
 
             context.Remove(indicator);
@@ -312,11 +312,11 @@ namespace Service.UnitTest.Database.Model
             Assert.That(requirement, Is.Null);
 
             form = (from f in deleteContext.Forms
-                          where f == form
-                          select f).FirstOrDefault();
+                    where f == form
+                    select f).FirstOrDefault();
             indicator = (from i in deleteContext.Indicators
-                    where i == indicator
-                    select i).FirstOrDefault();
+                         where i == indicator
+                         select i).FirstOrDefault();
             deleteContext.Remove(indicator!);
             deleteContext.Remove(form!);
             deleteContext.SaveChanges();

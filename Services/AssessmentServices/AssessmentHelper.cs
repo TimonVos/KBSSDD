@@ -1,13 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using Microsoft.IdentityModel.Tokens;
-using Model;
-using Service.Database;
-using Group = Model.Group;
+﻿using Model;
 
 namespace Service.AssessmentServices
 {

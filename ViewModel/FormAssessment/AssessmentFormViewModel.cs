@@ -1,10 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
-using Bogus;
-using Model;
-using Service.AssessmentServices;
+﻿using System.Collections.Generic;
 using ViewModel.GroupAdmin;
 
 namespace ViewModel.FormAssessment

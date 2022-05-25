@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Windows.Controls;
-using System.Windows.Documents;
 using Microsoft.EntityFrameworkCore;
 using Model;
-using Service.AssessmentServices;
 using Service.Database;
 using ViewModel.FormAssessment;
 using ViewModel.GroupAdmin;
@@ -131,7 +126,7 @@ namespace ViewModel.Factory
         public GroupViewModel CreateGroup(Group group)
         {
             GroupViewModel temp;
-            temp= new GroupViewModel(_context.Groups.Where(grp => grp.GroupId == group.GroupId).FirstOrDefault());
+            temp = new GroupViewModel(_context.Groups.Where(grp => grp.GroupId == group.GroupId).FirstOrDefault());
             return temp;
         }
         /// <summary>

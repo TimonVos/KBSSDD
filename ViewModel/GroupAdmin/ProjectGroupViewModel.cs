@@ -4,7 +4,7 @@ namespace ViewModel.GroupAdmin
 {
     public class ProjectGroupViewModel
     {
-        public string Title 
+        public string Title
         {
             get => $"Groep {GroupModel.Number}";
         }
