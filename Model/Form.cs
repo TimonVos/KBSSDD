@@ -13,7 +13,7 @@
         }
 
         public int FormId { get; set; }
-        
+
         public ICollection<ControlQuestion> ControlQuestions { get; set; }
         public ICollection<Competence> Competences { get; set; }
 

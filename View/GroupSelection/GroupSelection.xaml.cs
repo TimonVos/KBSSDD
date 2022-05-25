@@ -18,7 +18,7 @@ namespace View
 
         private void StartAssessment(object sender, RoutedEventArgs e)
         {
-            
+
         }
 
         private void DeleteSelectedStudent(object sender, RoutedEventArgs e)

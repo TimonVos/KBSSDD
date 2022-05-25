@@ -22,7 +22,7 @@
         public int CompetenceWeight { get; set; }
 
         public int FormId { get; set; }
-        public ICollection<AppearsFrom> AppearsFrom { get; set; } 
+        public ICollection<AppearsFrom> AppearsFrom { get; set; }
         public ICollection<Criterion> Criteriums { get; set; }
     }
 }

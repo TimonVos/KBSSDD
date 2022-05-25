@@ -1,11 +1,8 @@
-﻿using System.Collections;
+﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
-using Microsoft.Toolkit.Mvvm.Input;
-using Microsoft.Toolkit.Mvvm.ComponentModel;
-using System.Collections.ObjectModel;
 using System.Windows;
+using Microsoft.Toolkit.Mvvm.Input;
 using Model;
-using System.Linq;
 
 namespace ViewModel
 {
@@ -22,14 +19,22 @@ namespace ViewModel
         // TextBox Content
         public string GroupName { get; set; }
 
+
         private Group _selectedGroup;
 
         public Group SelectedGroup
         {
             get { return _selectedGroup; }
-            set { 
+            set
+            {
                 _selectedGroup = value;
-                this.Students = new ObservableCollection<Student>(_selectedGroup.Students);
+                if (_selectedGroup != null)
+                {
+                    this.Students = new ObservableCollection<Student>(_selectedGroup.Students);
+                } else
+                {
+                    this.Students = new ObservableCollection<Student>();
+                }
             }
         }
 
@@ -45,9 +50,11 @@ namespace ViewModel
         public ObservableCollection<Student> Students
         {
             get { return _students; }
-            set { _students = value;
+            set
+            {
+                _students = value;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Students)));
-                }
+            }
         }
 
         public Student SelectedStudent { get; set; }
@@ -60,17 +67,17 @@ namespace ViewModel
         /// Student Number TextBox Content
         /// </summary>
         public string StudentNumber { get; set; }
-        
+
 
         public GroupSelectionViewModel()
         {
             Groups = new ObservableCollection<Group>();
-            
+
 
             //GROUPS________________________________________
             GroupName = "Groep Naam";
 
-            
+
             Groups.Add(new Group("Groep 1"));
             Groups.Add(new Group("Groep 2"));
 
@@ -90,12 +97,23 @@ namespace ViewModel
 
             ChangeGroupName = new RelayCommand(() =>
             {
-                Groups.Select(SelectedGroup);
+                ObservableCollection<Group> TempGroups = Groups;
+                for (int i = 0; i < TempGroups.Count; i++)
+                {
+                    if (TempGroups[i] == SelectedGroup)
+                    {
+                        TempGroups[i].Name = GroupName;
+                    }
+                }
+                
+                Groups = new ObservableCollection<Group>(TempGroups);
+
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Groups)));
             });
 
 
             //STUDENTS______________________________________
-            
+
             StudentName = "Student Naam";
             StudentNumber = "Student Nummer";
 
@@ -105,7 +123,8 @@ namespace ViewModel
                 try
                 {
                     SelectedGroup.Students.Add(new Student(int.Parse(StudentNumber), StudentName));
-                } catch 
+                }
+                catch
                 {
                     MessageBox.Show("Voeg een getal in voor het studentnummer");
                 }

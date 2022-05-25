@@ -16,6 +16,6 @@ namespace Model
         public int ProjectId { get; set; }
         public ICollection<ProjectGroup> Groups { get; set; }
 
-        
+
     }
 }
