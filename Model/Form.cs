@@ -14,10 +14,6 @@
         /// </summary>
         public string Name { get; set; } = null!;
         /// <summary>
-        /// Descripion of the form.
-        /// </summary>
-        public string? Description { get; set; }
-        /// <summary>
         /// Entity set of <see cref="Indicator"/> this group has.
         /// </summary>
         public ICollection<Indicator> Indicators { get; set; } = new HashSet<Indicator>();

@@ -11,7 +11,7 @@ using Service.Database;
 namespace Service.Database.Migrations
 {
     [DbContext(typeof(AssessmentContext))]
-    [Migration("20220525131658_Initial")]
+    [Migration("20220525150022_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -205,6 +205,10 @@ namespace Service.Database.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProjectId"), 1L, 1);
 
                     b.Property<string>("Code")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
