@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Model
+﻿namespace Model
 {
     /// <summary>
     /// Requirements for the indicator of the criterion.
@@ -32,7 +26,7 @@ namespace Model
         /// </summary>
         public Indicator Indicator { get; set; } = null!;
         /// <summary>
-        /// Consise name of the requirement.
+        /// Concise name of the requirement.
         /// </summary>
         public string Name { get; set; } = null!;
         /// <summary>

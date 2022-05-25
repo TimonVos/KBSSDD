@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Model
 {
@@ -25,7 +20,7 @@ namespace Model
         /// </summary>
         public Form Form { get; set; } = null!;
         /// <summary>
-        /// Consise name of the competence.
+        /// Concise name of the competence.
         /// </summary>
         [Required]
         public string Name { get; set; } = null!;
