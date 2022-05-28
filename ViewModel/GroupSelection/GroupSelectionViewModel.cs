@@ -77,13 +77,18 @@ namespace ViewModel
             //GROUPS________________________________________
             GroupName = "Groep Naam";
 
-
-            Groups.Add(new Group("Groep 1"));
-            Groups.Add(new Group("Groep 2"));
-
-            Groups[0].Students.Add(new Student(1158062, "Timon Vos"));
-
-            Groups[1].Students.Add(new Student(1130293, "Harm de Boer"));
+            
+            Groups.Add(new Group("Never"));
+            Groups.Add(new Group("Gonna"));
+            Groups.Add(new Group("Give"));
+            Groups.Add(new Group("You"));
+            Groups.Add(new Group("Up"));
+            Groups.Add(new Group("Never"));
+            Groups.Add(new Group("Gonna"));
+            Groups.Add(new Group("Let"));
+            Groups.Add(new Group("You"));
+            Groups.Add(new Group("Down"));
+            
 
             AddGroup = new RelayCommand(() =>
             {
