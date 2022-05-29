@@ -7,6 +7,7 @@ namespace Service.Database.EntityFaker
     {
         public static Bogus.Faker Faker { get; }
         private static readonly Bogus.Faker<Student> _studentFaker;
+        private static readonly Bogus.Faker<Group> _groupFaker;
 
         static EntityFaker()
         {
@@ -14,6 +15,10 @@ namespace Service.Database.EntityFaker
 
             _studentFaker = new Bogus.Faker<Student>()
                 .RuleFor(f => f.Name, f => f.Name.FullName());
+
+            _groupFaker = new Bogus.Faker<Group>()
+                .RuleFor(f => f.Name, f => f.Company.CompanyName())
+                .RuleFor(f => f.Number, f => f.Random.Number(1, 6));
         }
     }
 }
