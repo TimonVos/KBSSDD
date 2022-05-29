@@ -26,8 +26,8 @@ namespace Service.UnitTest.Database.EntityFakerTest
         [Test]
         public void EntityFaker_can_create_unique_students()
         {
-            var studentsA = EntityFaker.CreateStudents(new EnumerableFakerArgs { Count = 2, Save = true });
-            var studentsB = EntityFaker.CreateStudents(new EnumerableFakerArgs { Count = 2, Save = true });
+            var studentsA = EntityFaker.CreateStudents(new EnumerableFakerArgs { Save = true });
+            var studentsB = EntityFaker.CreateStudents(new EnumerableFakerArgs { Save = true });
 
             var studentsT = studentsA.ToList();
             studentsT.AddRange(studentsB);
