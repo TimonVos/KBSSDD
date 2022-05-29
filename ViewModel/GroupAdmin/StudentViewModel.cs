@@ -1,15 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Model;
+using ViewModel.FormAssessment;
 
 namespace ViewModel.GroupAdmin
 {
-    public class StudentViewModel
+    public class StudentViewModel : SubjectViewModel
     {
-        public string Title { get => StudentModel.Name; }
+        public string Title { get => "S" + StudentModel.StudentNumber; }
         public Student StudentModel { get; set; }
+        public override string ToString()
+        {
+            return Title;
+        }
     }
 }

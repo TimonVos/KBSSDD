@@ -303,15 +303,15 @@ namespace Service.UnitTest.Database.Model
 
             using var criteriaContext = new AssessmentContext();
             var competenceB = (from c in criteriaContext.Competences
-                                where c == competenceA
-                                select c).Include(c => c.Criteria).FirstOrDefault();
+                               where c == competenceA
+                               select c).Include(c => c.Criteria).FirstOrDefault();
             Assert.Multiple(() =>
             {
                 Assert.That(competenceB, Is.Not.Null);
                 Assert.That(competenceB?.Criteria.Count, Is.EqualTo(criteriaA.Count));
-                Assert.That((from a in criteriaA 
-                            join b in competenceB!.Criteria on a.CriterionId equals b.CriterionId 
-                            select a).Count, Is.EqualTo(criteriaA.Count));
+                Assert.That((from a in criteriaA
+                             join b in competenceB!.Criteria on a.CriterionId equals b.CriterionId
+                             select a).Count, Is.EqualTo(criteriaA.Count));
             });
 
             context.Remove(formA);

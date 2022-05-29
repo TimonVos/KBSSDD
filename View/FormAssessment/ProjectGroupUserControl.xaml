@@ -10,9 +10,9 @@
     <StackPanel  Width="150" Margin="5">
         <ComboBox 
             SelectedIndex="0"
-            SelectedItem="{Binding SelectedGroup, Mode=TwoWay}"
+            SelectedItem="{Binding SelectedSubject, Mode=TwoWay}"
             Background="DarkGray"
-            ItemsSource="{Binding Groups }" >
+            ItemsSource="{Binding Subjects }" >
         </ComboBox>
     </StackPanel>
 </UserControl>
