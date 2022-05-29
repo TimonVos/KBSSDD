@@ -2,5 +2,6 @@
 {
     public class ScenarioArgs
     {
+        public bool Save { get; set; } = false;
     }
 }

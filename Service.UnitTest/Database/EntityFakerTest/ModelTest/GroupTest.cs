@@ -1,7 +1,7 @@
 ﻿using Service.Database.EntityFaker;
 using Service.Database.EntityFaker.Faker;
 
-namespace Service.UnitTest.Database.EntityFakerTest
+namespace Service.UnitTest.Database.EntityFakerTest.ModelTest
 {
     [TestFixture]
     internal class GroupTest

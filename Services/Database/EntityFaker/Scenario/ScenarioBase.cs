@@ -1,12 +1,8 @@
 ﻿namespace Service.Database.EntityFaker.Scenario
 {
-    internal abstract class ScenarioBase : IDisposable
+    public abstract class ScenarioBase
     {
-        public abstract void SaveScenario();
-        public abstract void RemoveScenario();
-        public void Dispose()
-        {
-            RemoveScenario();
-        }
+        public abstract void Save();
+        public abstract void Remove();
     }
 }
