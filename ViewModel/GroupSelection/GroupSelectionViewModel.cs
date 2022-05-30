@@ -3,6 +3,8 @@ using System.ComponentModel;
 using System.Windows;
 using Microsoft.Toolkit.Mvvm.Input;
 using Model;
+using Service;
+using Service.Database;
 
 namespace ViewModel
 {
@@ -77,21 +79,8 @@ namespace ViewModel
             //GROUPS________________________________________
             GroupName = "Groep Naam";
 
-            Groups.Add(new Group("Groep 1"));
-            Groups.Add(new Group("Groep 2"));
-            Groups.Add(new Group("Groep 3"));
-            Groups.Add(new Group("Groep 4"));
-            Groups.Add(new Group("Groep 5"));
-            Groups.Add(new Group("Groep 6"));
-            Groups.Add(new Group("Groep 7"));
-            Groups.Add(new Group("Groep 8"));
-            Groups.Add(new Group("Groep 9"));
-            Groups.Add(new Group("Groep 10"));
-            Groups.Add(new Group("Groep 11"));
-            Groups.Add(new Group("Groep 12"));
+            using var assessmentContext = new AssessmentContext();
 
-            Groups[0].Students.Add(new Student(1234567, "John Doe"));
-            Groups[0].Students.Add(new Student(2345678, "Jane Doe"));
 
             AddGroup = new RelayCommand(() =>
             {
