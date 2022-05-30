@@ -3,11 +3,11 @@
 namespace View.FormAssessment
 {
     /// <summary>
-    /// Interaction logic for ShowAssessmentForm.xaml
+    /// Interaction logic for ProjectGroupUserControl.xaml
     /// </summary>
-    public partial class ShowAssessmentUserControl : UserControl
+    public partial class ProjectGroupUserControl : UserControl
     {
-        public ShowAssessmentUserControl()
+        public ProjectGroupUserControl()
         {
             InitializeComponent();
         }
