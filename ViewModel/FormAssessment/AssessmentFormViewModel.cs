@@ -1,8 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Security.RightsManagement;
+using System.Windows.Input;
+using System.Windows.Media.Imaging;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Microsoft.Toolkit.Mvvm.Input;
 using Model;
+using Service.Database;
 using ViewModel.GroupAdmin;
 
 namespace ViewModel.FormAssessment
@@ -14,6 +18,17 @@ namespace ViewModel.FormAssessment
         public ProjectViewModel SelectedProject { get; set; }
         public IEnumerable<SubjectViewModel> Subjects { get; set; }
 
+        private RequirementViewModel _selectedRequirement { get; set; }
+
+        public RequirementViewModel SelectedRequirement
+        {
+            get => _selectedRequirement;
+            set
+            {
+                _selectedRequirement = value;
+                OnPropertyChanged(nameof(SelectedRequirement));
+            }
+        }
         private SubjectViewModel _selectedSubject;
 
         public SubjectViewModel SelectedSubject
@@ -85,12 +100,41 @@ namespace ViewModel.FormAssessment
             get => Helper.GetGrades(SelectedGroup.SelectedAssessment.AssessmentModel);
         }
         #endregion
+        #region Commands
+
+        public ICommand SaveCommand { get; set; }
+
+        public void Save(RequirementViewModel requirement)
+        {
+            if (!SelectedGroup.Assessments.Any())
+            {
+                Assessment temp = new Assessment();
+                temp.Project = SelectedProject.ProjectModel;
+                temp.Group = SelectedGroup.GroupModel;
+                Helper.SaveRating(temp, requirement.RequirementModel);
+                SelectedGroup.Assessments = new List<AssessmentViewModel>
+                {
+                    Factory.CreateAssessment(temp)
+                };
+            }
+            else
+            {
+                Helper.SaveRating(SelectedGroup.Assessments.FirstOrDefault().AssessmentModel, requirement.RequirementModel);
+            }
+        }
+        #endregion
+
         public AssessmentFormViewModel()
         {
             SelectedProject = Factory.GetProject();
             Form = Factory.CreateForm(SelectedProject.ProjectModel.Form);
             SelectedGroup = Factory.CreateGroup(SelectedProject.ProjectModel.Groups.Where(grp => grp.Name == "Groep 1").FirstOrDefault());
             Ratings = Factory.CreateRatings(SelectedGroup.SelectedAssessment.AssessmentModel.Ratings);
+            SaveCommand = new RelayCommand<RequirementViewModel>((RequirementViewModel? requirement) =>
+            {
+                Save(requirement!);
+            });
+
         }
 
     }

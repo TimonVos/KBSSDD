@@ -7,7 +7,7 @@ namespace ViewModel.GroupAdmin
 {
     public class GroupViewModel : SubjectViewModel
     {
-        public string Title { get => GroupModel.Name; }
+        public string? Title { get => GroupModel.Name; }
         public Group GroupModel { get; set; }
         private AssessmentViewModel _selectedAssessment;
 
@@ -31,7 +31,7 @@ namespace ViewModel.GroupAdmin
             _selectedAssessment = Assessments.FirstOrDefault();
         }
 
-        public override string ToString()
+        public override string? ToString()
         {
             return Title;
         }

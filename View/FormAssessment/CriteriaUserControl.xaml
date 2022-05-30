@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:View.FormAssessment"
+             xmlns:i ="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:formAssessment="clr-namespace:ViewModel.FormAssessment;assembly=ViewModel"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance formAssessment:AssessmentFormViewModel}">
@@ -30,7 +31,14 @@
                                         <WrapPanel>
                                             <RadioButton 
                                                 GroupName="{Binding RequirementModel.Criterion.Name}"
-                                                Content="{Binding Title}" Checked="RadioButton_Checked"/>
+                                                Content="{Binding Title}" Checked="RadioButton_Checked">
+                                                <i:Interaction.Triggers>
+                                                    <i:EventTrigger EventName="Checked">
+                                                        <i:InvokeCommandAction Command="{Binding SaveCommand}" 
+                                                                               CommandParameter="{StaticResource ResourceKey=ViewModel}"/>
+                                                    </i:EventTrigger>
+                                                </i:Interaction.Triggers>
+                                            </RadioButton>
                                         </WrapPanel>
                                         
                                     </Grid>

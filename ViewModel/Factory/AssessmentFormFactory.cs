@@ -137,7 +137,7 @@ namespace ViewModel.Factory
         /// </summary>
         /// <param name="groups">List of groups given by the AssessmentFormViewModel out of the Project property</param>
         /// <returns>List of newly created group view models with properties set to groups with the correct ids</returns>
-        public IEnumerable<GroupViewModel> CreateGroups(IEnumerable<Group> groups)
+        public IEnumerable<GroupViewModel> CreateGroups(List<Group> groups)
         {
             List<GroupViewModel> temp = new List<GroupViewModel>();
             foreach (Group grp in groups)
@@ -154,7 +154,7 @@ namespace ViewModel.Factory
         public StudentViewModel CreateStudent(Student student)
         {
             StudentViewModel temp = new StudentViewModel();
-            temp.StudentModel = _context.Students.Where(std => std.StudentNumber == student.StudentNumber).FirstOrDefault();
+            temp.StudentModel = _context!.Students.FirstOrDefault(std => std.StudentNumber == student.StudentNumber)!;
             return temp;
         }
         /// <summary>
@@ -220,10 +220,10 @@ namespace ViewModel.Factory
         public RatingViewModel CreateRating(Rating rating)
         {
             RatingViewModel temp = new RatingViewModel();
-            temp.RatingModel = _context.Ratings.Where(rat =>
+            temp.RatingModel = _context!.Ratings.Where(rat =>
                     rat.AssessmentId == rating.AssessmentId && rat.CriterionId == rating.CriterionId)
                 .Include(rat => rat.Indicator)
-                .Include(rat => rat.Requirement).FirstOrDefault();
+                .Include(rat => rat.Requirement).FirstOrDefault()!;
             return temp;
         }
 

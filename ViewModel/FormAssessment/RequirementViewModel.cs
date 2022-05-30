@@ -1,4 +1,9 @@
-﻿using Model;
+﻿using System.Diagnostics;
+using System.Linq;
+using System.Windows.Input;
+using Microsoft.Toolkit.Mvvm.Input;
+using Model;
+using Service.Database;
 
 namespace ViewModel.FormAssessment
 {
@@ -9,9 +14,13 @@ namespace ViewModel.FormAssessment
         public string Description { get => RequirementModel.Description; }
         public IndicatorViewModel Indicator { get => Factory.CreateIndicator(RequirementModel.Indicator); }
 
+
+
+        
         public RequirementViewModel(Requirement reqMdl)
         {
             RequirementModel = reqMdl;
+            
         }
     }
 }

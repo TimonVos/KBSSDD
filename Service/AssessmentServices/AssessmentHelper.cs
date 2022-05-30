@@ -1,4 +1,5 @@
 ﻿using Model;
+using Service.Database;
 
 namespace Service.AssessmentServices
 {
@@ -93,6 +94,26 @@ namespace Service.AssessmentServices
                 }
             }
             return true;
+        }
+
+        public void SaveRating(Assessment assessment, Requirement requirement)
+        {
+            using var context = new AssessmentContext();
+            if (context.Assessments.Count(assess => assess.AssessmentId == assessment.AssessmentId) > 0)
+            {
+                Assessment assess = context.Assessments.FirstOrDefault(assess => assess.AssessmentId == assessment.AssessmentId);
+                assess.Ratings.Add(new Rating{Assessment = assess, Criterion = requirement.Criterion, Requirement = requirement});
+
+                context.SaveChanges();
+            }
+            else
+            {
+                Assessment assess = new Assessment { Group = assessment.Group, Project = assessment.Project };
+                context.Assessments.Add(assess);
+                assess.Ratings.Add(new Rating { Assessment = assess, Criterion = requirement.Criterion, Requirement = requirement });
+                context.Update(assess);
+                context.SaveChanges();
+            }
         }
 
     }
