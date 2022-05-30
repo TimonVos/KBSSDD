@@ -24,8 +24,7 @@ namespace Service.UnitTest.Database.Model
                 .RuleFor(f => f.Value, f => f.Random.Number(1, 10));
 
             _formFaker = new Faker<Form>()
-                .RuleFor(f => f.Name, f => f.Lorem.Sentence())
-                .RuleFor(f => f.Description, f => f.Lorem.Paragraph());
+                .RuleFor(f => f.Name, f => f.Lorem.Sentence());
 
             _competenceFaker = new Faker<Competence>()
                 .RuleFor(f => f.Name, f => f.Lorem.Sentence())
