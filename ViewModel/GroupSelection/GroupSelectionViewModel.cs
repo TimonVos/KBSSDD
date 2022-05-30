@@ -5,21 +5,42 @@ using Microsoft.Toolkit.Mvvm.Input;
 using Model;
 using Service;
 using Service.Database;
+using ViewModel.FormAssessment;
+using ViewModel.GroupAdmin;
+using System.Linq;
+using System.Collections.Generic;
+using Service.AssessmentServices;
 
 namespace ViewModel
 {
-    public class GroupSelectionViewModel : INotifyPropertyChanged
+    public class GroupSelectionViewModel : ViewModelBase
     {
         public event PropertyChangedEventHandler? PropertyChanged;
 
         public RelayCommand AddGroup { get; set; }
         public RelayCommand RemoveGroup { get; set; }
         public RelayCommand ChangeGroupName { get; set; }
-        public ObservableCollection<Group> Groups { get; set; }
+
+        private ObservableCollection<GroupViewModel> _groups;
+
+        public ObservableCollection<GroupViewModel> Groups
+        {
+            get { return _groups; }
+            set { 
+                _groups = value;
+                OnPropertyChanged(nameof(Groups));
+            }
+        }
+
+
+        public ProjectViewModel Project { get; set; }
+
+        private GroupManagementHelper _helper = new GroupManagementHelper();
 
 
         // TextBox Content
         public string GroupName { get; set; }
+        public string GroupNumber { get; set; }
 
 
         private Group _selectedGroup;
@@ -55,7 +76,7 @@ namespace ViewModel
             set
             {
                 _students = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Students)));
+                OnPropertyChanged(nameof(Students));
             }
         }
 
@@ -71,29 +92,70 @@ namespace ViewModel
         public string StudentNumber { get; set; }
 
 
+        private void UpdateGroupsHelper()
+        {
+            using var assessmentContext = new AssessmentContext();
+            var grps = assessmentContext.Projects.Where(proj => proj.ProjectId == Project.ProjectModel.ProjectId);
+            Groups = Factory.CreateGroups(grps.FirstOrDefault().Groups);
+        }
+
+        private void AddGroupsHelper()
+        {
+            using var assessmentContext = new AssessmentContext();
+            var grps = assessmentContext.Projects.Where(proj => proj.ProjectId == Project.ProjectModel.ProjectId);
+            Group tempGroup = new Group();
+            tempGroup.Name = GroupName;
+            try
+            {
+                tempGroup.Number = int.Parse(GroupNumber);
+            }
+            catch
+            {
+                MessageBox.Show("Voer een groepsnummer in");
+            }
+            _helper.AddGroup(tempGroup, Project.ProjectModel);
+            UpdateGroupsHelper();
+        }
+
         public GroupSelectionViewModel()
         {
-            Groups = new ObservableCollection<Group>();
-
-
-            //GROUPS________________________________________
-            GroupName = "Groep Naam";
-
             using var assessmentContext = new AssessmentContext();
 
 
+            Project = Factory.GetProject();
+
+            List<Group> temp = new List<Group>();
+            var grps = assessmentContext.Projects.Where(proj => proj.ProjectId == Project.ProjectModel.ProjectId);
+            //GROUPS________________________________________
+
+            if (grps.Count() > 0)
+            {
+                foreach (var grp in grps.FirstOrDefault().Groups)
+                {
+                    temp.Add(grp);
+                }
+            }
+
+            Groups = Factory.CreateGroups(temp);
+
+            
+            GroupName = "Groep Naam";
+            GroupNumber = "Groep Nummer"; 
+
             AddGroup = new RelayCommand(() =>
             {
-                Groups.Add(new Group(GroupName));
+                AddGroupsHelper();
+                
             });
 
             RemoveGroup = new RelayCommand(() =>
             {
-                Groups.Remove(SelectedGroup);
+                //Groups.Remove(SelectedGroup);
             });
 
             ChangeGroupName = new RelayCommand(() =>
             {
+                /*
                 ObservableCollection<Group> TempGroups = Groups;
                 for (int i = 0; i < TempGroups.Count; i++)
                 {
@@ -105,7 +167,8 @@ namespace ViewModel
                 
                 Groups = new ObservableCollection<Group>(TempGroups);
 
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Groups)));
+                OnPropertyChanged(nameof(Groups));
+                */
             });
 
 
@@ -119,7 +182,7 @@ namespace ViewModel
             {
                 try
                 {
-                    SelectedGroup.Students.Add(new Student(int.Parse(StudentNumber), StudentName));
+                    //SelectedGroup.Students.Add(new Student(int.Parse(StudentNumber), StudentName));
                 }
                 catch
                 {
@@ -131,7 +194,7 @@ namespace ViewModel
             RemoveStudent = new RelayCommand(() =>
             {
                 this.SelectedGroup.Students.Remove(SelectedStudent);
-                this.Students = SelectedGroup.Students;
+                //this.Students = SelectedGroup.Students;
             });
         }
     }

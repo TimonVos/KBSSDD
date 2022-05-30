@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Media.TextFormatting;
 using Microsoft.EntityFrameworkCore;
@@ -128,7 +129,7 @@ namespace ViewModel.Factory
         {
             GroupViewModel temp;
             temp = new GroupViewModel(_context.Groups.Where(grp => grp.GroupId == group.GroupId)
-                .Include(grp => grp.Students).Include(grp => grp.Assessments)
+                .Include(grp => grp.Students).Include(grp => grp.Assessments).Include(grp => grp.Assessments.FirstOrDefault().Project)
                 .FirstOrDefault());
             return temp;
         }
@@ -137,14 +138,14 @@ namespace ViewModel.Factory
         /// </summary>
         /// <param name="groups">List of groups given by the AssessmentFormViewModel out of the Project property</param>
         /// <returns>List of newly created group view models with properties set to groups with the correct ids</returns>
-        public IEnumerable<GroupViewModel> CreateGroups(IEnumerable<Group> groups)
+        public ObservableCollection<GroupViewModel> CreateGroups(IEnumerable<Group> groups)
         {
             List<GroupViewModel> temp = new List<GroupViewModel>();
             foreach (Group grp in groups)
             {
                 temp.Add(CreateGroup(grp));
             }
-            return temp;
+            return new ObservableCollection<GroupViewModel>(temp);
         }
         /// <summary>
         /// Create a view model for a student to allow the view to see student information
@@ -241,7 +242,7 @@ namespace ViewModel.Factory
         {
             ProjectViewModel temp;
             temp = new ProjectViewModel(_context.Projects.
-                Where(prj => prj.ProjectId == 5).
+                Where(prj => prj.ProjectId == 4).
                 Include(prj => prj.Form).
                 Include(prj => prj.Assessments).
                 ThenInclude(assess => assess.Group).FirstOrDefault())!;
