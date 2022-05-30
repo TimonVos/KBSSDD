@@ -4,21 +4,25 @@ using Microsoft.EntityFrameworkCore;
 using Model;
 using Service.Database;
 
-namespace Service.UnitTest.Database.Model
+namespace Service.UnitTest.DatabaseTest.ModelTest
 {
     [TestFixture]
-    internal class CriterionTest
+    internal class RequirementTest
     {
         private Faker _faker = new Faker();
+        private Faker<Indicator> _indicatorFaker;
         private Faker<Form> _formFaker;
         private Faker<Competence> _competenceFaker;
         private Faker<Criterion> _criterionFaker;
         private Faker<Requirement> _requirementFaker;
-        private Faker<Indicator> _indicatorFaker;
 
         [SetUp]
         public void Setup()
         {
+            _indicatorFaker = new Faker<Indicator>()
+                .RuleFor(f => f.Name, f => f.Lorem.Sentence())
+                .RuleFor(f => f.Value, f => f.Random.Number(1, 10));
+
             _formFaker = new Faker<Form>()
                 .RuleFor(f => f.Name, f => f.Lorem.Sentence());
 
@@ -35,23 +39,19 @@ namespace Service.UnitTest.Database.Model
             _requirementFaker = new Faker<Requirement>()
                 .RuleFor(f => f.Name, f => f.Lorem.Sentence())
                 .RuleFor(f => f.Description, f => f.Lorem.Paragraph());
-
-            _indicatorFaker = new Faker<Indicator>()
-                .RuleFor(f => f.Name, f => f.Lorem.Random.Word())
-                .RuleFor(f => f.Value, f => f.Lorem.Random.Number(1, 10));
         }
 
         #region Assert attributes
 
         [Test]
-        public void Criteria_id_cannot_be_inserted()
+        public void Requirements_id_cannot_be_inserted()
         {
             using var context = new AssessmentContext();
 
-            var criterion = _criterionFaker.Generate();
-            criterion.CriterionId = 1;
+            var requirement = _requirementFaker.Generate();
+            requirement.RequirementId = 1;
 
-            context.Criteria.Add(criterion);
+            context.Requirements.Add(requirement);
 
             var exception = Assert.Throws<DbUpdateException>(() => context.SaveChanges());
             Assert.That(exception.InnerException, Is.InstanceOf<SqlException>());
@@ -64,16 +64,21 @@ namespace Service.UnitTest.Database.Model
         }
 
         [Test]
-        public void Criteria_required_fields_are_not_nullable()
+        public void Requirements_required_fields_are_not_nullable()
         {
             using var context = new AssessmentContext();
+            var indicator = _indicatorFaker.Generate();
             var form = _formFaker.Generate();
             var competence = _competenceFaker.Generate();
             competence.Form = form;
             var criterion = _criterionFaker.Generate();
+            criterion.Competence = competence;
+            var requirement = _requirementFaker.Generate();
             context.Criteria.Add(criterion);
             context.Competences.Add(competence);
             context.Forms.Add(form);
+            context.Indicators.Add(indicator);
+            context.Requirements.Add(requirement);
             DbUpdateException exception;
             SqlException? sqlException;
 
@@ -83,9 +88,19 @@ namespace Service.UnitTest.Database.Model
             if (sqlException is not null)
             {
                 Assert.That(sqlException.Number, Is.EqualTo(547));
-                StringAssert.Contains("CompetenceId", sqlException.Message);
+                StringAssert.Contains("CriterionId", sqlException.Message);
             }
-            criterion.Competence = competence;
+            requirement.Criterion = criterion;
+
+            exception = Assert.Throws<DbUpdateException>(() => context.SaveChanges());
+            Assert.That(exception.InnerException, Is.InstanceOf<SqlException>());
+            sqlException = (SqlException?)(exception.InnerException);
+            if (sqlException is not null)
+            {
+                Assert.That(sqlException.Number, Is.EqualTo(547));
+                StringAssert.Contains("IndicatorId", sqlException.Message);
+            }
+            requirement.Indicator = indicator;
 
             criterion.Name = null!;
             exception = Assert.Throws<DbUpdateException>(() => context.SaveChanges());
@@ -111,6 +126,7 @@ namespace Service.UnitTest.Database.Model
 
             context.Criteria.Remove(criterion);
             context.Remove(form);
+            context.Remove(indicator);
             context.SaveChanges();
         }
 
@@ -119,25 +135,33 @@ namespace Service.UnitTest.Database.Model
         #region Assert CRUD
 
         [Test]
-        public void Criteria_can_be_created()
+        public void Requirements_can_be_created()
         {
             using var context = new AssessmentContext();
+            var indicator = _indicatorFaker.Generate();
             var form = _formFaker.Generate();
             var competence = _competenceFaker.Generate();
             competence.Form = form;
             var criterion = _criterionFaker.Generate();
             criterion.Competence = competence;
+            var requirement = _requirementFaker.Generate();
+            requirement.Indicator = indicator;
+            requirement.Criterion = criterion;
             context.Criteria.Add(criterion);
             context.Competences.Add(competence);
             context.Forms.Add(form);
+            context.Indicators.Add(indicator);
+            context.Requirements.Add(requirement);
             context.SaveChanges();
 
             using var createContext = new AssessmentContext();
-            criterion = (from i in createContext.Criteria
-                         where i == criterion
-                         select i).FirstOrDefault();
-            Assert.That(criterion, Is.Not.Null);
+            requirement = (from r in createContext.Requirements
+                           where r == requirement
+                           select r).FirstOrDefault();
+            Assert.That(requirement, Is.Not.Null);
 
+            context.Remove(indicator);
+            context.SaveChanges();
             form = (from f in createContext.Forms
                     where f == form
                     select f).FirstOrDefault();
@@ -146,33 +170,43 @@ namespace Service.UnitTest.Database.Model
         }
 
         [Test]
-        public void Criteria_can_be_read()
+        public void Requirements_can_be_read()
         {
             using var context = new AssessmentContext();
+            var indicator = _indicatorFaker.Generate();
             var form = _formFaker.Generate();
             var competence = _competenceFaker.Generate();
             competence.Form = form;
             var criterion = _criterionFaker.Generate();
             criterion.Competence = competence;
+            var requirement = _requirementFaker.Generate();
+            requirement.Indicator = indicator;
+            requirement.Criterion = criterion;
             context.Criteria.Add(criterion);
             context.Competences.Add(competence);
             context.Forms.Add(form);
+            context.Indicators.Add(indicator);
+            context.Requirements.Add(requirement);
             context.SaveChanges();
 
             using var readContext = new AssessmentContext();
-            var read = (from c in readContext.Criteria
-                        where c.CriterionId == criterion.CriterionId
-                        select c).Include(c => c.Competence).FirstOrDefault();
+            var read = (from r in readContext.Requirements
+                        where r == requirement
+                        select r).Include(r => r.Indicator).Include(r => r.Criterion).FirstOrDefault();
             Assert.Multiple(() =>
             {
                 Assert.That(read, Is.Not.Null);
-                Assert.That(criterion.CriterionId, Is.EqualTo(read?.CriterionId));
-                Assert.That(criterion.Name, Is.EqualTo(read?.Name));
-                Assert.That(criterion.Description, Is.EqualTo(read?.Description));
-                Assert.That(criterion.CompetenceId, Is.EqualTo(read?.CompetenceId));
-                Assert.That(criterion.Competence.CompetenceId, Is.EqualTo(read?.Competence.CompetenceId));
+                Assert.That(requirement.RequirementId, Is.EqualTo(read?.RequirementId));
+                Assert.That(requirement.Name, Is.EqualTo(read?.Name));
+                Assert.That(requirement.Description, Is.EqualTo(read?.Description));
+                Assert.That(requirement.IndicatorId, Is.EqualTo(read?.IndicatorId));
+                Assert.That(requirement.Indicator.IndicatorId, Is.EqualTo(read?.Indicator.IndicatorId));
+                Assert.That(requirement.CriterionId, Is.EqualTo(read?.CriterionId));
+                Assert.That(requirement.Criterion.CriterionId, Is.EqualTo(read?.Criterion.CriterionId));
             });
 
+            context.Remove(indicator);
+            context.SaveChanges();
             form = (from f in readContext.Forms
                     where f == form
                     select f).FirstOrDefault();
@@ -181,81 +215,108 @@ namespace Service.UnitTest.Database.Model
         }
 
         [Test]
-        public void Criteria_can_be_updated()
+        public void Requirements_can_be_updated()
         {
             using var context = new AssessmentContext();
+            var indicator = _indicatorFaker.Generate();
             var form = _formFaker.Generate();
             var competence = _competenceFaker.Generate();
             competence.Form = form;
             var criterion = _criterionFaker.Generate();
             criterion.Competence = competence;
+            var requirement = _requirementFaker.Generate();
+            requirement.Indicator = indicator;
+            requirement.Criterion = criterion;
             context.Criteria.Add(criterion);
             context.Competences.Add(competence);
             context.Forms.Add(form);
+            context.Indicators.Add(indicator);
+            context.Requirements.Add(requirement);
             context.SaveChanges();
 
             using var updateContext = new AssessmentContext();
-            var updateCompetence = _competenceFaker.Generate();
-            form = (from f in updateContext.Forms
-                    where f == form
-                    select f).FirstOrDefault();
-            updateCompetence.Form = form!;
-            var update = (from c in updateContext.Criteria
-                          where c == criterion
+            var updateCriterion = _criterionFaker.Generate();
+            competence = (from c in updateContext.Competences
+                          where c == competence
                           select c).FirstOrDefault();
+            updateCriterion.Competence = competence!;
+            var updateIndicator = _indicatorFaker.Generate();
+            var update = (from r in updateContext.Requirements
+                          where r == requirement
+                          select r).FirstOrDefault();
             Assert.That(update, Is.Not.Null);
             update.Name = _faker.Lorem.Sentence();
             update.Description = _faker.Lorem.Paragraph();
-            update.Competence = updateCompetence;
-            updateContext.Competences.Add(updateCompetence);
+            update.Indicator = updateIndicator;
+            update.Criterion = updateCriterion;
+            updateContext.Indicators.Add(updateIndicator);
+            updateContext.Criteria.Add(updateCriterion);
             updateContext.SaveChanges();
 
             using var readContext = new AssessmentContext();
-            var read = (from c in readContext.Criteria
-                        where c.CriterionId == criterion.CriterionId
-                        select c).Include(c => c.Competence).FirstOrDefault();
+            var read = (from r in readContext.Requirements
+                        where r == requirement
+                        select r).Include(r => r.Indicator).Include(r => r.Criterion).FirstOrDefault();
             Assert.Multiple(() =>
             {
                 Assert.That(read, Is.Not.Null);
-                Assert.That(read?.CriterionId, Is.EqualTo(update.CriterionId));
-                Assert.That(read?.Name, Is.EqualTo(update.Name));
-                Assert.That(read?.Description, Is.EqualTo(update.Description));
-                Assert.That(read?.CompetenceId, Is.EqualTo(update.CompetenceId));
-                Assert.That(read?.Competence.CompetenceId, Is.EqualTo(update.Competence.CompetenceId));
+                Assert.That(read?.RequirementId, Is.EqualTo(update?.RequirementId));
+                Assert.That(read?.Name, Is.EqualTo(update?.Name));
+                Assert.That(read?.Description, Is.EqualTo(update?.Description));
+                Assert.That(read?.IndicatorId, Is.EqualTo(update?.IndicatorId));
+                Assert.That(read?.Indicator.IndicatorId, Is.EqualTo(update?.Indicator.IndicatorId));
+                Assert.That(read?.CriterionId, Is.EqualTo(update?.CriterionId));
+                Assert.That(read?.Criterion.CriterionId, Is.EqualTo(update?.Criterion.CriterionId));
             });
 
+            updateContext.Remove(updateIndicator);
+            updateContext.SaveChanges();
             form = (from f in readContext.Forms
                     where f == form
                     select f).FirstOrDefault();
+            indicator = (from i in readContext.Indicators
+                         where i == indicator
+                         select i).FirstOrDefault();
+            readContext.Remove(indicator!);
             readContext.Remove(form!);
             readContext.SaveChanges();
         }
 
         [Test]
-        public void Criteria_can_be_deleted()
+        public void Requirements_can_be_deleted()
         {
             using var context = new AssessmentContext();
+            var indicator = _indicatorFaker.Generate();
             var form = _formFaker.Generate();
             var competence = _competenceFaker.Generate();
             competence.Form = form;
             var criterion = _criterionFaker.Generate();
             criterion.Competence = competence;
+            var requirement = _requirementFaker.Generate();
+            requirement.Indicator = indicator;
+            requirement.Criterion = criterion;
             context.Criteria.Add(criterion);
             context.Competences.Add(competence);
             context.Forms.Add(form);
+            context.Indicators.Add(indicator);
+            context.Requirements.Add(requirement);
             context.SaveChanges();
 
             using var deleteContext = new AssessmentContext();
-            deleteContext.Remove(criterion);
+            deleteContext.Remove(requirement);
             deleteContext.SaveChanges();
-            criterion = (from i in deleteContext.Criteria
-                         where i == criterion
-                         select i).FirstOrDefault();
-            Assert.That(criterion, Is.Null);
+            requirement = (from r in deleteContext.Requirements
+                           where r == requirement
+                           select r).FirstOrDefault();
+            Assert.That(requirement, Is.Null);
 
             form = (from f in deleteContext.Forms
-                    where f.FormId == form.FormId
+                    where f == form
                     select f).FirstOrDefault();
+            indicator = (from i in deleteContext.Indicators
+                         where i == indicator
+                         select i).FirstOrDefault();
+            deleteContext.Remove(indicator!);
             deleteContext.Remove(form!);
             deleteContext.SaveChanges();
         }
@@ -263,44 +324,6 @@ namespace Service.UnitTest.Database.Model
         #endregion
 
         #region Assert relationships
-
-        [Test]
-        public void Criteria_can_have_requirements()
-        {
-            using var context = new AssessmentContext();
-            var formA = _formFaker.Generate();
-            var competenceA = _competenceFaker.Generate();
-            competenceA.Form = formA;
-            var criterionA = _criterionFaker.Generate();
-            criterionA.Competence = competenceA;
-            var indicatorA = _indicatorFaker.Generate();
-            var requirementsA = _requirementFaker.Generate(2);
-            requirementsA.ForEach(r => criterionA.Requirements.Add(r));
-            requirementsA.ForEach(r => r.Indicator = indicatorA);
-            context.Indicators.Add(indicatorA);
-            context.Forms.Add(formA);
-            context.Competences.Add(competenceA);
-            context.Criteria.Add(criterionA);
-            context.Requirements.AddRange(requirementsA);
-            context.SaveChanges();
-
-            using var requirementsContext = new AssessmentContext();
-            var critierionB = (from r in requirementsContext.Criteria
-                               where r == criterionA
-                               select r).Include(c => c.Requirements).FirstOrDefault();
-            Assert.Multiple(() =>
-            {
-                Assert.That(critierionB, Is.Not.Null);
-                Assert.That(critierionB?.Requirements.Count, Is.EqualTo(requirementsA.Count));
-                Assert.That((from a in requirementsA
-                             join b in critierionB!.Requirements on a.RequirementId equals b.RequirementId
-                             select a).Count, Is.EqualTo(requirementsA.Count));
-            });
-
-            context.Remove(indicatorA);
-            context.Remove(formA);
-            context.SaveChanges();
-        }
 
         #endregion
 

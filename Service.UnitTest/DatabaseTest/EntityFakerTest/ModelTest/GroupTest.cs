@@ -1,5 +1,5 @@
 ﻿using Service.Database.EntityFaker;
-using Service.Database.EntityFaker.Faker;
+using Service.Database.EntityFaker.Core;
 
 namespace Service.UnitTest.Database.EntityFakerTest.ModelTest
 {
@@ -20,7 +20,7 @@ namespace Service.UnitTest.Database.EntityFakerTest.ModelTest
 
             Assert.That(groupA.GroupId, Is.Not.EqualTo(groupB.GroupId));
 
-            EntityFaker.RemoveGroups(new[] { groupA, groupB });
+            EntityFaker.RemoveRange(new[] { groupA, groupB });
         }
 
         [Test]
@@ -33,7 +33,7 @@ namespace Service.UnitTest.Database.EntityFakerTest.ModelTest
             groupsT.AddRange(groupsB);
             Assert.That(groupsT.DistinctBy(s => s.GroupId).Count, Is.EqualTo(groupsA.Count() + groupsB.Count()));
 
-            EntityFaker.RemoveGroups(groupsT);
+            EntityFaker.RemoveRange(groupsT);
         }
 
         [TearDown]

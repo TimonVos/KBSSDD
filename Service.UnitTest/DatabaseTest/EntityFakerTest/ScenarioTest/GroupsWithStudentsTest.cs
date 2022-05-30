@@ -1,11 +1,11 @@
 ﻿using Service.Database;
 using Service.Database.EntityFaker;
-using Service.Database.EntityFaker.Faker;
+using Service.Database.EntityFaker.Core;
 
 namespace Service.UnitTest.Database.EntityFakerTest.ScenarioTest
 {
     [TestFixture]
-    internal class GroupsWithStudentsScenarioTest
+    internal class GroupsWithStudentsTest
     {
         [SetUp]
         public void Setup()
@@ -26,7 +26,7 @@ namespace Service.UnitTest.Database.EntityFakerTest.ScenarioTest
         {
             using var scenario = EntityFaker.CreateScenario_GroupsWithStudents(new GroupsWithStudentsArgs
             {
-                groupsArgs = new EnumerableFakerArgs { Count = 100 },
+                groupsArgs = new EnumerableFakerArgs { Count = 10 },
                 studentsArgs = new EnumerableFakerArgs { Count = 1 },
                 AllowEmptyGroups = true,
                 MaxStudentsPerGroup = 1,
@@ -43,7 +43,7 @@ namespace Service.UnitTest.Database.EntityFakerTest.ScenarioTest
         {
             using var scenario = EntityFaker.CreateScenario_GroupsWithStudents(new GroupsWithStudentsArgs
             {
-                groupsArgs = new EnumerableFakerArgs { Count = 100 },
+                groupsArgs = new EnumerableFakerArgs { Count = 10 },
                 studentsArgs = new EnumerableFakerArgs { Count = 1 },
                 AllowEmptyGroups = false,
                 MaxStudentsPerGroup = 1,

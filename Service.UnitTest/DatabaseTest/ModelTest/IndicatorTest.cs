@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Model;
 using Service.Database;
 
-namespace Service.UnitTest.Database.Model
+namespace Service.UnitTest.DatabaseTest.ModelTest
 {
     [TestFixture]
     internal class IndicatorTest

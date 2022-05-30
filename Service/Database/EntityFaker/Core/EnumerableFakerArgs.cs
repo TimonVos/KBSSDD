@@ -1,4 +1,4 @@
-﻿namespace Service.Database.EntityFaker.Faker
+﻿namespace Service.Database.EntityFaker.Core
 {
     public class EnumerableFakerArgs
     {

@@ -4,69 +4,73 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Model;
-using Service.Database.EntityFaker.Faker;
+using Service.Database.EntityFaker.Core;
 
 namespace Service.Database.EntityFaker
 {
     public static partial class EntityFaker
     {
-        public static Group CreateGroup(FakerArgs? fakerArgs = null)
+        public static Student CreateStudent(FakerArgs? fakerArgs = null)
         {
             fakerArgs ??= new FakerArgs();
             using var context = new AssessmentContext();
 
-            var group = _groupFaker.Generate();
+            while (context.Students.Any(s => s.StudentNumber == fakerArgs.id))
+                fakerArgs.id++;
+
+            var student = _studentFaker.Generate();
+            student.StudentNumber = fakerArgs.id;
 
             if (fakerArgs.Save)
             {
-                context.Groups.Add(group);
+                context.Students.Add(student);
                 context.SaveChanges();
             }
 
-            return group;
+            return student;
         }
 
-        public static void RemoveGroup(Group group)
+        public static void RemoveStudent(Student student)
         {
             using var context = new AssessmentContext();
-            context.Groups.Remove(group);
+            context.Students.Remove(student);
             context.SaveChanges();
         }
 
-        public static IEnumerable<Group> CreateGroups(EnumerableFakerArgs? fakerArgs = null)
+        public static IEnumerable<Student> CreateStudents(EnumerableFakerArgs? fakerArgs = null)
         {
             fakerArgs ??= new EnumerableFakerArgs();
             using var context = new AssessmentContext();
 
-            var groups = new List<Group>(fakerArgs.Count);
+            var students = new List<Student>(fakerArgs.Count);
 
             int id = fakerArgs.StartId;
             int count = fakerArgs.Count;
             while (count > 0)
             {
-                groups.Add(CreateGroup(new FakerArgs
+                students.Add(CreateStudent(new FakerArgs
                 {
                     id = id,
                     Save = false,
                 }));
 
-                id = groups.Last().GroupId + 1;
+                id = students.Last().StudentNumber + 1;
                 count--;
             }
 
             if (fakerArgs.Save)
             {
-                context.Groups.AddRange(groups);
+                context.Students.AddRange(students);
                 context.SaveChanges();
             }
 
-            return groups;
+            return students;
         }
 
-        public static void RemoveGroups(IEnumerable<Group> groups)
+        public static void RemoveStudents(IEnumerable<Student> students)
         {
             using var context = new AssessmentContext();
-            context.Groups.RemoveRange(groups);
+            context.Students.RemoveRange(students);
             context.SaveChanges();
         }
     }

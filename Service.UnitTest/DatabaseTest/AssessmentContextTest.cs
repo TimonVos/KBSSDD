@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Model;
 using Service.Database;
 
-namespace Service.UnitTest.Database
+namespace Service.UnitTest.DatabaseTest
 {
     /// <summary>
     /// Test the Entity Framework for:

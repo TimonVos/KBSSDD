@@ -1,4 +1,4 @@
-﻿namespace Service.Database.EntityFaker.Scenario
+﻿namespace Service.Database.EntityFaker.Core
 {
     public abstract class ScenarioBase<T> : IDisposable where T : ScenarioBase<T>
     {

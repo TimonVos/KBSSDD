@@ -1,6 +1,5 @@
 ﻿using Model;
-using Service.Database.EntityFaker.Faker;
-using Service.Database.EntityFaker.Scenario;
+using Service.Database.EntityFaker.Core;
 
 namespace Service.Database.EntityFaker
 {
@@ -44,9 +43,6 @@ namespace Service.Database.EntityFaker
                 Students = students,
                 GroupStudents = groupStudents,
             };
-
-            if (scenarioArgs.Save)
-                scenario.Save();
 
             return scenario;
         }
@@ -96,8 +92,6 @@ namespace Service.Database.EntityFaker
 
         public GroupsWithStudentsArgs()
         {
-            groupsArgs.Save = Save;
-            studentsArgs.Save = Save;
         }
     }
 }
