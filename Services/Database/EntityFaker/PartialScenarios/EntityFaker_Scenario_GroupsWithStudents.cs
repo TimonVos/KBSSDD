@@ -55,13 +55,13 @@ namespace Service.Database.EntityFaker
         }
     }
 
-    public class GroupsWithStudentsScenario : ScenarioBase
+    public class GroupsWithStudentsScenario : ScenarioBase<GroupsWithStudentsScenario>
     {
         public IEnumerable<Group> Groups { get; set; } = new HashSet<Group>();
         public IEnumerable<Student> Students { get; set; } = new HashSet<Student>();
         public IEnumerable<GroupStudent> GroupStudents { get; set; } = new HashSet<GroupStudent>();
 
-        public override void Save()
+        protected override void SaveScenario()
         {
             using var context = new AssessmentContext();
             context.Groups.AddRange(Groups);
@@ -70,9 +70,13 @@ namespace Service.Database.EntityFaker
             context.SaveChanges();
         }
 
-        public override void Remove()
+        protected override void RemoveScenario()
         {
-            throw new NotImplementedException();
+            using var context = new AssessmentContext();
+            context.GroupStudents.RemoveRange(GroupStudents);
+            context.Students.RemoveRange(Students);
+            context.Groups.RemoveRange(Groups);
+            context.SaveChanges();
         }
     }
 
