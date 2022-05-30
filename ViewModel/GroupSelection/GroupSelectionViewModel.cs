@@ -77,18 +77,21 @@ namespace ViewModel
             //GROUPS________________________________________
             GroupName = "Groep Naam";
 
-            
-            Groups.Add(new Group("Never"));
-            Groups.Add(new Group("Gonna"));
-            Groups.Add(new Group("Give"));
-            Groups.Add(new Group("You"));
-            Groups.Add(new Group("Up"));
-            Groups.Add(new Group("Never"));
-            Groups.Add(new Group("Gonna"));
-            Groups.Add(new Group("Let"));
-            Groups.Add(new Group("You"));
-            Groups.Add(new Group("Down"));
-            
+            Groups.Add(new Group("Groep 1"));
+            Groups.Add(new Group("Groep 2"));
+            Groups.Add(new Group("Groep 3"));
+            Groups.Add(new Group("Groep 4"));
+            Groups.Add(new Group("Groep 5"));
+            Groups.Add(new Group("Groep 6"));
+            Groups.Add(new Group("Groep 7"));
+            Groups.Add(new Group("Groep 8"));
+            Groups.Add(new Group("Groep 9"));
+            Groups.Add(new Group("Groep 10"));
+            Groups.Add(new Group("Groep 11"));
+            Groups.Add(new Group("Groep 12"));
+
+            Groups[0].Students.Add(new Student(1234567, "John Doe"));
+            Groups[0].Students.Add(new Student(2345678, "Jane Doe"));
 
             AddGroup = new RelayCommand(() =>
             {
@@ -138,7 +141,8 @@ namespace ViewModel
 
             RemoveStudent = new RelayCommand(() =>
             {
-                this.Students.Remove(SelectedStudent);
+                this.SelectedGroup.Students.Remove(SelectedStudent);
+                this.Students = SelectedGroup.Students;
             });
         }
     }
