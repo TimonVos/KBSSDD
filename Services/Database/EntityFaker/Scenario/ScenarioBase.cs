@@ -1,6 +1,6 @@
 ﻿namespace Service.Database.EntityFaker.Scenario
 {
-    public abstract class ScenarioBase<T> where T : ScenarioBase<T>
+    public abstract class ScenarioBase<T> : IDisposable where T : ScenarioBase<T>
     {
         public bool IsSaved { get; protected set; } = false;
         public T Save()
@@ -29,5 +29,9 @@
 
         protected abstract void RemoveScenario();
 
+        public void Dispose()
+        {
+            Remove();
+        }
     }
 }

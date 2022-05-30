@@ -21,23 +21,20 @@ namespace Service.Database.EntityFaker
 
                 while (count > 0 || (scenarioArgs.AllowEmptyGroups == false && group.Students.Count() == 0))
                 {
-                    count--;
-                    if (Faker.Random.Bool())
-                        continue;
-
                     var student = students.ElementAt(Faker.Random.Number(0, students.Count() - 1));
 
-                    if (groupStudents.Any(gs => gs.Group == group && gs.Student == student))
+                    if (Faker.Random.Bool())
                     {
-                        count++;
+                        count--;
                         continue;
                     }
 
-                    group.Students.Add(student);
-                    var groupStudent = new GroupStudent { Group = group, Student = student };
-                    group.GroupStudents.Add(groupStudent);
-                    student.GroupStudents.Add(groupStudent);
-                    groupStudents.Add(groupStudent);
+                    if (groupStudents.Any(gs => gs.Group == group && gs.Student == student))
+                        continue;
+
+                    AssignStudentToGroup(group, student, groupStudents);
+
+                    count--;
                 }
             }
 
@@ -52,6 +49,16 @@ namespace Service.Database.EntityFaker
                 scenario.Save();
 
             return scenario;
+        }
+
+        private static void AssignStudentToGroup(Group group, Student student, ICollection<GroupStudent> groupStudents)
+        {
+            group.Students.Add(student);
+            var groupStudent = new GroupStudent { Group = group, Student = student };
+            group.GroupStudents.Add(groupStudent);
+            student.GroupStudents.Add(groupStudent);
+            student.Groups.Add(group);
+            groupStudents.Add(groupStudent);
         }
     }
 
@@ -86,7 +93,6 @@ namespace Service.Database.EntityFaker
         public EnumerableFakerArgs studentsArgs { get; set; } = new EnumerableFakerArgs();
         public int MaxStudentsPerGroup { get; set; } = 6;
         public bool AllowEmptyGroups { get; set; } = true;
-        public bool AllowUnassignedStudents { get; set; } = true;
 
         public GroupsWithStudentsArgs()
         {

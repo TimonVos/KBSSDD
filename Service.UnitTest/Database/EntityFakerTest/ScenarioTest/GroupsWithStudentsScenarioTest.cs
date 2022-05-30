@@ -1,5 +1,6 @@
 ﻿using Service.Database;
 using Service.Database.EntityFaker;
+using Service.Database.EntityFaker.Faker;
 
 namespace Service.UnitTest.Database.EntityFakerTest.ScenarioTest
 {
@@ -15,9 +16,48 @@ namespace Service.UnitTest.Database.EntityFakerTest.ScenarioTest
         [Test]
         public void EntityFaker_can_create_a_groups_with_students_scenario()
         {
-            var scenario = EntityFaker.CreateScenario_GroupsWithStudents(new GroupsWithStudentsArgs()).Save();
+            using var scenario = EntityFaker.CreateScenario_GroupsWithStudents(new GroupsWithStudentsArgs()).Save();
 
-            using var context = new AssessmentContext();
+            AssertScenario(scenario);
+        }
+
+        [Test]
+        public void EntityFaker_can_create_a_group_with_students_scenario_with_empty_groups()
+        {
+            using var scenario = EntityFaker.CreateScenario_GroupsWithStudents(new GroupsWithStudentsArgs
+            {
+                groupsArgs = new EnumerableFakerArgs { Count = 100 },
+                studentsArgs = new EnumerableFakerArgs { Count = 1 },
+                AllowEmptyGroups = true,
+                MaxStudentsPerGroup = 1,
+            }).Save();
+
+            var context = new AssessmentContext();
+
+            Assert.That(context.Groups.Any(g => g.Students.Count == 0), Is.True);
+            AssertScenario(scenario, context);
+        }
+
+        [Test]
+        public void EntityFaker_can_create_a_group_with_students_scenario_without_empty_groups()
+        {
+            using var scenario = EntityFaker.CreateScenario_GroupsWithStudents(new GroupsWithStudentsArgs
+            {
+                groupsArgs = new EnumerableFakerArgs { Count = 100 },
+                studentsArgs = new EnumerableFakerArgs { Count = 1 },
+                AllowEmptyGroups = false,
+                MaxStudentsPerGroup = 1,
+            }).Save();
+
+            var context = new AssessmentContext();
+
+            Assert.That(context.Groups.Any(g => g.Students.Count == 0), Is.False);
+            AssertScenario(scenario, context);
+        }
+
+        private void AssertScenario(GroupsWithStudentsScenario scenario, AssessmentContext? context = null)
+        {
+            context ??= new AssessmentContext();
 
             scenario.Groups.ToList().ForEach(g =>
                 Assert.That(context.Groups.ToList().Exists(
@@ -36,8 +76,6 @@ namespace Service.UnitTest.Database.EntityFakerTest.ScenarioTest
                     cgs => cgs.StudentNumber == gs.StudentNumber && cgs.GroupId == gs.GroupId),
                     Is.True
                 ));
-
-            scenario.Remove();
         }
 
         [TearDown]
