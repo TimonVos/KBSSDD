@@ -134,7 +134,7 @@ namespace ViewModel
                 }
                 catch
                 {
-                    MessageBox.Show("Voeg een getal in voor het studentnummer");
+                    MessageBox.Show("Voer een getal in voor het studentnummer");
                 }
                 Students = new ObservableCollection<Student>(_selectedGroup.Students);
             });
