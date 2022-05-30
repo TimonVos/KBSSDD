@@ -21,8 +21,7 @@ namespace Service.UnitTest.Database.Model
                 .RuleFor(f => f.Value, f => f.Lorem.Random.Number(1, 10));
 
             _formFaker = new Faker<Form>()
-                .RuleFor(f => f.Name, f => f.Lorem.Paragraph())
-                .RuleFor(f => f.Description, f => f.Lorem.Paragraph());
+                .RuleFor(f => f.Name, f => f.Lorem.Paragraph());
         }
 
         #region Assert attributes

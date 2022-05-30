@@ -1,4 +1,6 @@
-﻿namespace Model
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Model
 {
     /// <summary>
     /// Requirements for the indicator of the criterion.
@@ -28,10 +30,12 @@
         /// <summary>
         /// Concise name of the requirement.
         /// </summary>
+        [Required]
         public string Name { get; set; } = null!;
         /// <summary>
         /// Description of the requirement.
         /// </summary>
+        [Required]
         public string Description { get; set; } = null!;
         /// <summary>
         /// Entity set of rating this requirement has been reviewd in.

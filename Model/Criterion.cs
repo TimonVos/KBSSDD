@@ -22,8 +22,7 @@ namespace Model
         /// <summary>
         /// Concise name of the criterion.
         /// </summary>
-        [Required]
-        public string Name { get; set; } = null!;
+        public string? Name { get; set; }
         /// <summary>
         /// Description of the criterion.
         /// </summary>
