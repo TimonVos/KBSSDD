@@ -768,7 +768,159 @@ namespace Service.Database.Seeding
 
                 #region Design
 
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = designId1,
+                    IndicatorId = developmentPointId,
+                    Description = "Het domeinmodel en/of use case diagram ontbreken of zijn van slechte kwaliteit. Essentiele user-stories zijn niet volledig uitgewerkt.",
+                },
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = designId1,
+                    IndicatorId = competentId,
+                    Description = "Het domeinmodel en use case diagram zijn correct, consistent met elkaar, en zonodige opgesplitst in meerdere diagrammen. Alle essentiële user-stories zijn volledig uitgewerkt.",
+                },
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = designId1,
+                    IndicatorId = exemplarId,
+                    Description = "Een lezer krijgt op basis van het functioneel ontwerp snel inzicht in de geleverde functionaliteit. Het domeinmodel en use case diagram zijn correct, consistent met elkaar, en zonodig opgesplitst in meerdere diagrammen. Alle essentiële user-stories zijn volledig uitgewerkt.Triviale user-stories worden genoemd, maar niet tot in detail uitgewerkt. Waar zinvol is het functioneel ontwerp ondersteunt met activiteitendiagrammen, toestandsdiagrammen en sequentiediagrammen.",
+                },
 
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = designId2,
+                    IndicatorId = developmentPointId,
+                    Description = "Wordt niet structureel gedaan.",
+                },
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = designId2,
+                    IndicatorId = competentId,
+                    Description = "Wordt structureel gedaan, maar beperkt zich tot hoofdlijnen.",
+                },
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = designId2,
+                    IndicatorId = exemplarId,
+                    Description = "Wordt structureel gedaan. Na afloop van iedere sprint is het ontwerp ook echt af, dus alle belangrijke tecnische aspecten worden meegenomen en niet uitgesteld tot de laatste sprint.",
+                },
+
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = designId3,
+                    IndicatorId = developmentPointId,
+                    Description = "Het functioneel ontwerp en het technisch ontwerp zijn niet volledig en/of niet consistent met elkaar.",
+                },
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = designId3,
+                    IndicatorId = competentId,
+                    Description = "Het functioneel ontwerp en het technisch ontwerp zijn volledig en consistent met elkaar.",
+                },
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = designId3,
+                    IndicatorId = exemplarId,
+                    Description = "Het functioneel ontwerp en het technisch ontwerp zijn volledig en consistent met elkaar. Elementen uit functioneel ontwerp zijn eenvoudig te traceren in het technisch ontwerp, bijvoorbeeld door consistente naamgeving.",
+                },
+
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = designId4,
+                    IndicatorId = developmentPointId,
+                    Description = "Het ERD is na afloop van een sprint niet consistent met de gerealiseerde database.",
+                },
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = designId4,
+                    IndicatorId = competentId,
+                    Description = "Het ERD is na afloop consistent met de gerealiseerde database. Keuzes voor het db-ontwerp (bijv. een extra index) worden toegelicht.",
+                },
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = designId4,
+                    IndicatorId = exemplarId,
+                    Description = "Het ERD is na afloop consistent met de gerealiseerde database. Keuzes voor het db-ontwerp (bijv. een extra index) worden toegelicht. De naamgeving van de tabellen en kollomen van de database zijn consistent met de naamgeving zoals gebruikt in het domeinmodel.",
+                },
+
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = designId5,
+                    IndicatorId = developmentPointId,
+                    Description = "Het technisch ontwerp ondersteunt een ontwikkelaar niet of nauwelijks. Het technisch ontwerp bestaat dan bijvoorbeeld slechts uit een klassendiagram waarin alle klassen en relaties opgesomd worden.",
+                },
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = designId5,
+                    IndicatorId = competentId,
+                    Description = "Het technisch ontwerp laat duidelijk de architectuur van het systeem naar voren komen. Bijvoorbeeld door aan te geven welke klassen in welke systeemlagen zijn opgenomen. Essentiële ontwerpbeslissingen worden uitgelegd en ondersteund met UML-diagrammen.",
+                },
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = designId5,
+                    IndicatorId = exemplarId,
+                    Description = "Het technisch ontwerp laat duidelijk de architectuur van het systeem naar voren komen. Bijvoorbeeld door aan te geven welke klassen in welke systeemlagen zijn opgenomen. Essentiele ontwerpbeslissingen worden uitgelegd en ondersteund met UML-diagrammen. De lezer wordt bij de hand genomen door het ontwerp eerst op hoofdlijnen te schetsen en daarna in te zoomen op essentiële details.",
+                },
+
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = designId6,
+                    IndicatorId = developmentPointId,
+                    Description = "Niet gedaan.",
+                },
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = designId6,
+                    IndicatorId = competentId,
+                    Description = "Summier gedaan, bijvoorbeeld slechts een opsomming gegeven van gebruikte tools en frameworks.",
+                },
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = designId6,
+                    IndicatorId = exemplarId,
+                    Description = "Alles wat een ontwikkelaar snel op weg kan helpen en relatief weinig tijd kost om te beschrijven, is in het ontwerp opgenomen. Denk bijvoorbeeld aan handleidingen voor frameworks waarnaar verwezen wordt, of bijvoorbeeld problemen met frameworks waar het team tegenaan gelopen is en de oplossing daarvoor.",
+                },
+
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = designId7,
+                    IndicatorId = developmentPointId,
+                    Description = "Niet voor alle gerealiseerde items is een testset beschreven.",
+                },
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = designId7,
+                    IndicatorId = competentId,
+                    Description = "Er zijn testscenario’s voor ieder item opgenomen. Er is echter geen rekening gehouden met ‘alle’ mogelijk scenario’s. Vaak wordt voor een item alleen het ‘happy day scenario’ beschreven.",
+                },
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = designId7,
+                    IndicatorId = exemplarId,
+                    Description = "Voor alle gerealiseerde items is een testset beschreven. Over de testsets is goed nagedacht, alle denkbare scenarios waarop een item problemen zou kunnen geven zijn opgenomen als testgeval. De kwaliteit van het systeem wordt hiermee goed geborgd.",
+                },
 
                 #endregion
 
