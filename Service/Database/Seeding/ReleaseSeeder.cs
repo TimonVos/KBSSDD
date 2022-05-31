@@ -436,35 +436,35 @@ namespace Service.Database.Seeding
                 {
                     CriterionId = id++,
                     Name = "Reflectie op verbeteringspunten",
-                    CompetenceId = 6,
+                    CompetenceId = professionalDevelopmentId,
                     Description = "Er is een gedetailleerde reflectie op de verbeterpunten uit de Retrospective beschreven. (Per student beschreven in ‘Professionele Ontwikkeling’)",
                 },
                 new Criterion
                 {
                     CriterionId = id++,
                     Name = "Leerdoelen",
-                    CompetenceId = 6,
+                    CompetenceId = professionalDevelopmentId,
                     Description = "Bij aanvang zijn realistische vakinhoudelijke en persoonlijke professionele leerdoelen SMART geformuleerd. (Per student beschreven in ‘Professionele Ontwikkeling’). De student is hier actief mee aan de gang gegaan.",
                 },
                 new Criterion
                 {
                     CriterionId = id++,
                     Name = "Professionele Ontwikkeling",
-                    CompetenceId = 6,
+                    CompetenceId = professionalDevelopmentId,
                     Description = "Het werken aan professionele ontwikkeling  en de resultaten hiervan zijn aan de hand van concrete voorbeelden geïllustreerd. (Per student beschreven in ‘Professionele Ontwikkeling’)",
                 },
                 new Criterion
                 {
                     CriterionId = id++,
                     Name = "Sterktes en zwaktes",
-                    CompetenceId = 6,
+                    CompetenceId = professionalDevelopmentId,
                     Description = "Er is inzicht in de eigen sterktes en zwaktes. (Per student beschreven in ‘Professionele Ontwikkeling’)",
                 },
                 new Criterion
                 {
                     CriterionId = id++,
                     Name = "Reflectie",
-                    CompetenceId = 6,
+                    CompetenceId = professionalDevelopmentId,
                     Description = "Er is een gedetailleerde reflectie op alle hier genoemde competenties. De reflectie is per groep, waarbij de bijdrage van de individuele student goed naar voren komt.",
                 },
             };
