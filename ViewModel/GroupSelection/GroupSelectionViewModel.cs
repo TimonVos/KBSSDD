@@ -117,20 +117,39 @@ namespace ViewModel
             UpdateGroupsHelper();
         }
 
+        private void RemoveGroupsHelper()
+        {
+            using var assessmentContext = new AssessmentContext();
+            var grps = assessmentContext.Projects.Where(proj => proj.ProjectId == Project.ProjectModel.ProjectId);
+            Group tempGroup = new Group();
+            tempGroup.Name = GroupName;
+            try
+            {
+                tempGroup.Number = int.Parse(GroupNumber);
+            }
+            catch
+            {
+                MessageBox.Show("Voer een groepsnummer in");
+            }
+            _helper.AddGroup(tempGroup, Project.ProjectModel);
+            UpdateGroupsHelper();
+        }
+
         public GroupSelectionViewModel()
         {
             using var assessmentContext = new AssessmentContext();
 
 
-            Project = Factory.GetProject();
+            Project = Factory.GetProject(1);
 
             List<Group> temp = new List<Group>();
-            var grps = assessmentContext.Projects.Where(proj => proj.ProjectId == Project.ProjectModel.ProjectId);
+            var projects = assessmentContext.Projects
+                .Where(proj => proj.ProjectId == Project.ProjectModel.ProjectId).ToList();
             //GROUPS________________________________________
 
-            if (grps.Count() > 0)
+            if (projects.Count() > 0)
             {
-                foreach (var grp in grps.FirstOrDefault().Groups)
+                foreach (var grp in projects.FirstOrDefault().Groups)
                 {
                     temp.Add(grp);
                 }
@@ -150,6 +169,7 @@ namespace ViewModel
 
             RemoveGroup = new RelayCommand(() =>
             {
+
                 //Groups.Remove(SelectedGroup);
             });
 

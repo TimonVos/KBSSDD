@@ -12,12 +12,26 @@ namespace Service.AssessmentServices
     {
         public void AddGroup(Group group, Project project)
         {
-            AssessmentContext assessmentContext = new AssessmentContext();
+            using var assessmentContext = new AssessmentContext();
+            //assessmentContext.Groups.Add(group);
+
             assessmentContext.Groups.Add(group);
-            Assessment assessmentTemp = new Assessment();
-            assessmentTemp.Group = group;
-            assessmentTemp.Project = project;
-            assessmentContext.Assessments.Add(assessmentTemp);
+
+            /* Assessment assessmentTemp    = new Assessment();
+             * assessmentTemp.Group         = group;
+             * assessmentTemp.Project       = project;
+             * assessmentContext.Assessments.Add(assessmentTemp);
+             */
+
+            assessmentContext.SaveChanges();
+        }
+
+        public void RemoveGroup(Group group)
+        {
+            using var assessmentContext = new AssessmentContext();
+            assessmentContext.Groups.Remove(group);
+
+
             assessmentContext.SaveChanges();
         }
     }

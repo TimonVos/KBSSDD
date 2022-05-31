@@ -87,7 +87,7 @@ namespace ViewModel.FormAssessment
         #endregion
         public AssessmentFormViewModel()
         {
-            SelectedProject = Factory.GetProject();
+            SelectedProject = Factory.GetProject(1);
             Form = Factory.CreateForm(SelectedProject.ProjectModel.Form);
             SelectedGroup = Factory.CreateGroup(SelectedProject.ProjectModel.Groups.Where(grp => grp.Name == "Groep 1").FirstOrDefault());
             Ratings = Factory.CreateRatings(SelectedGroup.SelectedAssessment.AssessmentModel.Ratings);

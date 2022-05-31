@@ -33,9 +33,9 @@ namespace ViewModel.Factory
         public FormViewModel CreateForm(Form form)
         {
             FormViewModel temp;
-            temp = new FormViewModel(_context.Forms.Where(fm => fm.FormId == form.FormId)
+            temp = new FormViewModel(_context?.Forms.Where(fm => fm.FormId == form.FormId)
                 .Include(frm => frm.Competences).Include(frm => frm.Indicators)
-                .FirstOrDefault());
+                .FirstOrDefault()!);
             return temp;
         }
         /// <summary>
@@ -238,11 +238,11 @@ namespace ViewModel.Factory
 
             return temp;
         }
-        public ProjectViewModel GetProject()
+        public ProjectViewModel GetProject(int projectID)
         {
             ProjectViewModel temp;
             temp = new ProjectViewModel(_context.Projects.
-                Where(prj => prj.ProjectId == 4).
+                Where(prj => prj.ProjectId == projectID).
                 Include(prj => prj.Form).
                 Include(prj => prj.Assessments).
                 ThenInclude(assess => assess.Group).FirstOrDefault())!;
