@@ -163,7 +163,8 @@ namespace Service.Database.Seeding
 
             var criteria = new List<Criterion>
             {
-                // Analyseren
+                #region Analyze
+
                 new Criterion
                 {
                     CriterionId = id++,
@@ -193,7 +194,10 @@ namespace Service.Database.Seeding
                     Description = "Sprintbacklog items zijn tot in voldoende detail geanalyseerd en systematisch uitgewerkt. (Voldoende detail = Gemaakte keuzes worden door alle belanghebbenden begrepen). Hulpmiddelen daarbij zijn o.a.: Userstories incl. scherm/interactie/navigatie-ontwerp, Domeinmodel, Usecase/Userstory diagram.",
                 },
 
-                // Adviseren
+                #endregion
+
+                #region Advize
+
                 new Criterion
                 {
                     CriterionId = id++,
@@ -223,7 +227,10 @@ namespace Service.Database.Seeding
                     Description = "Het scrum team denkt mee met de product owner (denk aan sprint planning). Het scrum team komt bijvoorbeeld met alternatieven voor wensen van de productowner die minder tijd kosten om te implementeren.",
                 },
 
-                // Ontwerpen
+                #endregion
+
+                #region Design
+
                 new Criterion
                 {
                     CriterionId = id++,
@@ -273,7 +280,10 @@ namespace Service.Database.Seeding
                     Description = "Voor ieder gerealiseerd item is een uitgebreide testset beschreven, waarmee de kwaliteit van de gerealiseerde software aangetoond kan worden.",
                 },
 
-                // Realiseren
+                #endregion
+
+                #region Realize
+
                 new Criterion
                 {
                     CriterionId = id++,
@@ -345,7 +355,10 @@ namespace Service.Database.Seeding
                     Description = "De code is modulair opgezet en daardoor makkelijk te onderhouden, te lezen en te unit testen.",
                 },
 
-                // Beheren
+                #endregion
+
+                #region Manage
+
                 new Criterion
                 {
                     CriterionId = id++,
@@ -431,7 +444,10 @@ namespace Service.Database.Seeding
                     Description = "Er wordt na elke sprint een ready to release softwareproduct (overeenkomstig definition of done)  increment opgeleverd.",
                 },
 
-                // Professionele Ontwikkeling
+                #endregion
+
+                #region Professional development
+
                 new Criterion
                 {
                     CriterionId = id++,
@@ -467,6 +483,8 @@ namespace Service.Database.Seeding
                     CompetenceId = professionalDevelopmentId,
                     Description = "Er is een gedetailleerde reflectie op alle hier genoemde competenties. De reflectie is per groep, waarbij de bijdrage van de individuele student goed naar voren komt.",
                 },
+
+                #endregion
             };
 
             modelBuilder.Entity<Criterion>().HasData(criteria);
