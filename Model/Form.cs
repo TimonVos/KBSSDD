@@ -1,4 +1,6 @@
-﻿namespace Model
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Model
 {
     /// <summary>
     /// Reusable form for different projects.
@@ -12,6 +14,7 @@
         /// <summary>
         /// Name of the form.
         /// </summary>
+        [Required]
         public string Name { get; set; } = null!;
         /// <summary>
         /// Entity set of <see cref="Indicator"/> this group has.

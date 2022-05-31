@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Media.TextFormatting;
 using Microsoft.EntityFrameworkCore;
 using Model;
 using Service.Database;
@@ -126,7 +127,9 @@ namespace ViewModel.Factory
         public GroupViewModel CreateGroup(Group group)
         {
             GroupViewModel temp;
-            temp = new GroupViewModel(_context.Groups.Where(grp => grp.GroupId == group.GroupId).FirstOrDefault());
+            temp = new GroupViewModel(_context.Groups.Where(grp => grp.GroupId == group.GroupId)
+                .Include(grp => grp.Students).Include(grp => grp.Assessments)
+                .FirstOrDefault());
             return temp;
         }
         /// <summary>
@@ -213,17 +216,27 @@ namespace ViewModel.Factory
             }
             return temp;
         }
-        public FormViewModel GetForm()
+
+        public RatingViewModel CreateRating(Rating rating)
         {
-            FormViewModel temp;
-            temp = new FormViewModel(_context.Forms.
-                Where(frm => frm.FormId == 57).
-                Include(frm => frm.Competences).
-                Include(frm => frm.Indicators).
-                FirstOrDefault())!;
+            RatingViewModel temp = new RatingViewModel();
+            temp.RatingModel = _context.Ratings.Where(rat =>
+                    rat.AssessmentId == rating.AssessmentId && rat.CriterionId == rating.CriterionId)
+                .Include(rat => rat.Indicator)
+                .Include(rat => rat.Requirement).FirstOrDefault();
             return temp;
         }
 
+        public IEnumerable<RatingViewModel> CreateRatings(IEnumerable<Rating> ratings)
+        {
+            List<RatingViewModel> temp = new List<RatingViewModel>();
+            foreach (Rating rating in ratings)
+            {
+                temp.Add(CreateRating(rating));
+            }
+
+            return temp;
+        }
         public ProjectViewModel GetProject()
         {
             ProjectViewModel temp;

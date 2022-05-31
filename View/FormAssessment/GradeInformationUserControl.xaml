@@ -19,14 +19,22 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
-                        <TextBlock>
-                            <TextBlock.Text>
-                                <Binding Path="Title" StringFormat="Competentie: {0}, Cijfer: "/>
-                            </TextBlock.Text>
-                        </TextBlock>
-                        <TextBlock>
-                            <Binding Path="CompetenceGrade"></Binding>
-                        </TextBlock>
+                        <ListBox 
+                            
+                            ItemsSource="{Binding Path=CompetenceGrades}"
+                            SelectedValuePath="Value"
+                            Focusable="False">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Border BorderBrush="Black" BorderThickness="2">
+                                        <StackPanel>
+                                            <TextBlock Text="{Binding Path=Value}" />
+                                            <TextBlock Text="{Binding Path=Key.Name}" />
+                                        </StackPanel>
+                                    </Border>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>

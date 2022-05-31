@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Model
 {
@@ -22,10 +23,16 @@ namespace Model
         /// <summary>
         /// Name of the project.
         /// </summary>
+        [Required]
         public string Name { get; set; } = null!;
+        /// <summary>
+        /// Descripion of the form.
+        /// </summary>
+        public string? Description { get; set; }
         /// <summary>
         /// Subject code of the project.
         /// </summary>
+        [Required]
         public string Code { get; set; } = null!;
         /// <summary>
         /// Descripion of the project.
@@ -37,8 +44,11 @@ namespace Model
         /// <remarks>
         /// Can only be used for statistical purposes and not in practice.
         /// </remarks>
+        public ICollection<Assessment> Assessments { get; set; } = new HashSet<Assessment>();
+        /// <summary>
+        /// Groups that belong to this project that are assessed.
+        /// </summary>
         [NotMapped]
         public ICollection<Group> Groups { get => (from a in Assessments where a.ProjectId == this.ProjectId select a.Group).ToList(); }
-        public ICollection<Assessment> Assessments { get; set; } = new HashSet<Assessment>();
     }
 }

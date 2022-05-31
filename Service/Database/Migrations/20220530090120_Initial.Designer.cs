@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Service.Database;
 
@@ -10,9 +11,14 @@ using Service.Database;
 namespace Service.Database.Migrations
 {
     [DbContext(typeof(AssessmentContext))]
-    partial class AssessmentContextModelSnapshot : ModelSnapshot
+<<<<<<<< HEAD:Service/Database/Migrations/20220525150022_Initial.Designer.cs
+    [Migration("20220525150022_Initial")]
+========
+    [Migration("20220530090120_Initial")]
+>>>>>>>> dev:Service/Database/Migrations/20220530090120_Initial.Designer.cs
+    partial class Initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -92,7 +98,6 @@ namespace Service.Database.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("CriterionId");
@@ -109,9 +114,6 @@ namespace Service.Database.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("FormId"), 1L, 1);
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -207,7 +209,10 @@ namespace Service.Database.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Description")
+<<<<<<<< HEAD:Service/Database/Migrations/20220525150022_Initial.Designer.cs
                         .IsRequired()
+========
+>>>>>>>> dev:Service/Database/Migrations/20220530090120_Initial.Designer.cs
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("FormId")
