@@ -100,7 +100,7 @@ namespace Service.Database
 #if DEBUG
             // new Seeding.DebugSeeder().Seed(modelBuilder);
 #else
-            // new Seeding.ReleaseSeeder().Seed(modelBuilder);
+            new Seeding.ReleaseSeeder().Seed(modelBuilder);
 #endif
         }
     }

@@ -18,8 +18,8 @@ namespace Service.Database.Seeding
             var indicators = SeedIndicators(modelBuilder);
             var form = SeedForm(modelBuilder);
             SeedFormIndicators(modelBuilder, form, indicators);
-            SeedCompetences(modelBuilder, form);
-            SeedCriteria(modelBuilder);
+            var competences = SeedCompetences(modelBuilder, form);
+            var criteria = SeedCriteria(modelBuilder, competences);
             SeedProjects(modelBuilder, form);
         }
 
@@ -152,8 +152,15 @@ namespace Service.Database.Seeding
             return competences;
         }
 
-        private List<Criterion> SeedCriteria(ModelBuilder modelBuilder, int id = 1)
+        private List<Criterion> SeedCriteria(ModelBuilder modelBuilder, List<Competence> competences, int id = 1)
         {
+            var analyzeId = competences[0].CompetenceId;
+            var advizeId = competences[1].CompetenceId;
+            var designId = competences[2].CompetenceId;
+            var realizeId = competences[3].CompetenceId;
+            var manageId = competences[4].CompetenceId;
+            var professionalDevelopmentId = competences[5].CompetenceId;
+
             var criteria = new List<Criterion>
             {
                 // Analyseren
@@ -161,28 +168,28 @@ namespace Service.Database.Seeding
                 {
                     CriterionId = id++,
                     Name = "Methodische requirement analyse",
-                    CompetenceId = 1,
+                    CompetenceId = analyzeId,
                     Description = "Alle gerealiseerde sprint backlog items zijn terug te vinden in het functioneel ontwerp. Denk onder andere aan een bijgewerkt domeinmodel  en use case diagram. De uitgewerkte backlog items zijn in het functioneel ontwerp terug te vinden als uitgewerkte user-stories. Waar zinvol is het functioneel ontwerp ondersteunt met activiteitendiagrammen, toestandsdiagrammen en sequentiediagrammen.",
                 },
                 new Criterion
                 {
                     CriterionId = id++,
                     Name = "Afgestemde BC",
-                    CompetenceId = 1,
+                    CompetenceId = analyzeId,
                     Description = "De business case (de rechtvaardiging van het project, de probleemstelling, de opdracht) is beschreven en afgestemd met de opdrachtgever.",
                 },
                 new Criterion
                 {
                     CriterionId = id++,
                     Name = "Continu aangevulde PBL",
-                    CompetenceId = 1,
+                    CompetenceId = analyzeId,
                     Description = "De productbacklog wordt continue aangevuld met items die tijdens de analyse (bijvoorbeeld tijdens sprint planning meetings) van het op te lossen ‘probleem’, naar voren komen.",
                 },
                 new Criterion
                 {
                     CriterionId = id++,
                     Name = "Gedetailleerde BLI",
-                    CompetenceId = 1,
+                    CompetenceId = analyzeId,
                     Description = "Sprintbacklog items zijn tot in voldoende detail geanalyseerd en systematisch uitgewerkt. (Voldoende detail = Gemaakte keuzes worden door alle belanghebbenden begrepen). Hulpmiddelen daarbij zijn o.a.: Userstories incl. scherm/interactie/navigatie-ontwerp, Domeinmodel, Usecase/Userstory diagram.",
                 },
 
@@ -191,28 +198,28 @@ namespace Service.Database.Seeding
                 {
                     CriterionId = id++,
                     Name = "Geïnformeerde PO",
-                    CompetenceId = 2,
+                    CompetenceId = advizeId,
                     Description = "De product owner is gedurende alle sprints tijdig en volledig geinformeerd.",
                 },
                 new Criterion
                 {
                     CriterionId = id++,
                     Name = "Communicatievormen",
-                    CompetenceId = 2,
+                    CompetenceId = advizeId,
                     Description = "Er zijn geschikte communicatievormen gekozen en daadwerkelijk toegepast met als doel adviezen te geven.",
                 },
                 new Criterion
                 {
                     CriterionId = id++,
                     Name = "Correct Nederlands",
-                    CompetenceId = 2,
+                    CompetenceId = advizeId,
                     Description = "Alle documenten zijn geschreven in correct Nederlands, zijn helder en duidelijk. ",
                 },
                 new Criterion
                 {
                     CriterionId = id++,
                     Name = "Meedenken met PO",
-                    CompetenceId = 2,
+                    CompetenceId = advizeId,
                     Description = "Het scrum team denkt mee met de product owner (denk aan sprint planning). Het scrum team komt bijvoorbeeld met alternatieven voor wensen van de productowner die minder tijd kosten om te implementeren.",
                 },
 
@@ -221,48 +228,48 @@ namespace Service.Database.Seeding
                 {
                     CriterionId = id++,
                     Name = "BLI in FO",
-                    CompetenceId = 3,
+                    CompetenceId = designId,
                     Description = "Alle gerealiseerde sprint backlog items zijn terug te vinden in het functioneel ontwerp. Denk onder andere aan een bijgewerkt domeinmodel en use case diagram. De uitgewerkte backlog items zijn in het functioneel ontwerp terug te vinden als uitgewerkte user-stories. Waar zinvol is het functioneel ontwerp ondersteunt met activiteitendiagrammen, toestandsdiagrammen en sequentiediagrammen.",
                 },
                 new Criterion
                 {
                     CriterionId = id++,
                     Name = "Bijwerken van ontwerp",
-                    CompetenceId = 3,
+                    CompetenceId = designId,
                     Description = "Tijdens elke sprint wordt het ontwerp bijgewerkt. Denk bijvoorbeeld aan het toevoegen en/of uitbreiden van klassen in de verschillende klassendiagrammen. Belangrijke technische aspecten worden uitgelegd en ondersteund door (UML-)diagrammen.",
                 },
                 new Criterion
                 {
                     CriterionId = id++,
                     Name = "Consistent FO en TO",
-                    CompetenceId = 3,
+                    CompetenceId = designId,
                     Description = "Het functioneel ontwerp en het technisch ontwerp zijn volledig consistent met elkaar.",
                 },
                 new Criterion
                 {
                     CriterionId = id++,
                     Name = "Bijgewerkt ERD",
-                    CompetenceId = 3,
+                    CompetenceId = designId,
                     Description = "Tijdens elke sprint wordt het ERD bijgewerkt (indien van toepassing). Keuzes voor het db-ontwerp (bijv. een extra index) worden toegelicht. De naamgeving van de tabellen en kollomen van de database zijn consistent met de naamgeving zoals gebruikt in het domeinmodel" },
                 new Criterion
                 {
                     CriterionId = id++,
                     Name = "Toegelicht TO",
-                    CompetenceId = 3,
+                    CompetenceId = designId,
                     Description = "De gevolgde architectuur en ontwerpkeuzes zijn in het technisch ontwerp toegelicht en gemotiveerd.",
                 },
                 new Criterion
                 {
                     CriterionId = id++,
                     Name = "Zelfstandig ontwerp",
-                    CompetenceId = 3,
+                    CompetenceId = designId,
                     Description = "In het ontwerp is alle benodige informatie opgenomen om een nieuw teamlid snel op weg te helpen met het realiseren van de software. Naast de eerder genoemde aspecten kun je daarbij ook denken aan het vermelden van gebruikte tools, frameworks en verwijzingingen naar bruikbaar studiemateriaal.",
                 },
                 new Criterion
                 {
                     CriterionId = id++,
                     Name = "Testset voor ieder BLI",
-                    CompetenceId = 3,
+                    CompetenceId = designId,
                     Description = "Voor ieder gerealiseerd item is een uitgebreide testset beschreven, waarmee de kwaliteit van de gerealiseerde software aangetoond kan worden.",
                 },
 
@@ -271,70 +278,70 @@ namespace Service.Database.Seeding
                 {
                     CriterionId = id++,
                     Name = "Comments",
-                    CompetenceId = 4,
+                    CompetenceId = realizeId,
                     Description = "Alle broncode is op consistente wijze van commentaar voorzien.",
                 },
                 new Criterion
                 {
                     CriterionId = id++,
                     Name = "Coding conventions",
-                    CompetenceId = 4,
+                    CompetenceId = realizeId,
                     Description = "Code coventies zijn beschreven en nageleefd.",
                 },
                 new Criterion
                 {
                     CriterionId = id++,
                     Name = "Consistentie",
-                    CompetenceId = 4,
+                    CompetenceId = realizeId,
                     Description = "De code is consistent  met het opgestelde ontwerp.",
                 },
                 new Criterion
                 {
                     CriterionId = id++,
                     Name = "Testprocedure",
-                    CompetenceId = 4,
+                    CompetenceId = realizeId,
                     Description = "Er is een testprocedure beschreven waarin o.a. vastligt wie, wat en wanneer test.",
                 },
                 new Criterion
                 {
                     CriterionId = id++,
                     Name = "Testrapportage",
-                    CompetenceId = 4,
+                    CompetenceId = realizeId,
                     Description = "De student rapporteert over unit-testen en overige testen.",
                 },
                 new Criterion
                 {
                     CriterionId = id++,
                     Name = "Unit tests",
-                    CompetenceId = 4,
+                    CompetenceId = realizeId,
                     Description = "Waar zinvol, zijn unit-testen toegepast.",
                 },
                 new Criterion
                 {
                     CriterionId = id++,
                     Name = "Self-documenting code",
-                    CompetenceId = 4,
+                    CompetenceId = realizeId,
                     Description = "Alle namen in de code gebruiken een consistente vocabulair. Namen in de code beschrijven de intentie van de code.",
                 },
                 new Criterion
                 {
                     CriterionId = id++,
                     Name = "Formatting",
-                    CompetenceId = 4,
+                    CompetenceId = realizeId,
                     Description = "Formattering geeft een perfect inzicht in de beoogde structuur.",
                 },
                 new Criterion
                 {
                     CriterionId = id++,
                     Name = "Refactoring",
-                    CompetenceId = 4,
+                    CompetenceId = realizeId,
                     Description = "De code in methodes is voor de gewenste functionaliteit eenvoudig van opzet.",
                 },
                 new Criterion
                 {
                     CriterionId = id++,
                     Name = "Scalability",
-                    CompetenceId = 4,
+                    CompetenceId = realizeId,
                     Description = "De code is modulair opgezet en daardoor makkelijk te onderhouden, te lezen en te unit testen.",
                 },
 
@@ -343,84 +350,84 @@ namespace Service.Database.Seeding
                 {
                     CriterionId = id++,
                     Name = "Opgenomen items in SR",
-                    CompetenceId = 5,
+                    CompetenceId = manageId,
                     Description = "Tijdens elke Sprint Review wordt duidelijk aangegeven welke items in de sprint opgenomen zijn en welke items daarvan wel dan wel niet zijn gerealiseerd. Per gerealiseerd item wordt een demo gegeven.",
                 },
                 new Criterion
                 {
                     CriterionId = id++,
                     Name = "Besproken BDC in SR",
-                    CompetenceId = 5,
+                    CompetenceId = manageId,
                     Description = "Tijdens elke Sprint Review wordt de burn down chart besproken. Wat was de geplande velocity en waar is het team op uitgekomen?",
                 },
                 new Criterion
                 {
                     CriterionId = id++,
                     Name = "Daily standup",
-                    CompetenceId = 5,
+                    CompetenceId = manageId,
                     Description = "Scrum stand-ups worden dagelijks en getimeboxed (bijv. max 15 minuten) uitgevoerd en zijn navolgbaar (foto’s, reflectie) voor de assessoren.",
                 },
                 new Criterion
                 {
                     CriterionId = id++,
                     Name = "Tool voor BLI",
-                    CompetenceId = 5,
+                    CompetenceId = manageId,
                     Description = "Er is een geschikte tool en systematiek geselecteerd voor het managen van de product backlog items. Dit wordt in het reflectieverslag besproken.",
                 },
                 new Criterion
                 {
                     CriterionId = id++,
                     Name = "Version control system",
-                    CompetenceId = 5,
+                    CompetenceId = manageId,
                     Description = "Er is een geschikte tool en systematiek geselecteerd voor het samenwerken aan en het beheren van de broncode. Dit wordt in het reflectieverslag besproken.",
                 },
                 new Criterion
                 {
                     CriterionId = id++,
                     Name = "Gedetaileerde BLI",
-                    CompetenceId = 5,
+                    CompetenceId = manageId,
                     Description = "Productbacklog items zijn in voldoende detail en consistent beschreven in de product backlog..",
                 },
                 new Criterion
                 {
                     CriterionId = id++,
                     Name = "Geprioriteerde BLI",
-                    CompetenceId = 5,
+                    CompetenceId = manageId,
                     Description = "Productbacklog items met een hoge prioriteit zijn al duidelijk verder uitgewerkt in vergelijking met items met een lage prioriteit.",
                 },
                 new Criterion
                 {
                     CriterionId = id++,
                     Name = "Afgestemde PBL en SBL",
-                    CompetenceId = 5,
+                    CompetenceId = manageId,
                     Description = "Zowel productbacklog items als sprintbacklog items zijn volledig afgestemd met de productowner.",
                 },
                 new Criterion
                 {
                     CriterionId = id++,
                     Name = "Bug tracking",
-                    CompetenceId = 5,
+                    CompetenceId = manageId,
                     Description = "Bekende bugs worden geadminstreerd (bijvoorbeeld door ze op te nemen in de product backlog) en het oplossen hiervan heeft een plaats gekregen in het software ontwikkelproces",
                 },
                 new Criterion
                 {
                     CriterionId = id++,
                     Name = "Retro",
-                    CompetenceId = 5,
+                    CompetenceId = manageId,
                     Description = "De retrospective is uitgevoerd en heeft (indien nodig) geleid tot aanpassingen op het proces.",
                 },
                 new Criterion
                 {
                     CriterionId = id++,
                     Name = "DoD",
-                    CompetenceId = 5,
+                    CompetenceId = manageId,
                     Description = "De Definition of Done is tot in voldoende detail uitgewerkt. (DoD bevat minimaal: Code Conventies, Testscenario’s, Documentatie-eisen, Acceptatiecriteria van de Product Owner)",
                 },
                 new Criterion
                 {
                     CriterionId = id++,
                     Name = "Increment",
-                    CompetenceId = 5,
+                    CompetenceId = manageId,
                     Description = "Er wordt na elke sprint een ready to release softwareproduct (overeenkomstig definition of done)  increment opgeleverd.",
                 },
 
