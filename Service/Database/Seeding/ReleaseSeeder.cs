@@ -20,6 +20,7 @@ namespace Service.Database.Seeding
             SeedFormIndicators(modelBuilder, form, indicators);
             var competences = SeedCompetences(modelBuilder, form);
             var criteria = SeedCriteria(modelBuilder, competences);
+            SeedRequirements(modelBuilder, criteria, indicators);
             SeedProjects(modelBuilder, form);
         }
 
@@ -490,6 +491,223 @@ namespace Service.Database.Seeding
             modelBuilder.Entity<Criterion>().HasData(criteria);
 
             return criteria;
+        }
+
+        private List<Requirement> SeedRequirements(ModelBuilder modelBuilder, List<Criterion> criteria, List<Indicator> indicators, int id = 1)
+        {
+            #region Indicators
+
+            var developmentPointId = indicators[0].IndicatorId;
+            var competentId = indicators[1].IndicatorId;
+            var exemplarId = indicators[2].IndicatorId;
+
+            #endregion
+
+            #region Requirements
+
+            #region Analyze
+
+            var analyzeId1 = criteria[0].CriterionId;
+            var analyzeId2 = criteria[1].CriterionId;
+            var analyzeId3 = criteria[2].CriterionId;
+            var analyzeId4 = criteria[3].CriterionId;
+
+            #endregion
+
+            #region Advize
+
+            var advizeId1 = criteria[4].CriterionId;
+            var advizeId2 = criteria[5].CriterionId;
+            var advizeId3 = criteria[6].CriterionId;
+            var advizeId4 = criteria[7].CriterionId;
+
+            #endregion
+
+            #region Design
+
+            var designId1 = criteria[8].CriterionId;
+            var designId2 = criteria[9].CriterionId;
+            var designId3 = criteria[10].CriterionId;
+            var designId4 = criteria[11].CriterionId;
+            var designId5 = criteria[12].CriterionId;
+            var designId6 = criteria[13].CriterionId;
+            var designId7 = criteria[14].CriterionId;
+
+            #endregion
+
+            #region Realize
+
+            var realizeId1 = criteria[15].CriterionId;
+            var realizeId2 = criteria[16].CriterionId;
+            var realizeId3 = criteria[17].CriterionId;
+            var realizeId4 = criteria[18].CriterionId;
+            var realizeId5 = criteria[19].CriterionId;
+            var realizeId6 = criteria[20].CriterionId;
+            var realizeId7 = criteria[21].CriterionId;
+            var realizeId8 = criteria[22].CriterionId;
+            var realizeId9 = criteria[23].CriterionId;
+            var realizeId10 = criteria[24].CriterionId;
+
+            #endregion
+
+            #region Manage
+
+            var manageId1 = criteria[25].CriterionId;
+            var manageId2 = criteria[26].CriterionId;
+            var manageId3 = criteria[27].CriterionId;
+            var manageId4 = criteria[28].CriterionId;
+            var manageId5 = criteria[29].CriterionId;
+            var manageId6 = criteria[30].CriterionId;
+            var manageId7 = criteria[31].CriterionId;
+            var manageId8 = criteria[32].CriterionId;
+            var manageId9 = criteria[33].CriterionId;
+            var manageId10 = criteria[34].CriterionId;
+            var manageId11 = criteria[35].CriterionId;
+            var manageId12 = criteria[36].CriterionId;
+
+            #endregion
+
+            #region Professional development
+
+            var professionalDevelopmentId1 = criteria[37].CriterionId;
+            var professionalDevelopmentId2 = criteria[38].CriterionId;
+            var professionalDevelopmentId3 = criteria[39].CriterionId;
+            var professionalDevelopmentId4 = criteria[40].CriterionId;
+            var professionalDevelopmentId5 = criteria[41].CriterionId;
+
+            #endregion
+
+            #endregion
+
+            var requirements = new List<Requirement>
+            {
+
+                #region Analyze
+
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = analyzeId1,
+                    IndicatorId = developmentPointId,
+                    Description = "Bereidt gesprekken niet voor. Koppelt niet terug aan betrokkenen. Maakt geen gebruik van UML of vergelijkbare diagrammen. Verdiept zich niet in het domein. Houdt geen rekening met niet-functionele eisen.",
+                },
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = analyzeId1,
+                    IndicatorId = competentId,
+                    Description = "Bereidt gesprekken enigszins voor en koppelt in enige mate terug aan betrokkenen. Maakt gebruik van hooguit één soort diagram (bijv. domeinmodel of use case diagram). Verdiept zich enigszins in het domein, bijvoorbeeld door het bestuderen van vergelijkbare systemen. Houdt impliciet rekening met niet-functionele eisen.",
+                },
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = analyzeId1,
+                    IndicatorId = exemplarId,
+                    Description = "Bereidt gesprekken goed voor en koppelt de resultaten terug aan betrokkenen Maakt gebruik van verschillende UML diagrammen om het probleem vanuit verschillende gezichtspunten te benaderen. Kiest de juiste diagrammen voor de context. Verdiept zich uitgebreid in het domein en gebruikt daarvoor verschillende bronnen. Houdt expliciet rekening met niet-functionele eisen.",
+                },
+
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = analyzeId2,
+                    IndicatorId = developmentPointId,
+                    Description = "De student voert de opdracht uit, echter zonder na te denken over de achterliggende probleemstelling.",
+                },
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = analyzeId2,
+                    IndicatorId = competentId,
+                    Description = "De student is zich bewust van het onderliggende probleem voor de opdracht en legt dit vast.",
+                },
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = analyzeId2,
+                    IndicatorId = exemplarId,
+                    Description = "De student werkt de business case uit en toont aan dat de gekozen oplossing daarmee in overeenstemming is. De student heeft alternatieven in overweging genomen en besproken met de opdrachtgever.",
+                },
+
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = analyzeId3,
+                    IndicatorId = developmentPointId,
+                    Description = "Het team is niet actief bezig met de product backlog.",
+                },
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = analyzeId3,
+                    IndicatorId = competentId,
+                    Description = "Tijdens de sprint planning meetings, worden er veelvuldig nieuwe items vastgelegd. ",
+                },
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = analyzeId3,
+                    IndicatorId = exemplarId,
+                    Description = "Tijdens de sprint planning meetings, worden er veelvuldig nieuwe items vastgelegd. De items worden tijdens en/of na de sprint planning meeting met de product owner besproken en afhankelijk van de prioriteit gedetailleerd.",
+                },
+
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = analyzeId4,
+                    IndicatorId = developmentPointId,
+                    Description = "Sprintbacklog items worden kort besproken tijdens een sprint planning meeting en op basis daarvan wordt een inschatting gemaakt voor de benodigde inspanning. Als een docent er naar vraagt, blijkt echter dat een ieder zijn eigen interpretatie geeft aan een item.",
+                },
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = analyzeId4,
+                    IndicatorId = competentId,
+                    Description = "Sprintbacklog items worden  besproken tijdens een sprint planning. Diepgang ontbreekt echter nog.",
+                },
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = analyzeId4,
+                    IndicatorId = exemplarId,
+                    Description = "Zowel product owner als teamleden weten voor ieder item nauwkeurig wat er gerealiseerd gaat worden. Onafhankelijk van elkaar zouden ze tot een vergelijkbare uitwerking komen. Tijdens de sprint planning meeting is er uitgebreid gebruik gemaakt van bijvoorbeeld het white board, om zaken duidelijk te maken, en alternatieven te bespreken. Het kan ook zijn dat items al eerder tot in voldoende detail zijn uitgewerkt, zodat deze minder aandacht behoeven tijdens de meeting.",
+                },
+
+                #endregion
+
+                #region Advize
+
+
+
+                #endregion
+
+                #region Design
+
+
+
+                #endregion
+
+                #region Realize
+
+
+
+                #endregion
+
+                #region Manage
+
+
+
+                #endregion
+
+                #region Professional development
+
+
+
+                #endregion
+            };
+
+            modelBuilder.Entity<Requirement>().HasData(requirements);
+
+            return requirements;
         }
 
         private List<Project> SeedProjects(ModelBuilder modelBuilder, Form form, int id = 1)
