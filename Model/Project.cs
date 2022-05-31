@@ -35,10 +35,6 @@ namespace Model
         [Required]
         public string Code { get; set; } = null!;
         /// <summary>
-        /// Descripion of the project.
-        /// </summary>
-        public string Description { get; set; } = null!;
-        /// <summary>
         /// Entity set of assessment this project is used in.
         /// </summary>
         /// <remarks>
