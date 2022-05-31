@@ -11,7 +11,7 @@ using Service.Database;
 namespace Service.Database.Migrations
 {
     [DbContext(typeof(AssessmentContext))]
-    [Migration("20220531082403_ReleaseSeed")]
+    [Migration("20220531094952_ReleaseSeed")]
     partial class ReleaseSeed
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -761,6 +761,804 @@ namespace Service.Database.Migrations
                             RequirementId = 12,
                             CriterionId = 4,
                             Description = "Zowel product owner als teamleden weten voor ieder item nauwkeurig wat er gerealiseerd gaat worden. Onafhankelijk van elkaar zouden ze tot een vergelijkbare uitwerking komen. Tijdens de sprint planning meeting is er uitgebreid gebruik gemaakt van bijvoorbeeld het white board, om zaken duidelijk te maken, en alternatieven te bespreken. Het kan ook zijn dat items al eerder tot in voldoende detail zijn uitgewerkt, zodat deze minder aandacht behoeven tijdens de meeting.",
+                            IndicatorId = 3
+                        },
+                        new
+                        {
+                            RequirementId = 13,
+                            CriterionId = 5,
+                            Description = "Dit gebeurt niet.",
+                            IndicatorId = 1
+                        },
+                        new
+                        {
+                            RequirementId = 14,
+                            CriterionId = 5,
+                            Description = "De studenten informeren de product owner middels e-mail. Initiatief voor bespreken van heikele punten ligt nog voor een groot deel bij de product owner.",
+                            IndicatorId = 2
+                        },
+                        new
+                        {
+                            RequirementId = 15,
+                            CriterionId = 5,
+                            Description = "De studenten informeren de product owner gedurende de sprints. Verschillende communicatievormen worden gebruikt, zoals bijvoorbeeld telefoon en e-mail. Er is goed overlegd indien een item bijvoorbeeld te veel tijd dreigt te vragen of indien er alternatieven besproken dienen te worden.",
+                            IndicatorId = 3
+                        },
+                        new
+                        {
+                            RequirementId = 16,
+                            CriterionId = 6,
+                            Description = "Communicatie is hoofdzakelijk mondeling, tijdens de daarvoor geplande meetings.",
+                            IndicatorId = 1
+                        },
+                        new
+                        {
+                            RequirementId = 17,
+                            CriterionId = 6,
+                            Description = "Studenten gebruiken tijdens meetings meerdere zinvolle communicatiemiddelen.",
+                            IndicatorId = 2
+                        },
+                        new
+                        {
+                            RequirementId = 18,
+                            CriterionId = 6,
+                            Description = "Studenten gebruiken tijdens meetings meerdere zinvolle communicatiemiddelen en stimuleren elkaar en de product owner om input te geven. Incidenteel worden er demos (bijv. voorstel schermlay-out) voorbereid om advies te kunnen geven.",
+                            IndicatorId = 3
+                        },
+                        new
+                        {
+                            RequirementId = 19,
+                            CriterionId = 7,
+                            Description = "De documenten bevatten schrijffouten en zijn moeilijk te volgen.",
+                            IndicatorId = 1
+                        },
+                        new
+                        {
+                            RequirementId = 20,
+                            CriterionId = 7,
+                            Description = "De documenten bevatten nauwelijks schrijffouten. De documenten zijn duidelijk.",
+                            IndicatorId = 2
+                        },
+                        new
+                        {
+                            RequirementId = 21,
+                            CriterionId = 7,
+                            Description = "De documenten bevatten nauwelijks schrijffouten. De lezer wordt bij de hand genomen, de hoofd- en bijzaken worden heel goed onderscheiden.",
+                            IndicatorId = 3
+                        },
+                        new
+                        {
+                            RequirementId = 22,
+                            CriterionId = 8,
+                            Description = "De studenten leggen het initiatief volledig bij de product owner.",
+                            IndicatorId = 1
+                        },
+                        new
+                        {
+                            RequirementId = 23,
+                            CriterionId = 8,
+                            Description = "De studenten denken gevraagd en ongevraagd  mee met de product owner. Het team komt met alternatieven voor de product owner.",
+                            IndicatorId = 2
+                        },
+                        new
+                        {
+                            RequirementId = 24,
+                            CriterionId = 8,
+                            Description = "De studenten denken gevraagd en ongevraagd mee met de product owner. Alternatieven worden goed uitgelegd zodat de product owner een weloverwogen keuze kan maken. Tijdens sprint planning meetings zijn de studenten goed voorbereid zodat binnen de beschikbare tijd, alternatieven gepresenteerd kunnen worden.",
+                            IndicatorId = 3
+                        },
+                        new
+                        {
+                            RequirementId = 25,
+                            CriterionId = 9,
+                            Description = "Het domeinmodel en/of use case diagram ontbreken of zijn van slechte kwaliteit. Essentiele user-stories zijn niet volledig uitgewerkt.",
+                            IndicatorId = 1
+                        },
+                        new
+                        {
+                            RequirementId = 26,
+                            CriterionId = 9,
+                            Description = "Het domeinmodel en use case diagram zijn correct, consistent met elkaar, en zonodige opgesplitst in meerdere diagrammen. Alle essentiële user-stories zijn volledig uitgewerkt.",
+                            IndicatorId = 2
+                        },
+                        new
+                        {
+                            RequirementId = 27,
+                            CriterionId = 9,
+                            Description = "Een lezer krijgt op basis van het functioneel ontwerp snel inzicht in de geleverde functionaliteit. Het domeinmodel en use case diagram zijn correct, consistent met elkaar, en zonodig opgesplitst in meerdere diagrammen. Alle essentiële user-stories zijn volledig uitgewerkt.Triviale user-stories worden genoemd, maar niet tot in detail uitgewerkt. Waar zinvol is het functioneel ontwerp ondersteunt met activiteitendiagrammen, toestandsdiagrammen en sequentiediagrammen.",
+                            IndicatorId = 3
+                        },
+                        new
+                        {
+                            RequirementId = 28,
+                            CriterionId = 10,
+                            Description = "Wordt niet structureel gedaan.",
+                            IndicatorId = 1
+                        },
+                        new
+                        {
+                            RequirementId = 29,
+                            CriterionId = 10,
+                            Description = "Wordt structureel gedaan, maar beperkt zich tot hoofdlijnen.",
+                            IndicatorId = 2
+                        },
+                        new
+                        {
+                            RequirementId = 30,
+                            CriterionId = 10,
+                            Description = "Wordt structureel gedaan. Na afloop van iedere sprint is het ontwerp ook echt af, dus alle belangrijke tecnische aspecten worden meegenomen en niet uitgesteld tot de laatste sprint.",
+                            IndicatorId = 3
+                        },
+                        new
+                        {
+                            RequirementId = 31,
+                            CriterionId = 11,
+                            Description = "Het functioneel ontwerp en het technisch ontwerp zijn niet volledig en/of niet consistent met elkaar.",
+                            IndicatorId = 1
+                        },
+                        new
+                        {
+                            RequirementId = 32,
+                            CriterionId = 11,
+                            Description = "Het functioneel ontwerp en het technisch ontwerp zijn volledig en consistent met elkaar.",
+                            IndicatorId = 2
+                        },
+                        new
+                        {
+                            RequirementId = 33,
+                            CriterionId = 11,
+                            Description = "Het functioneel ontwerp en het technisch ontwerp zijn volledig en consistent met elkaar. Elementen uit functioneel ontwerp zijn eenvoudig te traceren in het technisch ontwerp, bijvoorbeeld door consistente naamgeving.",
+                            IndicatorId = 3
+                        },
+                        new
+                        {
+                            RequirementId = 34,
+                            CriterionId = 12,
+                            Description = "Het ERD is na afloop van een sprint niet consistent met de gerealiseerde database.",
+                            IndicatorId = 1
+                        },
+                        new
+                        {
+                            RequirementId = 35,
+                            CriterionId = 12,
+                            Description = "Het ERD is na afloop consistent met de gerealiseerde database. Keuzes voor het db-ontwerp (bijv. een extra index) worden toegelicht.",
+                            IndicatorId = 2
+                        },
+                        new
+                        {
+                            RequirementId = 36,
+                            CriterionId = 12,
+                            Description = "Het ERD is na afloop consistent met de gerealiseerde database. Keuzes voor het db-ontwerp (bijv. een extra index) worden toegelicht. De naamgeving van de tabellen en kollomen van de database zijn consistent met de naamgeving zoals gebruikt in het domeinmodel.",
+                            IndicatorId = 3
+                        },
+                        new
+                        {
+                            RequirementId = 37,
+                            CriterionId = 13,
+                            Description = "Het technisch ontwerp ondersteunt een ontwikkelaar niet of nauwelijks. Het technisch ontwerp bestaat dan bijvoorbeeld slechts uit een klassendiagram waarin alle klassen en relaties opgesomd worden.",
+                            IndicatorId = 1
+                        },
+                        new
+                        {
+                            RequirementId = 38,
+                            CriterionId = 13,
+                            Description = "Het technisch ontwerp laat duidelijk de architectuur van het systeem naar voren komen. Bijvoorbeeld door aan te geven welke klassen in welke systeemlagen zijn opgenomen. Essentiële ontwerpbeslissingen worden uitgelegd en ondersteund met UML-diagrammen.",
+                            IndicatorId = 2
+                        },
+                        new
+                        {
+                            RequirementId = 39,
+                            CriterionId = 13,
+                            Description = "Het technisch ontwerp laat duidelijk de architectuur van het systeem naar voren komen. Bijvoorbeeld door aan te geven welke klassen in welke systeemlagen zijn opgenomen. Essentiele ontwerpbeslissingen worden uitgelegd en ondersteund met UML-diagrammen. De lezer wordt bij de hand genomen door het ontwerp eerst op hoofdlijnen te schetsen en daarna in te zoomen op essentiële details.",
+                            IndicatorId = 3
+                        },
+                        new
+                        {
+                            RequirementId = 40,
+                            CriterionId = 14,
+                            Description = "Niet gedaan.",
+                            IndicatorId = 1
+                        },
+                        new
+                        {
+                            RequirementId = 41,
+                            CriterionId = 14,
+                            Description = "Summier gedaan, bijvoorbeeld slechts een opsomming gegeven van gebruikte tools en frameworks.",
+                            IndicatorId = 2
+                        },
+                        new
+                        {
+                            RequirementId = 42,
+                            CriterionId = 14,
+                            Description = "Alles wat een ontwikkelaar snel op weg kan helpen en relatief weinig tijd kost om te beschrijven, is in het ontwerp opgenomen. Denk bijvoorbeeld aan handleidingen voor frameworks waarnaar verwezen wordt, of bijvoorbeeld problemen met frameworks waar het team tegenaan gelopen is en de oplossing daarvoor.",
+                            IndicatorId = 3
+                        },
+                        new
+                        {
+                            RequirementId = 43,
+                            CriterionId = 15,
+                            Description = "Niet voor alle gerealiseerde items is een testset beschreven.",
+                            IndicatorId = 1
+                        },
+                        new
+                        {
+                            RequirementId = 44,
+                            CriterionId = 15,
+                            Description = "Er zijn testscenario’s voor ieder item opgenomen. Er is echter geen rekening gehouden met ‘alle’ mogelijk scenario’s. Vaak wordt voor een item alleen het ‘happy day scenario’ beschreven.",
+                            IndicatorId = 2
+                        },
+                        new
+                        {
+                            RequirementId = 45,
+                            CriterionId = 15,
+                            Description = "Voor alle gerealiseerde items is een testset beschreven. Over de testsets is goed nagedacht, alle denkbare scenarios waarop een item problemen zou kunnen geven zijn opgenomen als testgeval. De kwaliteit van het systeem wordt hiermee goed geborgd.",
+                            IndicatorId = 3
+                        },
+                        new
+                        {
+                            RequirementId = 46,
+                            CriterionId = 16,
+                            Description = "Geen commentaar in broncode opgenomen.",
+                            IndicatorId = 1
+                        },
+                        new
+                        {
+                            RequirementId = 47,
+                            CriterionId = 16,
+                            Description = "Daar waar zinvol, commentaar opgenomen in broncode. Echter niet op consistente wijze.",
+                            IndicatorId = 2
+                        },
+                        new
+                        {
+                            RequirementId = 48,
+                            CriterionId = 16,
+                            Description = "Daar waar zinvol, commentaar opgenomen in broncode. Op consistente wijze gedaan.",
+                            IndicatorId = 3
+                        },
+                        new
+                        {
+                            RequirementId = 49,
+                            CriterionId = 17,
+                            Description = "Geen code conventies toegepast.",
+                            IndicatorId = 1
+                        },
+                        new
+                        {
+                            RequirementId = 50,
+                            CriterionId = 17,
+                            Description = "Code conventies toegepast, echter niet beschreven.",
+                            IndicatorId = 2
+                        },
+                        new
+                        {
+                            RequirementId = 51,
+                            CriterionId = 17,
+                            Description = "Code conventeis toegepast en beschreven.",
+                            IndicatorId = 3
+                        },
+                        new
+                        {
+                            RequirementId = 52,
+                            CriterionId = 18,
+                            Description = "Keuzes uit het ontwerp zijn niet terug te vinden in broncode.",
+                            IndicatorId = 1
+                        },
+                        new
+                        {
+                            RequirementId = 53,
+                            CriterionId = 18,
+                            Description = "Keuzes uit het ontwerp zijn terug te vinden in de broncode, alleen sluiten de gebruikte termen (bijv. klassennamen) niet goed op elkaar aan.",
+                            IndicatorId = 2
+                        },
+                        new
+                        {
+                            RequirementId = 54,
+                            CriterionId = 18,
+                            Description = "Keuzes uit het ontwerp zijn volledig en consistent gerealiseerd in broncode.",
+                            IndicatorId = 3
+                        },
+                        new
+                        {
+                            RequirementId = 55,
+                            CriterionId = 19,
+                            Description = "Geen testprocedure aanwezig.",
+                            IndicatorId = 1
+                        },
+                        new
+                        {
+                            RequirementId = 56,
+                            CriterionId = 19,
+                            Description = "Er is een testprocedure beschreven waarin vastligt wie, wat en wanneer test.",
+                            IndicatorId = 2
+                        },
+                        new
+                        {
+                            RequirementId = 57,
+                            CriterionId = 19,
+                            Description = "Testprocedure is uitgebreid beschreven (soorten testen, input voor evt. testers, manier waarop bugs gemeld worden, etcetera)",
+                            IndicatorId = 3
+                        },
+                        new
+                        {
+                            RequirementId = 58,
+                            CriterionId = 20,
+                            Description = "Geen testrapportage aanwezig",
+                            IndicatorId = 1
+                        },
+                        new
+                        {
+                            RequirementId = 59,
+                            CriterionId = 20,
+                            Description = "Testrapportage is globaal beschreven.",
+                            IndicatorId = 2
+                        },
+                        new
+                        {
+                            RequirementId = 60,
+                            CriterionId = 20,
+                            Description = "Uitgebreide testrapportage aanwezig. O.a. duidelijk wie, wat, wanneer getest heeft en welke bugs in welke stadia gevonden zijn.",
+                            IndicatorId = 3
+                        },
+                        new
+                        {
+                            RequirementId = 61,
+                            CriterionId = 21,
+                            Description = "Geen unit-testen toegepast, terwijl dit wel zinvol was geweest.",
+                            IndicatorId = 1
+                        },
+                        new
+                        {
+                            RequirementId = 62,
+                            CriterionId = 21,
+                            Description = "Incidenteel unit-test toegepast, echter niet voor alle code waarvoor dit zinvol zou zijn geweest.",
+                            IndicatorId = 2
+                        },
+                        new
+                        {
+                            RequirementId = 63,
+                            CriterionId = 21,
+                            Description = "Voor alle code waarvoor dit zinvol is, zijn unit-testen toegepast.",
+                            IndicatorId = 3
+                        },
+                        new
+                        {
+                            RequirementId = 64,
+                            CriterionId = 22,
+                            Description = "Niet alle namen beschrijven de intentie van de code correct.",
+                            IndicatorId = 1
+                        },
+                        new
+                        {
+                            RequirementId = 65,
+                            CriterionId = 22,
+                            Description = "Alle namen in de code beschrijven de intentie van de code, maar niet altijd compleet en ook niet altijd even consistent.",
+                            IndicatorId = 2
+                        },
+                        new
+                        {
+                            RequirementId = 66,
+                            CriterionId = 22,
+                            Description = "Alle namen in de code beschrijven de intentie van de code. Namen zijn compleet en consistent.",
+                            IndicatorId = 3
+                        },
+                        new
+                        {
+                            RequirementId = 67,
+                            CriterionId = 23,
+                            Description = "Formattering mist of regels zijn te lang om te lezen.",
+                            IndicatorId = 1
+                        },
+                        new
+                        {
+                            RequirementId = 68,
+                            CriterionId = 23,
+                            Description = "Inspringen , regelovergangen en het gebruik van haakjes gegeven een inzicht in de beoogde structuur.indentation, maar is niet consitent gedaan.",
+                            IndicatorId = 2
+                        },
+                        new
+                        {
+                            RequirementId = 69,
+                            CriterionId = 23,
+                            Description = "Inspringen , regelovergangen en het gebruik van haakjes gegeven een perfect inzicht in de beoogde structuur.",
+                            IndicatorId = 3
+                        },
+                        new
+                        {
+                            RequirementId = 70,
+                            CriterionId = 24,
+                            Description = "Methodes bevatten diep geneste code, controle structuren zijn misleidend voor de beoogde functionaliteit.",
+                            IndicatorId = 1
+                        },
+                        new
+                        {
+                            RequirementId = 71,
+                            CriterionId = 24,
+                            Description = "De code is eenvoudig en bevat weinig exceptions. De controle structuren en keuzes voor libraries is toepasselijk voor de gewenste functionaliteit.",
+                            IndicatorId = 2
+                        },
+                        new
+                        {
+                            RequirementId = 72,
+                            CriterionId = 24,
+                            Description = "De code is eenvoudig en bevat weinig exceptions. De controle structuren en keuzes voor libraries is toepasselijk voor de gewenste functionaliteit. De code laat het gewenste pad duidelijk tot uitdrukking komen.",
+                            IndicatorId = 3
+                        },
+                        new
+                        {
+                            RequirementId = 73,
+                            CriterionId = 25,
+                            Description = "De code is geschreven in enkele grote klassen en methodes. Sommige code komt vaker voor (copy paste).",
+                            IndicatorId = 1
+                        },
+                        new
+                        {
+                            RequirementId = 74,
+                            CriterionId = 25,
+                            Description = "De indeling in klassen en methodes maakt de code overzichtelijk, maar kan nog verder geoptimaliseerd worden. Dit blijkt bijvoorbeeld tijdens het schrijven van de unit testen.",
+                            IndicatorId = 2
+                        },
+                        new
+                        {
+                            RequirementId = 75,
+                            CriterionId = 25,
+                            Description = "De indeling in klassen en methodes maakt de code overzichtelijk en goed testbaar. Methodes voeren een zeer beperkt aantal taken uit. ",
+                            IndicatorId = 3
+                        },
+                        new
+                        {
+                            RequirementId = 76,
+                            CriterionId = 26,
+                            Description = "Er wordt een demo gegeven. Voor het publiek wordt niet expliciet  duidelijk gemaakt wat de items voor de sprint waren en wat daarvan al dan niet gerealiseerd is.",
+                            IndicatorId = 1
+                        },
+                        new
+                        {
+                            RequirementId = 77,
+                            CriterionId = 26,
+                            Description = "Er wordt een demo gegeven en enigszins duidelijk gemaakt wat de te realiseren items waren en wat daarvan gerealiseerd is.",
+                            IndicatorId = 2
+                        },
+                        new
+                        {
+                            RequirementId = 78,
+                            CriterionId = 26,
+                            Description = "Duidelijk overzicht van sprint items en hetgeen daarvan gerealiseerd is. Per item wordt een demo gegeven om aan te tonen dat het item gerealiseerd is.",
+                            IndicatorId = 3
+                        },
+                        new
+                        {
+                            RequirementId = 79,
+                            CriterionId = 27,
+                            Description = "De burn down chart wordt niet getoond. De geplande velocity en de gerealiseerde velocity komen niet ter sprake.",
+                            IndicatorId = 1
+                        },
+                        new
+                        {
+                            RequirementId = 80,
+                            CriterionId = 27,
+                            Description = "De burn down chart wordt getoond. De geplande en gerealiseerde velocity is duidelijk.",
+                            IndicatorId = 2
+                        },
+                        new
+                        {
+                            RequirementId = 81,
+                            CriterionId = 27,
+                            Description = "De geplande velocity wordt vermeld. De burn down chart is correct, wordt getoond en uitgelegd. Het team trekt conclusies.",
+                            IndicatorId = 3
+                        },
+                        new
+                        {
+                            RequirementId = 82,
+                            CriterionId = 28,
+                            Description = "Stand-ups worden niet dagelijks uitgevoerd.",
+                            IndicatorId = 1
+                        },
+                        new
+                        {
+                            RequirementId = 83,
+                            CriterionId = 28,
+                            Description = "Stand-ups zijn dagelijks uitgevoerd. Bewijslast is mager.",
+                            IndicatorId = 2
+                        },
+                        new
+                        {
+                            RequirementId = 84,
+                            CriterionId = 28,
+                            Description = "Stand-ups zijn dagelijks uitgevoerd. Bewijslast is geleverd. Uit de reflecties blijkt dat de studenten het nut van de stand-up goed doorgronden.",
+                            IndicatorId = 3
+                        },
+                        new
+                        {
+                            RequirementId = 85,
+                            CriterionId = 29,
+                            Description = "Niet beschreven.",
+                            IndicatorId = 1
+                        },
+                        new
+                        {
+                            RequirementId = 86,
+                            CriterionId = 29,
+                            Description = "De motivatie voor de keuze voor een bepaald tool is beschreven of de systematiek is beschreven en gemotiveerd, maar niet beide.",
+                            IndicatorId = 2
+                        },
+                        new
+                        {
+                            RequirementId = 87,
+                            CriterionId = 29,
+                            Description = "De motivatie voor de keuze voor een bepaald tool is beschreven. Ook de systematiek is beschreven en gemotiveerd.",
+                            IndicatorId = 3
+                        },
+                        new
+                        {
+                            RequirementId = 88,
+                            CriterionId = 30,
+                            Description = "Niet beschreven.",
+                            IndicatorId = 1
+                        },
+                        new
+                        {
+                            RequirementId = 89,
+                            CriterionId = 30,
+                            Description = "De motivatie voor de keuze voor een bepaald tool is beschreven of de systematiek is beschreven en gemotiveerd, maar niet beide.",
+                            IndicatorId = 2
+                        },
+                        new
+                        {
+                            RequirementId = 90,
+                            CriterionId = 30,
+                            Description = "De motivatie voor de keuze voor een bepaald tool is beschreven. Ook de systematiek is beschreven en gemotiveerd.",
+                            IndicatorId = 3
+                        },
+                        new
+                        {
+                            RequirementId = 91,
+                            CriterionId = 31,
+                            Description = "Productbacklog items zijn beschreven, maar niet op een consistente wijze. Items zijn niet duidelijk beschreven.",
+                            IndicatorId = 1
+                        },
+                        new
+                        {
+                            RequirementId = 92,
+                            CriterionId = 31,
+                            Description = "Productbacklog items zijn consistent beschreven, maar nog niet altijd in voldoende detail om de intentie goed te begrijpen.",
+                            IndicatorId = 2
+                        },
+                        new
+                        {
+                            RequirementId = 93,
+                            CriterionId = 31,
+                            Description = "Productbacklog items zijn in voldoende detail en consistent beschreven in de product backlog. De intentie is voor alle betrokkenen goed te begrijpen.",
+                            IndicatorId = 3
+                        },
+                        new
+                        {
+                            RequirementId = 94,
+                            CriterionId = 32,
+                            Description = "Er is geen verschil te onderkennen in detaillering.",
+                            IndicatorId = 1
+                        },
+                        new
+                        {
+                            RequirementId = 95,
+                            CriterionId = 32,
+                            Description = "Soms zijn items met een hoge prioriteit al verder in detail uitgewerkt. Dit gebeurt echter nog niet structureel.",
+                            IndicatorId = 2
+                        },
+                        new
+                        {
+                            RequirementId = 96,
+                            CriterionId = 32,
+                            Description = "Productbacklog items met een hoge prioriteit zijn al duidelijk verder uitgewerkt in vergelijking met items met een lage prioriteit. Dit heeft continue de aandacht van het team.",
+                            IndicatorId = 3
+                        },
+                        new
+                        {
+                            RequirementId = 97,
+                            CriterionId = 33,
+                            Description = "Afstemming vind buiten de sprint planning meetings niet plaats. Zelfs tijdens de meetings komt dit nauwelijks aan bod. Soms weet de product owner of teamleden niet wat de bedoeling van een item is of wordt deze verschillend geïnterpreteerd",
+                            IndicatorId = 1
+                        },
+                        new
+                        {
+                            RequirementId = 98,
+                            CriterionId = 33,
+                            Description = "Afstemming vind plaats, bijvoorbeeld door na afloop van een meeting een overzicht aan de product owner te versturen. Echte afstemming vind echter niet plaats. Soms interpreteert de product owner een item nog anders dan het team.",
+                            IndicatorId = 2
+                        },
+                        new
+                        {
+                            RequirementId = 99,
+                            CriterionId = 33,
+                            Description = "Zowel de product owner als de teamleden weten precies te vertellen wat een item inhoudt. Afstemming van items vind ook buiten de meetings om plaats.",
+                            IndicatorId = 3
+                        },
+                        new
+                        {
+                            RequirementId = 100,
+                            CriterionId = 34,
+                            Description = "Bugs worden niet geadministreerd.",
+                            IndicatorId = 1
+                        },
+                        new
+                        {
+                            RequirementId = 101,
+                            CriterionId = 34,
+                            Description = "Bugs worden geadministreert, maar het oplossen hiervan heeft niet een duidelijk plaats gekregen in het software ontwikkelproces.",
+                            IndicatorId = 2
+                        },
+                        new
+                        {
+                            RequirementId = 102,
+                            CriterionId = 34,
+                            Description = "Bekende bugs worden geadminstreerd (bijvoorbeeld door ze op te nemen in de product backlog) en het oplossen hiervan heeft een plaats gekregen in het software ontwikkelproces. De product owner bepaald de prioriteit van het oplossen van de bugs. Er kan prioriteit gegeven worden aan het toevoegen van nieuwe functionaliteit, boven het oplossen van een bug.",
+                            IndicatorId = 3
+                        },
+                        new
+                        {
+                            RequirementId = 103,
+                            CriterionId = 35,
+                            Description = "De retrospective is niet uitgevoerd.",
+                            IndicatorId = 1
+                        },
+                        new
+                        {
+                            RequirementId = 104,
+                            CriterionId = 35,
+                            Description = "De retrospective is na afloop van de laatste twee sprints uitgevoerd en heeft (indien nodig) geleid tot aanpassingen op het proces.",
+                            IndicatorId = 2
+                        },
+                        new
+                        {
+                            RequirementId = 105,
+                            CriterionId = 35,
+                            Description = "De retrospective is van het begin af aan uitgevoerd en heeft (indien nodig) geleid tot aanpassingen op het proces.",
+                            IndicatorId = 3
+                        },
+                        new
+                        {
+                            RequirementId = 106,
+                            CriterionId = 36,
+                            Description = "Er is geen definition of done.",
+                            IndicatorId = 1
+                        },
+                        new
+                        {
+                            RequirementId = 107,
+                            CriterionId = 36,
+                            Description = "Er is een standaard definition of done.",
+                            IndicatorId = 2
+                        },
+                        new
+                        {
+                            RequirementId = 108,
+                            CriterionId = 36,
+                            Description = "Feedback (bijvoorbeeld verkregen tijdens een retrospective)  is verwerkt in een aangepast definition of done.",
+                            IndicatorId = 3
+                        },
+                        new
+                        {
+                            RequirementId = 109,
+                            CriterionId = 37,
+                            Description = "Definition of done wordt niet gevolgd.",
+                            IndicatorId = 1
+                        },
+                        new
+                        {
+                            RequirementId = 110,
+                            CriterionId = 37,
+                            Description = "De definition of done wordt strict gevolgt. Tijdens de eerste sprint is dit nog niet helemaal gelukt",
+                            IndicatorId = 2
+                        },
+                        new
+                        {
+                            RequirementId = 111,
+                            CriterionId = 37,
+                            Description = "De definition of done wordt van het begin af aan strict gevolgd.",
+                            IndicatorId = 3
+                        },
+                        new
+                        {
+                            RequirementId = 112,
+                            CriterionId = 38,
+                            Description = "De student gaat hier niet op in.",
+                            IndicatorId = 1
+                        },
+                        new
+                        {
+                            RequirementId = 113,
+                            CriterionId = 38,
+                            Description = "De student reflecteert op de verbeteringen.",
+                            IndicatorId = 2
+                        },
+                        new
+                        {
+                            RequirementId = 114,
+                            CriterionId = 38,
+                            Description = "De student reflecteert op de verbeteringen en geeft duidelijk aan wat zijn of haar rol hierin is geweest.",
+                            IndicatorId = 3
+                        },
+                        new
+                        {
+                            RequirementId = 115,
+                            CriterionId = 39,
+                            Description = "De student is zijn leerdoelen uit het oog verloren.",
+                            IndicatorId = 1
+                        },
+                        new
+                        {
+                            RequirementId = 116,
+                            CriterionId = 39,
+                            Description = "De student is actief met de leerdoelen aan de slag gegaan. ",
+                            IndicatorId = 2
+                        },
+                        new
+                        {
+                            RequirementId = 117,
+                            CriterionId = 39,
+                            Description = "De student is actief met de leerdoelen aan de slag gegaan en reflecteerd hier uitgebreid op.",
+                            IndicatorId = 3
+                        },
+                        new
+                        {
+                            RequirementId = 118,
+                            CriterionId = 40,
+                            Description = "De student besteed hier geen aandacht aan.",
+                            IndicatorId = 1
+                        },
+                        new
+                        {
+                            RequirementId = 119,
+                            CriterionId = 40,
+                            Description = "De student beschrijft zijn professionele ontwikkeling.",
+                            IndicatorId = 2
+                        },
+                        new
+                        {
+                            RequirementId = 120,
+                            CriterionId = 40,
+                            Description = "De student beschrijft zijn professionele ontwikkeling. Uit de reflectie blijkt dat de student een project aangrijpt om voor zichzelf stappen te maken op het vlak van persoonlijke ontwikkeling.",
+                            IndicatorId = 3
+                        },
+                        new
+                        {
+                            RequirementId = 121,
+                            CriterionId = 41,
+                            Description = "De student besteed hier geen aandacht aan.",
+                            IndicatorId = 1
+                        },
+                        new
+                        {
+                            RequirementId = 122,
+                            CriterionId = 41,
+                            Description = "De student is zich bewust van zijn eigen sterktes en zwaktes en beschrijft deze in de reflectie.",
+                            IndicatorId = 2
+                        },
+                        new
+                        {
+                            RequirementId = 123,
+                            CriterionId = 41,
+                            Description = "De student is zich bewust van zijn eigen sterktes en zwaktes en beschrijft deze in de reflectie. De student geeft duidelijk aan hoe hij of zij in de toekomst de sterktes optimaal kan inzetten, en hoe hij of zij de zwaktes gaat opvangen en/of zich op deze punten gaat verbeteren.",
+                            IndicatorId = 3
+                        },
+                        new
+                        {
+                            RequirementId = 124,
+                            CriterionId = 42,
+                            Description = "Er wordt hoofdzakelijk beschreven wat er is opgeleverd.",
+                            IndicatorId = 1
+                        },
+                        new
+                        {
+                            RequirementId = 125,
+                            CriterionId = 42,
+                            Description = "Er wordt beschreven wat er is opgeleverd en wat de bijdrage is geweest van iedere student. Op gemaakte keuzes wordt gereflecteerd. Studenten laten zien dat ze weten wat hun ontwikkelpunten nog zijn. Diepgang en bewijsmateriaal is mager.",
+                            IndicatorId = 2
+                        },
+                        new
+                        {
+                            RequirementId = 126,
+                            CriterionId = 42,
+                            Description = "Er wordt een gedetailleerde reflectie opgeleverd, compleet met bewijsmateriaal (zoals bijv. foto’s van meetings met gevuld white board). Op gemaakte keuzes wordt gereflecteerd. Studenten laten zien dat ze weten wat hun ontwikkelpunten nog zijn. De studenten nemen hun eigen handelen kritisch onder de loep. Een docent die niet bij het project betrokken is geweest, kan op basis van de reflectie een gefundeerde, individuele beoordeling geven.",
                             IndicatorId = 3
                         });
                 });
