@@ -1418,7 +1418,115 @@ namespace Service.Database.Seeding
 
                 #region Professional development
 
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = professionalDevelopmentId1,
+                    IndicatorId = developmentPointId,
+                    Description = "De student gaat hier niet op in.",
+                },
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = professionalDevelopmentId1,
+                    IndicatorId = competentId,
+                    Description = "De student reflecteert op de verbeteringen.",
+                },
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = professionalDevelopmentId1,
+                    IndicatorId = exemplarId,
+                    Description = "De student reflecteert op de verbeteringen en geeft duidelijk aan wat zijn of haar rol hierin is geweest.",
+                },
 
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = professionalDevelopmentId2,
+                    IndicatorId = developmentPointId,
+                    Description = "De student is zijn leerdoelen uit het oog verloren.",
+                },
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = professionalDevelopmentId2,
+                    IndicatorId = competentId,
+                    Description = "De student is actief met de leerdoelen aan de slag gegaan. ",
+                },
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = professionalDevelopmentId2,
+                    IndicatorId = exemplarId,
+                    Description = "De student is actief met de leerdoelen aan de slag gegaan en reflecteerd hier uitgebreid op.",
+                },
+
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = professionalDevelopmentId3,
+                    IndicatorId = developmentPointId,
+                    Description = "De student besteed hier geen aandacht aan.",
+                },
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = professionalDevelopmentId3,
+                    IndicatorId = competentId,
+                    Description = "De student beschrijft zijn professionele ontwikkeling.",
+                },
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = professionalDevelopmentId3,
+                    IndicatorId = exemplarId,
+                    Description = "De student beschrijft zijn professionele ontwikkeling. Uit de reflectie blijkt dat de student een project aangrijpt om voor zichzelf stappen te maken op het vlak van persoonlijke ontwikkeling.",
+                },
+
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = professionalDevelopmentId4,
+                    IndicatorId = developmentPointId,
+                    Description = "De student besteed hier geen aandacht aan.",
+                },
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = professionalDevelopmentId4,
+                    IndicatorId = competentId,
+                    Description = "De student is zich bewust van zijn eigen sterktes en zwaktes en beschrijft deze in de reflectie.",
+                },
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = professionalDevelopmentId4,
+                    IndicatorId = exemplarId,
+                    Description = "De student is zich bewust van zijn eigen sterktes en zwaktes en beschrijft deze in de reflectie. De student geeft duidelijk aan hoe hij of zij in de toekomst de sterktes optimaal kan inzetten, en hoe hij of zij de zwaktes gaat opvangen en/of zich op deze punten gaat verbeteren.",
+                },
+
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = professionalDevelopmentId5,
+                    IndicatorId = developmentPointId,
+                    Description = "Er wordt hoofdzakelijk beschreven wat er is opgeleverd.",
+                },
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = professionalDevelopmentId5,
+                    IndicatorId = competentId,
+                    Description = "Er wordt beschreven wat er is opgeleverd en wat de bijdrage is geweest van iedere student. Op gemaakte keuzes wordt gereflecteerd. Studenten laten zien dat ze weten wat hun ontwikkelpunten nog zijn. Diepgang en bewijsmateriaal is mager.",
+                },
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = professionalDevelopmentId5,
+                    IndicatorId = exemplarId,
+                    Description = "Er wordt een gedetailleerde reflectie opgeleverd, compleet met bewijsmateriaal (zoals bijv. foto’s van meetings met gevuld white board). Op gemaakte keuzes wordt gereflecteerd. Studenten laten zien dat ze weten wat hun ontwikkelpunten nog zijn. De studenten nemen hun eigen handelen kritisch onder de loep. Een docent die niet bij het project betrokken is geweest, kan op basis van de reflectie een gefundeerde, individuele beoordeling geven.",
+                },
 
                 #endregion
             };
