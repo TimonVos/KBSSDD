@@ -926,13 +926,493 @@ namespace Service.Database.Seeding
 
                 #region Realize
 
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = realizeId1,
+                    IndicatorId = developmentPointId,
+                    Description = "Geen commentaar in broncode opgenomen.",
+                },
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = realizeId1,
+                    IndicatorId = competentId,
+                    Description = "Daar waar zinvol, commentaar opgenomen in broncode. Echter niet op consistente wijze.",
+                },
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = realizeId1,
+                    IndicatorId = exemplarId,
+                    Description = "Daar waar zinvol, commentaar opgenomen in broncode. Op consistente wijze gedaan.",
+                },
 
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = realizeId2,
+                    IndicatorId = developmentPointId,
+                    Description = "Geen code conventies toegepast.",
+                },
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = realizeId2,
+                    IndicatorId = competentId,
+                    Description = "Code conventies toegepast, echter niet beschreven.",
+                },
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = realizeId2,
+                    IndicatorId = exemplarId,
+                    Description = "Code conventeis toegepast en beschreven.",
+                },
+
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = realizeId3,
+                    IndicatorId = developmentPointId,
+                    Description = "Keuzes uit het ontwerp zijn niet terug te vinden in broncode.",
+                },
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = realizeId3,
+                    IndicatorId = competentId,
+                    Description = "Keuzes uit het ontwerp zijn terug te vinden in de broncode, alleen sluiten de gebruikte termen (bijv. klassennamen) niet goed op elkaar aan.",
+                },
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = realizeId3,
+                    IndicatorId = exemplarId,
+                    Description = "Keuzes uit het ontwerp zijn volledig en consistent gerealiseerd in broncode.",
+                },
+
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = realizeId4,
+                    IndicatorId = developmentPointId,
+                    Description = "Geen testprocedure aanwezig.",
+                },
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = realizeId4,
+                    IndicatorId = competentId,
+                    Description = "Er is een testprocedure beschreven waarin vastligt wie, wat en wanneer test.",
+                },
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = realizeId4,
+                    IndicatorId = exemplarId,
+                    Description = "Testprocedure is uitgebreid beschreven (soorten testen, input voor evt. testers, manier waarop bugs gemeld worden, etcetera)",
+                },
+
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = realizeId5,
+                    IndicatorId = developmentPointId,
+                    Description = "Geen testrapportage aanwezig",
+                },
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = realizeId5,
+                    IndicatorId = competentId,
+                    Description = "Testrapportage is globaal beschreven.",
+                },
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = realizeId5,
+                    IndicatorId = exemplarId,
+                    Description = "Uitgebreide testrapportage aanwezig. O.a. duidelijk wie, wat, wanneer getest heeft en welke bugs in welke stadia gevonden zijn.",
+                },
+
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = realizeId6,
+                    IndicatorId = developmentPointId,
+                    Description = "Geen unit-testen toegepast, terwijl dit wel zinvol was geweest.",
+                },
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = realizeId6,
+                    IndicatorId = competentId,
+                    Description = "Incidenteel unit-test toegepast, echter niet voor alle code waarvoor dit zinvol zou zijn geweest.",
+                },
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = realizeId6,
+                    IndicatorId = exemplarId,
+                    Description = "Voor alle code waarvoor dit zinvol is, zijn unit-testen toegepast.",
+                },
+
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = realizeId7,
+                    IndicatorId = developmentPointId,
+                    Description = "Niet alle namen beschrijven de intentie van de code correct.",
+                },
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = realizeId7,
+                    IndicatorId = competentId,
+                    Description = "Alle namen in de code beschrijven de intentie van de code, maar niet altijd compleet en ook niet altijd even consistent.",
+                },
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = realizeId7,
+                    IndicatorId = exemplarId,
+                    Description = "Alle namen in de code beschrijven de intentie van de code. Namen zijn compleet en consistent.",
+                },
+
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = realizeId8,
+                    IndicatorId = developmentPointId,
+                    Description = "Formattering mist of regels zijn te lang om te lezen.",
+                },
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = realizeId8,
+                    IndicatorId = competentId,
+                    Description = "Inspringen , regelovergangen en het gebruik van haakjes gegeven een inzicht in de beoogde structuur.indentation, maar is niet consitent gedaan.",
+                },
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = realizeId8,
+                    IndicatorId = exemplarId,
+                    Description = "Inspringen , regelovergangen en het gebruik van haakjes gegeven een perfect inzicht in de beoogde structuur.",
+                },
+
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = realizeId9,
+                    IndicatorId = developmentPointId,
+                    Description = "Methodes bevatten diep geneste code, controle structuren zijn misleidend voor de beoogde functionaliteit.",
+                },
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = realizeId9,
+                    IndicatorId = competentId,
+                    Description = "De code is eenvoudig en bevat weinig exceptions. De controle structuren en keuzes voor libraries is toepasselijk voor de gewenste functionaliteit.",
+                },
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = realizeId9,
+                    IndicatorId = exemplarId,
+                    Description = "De code is eenvoudig en bevat weinig exceptions. De controle structuren en keuzes voor libraries is toepasselijk voor de gewenste functionaliteit. De code laat het gewenste pad duidelijk tot uitdrukking komen.",
+                },
+
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = realizeId10,
+                    IndicatorId = developmentPointId,
+                    Description = "De code is geschreven in enkele grote klassen en methodes. Sommige code komt vaker voor (copy paste).",
+                },
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = realizeId10,
+                    IndicatorId = competentId,
+                    Description = "De indeling in klassen en methodes maakt de code overzichtelijk, maar kan nog verder geoptimaliseerd worden. Dit blijkt bijvoorbeeld tijdens het schrijven van de unit testen.",
+                },
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = realizeId10,
+                    IndicatorId = exemplarId,
+                    Description = "De indeling in klassen en methodes maakt de code overzichtelijk en goed testbaar. Methodes voeren een zeer beperkt aantal taken uit. ",
+                },
 
                 #endregion
 
                 #region Manage
 
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = manageId1,
+                    IndicatorId = developmentPointId,
+                    Description = "Er wordt een demo gegeven. Voor het publiek wordt niet expliciet  duidelijk gemaakt wat de items voor de sprint waren en wat daarvan al dan niet gerealiseerd is.",
+                },
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = manageId1,
+                    IndicatorId = competentId,
+                    Description = "Er wordt een demo gegeven en enigszins duidelijk gemaakt wat de te realiseren items waren en wat daarvan gerealiseerd is.",
+                },
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = manageId1,
+                    IndicatorId = exemplarId,
+                    Description = "Duidelijk overzicht van sprint items en hetgeen daarvan gerealiseerd is. Per item wordt een demo gegeven om aan te tonen dat het item gerealiseerd is.",
+                },
 
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = manageId2,
+                    IndicatorId = developmentPointId,
+                    Description = "De burn down chart wordt niet getoond. De geplande velocity en de gerealiseerde velocity komen niet ter sprake.",
+                },
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = manageId2,
+                    IndicatorId = competentId,
+                    Description = "De burn down chart wordt getoond. De geplande en gerealiseerde velocity is duidelijk.",
+                },
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = manageId2,
+                    IndicatorId = exemplarId,
+                    Description = "De geplande velocity wordt vermeld. De burn down chart is correct, wordt getoond en uitgelegd. Het team trekt conclusies.",
+                },
+
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = manageId3,
+                    IndicatorId = developmentPointId,
+                    Description = "Stand-ups worden niet dagelijks uitgevoerd.",
+                },
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = manageId3,
+                    IndicatorId = competentId,
+                    Description = "Stand-ups zijn dagelijks uitgevoerd. Bewijslast is mager.",
+                },
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = manageId3,
+                    IndicatorId = exemplarId,
+                    Description = "Stand-ups zijn dagelijks uitgevoerd. Bewijslast is geleverd. Uit de reflecties blijkt dat de studenten het nut van de stand-up goed doorgronden.",
+                },
+
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = manageId4,
+                    IndicatorId = developmentPointId,
+                    Description = "Niet beschreven.",
+                },
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = manageId4,
+                    IndicatorId = competentId,
+                    Description = "De motivatie voor de keuze voor een bepaald tool is beschreven of de systematiek is beschreven en gemotiveerd, maar niet beide.",
+                },
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = manageId4,
+                    IndicatorId = exemplarId,
+                    Description = "De motivatie voor de keuze voor een bepaald tool is beschreven. Ook de systematiek is beschreven en gemotiveerd.",
+                },
+
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = manageId5,
+                    IndicatorId = developmentPointId,
+                    Description = "Niet beschreven.",
+                },
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = manageId5,
+                    IndicatorId = competentId,
+                    Description = "De motivatie voor de keuze voor een bepaald tool is beschreven of de systematiek is beschreven en gemotiveerd, maar niet beide.",
+                },
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = manageId5,
+                    IndicatorId = exemplarId,
+                    Description = "De motivatie voor de keuze voor een bepaald tool is beschreven. Ook de systematiek is beschreven en gemotiveerd.",
+                },
+
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = manageId6,
+                    IndicatorId = developmentPointId,
+                    Description = "Productbacklog items zijn beschreven, maar niet op een consistente wijze. Items zijn niet duidelijk beschreven.",
+                },
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = manageId6,
+                    IndicatorId = competentId,
+                    Description = "Productbacklog items zijn consistent beschreven, maar nog niet altijd in voldoende detail om de intentie goed te begrijpen.",
+                },
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = manageId6,
+                    IndicatorId = exemplarId,
+                    Description = "Productbacklog items zijn in voldoende detail en consistent beschreven in de product backlog. De intentie is voor alle betrokkenen goed te begrijpen.",
+                },
+
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = manageId7,
+                    IndicatorId = developmentPointId,
+                    Description = "Er is geen verschil te onderkennen in detaillering.",
+                },
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = manageId7,
+                    IndicatorId = competentId,
+                    Description = "Soms zijn items met een hoge prioriteit al verder in detail uitgewerkt. Dit gebeurt echter nog niet structureel.",
+                },
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = manageId7,
+                    IndicatorId = exemplarId,
+                    Description = "Productbacklog items met een hoge prioriteit zijn al duidelijk verder uitgewerkt in vergelijking met items met een lage prioriteit. Dit heeft continue de aandacht van het team.",
+                },
+
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = manageId8,
+                    IndicatorId = developmentPointId,
+                    Description = "Afstemming vind buiten de sprint planning meetings niet plaats. Zelfs tijdens de meetings komt dit nauwelijks aan bod. Soms weet de product owner of teamleden niet wat de bedoeling van een item is of wordt deze verschillend geïnterpreteerd",
+                },
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = manageId8,
+                    IndicatorId = competentId,
+                    Description = "Afstemming vind plaats, bijvoorbeeld door na afloop van een meeting een overzicht aan de product owner te versturen. Echte afstemming vind echter niet plaats. Soms interpreteert de product owner een item nog anders dan het team.",
+                },
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = manageId8,
+                    IndicatorId = exemplarId,
+                    Description = "Zowel de product owner als de teamleden weten precies te vertellen wat een item inhoudt. Afstemming van items vind ook buiten de meetings om plaats.",
+                },
+
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = manageId9,
+                    IndicatorId = developmentPointId,
+                    Description = "Bugs worden niet geadministreerd.",
+                },
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = manageId9,
+                    IndicatorId = competentId,
+                    Description = "Bugs worden geadministreert, maar het oplossen hiervan heeft niet een duidelijk plaats gekregen in het software ontwikkelproces.",
+                },
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = manageId9,
+                    IndicatorId = exemplarId,
+                    Description = "Bekende bugs worden geadminstreerd (bijvoorbeeld door ze op te nemen in de product backlog) en het oplossen hiervan heeft een plaats gekregen in het software ontwikkelproces. De product owner bepaald de prioriteit van het oplossen van de bugs. Er kan prioriteit gegeven worden aan het toevoegen van nieuwe functionaliteit, boven het oplossen van een bug.",
+                },
+
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = manageId10,
+                    IndicatorId = developmentPointId,
+                    Description = "De retrospective is niet uitgevoerd.",
+                },
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = manageId10,
+                    IndicatorId = competentId,
+                    Description = "De retrospective is na afloop van de laatste twee sprints uitgevoerd en heeft (indien nodig) geleid tot aanpassingen op het proces.",
+                },
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = manageId10,
+                    IndicatorId = exemplarId,
+                    Description = "De retrospective is van het begin af aan uitgevoerd en heeft (indien nodig) geleid tot aanpassingen op het proces.",
+                },
+
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = manageId11,
+                    IndicatorId = developmentPointId,
+                    Description = "Er is geen definition of done.",
+                },
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = manageId11,
+                    IndicatorId = competentId,
+                    Description = "Er is een standaard definition of done.",
+                },
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = manageId11,
+                    IndicatorId = exemplarId,
+                    Description = "Feedback (bijvoorbeeld verkregen tijdens een retrospective)  is verwerkt in een aangepast definition of done.",
+                },
+
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = manageId12,
+                    IndicatorId = developmentPointId,
+                    Description = "Definition of done wordt niet gevolgd.",
+                },
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = manageId12,
+                    IndicatorId = competentId,
+                    Description = "De definition of done wordt strict gevolgt. Tijdens de eerste sprint is dit nog niet helemaal gelukt",
+                },
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = manageId12,
+                    IndicatorId = exemplarId,
+                    Description = "De definition of done wordt van het begin af aan strict gevolgd.",
+                },
 
                 #endregion
 
