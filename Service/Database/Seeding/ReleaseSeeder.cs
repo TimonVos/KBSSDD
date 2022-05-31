@@ -676,7 +676,93 @@ namespace Service.Database.Seeding
 
                 #region Advize
 
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = advizeId1,
+                    IndicatorId = developmentPointId,
+                    Description = "Dit gebeurt niet.",
+                },
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = advizeId1,
+                    IndicatorId = competentId,
+                    Description = "De studenten informeren de product owner middels e-mail. Initiatief voor bespreken van heikele punten ligt nog voor een groot deel bij de product owner.",
+                },
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = advizeId1,
+                    IndicatorId = exemplarId,
+                    Description = "De studenten informeren de product owner gedurende de sprints. Verschillende communicatievormen worden gebruikt, zoals bijvoorbeeld telefoon en e-mail. Er is goed overlegd indien een item bijvoorbeeld te veel tijd dreigt te vragen of indien er alternatieven besproken dienen te worden.",
+                },
 
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = advizeId2,
+                    IndicatorId = developmentPointId,
+                    Description = "Communicatie is hoofdzakelijk mondeling, tijdens de daarvoor geplande meetings.",
+                },
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = advizeId2,
+                    IndicatorId = competentId,
+                    Description = "Studenten gebruiken tijdens meetings meerdere zinvolle communicatiemiddelen.",
+                },
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = advizeId2,
+                    IndicatorId = exemplarId,
+                    Description = "Studenten gebruiken tijdens meetings meerdere zinvolle communicatiemiddelen en stimuleren elkaar en de product owner om input te geven. Incidenteel worden er demos (bijv. voorstel schermlay-out) voorbereid om advies te kunnen geven.",
+                },
+
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = advizeId3,
+                    IndicatorId = developmentPointId,
+                    Description = "De documenten bevatten schrijffouten en zijn moeilijk te volgen.",
+                },
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = advizeId3,
+                    IndicatorId = competentId,
+                    Description = "De documenten bevatten nauwelijks schrijffouten. De documenten zijn duidelijk.",
+                },
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = advizeId3,
+                    IndicatorId = exemplarId,
+                    Description = "De documenten bevatten nauwelijks schrijffouten. De lezer wordt bij de hand genomen, de hoofd- en bijzaken worden heel goed onderscheiden.",
+                },
+
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = advizeId4,
+                    IndicatorId = developmentPointId,
+                    Description = "De studenten leggen het initiatief volledig bij de product owner.",
+                },
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = advizeId4,
+                    IndicatorId = competentId,
+                    Description = "De studenten denken gevraagd en ongevraagd  mee met de product owner. Het team komt met alternatieven voor de product owner.",
+                },
+                new Requirement
+                {
+                    RequirementId = id++,
+                    CriterionId = advizeId4,
+                    IndicatorId = exemplarId,
+                    Description = "De studenten denken gevraagd en ongevraagd mee met de product owner. Alternatieven worden goed uitgelegd zodat de product owner een weloverwogen keuze kan maken. Tijdens sprint planning meetings zijn de studenten goed voorbereid zodat binnen de beschikbare tijd, alternatieven gepresenteerd kunnen worden.",
+                },
 
                 #endregion
 
