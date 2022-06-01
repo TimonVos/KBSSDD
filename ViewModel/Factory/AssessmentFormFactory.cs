@@ -241,7 +241,6 @@ namespace ViewModel.Factory
         {
             ProjectViewModel temp;
             temp = new ProjectViewModel(_context.Projects.
-                Where(prj => prj.ProjectId == 5).
                 Include(prj => prj.Form).
                 Include(prj => prj.Assessments).
                 ThenInclude(assess => assess.Group).FirstOrDefault())!;
