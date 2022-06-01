@@ -51,8 +51,8 @@ namespace Service.UnitTest.DatabaseTest.ModelTest
             using var container = EntityFaker.Contained.CreateCompetence().Save();
 
             using var context = new AssessmentContext();
-            Assert.That(context.Groups.Any(
-                g => g.GroupId == container.Instance.CompetenceId
+            Assert.That(context.Competences.Any(
+                c => c.CompetenceId == container.Instance.CompetenceId
             ), Is.True);
         }
 
@@ -69,12 +69,12 @@ namespace Service.UnitTest.DatabaseTest.ModelTest
             Assert.That(competence, Is.Not.Null);
             Assert.Multiple(() =>
             {
+                Assert.That(competence.FormId, Is.EqualTo(container.Instance.FormId));
                 Assert.That(competence.CompetenceId, Is.EqualTo(container.Instance.CompetenceId));
                 Assert.That(competence.Name, Is.EqualTo(container.Instance.Name));
                 Assert.That(competence.Description, Is.EqualTo(container.Instance.Description));
                 Assert.That(competence.Weight, Is.EqualTo(container.Instance.Weight));
                 Assert.That(competence.Evidence, Is.EqualTo(container.Instance.Evidence));
-                Assert.That(competence.FormId, Is.EqualTo(container.Instance.FormId));
             });
         }
 

@@ -27,12 +27,12 @@ namespace Service.UnitTest.Database.EntityFakerTest.ModelTest
         [Test]
         public void EntityFaker_can_create_competences()
         {
-            var competenceA = EntityFaker.CreateCompetences(new CompetencesArgs { Save = true });
-            var competenceB = EntityFaker.CreateCompetences(new CompetencesArgs { Save = true });
+            var competencesA = EntityFaker.CreateCompetences(new CompetencesArgs { Save = true });
+            var competencesB = EntityFaker.CreateCompetences(new CompetencesArgs { Save = true });
 
-            var competencesT = competenceA.ToList();
-            competencesT.AddRange(competenceB);
-            Assert.That(competencesT.DistinctBy(c => c.CompetenceId).Count, Is.EqualTo(competenceA.Count() + competenceB.Count()));
+            var competencesT = competencesA.ToList();
+            competencesT.AddRange(competencesB);
+            Assert.That(competencesT.DistinctBy(c => c.CompetenceId).Count, Is.EqualTo(competencesA.Count() + competencesB.Count()));
 
             EntityFaker.RemoveRange(competencesT, true);
         }
