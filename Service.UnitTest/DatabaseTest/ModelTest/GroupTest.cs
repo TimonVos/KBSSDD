@@ -1,4 +1,5 @@
-﻿using Model;
+﻿using Microsoft.EntityFrameworkCore;
+using Model;
 using Service.Database;
 using Service.Database.EntityFaker;
 
@@ -45,8 +46,8 @@ namespace Service.UnitTest.DatabaseTest.ModelTest
 
             using var context = new AssessmentContext();
             Group? group = (from g in context.Groups
-                              where g.GroupId == container.Instance.GroupId
-                              select g).FirstOrDefault();
+                            where g.GroupId == container.Instance.GroupId
+                            select g).FirstOrDefault();
 
             Assert.That(group, Is.Not.Null);
             Assert.Multiple(() =>
@@ -66,8 +67,8 @@ namespace Service.UnitTest.DatabaseTest.ModelTest
 
             context = new AssessmentContext();
             Group? before = (from g in context.Groups
-                           where g.GroupId == container.Instance.GroupId
-                           select g).FirstOrDefault();
+                             where g.GroupId == container.Instance.GroupId
+                             select g).FirstOrDefault();
 
             before!.Name = EntityFaker.Faker.Name.FullName();
             before!.Number = EntityFaker.Faker.Random.Number(1, 6);
@@ -78,8 +79,8 @@ namespace Service.UnitTest.DatabaseTest.ModelTest
 
             context = new AssessmentContext();
             Group? after = (from g in context.Groups
-                     where g.GroupId == container.Instance.GroupId
-                     select g).FirstOrDefault();
+                            where g.GroupId == container.Instance.GroupId
+                            select g).FirstOrDefault();
 
             Assert.That(after, Is.Not.Null);
             Assert.Multiple(() =>
@@ -112,7 +113,37 @@ namespace Service.UnitTest.DatabaseTest.ModelTest
 
         #region Relationships
 
+        [Test]
+        public void Group_can_have_students()
+        {
+            using var scenario = EntityFaker.CreateScenario_GroupsWithStudents(
+                new GroupsWithStudentsArgs
+                {
+                    groupsArgs = new EnumerableFakerArgs { Count = 1 },
+                    AllowEmptyGroups = false,
+                }).Save();
 
+            using var context = new AssessmentContext();
+
+            foreach (var student in scenario.Students)
+            {
+                var s = context.Students
+                    .Where(s => s.StudentNumber == student.StudentNumber)
+                    .Include(s => s.Groups)
+                    .FirstOrDefault();
+
+                Assert.That(s, Is.Not.Null);
+                Assert.That(s.Groups.Any(
+                    g => g.GroupId == scenario.Groups.First().GroupId
+                ), Is.True);
+            }
+        }
+
+        [Test]
+        public void Group_can_have_assessments()
+        {
+            throw new NotImplementedException();
+        }
 
         #endregion
 

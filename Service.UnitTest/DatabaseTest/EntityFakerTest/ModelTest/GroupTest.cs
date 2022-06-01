@@ -1,5 +1,4 @@
 ﻿using Service.Database.EntityFaker;
-using Service.Database.EntityFaker.Core;
 
 namespace Service.UnitTest.Database.EntityFakerTest.ModelTest
 {

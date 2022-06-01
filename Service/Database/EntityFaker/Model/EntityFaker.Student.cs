@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Model;
-using Service.Database.EntityFaker.Core;
 
 namespace Service.Database.EntityFaker
 {
@@ -22,17 +21,28 @@ namespace Service.Database.EntityFaker
             student.StudentNumber = fakerArgs.id;
 
             if (fakerArgs.Save)
-            {
-                context.Students.Add(student);
-                context.SaveChanges();
-            }
+                Save(student);
 
             return student;
         }
 
-        public static void RemoveStudent(Student student)
+        public static void Save(Student student)
         {
-            using var context = new AssessmentContext();
+            using var context = GetContext();
+            context.Students.Add(student);
+            context.SaveChanges();
+        }
+
+        public static void Update(Student student)
+        {
+            using var context = GetContext();
+            context.Students.Add(student);
+            context.SaveChanges();
+        }
+
+        public static void Remove(Student student)
+        {
+            using var context = GetContext();
             context.Students.Remove(student);
             context.SaveChanges();
         }
@@ -67,11 +77,54 @@ namespace Service.Database.EntityFaker
             return students;
         }
 
-        public static void RemoveStudents(IEnumerable<Student> students)
+        public static void SaveRange(IEnumerable<Student> students)
         {
-            using var context = new AssessmentContext();
+            using var context = GetContext();
+            context.Students.AddRange(students);
+            context.SaveChanges();
+        }
+
+        public static void UpdateRange(IEnumerable<Student> students)
+        {
+            using var context = GetContext();
+            context.Students.AddRange(students);
+            context.SaveChanges();
+        }
+
+        public static void RemoveRange(IEnumerable<Student> students)
+        {
+            using var context = GetContext();
             context.Students.RemoveRange(students);
             context.SaveChanges();
+        }
+    }
+
+    public partial class EntityFakerContained
+    {
+        public Container<Student> CreateStudent(FakerArgs? fakerArgs = null)
+        {
+            fakerArgs ??= new FakerArgs();
+            fakerArgs.Save = false;
+
+            var student = EntityFaker.CreateStudent(fakerArgs);
+            return new Container<Student>(student,
+                () => EntityFaker.Save(student),
+                () => EntityFaker.Update(student),
+                () => EntityFaker.Remove(student)
+            );
+        }
+
+        public Container<IEnumerable<Student>> CreateStudents(EnumerableFakerArgs? fakerArgs = null)
+        {
+            fakerArgs ??= new EnumerableFakerArgs();
+            fakerArgs.Save = false;
+
+            var students = EntityFaker.CreateStudents(fakerArgs);
+            return new Container<IEnumerable<Student>>(students,
+                () => EntityFaker.SaveRange(students),
+                () => EntityFaker.UpdateRange(students),
+                () => EntityFaker.RemoveRange(students)
+            );
         }
     }
 }

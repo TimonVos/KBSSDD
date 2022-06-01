@@ -1,5 +1,4 @@
 ﻿using Model;
-using Service.Database.EntityFaker.Core;
 
 namespace Service.Database.EntityFaker
 {

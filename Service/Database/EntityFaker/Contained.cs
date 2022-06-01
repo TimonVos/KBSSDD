@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Model;
 
-namespace Service.Database.EntityFaker.Core
+namespace Service.Database.EntityFaker
 {
     public partial class Contained
     {

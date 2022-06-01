@@ -1,5 +1,4 @@
 ﻿using Service.Database.EntityFaker;
-using Service.Database.EntityFaker.Core;
 
 namespace Service.UnitTest.Database.EntityFakerTest.ModelTest
 {
@@ -20,7 +19,7 @@ namespace Service.UnitTest.Database.EntityFakerTest.ModelTest
 
             Assert.That(studentA.StudentNumber, Is.Not.EqualTo(studentB.StudentNumber));
 
-            EntityFaker.RemoveStudents(new[] { studentA, studentB });
+            EntityFaker.RemoveRange(new[] { studentA, studentB });
         }
 
         [Test]
@@ -33,7 +32,7 @@ namespace Service.UnitTest.Database.EntityFakerTest.ModelTest
             studentsT.AddRange(studentsB);
             Assert.That(studentsT.DistinctBy(s => s.StudentNumber).Count, Is.EqualTo(studentsA.Count() + studentsB.Count()));
 
-            EntityFaker.RemoveStudents(studentsT);
+            EntityFaker.RemoveRange(studentsT);
         }
 
         [TearDown]

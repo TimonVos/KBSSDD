@@ -1,4 +1,4 @@
-﻿namespace Service.Database.EntityFaker.Core
+﻿namespace Service.Database.EntityFaker
 {
     public class Container<E> : IDisposable where E : class
     {
@@ -36,11 +36,10 @@
             return this;
         }
 
-        public Container<E> Remove() {
+        public Container<E> Remove()
+        {
             if (_isSaved)
                 _remove();
-            else
-                throw new Exception("Container is not saved");
 
             return this;
         }
