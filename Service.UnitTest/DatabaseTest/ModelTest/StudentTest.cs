@@ -16,6 +16,17 @@ namespace Service.UnitTest.DatabaseTest.ModelTest
         #region Attributes
 
         [Test]
+        public void Student_stduent_number_is_unique()
+        {
+            using var unique = EntityFaker.Contained.CreateStudent().Save();
+            using var student = EntityFaker.Contained.CreateStudent();
+
+            student.Instance.StudentNumber = unique.Instance.StudentNumber;
+
+            DatabaseAssert.Throws(() => student.Save(), 2627, "Cannot insert duplicate key");
+        }
+
+        [Test]
         public void Student_name_is_required()
         {
             using var student = EntityFaker.Contained.CreateStudent();
