@@ -120,6 +120,7 @@ namespace Service.UnitTest.Grade
             context.Competences.AddRange(_competences);
             context.Requirements.AddRange(_requirements);
             context.Groups.Add(_group);
+            context.Indicators.AddRange(_indicators);
             context.SaveChanges();
 
             AssessmentHelper helper = new AssessmentHelper();
@@ -140,6 +141,7 @@ namespace Service.UnitTest.Grade
             context.Competences.RemoveRange(_competences);
             context.Requirements.RemoveRange(_requirements);
             context.Groups.Remove(_group);
+            context.Indicators.RemoveRange(_indicators);
             context.SaveChanges();
         }
     }

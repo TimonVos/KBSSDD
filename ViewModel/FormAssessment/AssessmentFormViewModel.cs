@@ -103,6 +103,7 @@ namespace ViewModel.FormAssessment
         #region Commands
 
         public ICommand SaveCommand { get; set; }
+        public ICommand LoadCommand { get; set; }
 
         public void Save(RequirementViewModel requirement)
         {

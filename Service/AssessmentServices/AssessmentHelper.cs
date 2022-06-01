@@ -101,17 +101,15 @@ namespace Service.AssessmentServices
             using var context = new AssessmentContext();
             if (context.Assessments.Count(assess => assess.AssessmentId == assessment.AssessmentId) > 0)
             {
-                Assessment assess = context.Assessments.FirstOrDefault(assess => assess.AssessmentId == assessment.AssessmentId);
-                assess.Ratings.Add(new Rating{Assessment = assess, Criterion = requirement.Criterion, Requirement = requirement});
-
+                assessment.Ratings.Add(new Rating{Assessment = assessment, Criterion = requirement.Criterion, Requirement = requirement});
+                context.Update(assessment);
                 context.SaveChanges();
             }
             else
             {
-                Assessment assess = new Assessment { Group = assessment.Group, Project = assessment.Project };
-                context.Assessments.Add(assess);
-                assess.Ratings.Add(new Rating { Assessment = assess, Criterion = requirement.Criterion, Requirement = requirement });
-                context.Update(assess);
+                context.Assessments.Add(assessment);
+                assessment.Ratings.Add(new Rating { Assessment = assessment, Criterion = requirement.Criterion, Requirement = requirement });
+                context.Update(assessment);
                 context.SaveChanges();
             }
         }
