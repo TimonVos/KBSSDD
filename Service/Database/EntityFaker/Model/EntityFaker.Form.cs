@@ -37,7 +37,7 @@ namespace Service.Database.EntityFaker
         public static void Remove(Form form)
         {
             using var context = GetContext();
-            context.Remove(form);
+            context.Forms.Remove(form);
             context.SaveChanges();
         }
 

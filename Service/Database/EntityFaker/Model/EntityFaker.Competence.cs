@@ -10,12 +10,7 @@ namespace Service.Database.EntityFaker
         {
             fakerArgs ??= new CompetenceArgs();
             var competence = _competenceFaker.Generate();
-
-            using var context = GetContext();
-            if (context.Forms.Any(f => f == fakerArgs.Form))
-                competence.FormId = fakerArgs.Form.FormId;
-            else
-                competence.Form = fakerArgs.Form;
+            competence.Form = fakerArgs.Form;
 
             if (fakerArgs.Save)
                 Save(competence);
@@ -26,7 +21,8 @@ namespace Service.Database.EntityFaker
         public static void Save(Competence competence)
         {
             using var context = GetContext();
-            context.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
+            if (competence.Form.FormId != 0)
+                context.Entry(competence.Form).State = EntityState.Unchanged;
             context.Competences.Add(competence);
             context.SaveChanges();
         }
