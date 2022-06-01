@@ -125,6 +125,7 @@ namespace Service.UnitTest.DatabaseTest.ModelTest
 
             using var context = new AssessmentContext();
 
+            var group = scenario.Groups.First();
             foreach (var student in scenario.Students)
             {
                 var s = context.Students
@@ -133,9 +134,10 @@ namespace Service.UnitTest.DatabaseTest.ModelTest
                     .FirstOrDefault();
 
                 Assert.That(s, Is.Not.Null);
-                Assert.That(s.Groups.Any(
-                    g => g.GroupId == scenario.Groups.First().GroupId
-                ), Is.True);
+                if (student.Groups.Any(g => g.GroupId == group.GroupId))
+                    Assert.That(s.Groups.Any(
+                        g => g.GroupId == group.GroupId
+                    ), Is.True);
             }
         }
 
