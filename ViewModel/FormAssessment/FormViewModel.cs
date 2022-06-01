@@ -12,8 +12,8 @@ namespace ViewModel.FormAssessment
             get => FormModel.Name;
         }
 
-        private IEnumerable<CompetenceViewModel> _competences;
-        public IEnumerable<CompetenceViewModel> Competences
+        private IEnumerable<CompetenceViewModel>? _competences;
+        public IEnumerable<CompetenceViewModel>? Competences
         {
             get => _competences;
             set
@@ -22,9 +22,9 @@ namespace ViewModel.FormAssessment
                 OnPropertyChanged(nameof(Competences));
             }
         }
-        private IEnumerable<IndicatorViewModel> _indicators { get; set; }
+        private IEnumerable<IndicatorViewModel>? _indicators { get; set; }
 
-        public IEnumerable<IndicatorViewModel> Indicators
+        public IEnumerable<IndicatorViewModel>? Indicators
         {
             get => _indicators;
             set
@@ -42,6 +42,11 @@ namespace ViewModel.FormAssessment
             FormModel = frmModel;
             Competences = Factory.CreateCompetences(FormModel.Competences);
             Indicators = Factory.CreateIndicators(FormModel.Indicators);
+        }
+
+        public override string ToString()
+        {
+            return Title;
         }
     }
 }

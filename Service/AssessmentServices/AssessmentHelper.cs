@@ -18,7 +18,7 @@ namespace Service.AssessmentServices
             double grade = 0;
             int ratingAmount = 0;
             Competence prevComp = assessment.Ratings.FirstOrDefault().Criterion.Competence;
-
+            
             IEnumerable<Rating> selectedRatings = assessment.Ratings;
             foreach (Rating rating in selectedRatings)
             {

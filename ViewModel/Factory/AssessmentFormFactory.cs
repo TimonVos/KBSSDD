@@ -6,6 +6,7 @@ using Model;
 using Service.Database;
 using ViewModel.FormAssessment;
 using ViewModel.GroupAdmin;
+using ViewModel.StartingScreen;
 
 namespace ViewModel.Factory
 {
@@ -14,7 +15,7 @@ namespace ViewModel.Factory
     /// </summary>
     public class AssessmentFormFactory
     {
-        private readonly AssessmentContext? _context;
+        private AssessmentContext? _context;
 
         /// <summary>
         /// constructor that initializes database context object and other service objects
@@ -32,9 +33,9 @@ namespace ViewModel.Factory
         public FormViewModel CreateForm(Form form)
         {
             FormViewModel temp;
-            temp = new FormViewModel(_context.Forms.Where(fm => fm.FormId == form.FormId)
+            temp = new FormViewModel(_context?.Forms.Where(fm => fm.FormId == form.FormId)
                 .Include(frm => frm.Competences).Include(frm => frm.Indicators)
-                .FirstOrDefault());
+                .FirstOrDefault()!)!;
             return temp;
         }
         /// <summary>
@@ -45,9 +46,9 @@ namespace ViewModel.Factory
         public CompetenceViewModel CreateCompetence(Competence competence)
         {
             CompetenceViewModel temp;
-            temp = new CompetenceViewModel(_context.Competences.Where(comp => comp.CompetenceId == competence.CompetenceId)
+            temp = new CompetenceViewModel(_context?.Competences.Where(comp => comp.CompetenceId == competence.CompetenceId)
                 .Include(comp => comp.Criteria)
-                .FirstOrDefault());
+                .FirstOrDefault()!)!;
             return temp;
         }
         /// <summary>
@@ -73,8 +74,8 @@ namespace ViewModel.Factory
         {
             CriterionViewModel temp;
             temp =
-                new CriterionViewModel(_context.Criteria.Where(crit => crit.CriterionId == criterion.CriterionId)
-                    .Include(crit => crit.Requirements).FirstOrDefault());
+                new CriterionViewModel(_context?.Criteria.Where(crit => crit.CriterionId == criterion.CriterionId)
+                    .Include(crit => crit.Requirements).FirstOrDefault()!)!;
             return temp;
         }
         /// <summary>
@@ -99,10 +100,10 @@ namespace ViewModel.Factory
         public RequirementViewModel CreateRequirement(Requirement requirement)
         {
             RequirementViewModel temp;
-            temp = new RequirementViewModel(_context.Requirements.
+            temp = new RequirementViewModel(_context?.Requirements.
                 Where(req => req.RequirementId == requirement.RequirementId).
                 Include(req => req.Indicator).Include(req => req.Criterion).
-                FirstOrDefault())!;
+                FirstOrDefault()!)!;
             return temp;
         }
         /// <summary>
@@ -127,9 +128,9 @@ namespace ViewModel.Factory
         public GroupViewModel CreateGroup(Group group)
         {
             GroupViewModel temp;
-            temp = new GroupViewModel(_context.Groups.Where(grp => grp.GroupId == group.GroupId)
+            temp = new GroupViewModel(_context?.Groups.Where(grp => grp.GroupId == @group.GroupId)
                 .Include(grp => grp.Students).Include(grp => grp.Assessments)
-                .FirstOrDefault());
+                .FirstOrDefault()!);
             return temp;
         }
         /// <summary>
@@ -154,7 +155,7 @@ namespace ViewModel.Factory
         public StudentViewModel CreateStudent(Student student)
         {
             StudentViewModel temp = new StudentViewModel();
-            temp.StudentModel = _context.Students.Where(std => std.StudentNumber == student.StudentNumber).FirstOrDefault();
+            temp.StudentModel = (_context?.Students!).FirstOrDefault(std => std.StudentNumber == student.StudentNumber)!;
             return temp;
         }
         /// <summary>
@@ -179,8 +180,8 @@ namespace ViewModel.Factory
         public IndicatorViewModel CreateIndicator(Indicator indicator)
         {
             IndicatorViewModel temp;
-            temp = new IndicatorViewModel(_context.Indicators.Where(indi => indi.IndicatorId == indicator.IndicatorId)
-                .FirstOrDefault());
+            temp = new IndicatorViewModel((_context?.Indicators!)
+                .FirstOrDefault(indi => indi.IndicatorId == indicator.IndicatorId)!);
             return temp;
         }
         /// <summary>
@@ -201,7 +202,7 @@ namespace ViewModel.Factory
         public AssessmentViewModel CreateAssessment(Assessment assessment)
         {
             AssessmentViewModel temp = new AssessmentViewModel();
-            temp.AssessmentModel = _context.Assessments.
+            temp.AssessmentModel = _context?.Assessments.
                 Where(assess => assess.AssessmentId == assessment.AssessmentId)
                 .Include(assess => assess.Group)
                 .FirstOrDefault()!;
@@ -220,10 +221,10 @@ namespace ViewModel.Factory
         public RatingViewModel CreateRating(Rating rating)
         {
             RatingViewModel temp = new RatingViewModel();
-            temp.RatingModel = _context.Ratings.Where(rat =>
+            temp.RatingModel = _context?.Ratings.Where(rat =>
                     rat.AssessmentId == rating.AssessmentId && rat.CriterionId == rating.CriterionId)
                 .Include(rat => rat.Indicator)
-                .Include(rat => rat.Requirement).FirstOrDefault();
+                .Include(rat => rat.Requirement).FirstOrDefault()!;
             return temp;
         }
 
@@ -237,6 +238,7 @@ namespace ViewModel.Factory
 
             return temp;
         }
+        /*
         public ProjectViewModel GetProject()
         {
             ProjectViewModel temp;
@@ -244,6 +246,24 @@ namespace ViewModel.Factory
                 Include(prj => prj.Form).
                 Include(prj => prj.Assessments).
                 ThenInclude(assess => assess.Group).FirstOrDefault())!;
+            return temp;
+        }
+        */
+        public ProjectViewModel CreateProject(Project project)
+        {
+            ProjectViewModel temp = new ProjectViewModel();
+            temp.ProjectModel = project;
+            return temp;
+        }
+        public IEnumerable<ProjectViewModel> CreateProjects()
+        {
+            AssessmentContext context = new AssessmentContext();
+            List<ProjectViewModel> temp = new List<ProjectViewModel>();
+            foreach (Project project in context.Projects!)
+            {
+                temp.Add(CreateProject(project));
+            }
+
             return temp;
         }
     }
