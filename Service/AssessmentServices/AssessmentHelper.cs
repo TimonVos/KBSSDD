@@ -98,20 +98,27 @@ namespace Service.AssessmentServices
 
         public void SaveRating(Assessment assessment, Requirement requirement)
         {
-            using var context = new AssessmentContext();
-            if (context.Assessments.Count(assess => assess.AssessmentId == assessment.AssessmentId) > 0)
+            using (var db = new AssessmentContext())
             {
-                assessment.Ratings.Add(new Rating{Assessment = assessment, Criterion = requirement.Criterion, Requirement = requirement});
-                context.Update(assessment);
-                context.SaveChanges();
+                var result = db.Ratings.SingleOrDefault(r => r.AssessmentId == assessment.AssessmentId);
+                if (result != null)
+                {
+                    result.RequirementId = requirement.RequirementId;
+                    db.SaveChanges();
+                }
+                else
+                {
+                    Rating temp = new Rating();
+                    temp.AssessmentId = assessment.AssessmentId;
+                    temp.RequirementId = requirement.RequirementId;
+                    temp.CriterionId = requirement.Criterion.CriterionId;
+                    db.Ratings.Add(temp);
+                    db.Assessments.Update(assessment);
+                    db.Requirements.Update(requirement);
+                    db.SaveChanges();
+                }
             }
-            else
-            {
-                context.Assessments.Add(assessment);
-                assessment.Ratings.Add(new Rating { Assessment = assessment, Criterion = requirement.Criterion, Requirement = requirement });
-                context.Update(assessment);
-                context.SaveChanges();
-            }
+
         }
 
     }

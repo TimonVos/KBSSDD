@@ -3,6 +3,7 @@ using System.Linq;
 using System.Security.RightsManagement;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.Toolkit.Mvvm.Input;
 using Model;
@@ -81,6 +82,7 @@ namespace ViewModel.FormAssessment
             {
                 _selectedCompetence = value;
                 OnPropertyChanged(nameof(SelectedCompetence));
+                
             }
         }
 
@@ -104,9 +106,8 @@ namespace ViewModel.FormAssessment
         #region Commands
 
         public ICommand SaveCommand { get; set; }
-        public ICommand LoadCommand { get; set; }
 
-        public void Save(RequirementViewModel requirement)
+        private void Save(RequirementViewModel requirement)
         {
             if (!SelectedGroup.Assessments.Any())
             {
@@ -124,19 +125,26 @@ namespace ViewModel.FormAssessment
                 Helper.SaveRating(SelectedGroup.Assessments.FirstOrDefault().AssessmentModel, requirement.RequirementModel);
             }
         }
+
+        private void Load(AssessmentViewModel assessment, CompetenceViewModel competence)
+        {
+
+        }
         #endregion
 
+        public void Initialize(ProjectViewModel project, GroupViewModel group)
+        {
+            SelectedProject = project;
+            SelectedGroup = group;
+            Form = Factory.CreateForm(SelectedProject.ProjectModel.Form);
+            Ratings = Factory.CreateRatings(SelectedGroup.SelectedAssessment.AssessmentModel.Ratings);
+        }
         public AssessmentFormViewModel()
         {
-            SelectedProject = Factory.GetProject();
-            Form = Factory.CreateForm(SelectedProject.ProjectModel.Form);
-            SelectedGroup = Factory.CreateGroup(SelectedProject.ProjectModel.Groups.Where(grp => grp.Name == "Groep 1").FirstOrDefault());
-            Ratings = Factory.CreateRatings(SelectedGroup.SelectedAssessment.AssessmentModel.Ratings);
             SaveCommand = new RelayCommand<RequirementViewModel>((RequirementViewModel? requirement) =>
             {
                 Save(requirement!);
             });
-
         }
 
     }
