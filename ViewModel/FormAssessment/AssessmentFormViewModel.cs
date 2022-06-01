@@ -4,6 +4,7 @@ using System.Security.RightsManagement;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Model;
 using ViewModel.GroupAdmin;
+using ViewModel.StartingScreen;
 
 namespace ViewModel.FormAssessment
 {
@@ -11,12 +12,12 @@ namespace ViewModel.FormAssessment
     {
         #region Properties
 
-        public ProjectViewModel SelectedProject { get; set; }
-        public IEnumerable<SubjectViewModel> Subjects { get; set; }
+        public ProjectViewModel? SelectedProject { get; set; }
+        public IEnumerable<SubjectViewModel>? Subjects { get; set; }
 
-        private SubjectViewModel _selectedSubject;
+        private SubjectViewModel? _selectedSubject;
 
-        public SubjectViewModel SelectedSubject
+        public SubjectViewModel? SelectedSubject
         {
             get => _selectedSubject;
             set
@@ -26,16 +27,16 @@ namespace ViewModel.FormAssessment
             }
         }
         
-        private GroupViewModel _selectedGroup;
-        public GroupViewModel SelectedGroup
+        private GroupViewModel? _selectedGroup;
+        public GroupViewModel? SelectedGroup
         {
             get => _selectedGroup;
             set
             {
                 _selectedGroup = value;
                 List<SubjectViewModel> temp = new List<SubjectViewModel>();
-                temp.Add(_selectedGroup);
-                foreach (StudentViewModel std in _selectedGroup.Students)
+                temp.Add(_selectedGroup!);
+                foreach (StudentViewModel std in _selectedGroup?.Students!)
                 {
                     temp.Add(std);
                 }
@@ -45,8 +46,8 @@ namespace ViewModel.FormAssessment
             }
         }
 
-        private IEnumerable<RatingViewModel> _ratings;
-        public IEnumerable<RatingViewModel> Ratings
+        private IEnumerable<RatingViewModel>? _ratings;
+        public IEnumerable<RatingViewModel>? Ratings
         {
             get => _ratings;
             set
@@ -56,9 +57,9 @@ namespace ViewModel.FormAssessment
             }
         }
 
-        private CompetenceViewModel _selectedCompetence;
+        private CompetenceViewModel? _selectedCompetence;
 
-        public CompetenceViewModel SelectedCompetence
+        public CompetenceViewModel? SelectedCompetence
         {
             get => _selectedCompetence;
             set
@@ -69,8 +70,8 @@ namespace ViewModel.FormAssessment
         }
 
 
-        private FormViewModel _form;
-        public FormViewModel Form
+        private FormViewModel? _form;
+        public FormViewModel? Form
         {
             get => _form;
             set
@@ -80,17 +81,16 @@ namespace ViewModel.FormAssessment
             }
         }
 
-        public IDictionary<Competence, double> CompetenceGrades
+        public IDictionary<Competence, double>? CompetenceGrades
         {
-            get => Helper.GetGrades(SelectedGroup.SelectedAssessment.AssessmentModel);
+            get => Helper.GetGrades(SelectedGroup?.SelectedAssessment.AssessmentModel!);
         }
         #endregion
         public AssessmentFormViewModel()
         {
-            SelectedProject = Factory.GetProject();
-            Form = Factory.CreateForm(SelectedProject.ProjectModel.Form);
-            SelectedGroup = Factory.CreateGroup(SelectedProject.ProjectModel.Groups.Where(grp => grp.Name == "Groep 1").FirstOrDefault());
-            Ratings = Factory.CreateRatings(SelectedGroup.SelectedAssessment.AssessmentModel.Ratings);
+            Form = Factory.CreateForm(SelectedProject.ProjectModel?.Form!);
+            SelectedGroup = Factory.CreateGroup(SelectedProject.ProjectModel?.Groups?.Where(grp => grp.Name == "Groep 1").FirstOrDefault()!);
+            Ratings = Factory.CreateRatings(SelectedGroup.SelectedAssessment.AssessmentModel?.Ratings!);
         }
 
     }

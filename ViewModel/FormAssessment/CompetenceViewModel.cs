@@ -8,8 +8,8 @@ namespace ViewModel.FormAssessment
         public string Title { get => CompetenceModel.Name; }
         public string Description { get => CompetenceModel.Description; }
 
-        private IEnumerable<CriterionViewModel> _criteria;
-        public IEnumerable<CriterionViewModel> Criteria
+        private IEnumerable<CriterionViewModel>? _criteria;
+        public IEnumerable<CriterionViewModel>? Criteria
         {
             get => _criteria;
             set
@@ -19,9 +19,9 @@ namespace ViewModel.FormAssessment
             }
         }
         public Competence CompetenceModel { get; set; }
-        private CriterionViewModel _selectedCriterion;
+        private CriterionViewModel? _selectedCriterion;
 
-        public CriterionViewModel SelectedCriterion
+        public CriterionViewModel? SelectedCriterion
         {
             get => _selectedCriterion;
             set

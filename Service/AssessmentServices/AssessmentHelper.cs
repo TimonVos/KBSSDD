@@ -17,10 +17,10 @@ namespace Service.AssessmentServices
             int critAmount = 0;
             double grade = 0;
             int ratingAmount = 0;
-            Competence prevComp = assessment.Ratings.FirstOrDefault().Criterion.Competence;
+            Competence prevComp = assessment?.Ratings?.FirstOrDefault()!.Criterion.Competence!;
             
-            IEnumerable<Rating> selectedRatings = assessment.Ratings;
-            foreach (Rating rating in selectedRatings)
+            IEnumerable<Rating> selectedRatings = assessment?.Ratings!;
+            foreach (Rating rating in selectedRatings!)
             {
                 if (prevComp != rating.Criterion.Competence)
                 {

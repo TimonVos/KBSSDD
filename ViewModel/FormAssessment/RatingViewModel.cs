@@ -4,6 +4,6 @@ namespace ViewModel.FormAssessment
 {
     public class RatingViewModel
     {
-        public Rating RatingModel { get; set; }
+        public Rating? RatingModel { get; set; }
     }
 }

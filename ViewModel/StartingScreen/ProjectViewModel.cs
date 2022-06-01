@@ -11,14 +11,10 @@ namespace ViewModel.StartingScreen
     {
         public string Title
         {
-            get => ProjectModel.ProjectName;
+            get => ProjectModel?.Name!;
         }
-        public Project ProjectModel { get; set; }
+        public Project? ProjectModel { get; set; }
 
-        public ProjectViewModel(Project prjMdl)
-        {
-            ProjectModel = prjMdl;
-        }
 
         public override string ToString()
         {

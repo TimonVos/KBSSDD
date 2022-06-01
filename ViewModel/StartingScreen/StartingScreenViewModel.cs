@@ -7,8 +7,8 @@ namespace ViewModel.StartingScreen
     public class StartingScreenViewModel : ViewModelBase
     {
 
-        private IEnumerable<ProjectViewModel> _projects;
-        public IEnumerable<ProjectViewModel> Projects 
+        private IEnumerable<ProjectViewModel>? _projects;
+        public IEnumerable<ProjectViewModel>? Projects 
         { 
             get => _projects;
             set
@@ -20,7 +20,7 @@ namespace ViewModel.StartingScreen
 
         public StartingScreenViewModel()
         {
-            _projects = Factory.CreateProjects(Factory.AssessmentContext.projects);
+            Projects = Factory.CreateProjects();
         }
     }
 }
