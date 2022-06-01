@@ -1,85 +1,37 @@
-﻿using Bogus;
-using Microsoft.Data.SqlClient;
-using Microsoft.EntityFrameworkCore;
-using Model;
+﻿using Model;
 using Service.Database;
+using Service.Database.EntityFaker;
 
 namespace Service.UnitTest.DatabaseTest.ModelTest
 {
     [TestFixture]
     internal class IndicatorTest
     {
-        private Faker _faker = new Faker();
-        private Faker<Indicator> _indicatorFaker;
-        private Faker<Form> _formFaker;
-
         [SetUp]
         public void Setup()
         {
-            _indicatorFaker = new Faker<Indicator>()
-                .RuleFor(f => f.Name, f => f.Lorem.Random.Word())
-                .RuleFor(f => f.Value, f => f.Lorem.Random.Number(1, 10));
-
-            _formFaker = new Faker<Form>()
-                .RuleFor(f => f.Name, f => f.Lorem.Paragraph());
         }
 
         #region Assert attributes
 
         [Test]
-        public void Indicators_id_cannot_be_inserted()
-        {
-            using var context = new AssessmentContext();
-
-            var indicator = _indicatorFaker.Generate();
-            indicator.IndicatorId = 1;
-
-            context.Indicators.Add(indicator);
-
-            var exception = Assert.Throws<DbUpdateException>(() => context.SaveChanges());
-            Assert.That(exception.InnerException, Is.InstanceOf<SqlException>());
-            SqlException? sqlException = (SqlException?)(exception.InnerException);
-            if (sqlException is not null)
-                Assert.That(sqlException.Number, Is.EqualTo(544));
-        }
-
-        [Test]
         public void Indicators_name_is_required()
         {
-            using var context = new AssessmentContext();
+            using var student = EntityFaker.Contained.CreateIndicator();
 
-            var indicator = new Indicator { Value = _faker.Random.Number(1, 10) };
-
-            context.Indicators.Add(indicator);
-
-            var exception = Assert.Throws<DbUpdateException>(() => context.SaveChanges());
-            Assert.That(exception.InnerException, Is.InstanceOf<SqlException>());
-            SqlException? sqlException = (SqlException?)(exception.InnerException);
-            if (sqlException is not null)
-            {
-                Assert.That(sqlException.Number, Is.EqualTo(515));
-                StringAssert.Contains("Name", sqlException.Message);
-            }
+            student.Instance.Name = null!;
+            DatabaseAssert.Throws(() => student.Save(), 515, "Name");
         }
 
         [Test]
         public void Indicators_name_is_unique()
         {
-            using var context = new AssessmentContext();
+            using var unique = EntityFaker.Contained.CreateIndicator().Save();
+            using var indicator = EntityFaker.Contained.CreateIndicator();
 
-            var name = _faker.Random.Word();
+            indicator.Instance.Name = unique.Instance.Name;
 
-            var original = new Indicator { Name = name };
-            var copy = new Indicator { Name = name };
-
-            context.Indicators.Add(original);
-            context.Indicators.Add(copy);
-
-            var exception = Assert.Throws<DbUpdateException>(() => context.SaveChanges());
-            Assert.That(exception.InnerException, Is.InstanceOf<SqlException>());
-            SqlException? sqlException = (SqlException?)(exception.InnerException);
-            if (sqlException is not null)
-                Assert.That(sqlException.Number, Is.EqualTo(2601));
+            DatabaseAssert.Throws(() => indicator.Save(), 2601, "Cannot insert duplicate key");
         }
 
         #endregion
@@ -89,90 +41,83 @@ namespace Service.UnitTest.DatabaseTest.ModelTest
         [Test]
         public void Indicators_can_be_created()
         {
-            using var context = new AssessmentContext();
-            var indicator = _indicatorFaker.Generate();
-            context.Indicators.Add(indicator);
-            context.SaveChanges();
+            using var container = EntityFaker.Contained.CreateIndicator().Save();
 
-            using var createContext = new AssessmentContext();
-            indicator = (from i in createContext.Indicators
-                         where i == indicator
-                         select i).FirstOrDefault();
-            Assert.That(indicator, Is.Not.Null);
-            createContext.Remove(indicator!);
-            createContext.SaveChanges();
+            using var context = new AssessmentContext();
+            Assert.That(context.Indicators.Any(
+                s => s.IndicatorId == container.Instance.IndicatorId
+            ), Is.True);
         }
 
         [Test]
         public void Indicators_can_be_read()
         {
-            using var context = new AssessmentContext();
-            var indicator = _indicatorFaker.Generate();
-            context.Indicators.Add(indicator);
-            context.SaveChanges();
+            using var container = EntityFaker.Contained.CreateIndicator().Save();
 
-            using var readContext = new AssessmentContext();
-            var read = (from i in readContext.Indicators
-                        where i == indicator
-                        select i).FirstOrDefault();
+            using var context = new AssessmentContext();
+            Indicator? indicator = (from i in context.Indicators
+                                where i.IndicatorId == container.Instance.IndicatorId
+                                select i).FirstOrDefault();
+
+            Assert.That(indicator, Is.Not.Null);
             Assert.Multiple(() =>
             {
-                Assert.That(read, Is.Not.Null);
-                Assert.That(indicator.IndicatorId, Is.EqualTo(read?.IndicatorId));
-                Assert.That(indicator.Name, Is.EqualTo(read?.Name));
-                Assert.That(indicator.Value, Is.EqualTo(read?.Value));
+                Assert.That(indicator.IndicatorId, Is.EqualTo(container.Instance.IndicatorId));
+                Assert.That(indicator.Name, Is.EqualTo(container.Instance.Name));
+                Assert.That(indicator.Value, Is.EqualTo(container.Instance.Value));
             });
-            readContext.Remove(read!);
-            readContext.SaveChanges();
         }
 
         [Test]
         public void Indicators_can_be_updated()
         {
-            using var context = new AssessmentContext();
-            var indicator = _indicatorFaker.Generate();
-            context.Indicators.Add(indicator);
+            using var container = EntityFaker.Contained.CreateIndicator().Save();
+
+            AssessmentContext context;
+
+            context = new AssessmentContext();
+            Indicator? before = (from i in context.Indicators
+                             where i.IndicatorId == container.Instance.IndicatorId
+                             select i).FirstOrDefault();
+
+            var temp = EntityFaker.CreateIndicator();
+            before!.Name = temp.Name;
+            before!.Value = temp.Value;
+
+            context.Indicators.Update(before);
             context.SaveChanges();
+            context.Dispose();
 
-            using var updateContext = new AssessmentContext();
-            var update = (from i in updateContext.Indicators
-                          where i == indicator
-                          select i).FirstOrDefault();
-            Assert.That(update, Is.Not.Null);
-            update.Name = _faker.Random.Word();
-            update.Value = _faker.Random.Number(1, 10);
-            updateContext.SaveChanges();
+            context = new AssessmentContext();
+            Indicator? after = (from i in context.Indicators
+                            where i.IndicatorId == container.Instance.IndicatorId
+                            select i).FirstOrDefault();
 
-            using var readContext = new AssessmentContext();
-            var read = (from i in readContext.Indicators
-                        where i.IndicatorId == indicator.IndicatorId
-                        select i).FirstOrDefault();
+            Assert.That(after, Is.Not.Null);
             Assert.Multiple(() =>
             {
-                Assert.That(read, Is.Not.Null);
-                Assert.That(read?.IndicatorId, Is.EqualTo(update.IndicatorId));
-                Assert.That(read?.Name, Is.EqualTo(update.Name));
-                Assert.That(read?.Value, Is.EqualTo(update.Value));
+                Assert.That(after.IndicatorId, Is.EqualTo(before.IndicatorId));
+                Assert.That(after.Name, Is.EqualTo(before.Name));
+                Assert.That(after.Value, Is.EqualTo(before.Value));
             });
-            readContext.Remove(read!);
-            readContext.SaveChanges();
         }
 
         [Test]
         public void Indicators_can_be_deleted()
         {
-            using var context = new AssessmentContext();
-            var indicator = _indicatorFaker.Generate();
-            context.Indicators.Add(indicator);
-            context.SaveChanges();
+            var container = EntityFaker.Contained.CreateIndicator().Save();
 
-            using var deleteContext = new AssessmentContext();
-            deleteContext.Remove(indicator);
-            deleteContext.SaveChanges();
-            indicator = (from i in deleteContext.Indicators
-                         where i.IndicatorId == indicator.IndicatorId
-                         select i).FirstOrDefault();
-            Assert.That(indicator, Is.Null);
+            AssessmentContext context;
+
+            context = new AssessmentContext();
+            context.Indicators.Remove(container.Instance);
+            context.SaveChanges();
+            context.Dispose();
+
+            context = new AssessmentContext();
+            Assert.That(context.Indicators.Any(
+                i => i.IndicatorId == container.Instance.IndicatorId
+            ), Is.False);
         }
 
         #endregion
@@ -182,28 +127,13 @@ namespace Service.UnitTest.DatabaseTest.ModelTest
         [Test]
         public void Indicators_can_belong_to_forms()
         {
-            using var context = new AssessmentContext();
-            var indicatorsA = _indicatorFaker.Generate(2);
-            var formA = _formFaker.Generate();
-            indicatorsA.ForEach(i => i.Forms.Add(formA));
-            context.Indicators.AddRange(indicatorsA);
-            context.Forms.Add(formA);
-            context.SaveChanges();
+            throw new NotImplementedException();
+        }
 
-            using var formsContext = new AssessmentContext();
-            var indicatorsB = (from i in formsContext.Indicators
-                               join fi in formsContext.FormIndicators on i equals fi.Indicator
-                               where fi.FormId == formA.FormId
-                               select i).Include(i => i.Forms).ToList();
-            Assert.Multiple(() =>
-            {
-                Assert.That(indicatorsB.Count, Is.EqualTo(indicatorsA.Count));
-                indicatorsB.ForEach(i => Assert.That(i.Forms.First().FormId, Is.EqualTo(formA.FormId)));
-            });
-
-            context.RemoveRange(indicatorsA);
-            context.Remove(formA);
-            context.SaveChanges();
+        [Test]
+        public void Indicators_can_belong_to_requirements()
+        {
+            throw new NotImplementedException();
         }
 
         #endregion

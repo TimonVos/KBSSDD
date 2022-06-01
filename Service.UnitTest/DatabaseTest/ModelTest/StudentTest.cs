@@ -80,7 +80,8 @@ namespace Service.UnitTest.DatabaseTest.ModelTest
                                where s.StudentNumber == container.Instance.StudentNumber
                                select s).FirstOrDefault();
 
-            before!.Name = EntityFaker.Faker.Name.FullName();
+            var temp = EntityFaker.CreateStudent();
+            before!.Name = temp.Name;
 
             context.Students.Update(before);
             context.SaveChanges();

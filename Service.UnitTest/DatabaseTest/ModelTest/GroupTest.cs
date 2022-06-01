@@ -53,8 +53,8 @@ namespace Service.UnitTest.DatabaseTest.ModelTest
             Assert.Multiple(() =>
             {
                 Assert.That(group.GroupId, Is.EqualTo(container.Instance.GroupId));
-                Assert.That(group.Name, Is.EqualTo(container.Instance.Name));
                 Assert.That(group.Number, Is.EqualTo(container.Instance.Number));
+                Assert.That(group.Name, Is.EqualTo(container.Instance.Name));
             });
         }
 
@@ -70,8 +70,9 @@ namespace Service.UnitTest.DatabaseTest.ModelTest
                              where g.GroupId == container.Instance.GroupId
                              select g).FirstOrDefault();
 
-            before!.Name = EntityFaker.Faker.Name.FullName();
-            before!.Number = EntityFaker.Faker.Random.Number(1, 6);
+            var temp = EntityFaker.CreateGroup();
+            before!.Name = temp.Name;
+            before!.Number = temp.Number;
 
             context.Groups.Update(before);
             context.SaveChanges();
@@ -85,9 +86,9 @@ namespace Service.UnitTest.DatabaseTest.ModelTest
             Assert.That(after, Is.Not.Null);
             Assert.Multiple(() =>
             {
-                Assert.That(after.Name, Is.EqualTo(before.Name));
                 Assert.That(after.GroupId, Is.EqualTo(before.GroupId));
                 Assert.That(after.Number, Is.EqualTo(before.Number));
+                Assert.That(after.Name, Is.EqualTo(before.Name));
             });
         }
 
