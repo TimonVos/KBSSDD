@@ -30,7 +30,7 @@ namespace Service.UnitTest.Database.EntityFakerTest.ModelTest
 
             var groupsT = groupsA.ToList();
             groupsT.AddRange(groupsB);
-            Assert.That(groupsT.DistinctBy(s => s.GroupId).Count, Is.EqualTo(groupsA.Count() + groupsB.Count()));
+            Assert.That(groupsT.DistinctBy(g => g.GroupId).Count, Is.EqualTo(groupsA.Count() + groupsB.Count()));
 
             EntityFaker.RemoveRange(groupsT);
         }

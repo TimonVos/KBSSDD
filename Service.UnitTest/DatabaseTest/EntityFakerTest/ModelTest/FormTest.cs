@@ -30,7 +30,7 @@ namespace Service.UnitTest.Database.EntityFakerTest.ModelTest
 
             var formsT = formsA.ToList();
             formsT.AddRange(formsB);
-            Assert.That(formsT.DistinctBy(s => s.FormId).Count, Is.EqualTo(formsA.Count() + formsB.Count()));
+            Assert.That(formsT.DistinctBy(f => f.FormId).Count, Is.EqualTo(formsA.Count() + formsB.Count()));
 
             EntityFaker.RemoveRange(formsT);
         }

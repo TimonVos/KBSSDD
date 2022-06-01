@@ -17,10 +17,10 @@ namespace Service.UnitTest.DatabaseTest.ModelTest
         [Test]
         public void Indicators_name_is_required()
         {
-            using var student = EntityFaker.Contained.CreateIndicator();
+            using var container = EntityFaker.Contained.CreateIndicator();
 
-            student.Instance.Name = null!;
-            DatabaseAssert.Throws(() => student.Save(), 515, "Name");
+            container.Instance.Name = null!;
+            DatabaseAssert.Throws(() => container.Save(), 515, nameof(container.Instance.Name));
         }
 
         [Test]

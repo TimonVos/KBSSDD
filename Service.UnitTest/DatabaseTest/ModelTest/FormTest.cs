@@ -21,7 +21,7 @@ namespace Service.UnitTest.DatabaseTest.ModelTest
             using var container = EntityFaker.Contained.CreateStudent();
 
             container.Instance.Name = null!;
-            DatabaseAssert.Throws(() => container.Save(), 515, "Name");
+            DatabaseAssert.Throws(() => container.Save(), 515, nameof(container.Instance.Name));
         }
 
         #endregion
