@@ -25,7 +25,7 @@ namespace Service.AssessmentServices
             {
                 if (prevComp != rating.Criterion.Competence)
                 {
-                    temp.Add(prevComp ,grade / critAmount);
+                    temp.Add(prevComp, grade / critAmount);
                     prevComp = rating.Criterion.Competence;
                     critAmount = 0;
                     grade = 0;

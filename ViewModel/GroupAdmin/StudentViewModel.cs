@@ -7,8 +7,8 @@ namespace ViewModel.GroupAdmin
 {
     public class StudentViewModel : SubjectViewModel
     {
-        public string Title { get => "S" + StudentModel.StudentNumber; }
-        public Student StudentModel { get; set; }
+        public new string Title { get => "S" + StudentModel?.StudentNumber; }
+        public Student? StudentModel { get; set; }
         public override string ToString()
         {
             return Title;

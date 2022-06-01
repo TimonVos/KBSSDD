@@ -4,7 +4,7 @@ namespace ViewModel.FormAssessment
 {
     public class AssessmentViewModel
     {
-        public Assessment AssessmentModel { get; set; }
+        public Assessment? AssessmentModel { get; set; }
 
     }
 }

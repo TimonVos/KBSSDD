@@ -69,7 +69,7 @@ namespace Service.Database.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     FormId = table.Column<int>(type: "int", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Weight = table.Column<double>(type: "float", nullable: false),
                     Evidence = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
@@ -209,7 +209,7 @@ namespace Service.Database.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CriterionId = table.Column<int>(type: "int", nullable: false),
                     IndicatorId = table.Column<int>(type: "int", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
