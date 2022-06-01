@@ -24,7 +24,7 @@ namespace Service.Database.Seeding
         }
 
         /// <summary>
-        /// Adds seed data to <see cref="Group"/> and returns it as <see cref="List{T}"/>.
+        /// Adds seed data to group and returns it as <see cref="List{T}"/>.
         /// </summary>
         /// <param name="modelBuilder"></param>
         /// <param name="groupsCount">Number of groups to generate</param>
@@ -42,7 +42,7 @@ namespace Service.Database.Seeding
         }
 
         /// <summary>
-        /// Adds seed data to <see cref="Student"/> and returns it as <see cref="List{T}"/>.
+        /// Adds seed data to student and returns it as <see cref="List{T}"/>.
         /// </summary>
         /// <param name="modelBuilder"></param>
         /// <param name="studentsCount"></param>
@@ -70,7 +70,7 @@ namespace Service.Database.Seeding
         }
 
         /// <summary>
-        /// Adds seed data to <see cref="GroupStudent"/> join.
+        /// Adds seed data to group student join.
         /// </summary>
         /// <param name="modelBuilder"></param>
         /// <param name="groups"><see cref="List{T}"/> of <see cref="Group"/> to use.</param>
@@ -100,7 +100,7 @@ namespace Service.Database.Seeding
         }
 
         /// <summary>
-        /// Adds seed data to <see cref="Indicator"/>.
+        /// Adds seed data to indicator.
         /// </summary>
         /// <param name="modelBuilder"></param>
         /// <param name="indicatorsCount">Number of indicators to generate</param>
