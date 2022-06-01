@@ -27,8 +27,7 @@ namespace Model
         /// <summary>
         /// Description of the competence.
         /// </summary>
-        [Required]
-        public string Description { get; set; } = null!;
+        public string? Description { get; set; }
         /// <summary>
         /// Weight of the competence. Total weight of the form must be 1.0d;
         /// </summary>
