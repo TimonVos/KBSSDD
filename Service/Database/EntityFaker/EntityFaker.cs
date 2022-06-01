@@ -8,6 +8,7 @@ namespace Service.Database.EntityFaker
         private static readonly Bogus.Faker<Student> _studentFaker;
         private static readonly Bogus.Faker<Group> _groupFaker;
         private static readonly Bogus.Faker<Indicator> _indicatorFaker;
+        private static readonly Bogus.Faker<Form> _formFaker;
         public static readonly EntityFakerContained Contained;
 
         static EntityFaker()
@@ -30,6 +31,9 @@ namespace Service.Database.EntityFaker
                     return name;
                 })
                 .RuleFor(f => f.Value, f => f.Random.Number(1, 10));
+
+            _formFaker = new Bogus.Faker<Form>()
+                .RuleFor(f => f.Name, f => f.Company.CompanyName());
         }
 
         public static AssessmentContext GetContext()

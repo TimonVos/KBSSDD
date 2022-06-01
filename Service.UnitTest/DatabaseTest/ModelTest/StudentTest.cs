@@ -19,20 +19,20 @@ namespace Service.UnitTest.DatabaseTest.ModelTest
         public void Student_stduent_number_is_unique()
         {
             using var unique = EntityFaker.Contained.CreateStudent().Save();
-            using var student = EntityFaker.Contained.CreateStudent();
+            using var container = EntityFaker.Contained.CreateStudent();
 
-            student.Instance.StudentNumber = unique.Instance.StudentNumber;
+            container.Instance.StudentNumber = unique.Instance.StudentNumber;
 
-            DatabaseAssert.Throws(() => student.Save(), 2627, "Cannot insert duplicate key");
+            DatabaseAssert.Throws(() => container.Save(), 2627, "Cannot insert duplicate key");
         }
 
         [Test]
         public void Student_name_is_required()
         {
-            using var student = EntityFaker.Contained.CreateStudent();
+            using var container = EntityFaker.Contained.CreateStudent();
 
-            student.Instance.Name = null!;
-            DatabaseAssert.Throws(() => student.Save(), 515, "Name");
+            container.Instance.Name = null!;
+            DatabaseAssert.Throws(() => container.Save(), 515, "Name");
         }
 
         #endregion

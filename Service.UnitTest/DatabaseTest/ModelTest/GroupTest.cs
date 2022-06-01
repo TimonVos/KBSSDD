@@ -18,10 +18,10 @@ namespace Service.UnitTest.DatabaseTest.ModelTest
         [Test]
         public void Group_name_is_optional()
         {
-            using var group = EntityFaker.Contained.CreateGroup();
+            using var container = EntityFaker.Contained.CreateGroup();
 
-            group.Instance.Name = null;
-            Assert.DoesNotThrow(() => group.Save());
+            container.Instance.Name = null;
+            Assert.DoesNotThrow(() => container.Save());
         }
 
         #endregion
