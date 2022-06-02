@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Security.RightsManagement;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Model;
 using ViewModel.GroupAdmin;
 
@@ -25,7 +23,7 @@ namespace ViewModel.FormAssessment
                 OnPropertyChanged(nameof(SelectedSubject));
             }
         }
-        
+
         private GroupViewModel _selectedGroup;
         public GroupViewModel SelectedGroup
         {
@@ -87,7 +85,7 @@ namespace ViewModel.FormAssessment
         #endregion
         public AssessmentFormViewModel()
         {
-            SelectedProject = Factory.GetProject(1);
+            SelectedProject = Factory.GetProject(4); //SHOULD BE THE PROJECT ID YOU GET FROM PROJECTSELECTIONSCREEN
             Form = Factory.CreateForm(SelectedProject.ProjectModel.Form);
             SelectedGroup = Factory.CreateGroup(SelectedProject.ProjectModel.Groups.Where(grp => grp.Name == "Groep 1").FirstOrDefault());
             Ratings = Factory.CreateRatings(SelectedGroup.SelectedAssessment.AssessmentModel.Ratings);

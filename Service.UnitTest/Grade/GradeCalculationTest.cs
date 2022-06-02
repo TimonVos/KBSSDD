@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Bogus;
+﻿using Bogus;
 using Model;
 using Service.AssessmentServices;
 using Service.Database;
@@ -128,11 +123,11 @@ namespace Service.UnitTest.Grade
         {
             using var context = new AssessmentContext();
             AssessmentHelper helper = new AssessmentHelper();
-            
+
 
             Assert.That(helper.GetGrades(_assessment).FirstOrDefault().Value, Is.EqualTo(5));
 
-            
+
         }
 
         [Test, Order(2), NonParallelizable]
@@ -141,7 +136,7 @@ namespace Service.UnitTest.Grade
             using var context = new AssessmentContext();
             AssessmentHelper helper = new AssessmentHelper();
             IDictionary<Competence, double> temp = helper.GetGrades(_assessment);
-            Assert.That(temp[_competences[0]] , Is.EqualTo(temp[_competences[1]]));
+            Assert.That(temp[_competences[0]], Is.EqualTo(temp[_competences[1]]));
         }
         [Test, Order(3), NonParallelizable]
         public void AssessmentHelper_FinalGradeCalculation_CanCalculateGradeCorrectly()
@@ -149,7 +144,7 @@ namespace Service.UnitTest.Grade
             using var context = new AssessmentContext();
             AssessmentHelper helper = new AssessmentHelper();
             IDictionary<Competence, double> temp = helper.GetGrades(_assessment);
-            Assert.That(helper.CalculateFinalGrade(temp) , Is.EqualTo(5));
+            Assert.That(helper.CalculateFinalGrade(temp), Is.EqualTo(5));
         }
         [Test, Order(4), NonParallelizable]
         public void AssessmentHelper_CheckCriteriaAmount_CanCheckIfCompetenceIsFullyRated()

@@ -1,7 +1,4 @@
-﻿using System.Collections.ObjectModel;
-using Model;
-using System.Diagnostics;
-using Service.Database;
+﻿using Service.Database;
 
 namespace UnitTests
 {

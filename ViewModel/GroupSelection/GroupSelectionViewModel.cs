@@ -1,21 +1,21 @@
 ﻿using System.Collections.ObjectModel;
-using System.ComponentModel;
+using System.Linq;
 using System.Windows;
 using Microsoft.Toolkit.Mvvm.Input;
 using Model;
-using Service;
+using Service.AssessmentServices;
 using Service.Database;
 using ViewModel.FormAssessment;
 using ViewModel.GroupAdmin;
-using System.Linq;
-using System.Collections.Generic;
-using Service.AssessmentServices;
 
 namespace ViewModel
 {
     public class GroupSelectionViewModel : ViewModelBase
     {
-        public event PropertyChangedEventHandler? PropertyChanged;
+
+        private int ProjectID;
+        public ProjectViewModel Project { get; set; }
+        private GroupManagementHelper _helper = new GroupManagementHelper();
 
         public RelayCommand AddGroup { get; set; }
         public RelayCommand RemoveGroup { get; set; }
@@ -26,16 +26,15 @@ namespace ViewModel
         public ObservableCollection<GroupViewModel> Groups
         {
             get { return _groups; }
-            set { 
+            set
+            {
                 _groups = value;
                 OnPropertyChanged(nameof(Groups));
             }
         }
 
 
-        public ProjectViewModel Project { get; set; }
 
-        private GroupManagementHelper _helper = new GroupManagementHelper();
 
 
         // TextBox Content
@@ -43,9 +42,9 @@ namespace ViewModel
         public string GroupNumber { get; set; }
 
 
-        private Group _selectedGroup;
+        private GroupViewModel _selectedGroup;
 
-        public Group SelectedGroup
+        public GroupViewModel SelectedGroup
         {
             get { return _selectedGroup; }
             set
@@ -53,10 +52,7 @@ namespace ViewModel
                 _selectedGroup = value;
                 if (_selectedGroup != null)
                 {
-                    this.Students = new ObservableCollection<Student>(_selectedGroup.Students);
-                } else
-                {
-                    this.Students = new ObservableCollection<Student>();
+                    Students = new ObservableCollection<StudentViewModel>();
                 }
             }
         }
@@ -68,19 +64,22 @@ namespace ViewModel
         public RelayCommand AddStudent { get; set; }
         public RelayCommand RemoveStudent { get; set; }
 
-        private ObservableCollection<Student> _students;
+        private ObservableCollection<StudentViewModel> _students;
 
-        public ObservableCollection<Student> Students
+        public ObservableCollection<StudentViewModel> Students
         {
             get { return _students; }
             set
             {
-                _students = value;
+                using var assessmentContext = new AssessmentContext();
+                if (SelectedGroup != null)
+                    _students = Factory.CreateStudents(assessmentContext.Groups.Where(grp => grp == SelectedGroup.GroupModel).Select(grp => grp.Students).FirstOrDefault());
+
                 OnPropertyChanged(nameof(Students));
             }
         }
 
-        public Student SelectedStudent { get; set; }
+        public StudentViewModel SelectedStudent { get; set; }
 
         /// <summary>
         /// Student Name TextBox Content
@@ -94,101 +93,73 @@ namespace ViewModel
 
         private void UpdateGroupsHelper()
         {
-            using var assessmentContext = new AssessmentContext();
-            var grps = assessmentContext.Projects.Where(proj => proj.ProjectId == Project.ProjectModel.ProjectId);
-            Groups = Factory.CreateGroups(grps.FirstOrDefault().Groups);
+            this.Project = Factory.GetProject(ProjectID);
+            Groups = Factory.CreateGroups(Project.ProjectModel.Groups);
         }
 
-        private void AddGroupsHelper()
+        private void UpdateStudentsHelper()
         {
             using var assessmentContext = new AssessmentContext();
-            var grps = assessmentContext.Projects.Where(proj => proj.ProjectId == Project.ProjectModel.ProjectId);
-            Group tempGroup = new Group();
-            tempGroup.Name = GroupName;
-            try
-            {
-                tempGroup.Number = int.Parse(GroupNumber);
-            }
-            catch
-            {
-                MessageBox.Show("Voer een groepsnummer in");
-            }
-            _helper.AddGroup(tempGroup, Project.ProjectModel);
-            UpdateGroupsHelper();
+
+            Students = new ObservableCollection<StudentViewModel>(); // doesn't actually make it into a new ObservableCollection, it just updates Students
+
+
         }
 
-        private void RemoveGroupsHelper()
-        {
-            using var assessmentContext = new AssessmentContext();
-            var grps = assessmentContext.Projects.Where(proj => proj.ProjectId == Project.ProjectModel.ProjectId);
-            Group tempGroup = new Group();
-            tempGroup.Name = GroupName;
-            try
-            {
-                tempGroup.Number = int.Parse(GroupNumber);
-            }
-            catch
-            {
-                MessageBox.Show("Voer een groepsnummer in");
-            }
-            _helper.AddGroup(tempGroup, Project.ProjectModel);
-            UpdateGroupsHelper();
-        }
 
         public GroupSelectionViewModel()
         {
+            this.Project = Factory.GetProject(this.ProjectID); // SHOULD BE THE PROJECT ID YOU GET FROM PROJECTSELECTION SCREEN
+            this.ProjectID = 4;
+
+            //this.ProjectID = projectID;
             using var assessmentContext = new AssessmentContext();
 
+            UpdateGroupsHelper(); // Initial load of all the groups
 
-            Project = Factory.GetProject(1);
-
-            List<Group> temp = new List<Group>();
-            var projects = assessmentContext.Projects
-                .Where(proj => proj.ProjectId == Project.ProjectModel.ProjectId).ToList();
             //GROUPS________________________________________
 
-            if (projects.Count() > 0)
-            {
-                foreach (var grp in projects.FirstOrDefault().Groups)
-                {
-                    temp.Add(grp);
-                }
-            }
-
-            Groups = Factory.CreateGroups(temp);
-
-            
             GroupName = "Groep Naam";
-            GroupNumber = "Groep Nummer"; 
+            GroupNumber = "Groep Nummer";
 
             AddGroup = new RelayCommand(() =>
             {
-                AddGroupsHelper();
-                
+                using var assessmentContext = new AssessmentContext();
+                var grps = assessmentContext.Projects.Where(proj => proj.ProjectId == Project.ProjectModel.ProjectId);
+                Group tempGroup = new Group();
+                tempGroup.Name = GroupName;
+                try
+                {
+                    tempGroup.Number = int.Parse(GroupNumber);
+                    _helper.AddGroup(tempGroup, Project.ProjectModel);
+                }
+                catch (System.FormatException)
+                {
+                    MessageBox.Show("Voer een groepsnummer in");
+                }
+
+                UpdateGroupsHelper();
             });
+
+
 
             RemoveGroup = new RelayCommand(() =>
             {
-
-                //Groups.Remove(SelectedGroup);
+                _helper.RemoveGroup(SelectedGroup.GroupModel);
+                UpdateGroupsHelper();
             });
 
             ChangeGroupName = new RelayCommand(() =>
             {
-                /*
-                ObservableCollection<Group> TempGroups = Groups;
-                for (int i = 0; i < TempGroups.Count; i++)
+                try
                 {
-                    if (TempGroups[i] == SelectedGroup)
-                    {
-                        TempGroups[i].Name = GroupName;
-                    }
+                    _helper.ChangeGroupName(SelectedGroup.GroupModel, GroupName, int.Parse(GroupNumber));
                 }
-                
-                Groups = new ObservableCollection<Group>(TempGroups);
-
-                OnPropertyChanged(nameof(Groups));
-                */
+                catch (System.FormatException)
+                {
+                    MessageBox.Show("Voer een groepsnummer in");
+                }
+                UpdateGroupsHelper();
             });
 
 
@@ -197,24 +168,34 @@ namespace ViewModel
             StudentName = "Student Naam";
             StudentNumber = "Student Nummer";
 
-
             AddStudent = new RelayCommand(() =>
             {
-                try
+                if (SelectedGroup != null)
                 {
-                    //SelectedGroup.Students.Add(new Student(int.Parse(StudentNumber), StudentName));
+                    try
+                    {
+                        _helper.AddStudent(new Student { Name = StudentName, StudentNumber = int.Parse(StudentNumber) }, SelectedGroup.GroupModel);
+                    }
+                    catch (System.FormatException)
+                    {
+                        MessageBox.Show("Voer een getal in voor het studentnummer");
+                    }
+                    //Students = new ObservableCollection<StudentViewModel>(_selectedGroup.Students);
+
                 }
-                catch
+                else
                 {
-                    MessageBox.Show("Voer een getal in voor het studentnummer");
+                    MessageBox.Show("Selecteer een groep");
                 }
-                Students = new ObservableCollection<Student>(_selectedGroup.Students);
             });
 
             RemoveStudent = new RelayCommand(() =>
             {
-                this.SelectedGroup.Students.Remove(SelectedStudent);
-                //this.Students = SelectedGroup.Students;
+                if (SelectedStudent != null)
+                {
+                    _helper.RemoveStudent(SelectedStudent.StudentModel, SelectedGroup.GroupModel);
+                } 
+                UpdateStudentsHelper();
             });
         }
     }

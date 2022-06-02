@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.EntityFrameworkCore;
 using Model;
 using Service.Database;
 
@@ -17,11 +13,11 @@ namespace Service.AssessmentServices
 
             assessmentContext.Groups.Add(group);
 
-            /* Assessment assessmentTemp    = new Assessment();
-             * assessmentTemp.Group         = group;
-             * assessmentTemp.Project       = project;
-             * assessmentContext.Assessments.Add(assessmentTemp);
-             */
+            Assessment assessmentTemp = new Assessment();
+            assessmentTemp.Group = group;
+            assessmentTemp.ProjectId = project.ProjectId;
+            assessmentContext.Assessments.Add(assessmentTemp);
+
 
             assessmentContext.SaveChanges();
         }
@@ -34,5 +30,46 @@ namespace Service.AssessmentServices
 
             assessmentContext.SaveChanges();
         }
+
+        public void ChangeGroupName(Group group, string newName, int newNumber)
+        {
+            using var assessmentContext = new AssessmentContext();
+            assessmentContext.Groups.Where(grp => grp == group).FirstOrDefault().Name = newName;
+            assessmentContext.Groups.Where(grp => grp == group).FirstOrDefault().Number = newNumber;
+
+            assessmentContext.SaveChanges();
+        }
+
+        public void AddStudent(Student student, Group selectedGroup)
+        {
+            using var assessmentContext = new AssessmentContext();
+            if (!assessmentContext.Students.Contains(student))
+            {
+                assessmentContext.Students.Add(student);
+            }
+
+            assessmentContext.SaveChanges();
+
+            assessmentContext.Groups.Where(grp => grp == selectedGroup).FirstOrDefault().Students.Add(assessmentContext.Students.Where(std => std.StudentNumber == student.StudentNumber).FirstOrDefault());
+            assessmentContext.Students.Where(std => std == student).FirstOrDefault().Groups.Add(assessmentContext.Groups.Where(grp => grp == selectedGroup).FirstOrDefault());
+
+            assessmentContext.SaveChanges();
+        }
+
+        public void RemoveStudent(Student selectedStudent, Group selectedGroup)
+        {
+            using var assessmentContext = new AssessmentContext();
+
+            if (assessmentContext.GroupStudents.Where(grpstd => grpstd.StudentNumber == assessmentContext.Students.Where(std => std.StudentNumber == selectedStudent.StudentNumber).Select(std => std.StudentNumber).Count()) > 0)
+            {
+
+            }
+
+            //assessmentContext.GroupStudents.Remove()
+
+            assessmentContext.SaveChanges();
+        }
     }
+
+
 }

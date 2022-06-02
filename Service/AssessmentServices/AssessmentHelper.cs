@@ -18,13 +18,13 @@ namespace Service.AssessmentServices
             double grade = 0;
             int ratingAmount = 0;
             Competence prevComp = assessment.Ratings.FirstOrDefault().Criterion.Competence;
-            
+
             IEnumerable<Rating> selectedRatings = assessment.Ratings;
             foreach (Rating rating in selectedRatings)
             {
                 if (prevComp != rating.Criterion.Competence)
                 {
-                    temp.Add(prevComp ,grade / critAmount);
+                    temp.Add(prevComp, grade / critAmount);
                     prevComp = rating.Criterion.Competence;
                     critAmount = 0;
                     grade = 0;

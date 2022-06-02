@@ -7,7 +7,8 @@ namespace ViewModel.GroupAdmin
 {
     public class GroupViewModel : SubjectViewModel
     {
-        public string Title { get => GroupModel.Name; }
+        public string Title { get => GroupModel.Name; set => OnPropertyChanged(nameof(Title)); }
+        public int Number { get => GroupModel.Number; set => OnPropertyChanged(nameof(Number)); }
         public Group GroupModel { get; set; }
         private AssessmentViewModel _selectedAssessment;
 
@@ -33,7 +34,7 @@ namespace ViewModel.GroupAdmin
 
         public override string ToString()
         {
-            return Title;
+            return $"{Title} {Number}";
         }
     }
 }

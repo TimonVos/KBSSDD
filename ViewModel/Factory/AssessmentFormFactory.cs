@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Windows.Media.TextFormatting;
 using Microsoft.EntityFrameworkCore;
 using Model;
 using Service.Database;
@@ -128,9 +127,7 @@ namespace ViewModel.Factory
         public GroupViewModel CreateGroup(Group group)
         {
             GroupViewModel temp;
-            temp = new GroupViewModel(_context.Groups.Where(grp => grp.GroupId == group.GroupId)
-                .Include(grp => grp.Students).Include(grp => grp.Assessments).Include(grp => grp.Assessments.FirstOrDefault().Project)
-                .FirstOrDefault());
+            temp = new GroupViewModel(_context.Groups.Where(grp => grp.GroupId == group.GroupId).Include(grp => grp.Students).FirstOrDefault()); // <-
             return temp;
         }
         /// <summary>
@@ -163,14 +160,14 @@ namespace ViewModel.Factory
         /// </summary>
         /// <param name="students">List of students given by the GroupViewModel out of the Students property</param>
         /// <returns>List of newly created student view models with properties set to students with the correct student numbers</returns>
-        public IEnumerable<StudentViewModel> CreateStudents(IEnumerable<Student> students)
+        public ObservableCollection<StudentViewModel> CreateStudents(IEnumerable<Student> students)
         {
             List<StudentViewModel> temp = new List<StudentViewModel>();
             foreach (Student student in students)
             {
                 temp.Add(CreateStudent(student));
             }
-            return temp;
+            return new ObservableCollection<StudentViewModel>(temp);
         }
         /// <summary>
         /// Create a view model for an indicator to allow the view to see the indicator information
