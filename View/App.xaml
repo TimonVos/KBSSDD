@@ -1,8 +1,9 @@
 ﻿<Application x:Class="View.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             StartupUri="StartingScreen/StartingScreen.xaml">
+             xmlns:formAssessment="clr-namespace:ViewModel.FormAssessment;assembly=ViewModel"
+             StartupUri="FormAssessment/FormAssessmentWindow.xaml">
     <Application.Resources>
-
+        <formAssessment:AssessmentFormViewModel x:Key="AssessmentFormViewModel"/>
     </Application.Resources>
 </Application>

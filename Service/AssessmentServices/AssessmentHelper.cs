@@ -1,4 +1,5 @@
-﻿using Model;
+﻿using Microsoft.EntityFrameworkCore;
+using Model;
 using Service.Database;
 
 namespace Service.AssessmentServices
@@ -116,8 +117,28 @@ namespace Service.AssessmentServices
                     db.SaveChanges();
                 }
             }
-
         }
 
+        public Requirement LoadRating(Assessment assessment, Criterion criterion)
+        {
+            using (var db = new AssessmentContext())
+            {
+                return db.Ratings
+                    .Where(r =>
+                        r.AssessmentId == assessment.AssessmentId && r.CriterionId == criterion.CriterionId).Include(r => r.Requirement)
+                    .FirstOrDefault().Requirement;
+            }
+        }
+
+        public List<Rating> GetRatings(Assessment assessment, Competence competence)
+        {
+            List<Rating> temp = new List<Rating>();
+            foreach (Rating rating in assessment.Ratings.Where(r => r.Criterion.CompetenceId == competence.CompetenceId))
+            {
+                temp.Add(rating);
+            }
+
+            return temp;
+        }
     }
 }
