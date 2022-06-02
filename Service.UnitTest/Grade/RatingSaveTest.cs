@@ -54,7 +54,7 @@ namespace Service.UnitTest.Grade
         [Test, Order(2), NonParallelizable]
         public void AssessmentHelper_CanUpdateRating()
         {
-            using var context = new AssessmentContext();
+            var context = new AssessmentContext();
             
             AssessmentHelper helper = new AssessmentHelper();
             helper.SaveRating(_assessment, _requirements[0]);
@@ -70,9 +70,15 @@ namespace Service.UnitTest.Grade
                 RequirementId = _requirements[1].RequirementId
             };
             helper.SaveRating(_assessment, _requirements[1]);
-            Assert.That(context.Assessments.
-                Where(assess => assess.AssessmentId == _assessment.AssessmentId).FirstOrDefault().
-                Ratings.Where(rat => rat.RequirementId == _requirements[1].RequirementId).FirstOrDefault().Requirement.RequirementId, Is.EqualTo(rating.Requirement.RequirementId));
+            /*            Assert.That(context.Assessments.
+                            Where(assess => assess.AssessmentId == _assessment.AssessmentId).FirstOrDefault().
+                            Ratings.Where(rat => rat.RequirementId == _requirements[1].RequirementId).FirstOrDefault().Requirement.RequirementId, Is.EqualTo(rating.Requirement.RequirementId));*/
+            context.Dispose();
+
+            context = new AssessmentContext();
+            var updatedRating = context.Ratings.Where(r => r.Assessment == _assessment && r.Criterion == _requirements[1].Criterion).SingleOrDefault();
+            Assert.That(updatedRating, Is.Not.Null);
+            Assert.That(updatedRating.RequirementId, Is.EqualTo(_requirements[1].RequirementId));
         }
 
         [TearDown]
