@@ -1,4 +1,5 @@
 ﻿using Model;
+using Service.Database;
 
 namespace Service.AssessmentServices
 {
@@ -94,6 +95,11 @@ namespace Service.AssessmentServices
             }
             return true;
         }
+        public void AddProject(Project project)
+        {
+            using var assessmentContext = new AssessmentContext();
 
+            assessmentContext.Add(project);
+        }
     }
 }

@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using ViewModel.StartingScreen;
 
 namespace View.StartingScreen
 {
@@ -22,6 +23,20 @@ namespace View.StartingScreen
         public StartingScreen()
         {
             InitializeComponent();
+
+        }
+        public string ProjectName;
+        public string ProjectCode;
+        public bool IsChecked { get; set; }
+
+        private void ProjectAdd_Click(object sender, RoutedEventArgs e)
+        {
+            ProjectName = ProjectN.Text;
+            ProjectCode = ProjectC.Text;
+        }
+
+        private void NextScreen_Click(object sender, RoutedEventArgs e)
+        {
 
         }
     }

@@ -1,5 +1,9 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
+using System.Windows.Input;
+using Microsoft.Toolkit.Mvvm.Input;
 using Model;
+using Service.Database;
 
 
 namespace ViewModel.StartingScreen
@@ -8,8 +12,8 @@ namespace ViewModel.StartingScreen
     {
 
         private IEnumerable<ProjectViewModel>? _projects;
-        public IEnumerable<ProjectViewModel>? Projects 
-        { 
+        public IEnumerable<ProjectViewModel>? Projects
+        {
             get => _projects;
             set
             {
@@ -18,11 +22,33 @@ namespace ViewModel.StartingScreen
             }
         }
 
+
+
+
+
+
+        // check voor voor id 1 of id 2 bij form voor 
+        public RelayCommand AddPrj { get; set; }
+
+        public string ProjectName { get; set; }
+        public string ProjectCode { get; set; }
+
         public StartingScreenViewModel()
         {
-            Projects = Factory.CreateProjects();
+            ProjectName = "Project naam";
+            ProjectCode = "Project code";
+
+            AddPrj = new RelayCommand(() =>
+            {
+                if(ProjectName != string.Empty && ProjectCode != string.Empty)
+                {
+
+                }
+            });
         }
+ 
     }
 }
+
 
 

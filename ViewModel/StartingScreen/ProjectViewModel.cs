@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using Microsoft.Toolkit.Mvvm.Input;
 using Model;
+using Service.Database;
 
 namespace ViewModel.StartingScreen
 {
-    public class ProjectViewModel
+    public class ProjectViewModel : ViewModelBase
     {
         public string Title
         {

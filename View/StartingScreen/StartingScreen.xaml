@@ -9,18 +9,22 @@
 
     <Window.Resources>
         <local:StartingScreenViewModel x:Key="ViewModel">
-            
+
         </local:StartingScreenViewModel>
     </Window.Resources>
-    
+
     <Window.DataContext>
         <Binding Source="{StaticResource ResourceKey=ViewModel}"/>
     </Window.DataContext>
-    
-    <Grid>
-        <TextBlock HorizontalAlignment="Center" Margin="0,92,0,0" TextWrapping="Wrap" Text="Selecteer het project" VerticalAlignment="Top"/>
-        <ListBox ItemsSource="{Binding Projects}" Margin="317,124,317,124" />
-        <Button Content="Ga verder" HorizontalAlignment="Left" Margin="375,339,0,0" VerticalAlignment="Top"/>
 
+    <Grid RenderTransformOrigin="0.5,0.492">
+        <TextBlock HorizontalAlignment="Center" Margin="0,92,0,0" TextWrapping="Wrap" Text="Selecteer het project" VerticalAlignment="Top"/>
+        <ListBox ItemsSource="{Binding Projects}" Margin="317,124,317,124" Background="White" />
+        <Button x:Name="NextScreen" Content="Ga verder" HorizontalAlignment="Left" Margin="375,339,0,0" VerticalAlignment="Top" Click="Button_Click"/>
+        <TextBlock HorizontalAlignment="Left" Margin="565,95,0,0" TextWrapping="Wrap" Text="Voeg een nieuw project toe aan de lijst" VerticalAlignment="Top"/>
+        <TextBox x:Name="ProjectN" HorizontalAlignment="Left" Margin="608,124,0,0" TextWrapping="Wrap" Text="Naam van Project" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="ProjectC" HorizontalAlignment="Left" Margin="608,147,0,0" TextWrapping="Wrap" Text="Code van Project" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.51,-0.456"/>
+        <Button x:Name="ProjectAdd" Content="Voeg project toe" HorizontalAlignment="Left" Margin="622,217,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.572,0.061" Click="ProjectAdd_Click" Command="{Binding AddPrj}"/>
+        <CheckBox x:Name="AfstudeerOrNot" Content="Afstudeer" HorizontalAlignment="Left" Margin="632,182,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>
