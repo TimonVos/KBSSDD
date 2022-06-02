@@ -21,8 +21,8 @@ namespace Service.Database.EntityFaker
         public static void Save(Competence competence)
         {
             using var context = GetContext();
-/*            if (competence.Form.FormId != 0)
-                context.Entry(competence.Form).State = EntityState.Unchanged;*/
+            if (competence.Form.FormId != 0)
+                context.Entry(competence.Form).State = EntityState.Modified;
             context.Competences.Add(competence);
             context.SaveChanges();
         }
