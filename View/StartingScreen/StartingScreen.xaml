@@ -3,14 +3,13 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:assessment="clr-namespace:ViewModel.FormAssessment;assembly=ViewModel"
         xmlns:local="clr-namespace:ViewModel.StartingScreen;assembly=ViewModel"
         mc:Ignorable="d"
         Title="StartingScreen" Height="450" Width="800">
 
     <Window.Resources>
-        <local:StartingScreenViewModel x:Key="ViewModel">
-
-        </local:StartingScreenViewModel>
+        <local:StartingScreenViewModel x:Key="ViewModel"/>
     </Window.Resources>
 
     <Window.DataContext>
@@ -19,8 +18,8 @@
 
     <Grid RenderTransformOrigin="0.5,0.492">
         <TextBlock HorizontalAlignment="Center" Margin="0,92,0,0" TextWrapping="Wrap" Text="Selecteer het project" VerticalAlignment="Top"/>
-        <ListBox ItemsSource="{Binding Projects}" Margin="317,124,317,124" Background="White" />
-        <Button x:Name="NextScreen" Content="Ga verder" HorizontalAlignment="Left" Margin="375,339,0,0" VerticalAlignment="Top" Click="Button_Click"/>
+        <ListBox SelectedItem="{Binding Project, Mode=TwoWay}" ItemsSource="{Binding Projects}" Margin="317,124,317,124" Background="White" />
+        <Button IsEnabled="{Binding CanContinue}" Tag="{Binding Project.ProjectModel}" x:Name="NextScreen" Content="Ga verder" HorizontalAlignment="Left" Margin="375,339,0,0" VerticalAlignment="Top" Click="NextScreen_Click"/>
         <TextBlock HorizontalAlignment="Left" Margin="565,95,0,0" TextWrapping="Wrap" Text="Voeg een nieuw project toe aan de lijst" VerticalAlignment="Top"/>
         <TextBox x:Name="ProjectN" HorizontalAlignment="Left" Margin="608,124,0,0" TextWrapping="Wrap" Text="Naam van Project" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="ProjectC" HorizontalAlignment="Left" Margin="608,147,0,0" TextWrapping="Wrap" Text="Code van Project" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.51,-0.456"/>

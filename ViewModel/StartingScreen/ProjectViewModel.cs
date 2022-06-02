@@ -18,7 +18,6 @@ namespace ViewModel.StartingScreen
         }
         public Project? ProjectModel { get; set; }
 
-
         public override string ToString()
         {
             return Title;

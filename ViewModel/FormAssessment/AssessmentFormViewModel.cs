@@ -13,6 +13,7 @@ namespace ViewModel.FormAssessment
         #region Properties
 
         public ProjectViewModel? SelectedProject { get; set; }
+        public Project? Project { get; set; }
         public IEnumerable<SubjectViewModel>? Subjects { get; set; }
 
         private SubjectViewModel? _selectedSubject;
@@ -88,10 +89,15 @@ namespace ViewModel.FormAssessment
         #endregion
         public AssessmentFormViewModel()
         {
+            SelectedProject = Factory.CreateProject(Project!);
             Form = Factory.CreateForm(SelectedProject.ProjectModel?.Form!);
             SelectedGroup = Factory.CreateGroup(SelectedProject.ProjectModel?.Groups?.Where(grp => grp.Name == "Groep 1").FirstOrDefault()!);
             Ratings = Factory.CreateRatings(SelectedGroup.SelectedAssessment.AssessmentModel?.Ratings!);
         }
 
+        public AssessmentFormViewModel(Project project)
+        {
+            Project = project;
+        }
     }
 }

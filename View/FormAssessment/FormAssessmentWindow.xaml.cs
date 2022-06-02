@@ -1,4 +1,6 @@
 ﻿using System.Windows;
+using Model;
+using ViewModel.FormAssessment;
 
 namespace View.FormAssessment
 {
@@ -7,8 +9,9 @@ namespace View.FormAssessment
     /// </summary>
     public partial class FormAssessmentWindow : Window
     {
-        public FormAssessmentWindow()
+        public FormAssessmentWindow(Project project) : base()
         {
+            Resources.Add("ViewModel", new AssessmentFormViewModel(project));
             InitializeComponent();
         }
     }

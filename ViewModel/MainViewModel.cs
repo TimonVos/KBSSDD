@@ -9,7 +9,7 @@ namespace ViewModel
 {
     public class MainViewModel
     {
-        Project Project { get; set; }
+        public Project? Project { get; set; }
 
     }
 }
