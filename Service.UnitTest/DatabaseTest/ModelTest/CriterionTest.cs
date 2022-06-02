@@ -12,7 +12,7 @@ namespace Service.UnitTest.DatabaseTest.ModelTest
         {
         }
 
-        #region Assert attributes
+        #region Attributes
 
         [Test]
         public void Criterion_name_is_optional()
@@ -35,7 +35,7 @@ namespace Service.UnitTest.DatabaseTest.ModelTest
 
         #endregion
 
-        #region Assert CRUD
+        #region CRUD
 
         [Test]
         public void Criterion_can_be_created()
@@ -123,7 +123,7 @@ namespace Service.UnitTest.DatabaseTest.ModelTest
 
         #endregion
 
-        #region Assert relationships
+        #region Relationships
 
         [Test]
         public void Criterion_can_belong_to_competences()

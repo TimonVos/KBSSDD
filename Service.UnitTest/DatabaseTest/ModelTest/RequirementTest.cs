@@ -14,23 +14,13 @@ namespace Service.UnitTest.DatabaseTest.ModelTest
         {
         }
 
-        #region Assert attributes
+        #region Attributes
 
-        [Test]
-        public void Requirement_id_cannot_be_inserted()
-        {
 
-        }
-
-        [Test]
-        public void Requirement_required_fields_are_not_nullable()
-        {
-
-        }
 
         #endregion
 
-        #region Assert CRUD
+        #region CRUD
 
         [Test]
         public void Requirement_can_be_created()
@@ -58,7 +48,7 @@ namespace Service.UnitTest.DatabaseTest.ModelTest
 
         #endregion
 
-        #region Assert relationships
+        #region Relationships
 
 
 
