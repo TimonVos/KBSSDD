@@ -72,7 +72,7 @@ namespace Service.UnitTest.Grade
             helper.SaveRating(_assessment, _requirements[1]);
             Assert.That(context.Assessments.
                 Where(assess => assess.AssessmentId == _assessment.AssessmentId).FirstOrDefault().
-                Ratings.Where(rat => rat.RequirementId == _requirements[1].RequirementId).Equals(rating));
+                Ratings.Where(rat => rat.RequirementId == _requirements[1].RequirementId).FirstOrDefault().Requirement.RequirementId, Is.EqualTo(rating.Requirement.RequirementId));
         }
 
         [TearDown]

@@ -100,7 +100,7 @@ namespace Service.AssessmentServices
         {
             using (var db = new AssessmentContext())
             {
-                var result = db.Ratings.SingleOrDefault(r => r.AssessmentId == assessment.AssessmentId);
+                var result = db.Ratings.SingleOrDefault(r => r.Assessment == assessment && r.Criterion == requirement.Criterion);
                 if (result != null)
                 {
                     result.RequirementId = requirement.RequirementId;
@@ -111,10 +111,8 @@ namespace Service.AssessmentServices
                     Rating temp = new Rating();
                     temp.AssessmentId = assessment.AssessmentId;
                     temp.RequirementId = requirement.RequirementId;
-                    temp.CriterionId = requirement.Criterion.CriterionId;
+                    temp.CriterionId = requirement.CriterionId;
                     db.Ratings.Add(temp);
-                    db.Assessments.Update(assessment);
-                    db.Requirements.Update(requirement);
                     db.SaveChanges();
                 }
             }
