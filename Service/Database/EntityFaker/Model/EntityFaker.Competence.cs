@@ -21,8 +21,8 @@ namespace Service.Database.EntityFaker
         public static void Save(Competence competence)
         {
             using var context = GetContext();
-            if (competence.Form.FormId != 0)
-                context.Entry(competence.Form).State = EntityState.Unchanged;
+/*            if (competence.Form.FormId != 0)
+                context.Entry(competence.Form).State = EntityState.Unchanged;*/
             context.Competences.Add(competence);
             context.SaveChanges();
         }
@@ -37,8 +37,11 @@ namespace Service.Database.EntityFaker
         public static void Remove(Competence competence, bool removeRelated = false)
         {
             using var context = GetContext();
-            context.Competences.Remove(competence);
-            context.SaveChanges();
+            if (context.Competences.Any(c => c == competence))
+            {
+                context.Competences.Remove(competence);
+                context.SaveChanges();
+            }
 
             if (removeRelated)
             {

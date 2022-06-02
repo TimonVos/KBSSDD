@@ -120,7 +120,7 @@ namespace Service.UnitTest.DatabaseTest.ModelTest
         [Test]
         public void Competence_can_be_deleted()
         {
-            var container = EntityFaker.Contained.CreateCompetence().Save();
+            using var container = EntityFaker.Contained.CreateCompetence().Save();
 
             AssessmentContext context;
 
