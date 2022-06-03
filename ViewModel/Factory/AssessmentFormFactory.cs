@@ -127,7 +127,7 @@ namespace ViewModel.Factory
         public GroupViewModel CreateGroup(Group group)
         {
             GroupViewModel temp;
-            temp = new GroupViewModel(_context.Groups.Where(grp => grp.GroupId == group.GroupId).Include(grp => grp.Students).FirstOrDefault()); // <-
+            temp = new GroupViewModel(_context.Groups.Where(grp => grp.GroupId == group.GroupId).Include(grp => grp.Students).FirstOrDefault());
             return temp;
         }
         /// <summary>
@@ -237,12 +237,13 @@ namespace ViewModel.Factory
         }
         public ProjectViewModel GetProject(int projectID)
         {
+            using var assessmentContext = new AssessmentContext();
             ProjectViewModel temp;
-            temp = new ProjectViewModel(_context.Projects.
+            temp = new ProjectViewModel(assessmentContext.Projects.
                 Where(prj => prj.ProjectId == projectID).
                 Include(prj => prj.Form).
                 Include(prj => prj.Assessments).
-                ThenInclude(assess => assess.Group).FirstOrDefault())!;
+                ThenInclude(assess => assess.Group).FirstOrDefault()!);
             return temp;
         }
     }

@@ -6,7 +6,7 @@ namespace Service.AssessmentServices
 {
     public class GroupManagementHelper
     {
-        public void AddGroup(Group group, Project project)
+        public void AddGroup(Group group, int projectID)
         {
             using var assessmentContext = new AssessmentContext();
             //assessmentContext.Groups.Add(group);
@@ -15,7 +15,7 @@ namespace Service.AssessmentServices
 
             Assessment assessmentTemp = new Assessment();
             assessmentTemp.Group = group;
-            assessmentTemp.ProjectId = project.ProjectId;
+            assessmentTemp.ProjectId = projectID;
             assessmentContext.Assessments.Add(assessmentTemp);
 
 

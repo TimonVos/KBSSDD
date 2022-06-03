@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Toolkit.Mvvm.Input;
 using Model;
 using Service.AssessmentServices;
@@ -14,8 +15,10 @@ namespace ViewModel
     {
 
         private int ProjectID;
-        public ProjectViewModel Project { get; set; }
+        public ProjectViewModel ProjectVM { get; set; }
         private GroupManagementHelper _helper = new GroupManagementHelper();
+
+        public RelayCommand StartAssessment { get; set; }
 
         public RelayCommand AddGroup { get; set; }
         public RelayCommand RemoveGroup { get; set; }
@@ -93,23 +96,27 @@ namespace ViewModel
 
         private void UpdateGroupsHelper()
         {
-            this.Project = Factory.GetProject(ProjectID);
-            Groups = Factory.CreateGroups(Project.ProjectModel.Groups);
+            using var assessmentContext = new AssessmentContext();
+            Project proj = assessmentContext.Projects.Where(prj => prj.ProjectId == this.ProjectID).Include(prj => prj.Assessments).ThenInclude(assessment => assessment.Group).FirstOrDefault()! ;
+            Groups = Factory.CreateGroups(proj.Groups);
         }
 
+        /// <summary>
+        /// Updates the contents of the Student ListBox
+        /// </summary>
         private void UpdateStudentsHelper()
         {
             using var assessmentContext = new AssessmentContext();
 
             Students = new ObservableCollection<StudentViewModel>(); // doesn't actually make it into a new ObservableCollection, it just updates Students
-
-
         }
 
-
+        /// <summary>
+        /// Constructor, builds the Groupselection screen
+        /// </summary>
         public GroupSelectionViewModel()
         {
-            this.Project = Factory.GetProject(this.ProjectID); // SHOULD BE THE PROJECT ID YOU GET FROM PROJECTSELECTION SCREEN
+            this.ProjectVM = Factory.GetProject(this.ProjectID); // SHOULD BE THE PROJECT ID YOU GET FROM PROJECTSELECTION SCREEN
             this.ProjectID = 4;
 
             //this.ProjectID = projectID;
@@ -125,13 +132,13 @@ namespace ViewModel
             AddGroup = new RelayCommand(() =>
             {
                 using var assessmentContext = new AssessmentContext();
-                var grps = assessmentContext.Projects.Where(proj => proj.ProjectId == Project.ProjectModel.ProjectId);
+                var grps = assessmentContext.Projects.Where(proj => proj.ProjectId == ProjectVM.ProjectModel.ProjectId);
                 Group tempGroup = new Group();
                 tempGroup.Name = GroupName;
                 try
                 {
                     tempGroup.Number = int.Parse(GroupNumber);
-                    _helper.AddGroup(tempGroup, Project.ProjectModel);
+                    _helper.AddGroup(tempGroup, ProjectID);
                 }
                 catch (System.FormatException)
                 {
@@ -145,7 +152,14 @@ namespace ViewModel
 
             RemoveGroup = new RelayCommand(() =>
             {
-                _helper.RemoveGroup(SelectedGroup.GroupModel);
+                if (SelectedGroup != null)
+                {
+                    _helper.RemoveGroup(SelectedGroup.GroupModel);
+                } else
+                {
+                    MessageBox.Show("Selecteer een groep");
+                }
+                
                 UpdateGroupsHelper();
             });
 
@@ -180,13 +194,12 @@ namespace ViewModel
                     {
                         MessageBox.Show("Voer een getal in voor het studentnummer");
                     }
-                    //Students = new ObservableCollection<StudentViewModel>(_selectedGroup.Students);
-
                 }
                 else
                 {
                     MessageBox.Show("Selecteer een groep");
                 }
+                UpdateStudentsHelper();
             });
 
             RemoveStudent = new RelayCommand(() =>
@@ -196,6 +209,13 @@ namespace ViewModel
                     _helper.RemoveStudent(SelectedStudent.StudentModel, SelectedGroup.GroupModel);
                 } 
                 UpdateStudentsHelper();
+            });
+
+
+
+            StartAssessment = new RelayCommand(() =>
+            {
+                //FormViewModel AssessmentScreen = new FormViewModel(SelectedGroup.GroupModel);
             });
         }
     }
