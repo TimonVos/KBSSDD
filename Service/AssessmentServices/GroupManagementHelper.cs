@@ -34,8 +34,8 @@ namespace Service.AssessmentServices
         public void ChangeGroupName(Group group, string newName, int newNumber)
         {
             using var assessmentContext = new AssessmentContext();
-            assessmentContext.Groups.Where(grp => grp == group).FirstOrDefault().Name = newName;
-            assessmentContext.Groups.Where(grp => grp == group).FirstOrDefault().Number = newNumber;
+            assessmentContext.Groups.Where(grp => grp == group).FirstOrDefault()!.Name = newName;
+            assessmentContext.Groups.Where(grp => grp == group).FirstOrDefault()!.Number = newNumber;
 
             assessmentContext.SaveChanges();
         }
@@ -50,8 +50,8 @@ namespace Service.AssessmentServices
 
             assessmentContext.SaveChanges();
 
-            assessmentContext.Groups.Where(grp => grp == selectedGroup).FirstOrDefault().Students.Add(assessmentContext.Students.Where(std => std.StudentNumber == student.StudentNumber).FirstOrDefault());
-            assessmentContext.Students.Where(std => std == student).FirstOrDefault().Groups.Add(assessmentContext.Groups.Where(grp => grp == selectedGroup).FirstOrDefault());
+            assessmentContext.Groups.Where(grp => grp == selectedGroup).FirstOrDefault()!.Students.Add(assessmentContext.Students.Where(std => std.StudentNumber == student.StudentNumber).FirstOrDefault()!);
+            assessmentContext.Students.Where(std => std == student).FirstOrDefault()!.Groups.Add(assessmentContext.Groups.Where(grp => grp == selectedGroup).FirstOrDefault()!);
 
             assessmentContext.SaveChanges();
         }
@@ -60,16 +60,28 @@ namespace Service.AssessmentServices
         {
             using var assessmentContext = new AssessmentContext();
 
-            if (assessmentContext.GroupStudents.Where(grpstd => grpstd.StudentNumber == assessmentContext.Students.Where(std => std.StudentNumber == selectedStudent.StudentNumber).Select(std => std.StudentNumber).Count()) > 0)
+            var counter = assessmentContext.GroupStudents.Where(grpstd => grpstd.StudentNumber == (assessmentContext.Students.Where(std => std.StudentNumber == selectedStudent.StudentNumber).Select(std => std.StudentNumber).FirstOrDefault())).Count();
+
+            GroupStudent groupStudent = assessmentContext.GroupStudents.Where(grpstd => grpstd.StudentNumber == selectedStudent.StudentNumber && grpstd.GroupId == selectedGroup.GroupId).FirstOrDefault()!;
+            assessmentContext.GroupStudents.Remove(groupStudent);
+
+            assessmentContext.SaveChanges();
+            CheckStudentTable(counter, selectedStudent);
+        }
+
+        public void CheckStudentTable(int counter, Student selectedStudent)
+        {
+            using var assessmentContext = new AssessmentContext();
+
+            if (counter <= 1)
             {
-
+                assessmentContext.Remove(selectedStudent);
             }
-
-            //assessmentContext.GroupStudents.Remove()
 
             assessmentContext.SaveChanges();
         }
     }
+
 
 
 }
