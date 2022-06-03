@@ -87,9 +87,15 @@ namespace ViewModel.FormAssessment
             }
         }
 
+        private IDictionary<Competence, double>? _competenceGrades;
         public IDictionary<Competence, double>? CompetenceGrades
         {
-            get => Helper.GetGrades(SelectedGroup?.SelectedAssessment.AssessmentModel!);
+            get => _competenceGrades;
+            set
+            {
+                _competenceGrades = value;
+                OnPropertyChanged(nameof(CompetenceGrades));
+            }
         }
         #endregion
         #region Commands
@@ -125,6 +131,8 @@ namespace ViewModel.FormAssessment
                 requirement.IsChecked = Helper.GetRating(SelectedGroup.Assessments.FirstOrDefault().AssessmentModel,
                     requirement.RequirementModel);
             }
+
+            CompetenceGrades = Helper.GetGrades(SelectedGroup?.SelectedAssessment.AssessmentModel!);
         }
         #endregion
 

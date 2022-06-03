@@ -204,7 +204,7 @@ namespace ViewModel.Factory
             AssessmentViewModel temp = new AssessmentViewModel();
             temp.AssessmentModel = _context?.Assessments.
                 Where(assess => assess.AssessmentId == assessment.AssessmentId)
-                .Include(assess => assess.Group).Include(a => a.Ratings).ThenInclude(r => r.Criterion).ThenInclude(cr => cr.Competence)
+                .Include(assess => assess.Group).Include(a => a.Ratings).ThenInclude(r => r.Criterion).ThenInclude(cr => cr.Competence).Include(a => a.Ratings).ThenInclude(r => r.Requirement).ThenInclude(r => r.Indicator)
                 .FirstOrDefault()!;
             return temp;
         }
