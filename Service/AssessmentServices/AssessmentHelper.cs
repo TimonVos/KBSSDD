@@ -36,7 +36,8 @@ namespace Service.AssessmentServices
                 grade += rating.Requirement.Indicator.Value;
                 if (ratingAmount == selectedRatings.Count())
                 {
-                    temp.Add(prevComp, Math.Round(grade / critAmount, 2));
+                    double newGrade = Math.Round(grade / critAmount, 2);
+                    temp.Add(prevComp, newGrade);
                 }
             }
             return temp;
@@ -52,10 +53,10 @@ namespace Service.AssessmentServices
             foreach (Competence comp in CompetenceGrades.Keys)
             {
 
-                finalGrade += (CompetenceGrades[comp]) * (comp.Weight / 100);
+                finalGrade += (CompetenceGrades[comp]) * comp.Weight;
             }
 
-            finalGrade = Math.Round(finalGrade);
+            finalGrade = Math.Round(finalGrade, 2);
             return finalGrade;
         }
         /// <summary>

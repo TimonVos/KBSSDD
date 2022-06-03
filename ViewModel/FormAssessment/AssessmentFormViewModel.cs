@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Data.OleDb;
 using System.Linq;
 using System.Security.RightsManagement;
 using System.Windows.Input;
@@ -18,6 +19,17 @@ namespace ViewModel.FormAssessment
     {
         #region Properties
 
+        private double _projectGrade;
+
+        public double ProjectGrade
+        {
+            get => _projectGrade;
+            set
+            {
+                _projectGrade = value;
+                OnPropertyChanged(nameof(ProjectGrade));
+            }
+        }
         public ProjectViewModel? SelectedProject { get; set; }
         public IEnumerable<SubjectViewModel>? Subjects { get; set; }
 
@@ -122,6 +134,16 @@ namespace ViewModel.FormAssessment
             }
 
             requirement.IsChecked = true;
+            using (var db = new AssessmentContext())
+            {
+                Assessment oldModel = SelectedGroup.Assessments.FirstOrDefault().AssessmentModel;
+                Assessment newModel = db.Assessments.
+                    Include(a=> a.Ratings).ThenInclude(r => r.Criterion).ThenInclude(c => c.Competence)
+                    .Include(a => a.Ratings).ThenInclude(r => r.Requirement).ThenInclude(r => r.Indicator)
+                    .First(a => a.AssessmentId == oldModel.AssessmentId);
+                SelectedGroup.Assessments.FirstOrDefault().AssessmentModel = newModel;
+            }
+            Load(requirement);
         }
 
         private void Load(RequirementViewModel requirement)
@@ -133,6 +155,7 @@ namespace ViewModel.FormAssessment
             }
 
             CompetenceGrades = Helper.GetGrades(SelectedGroup?.SelectedAssessment.AssessmentModel!);
+            ProjectGrade = Helper.CalculateFinalGrade(CompetenceGrades);
         }
         #endregion
 

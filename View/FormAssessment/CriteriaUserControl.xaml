@@ -16,47 +16,55 @@
                  BorderThickness="0">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <ItemsControl ItemsSource="{Binding Requirements}">
-                        <ItemsControl.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <WrapPanel/>
-                            </ItemsPanelTemplate>
-                        </ItemsControl.ItemsPanel>
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <Border>
-                                    <Border.BorderBrush>Black</Border.BorderBrush>
-                                    <Border.BorderThickness>2</Border.BorderThickness>
-                                    <Grid Background="DarkGray" Width="150" Height="30">
-                                        <WrapPanel>
-                                            <RadioButton
+                    <StackPanel>
+                        <TextBlock Text="{Binding }" 
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Center"
+                                   FontWeight="Black"
+                                   FontSize="16"
+                                   Foreground="AliceBlue"></TextBlock>
+                        <ItemsControl ItemsSource="{Binding Requirements}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <WrapPanel/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Border>
+                                        <Border.BorderBrush>Black</Border.BorderBrush>
+                                        <Border.BorderThickness>2</Border.BorderThickness>
+                                        <Grid Background="DarkGray" Width="150" Height="30">
+                                            <WrapPanel>
+                                                <RadioButton
                                                 GroupName="{Binding RequirementModel.Criterion.Name}"
                                                 Content="{Binding}" Loaded="RadioButton_Loaded">
-                                                <RadioButton.IsChecked>
-                                                    <Binding  Mode="TwoWay" Path="IsChecked"></Binding>
-                                                </RadioButton.IsChecked>
+                                                    <RadioButton.IsChecked>
+                                                        <Binding  Mode="TwoWay" Path="IsChecked"></Binding>
+                                                    </RadioButton.IsChecked>
                                                     <i:Interaction.Triggers>
-                                                    <i:EventTrigger EventName="Checked">
-                                                        <i:InvokeCommandAction 
+                                                        <i:EventTrigger EventName="Checked">
+                                                            <i:InvokeCommandAction 
                                                             Command="{Binding Source={StaticResource AssessmentFormViewModel}, 
                                                             Path=SaveCommand}" 
                                                             CommandParameter="{Binding}"/>
-                                                    </i:EventTrigger>
+                                                        </i:EventTrigger>
                                                         <i:EventTrigger EventName="Loaded">
                                                             <i:InvokeCommandAction 
                                                                 Command="{Binding Source={StaticResource AssessmentFormViewModel}, 
                                                             Path= LoadCommand}" 
                                                                 CommandParameter="{Binding}"/>
                                                         </i:EventTrigger>
-                                                </i:Interaction.Triggers>
-                                            </RadioButton>
-                                        </WrapPanel>
-                                        
-                                    </Grid>
-                                </Border>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
+                                                    </i:Interaction.Triggers>
+                                                </RadioButton>
+                                            </WrapPanel>
+
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
