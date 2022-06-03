@@ -47,7 +47,7 @@ namespace View.StartingScreen
         {
             var project = (Project)((Button)sender).Tag;
             Application.Current.Resources.Add("GroupSelectionViewModel", new GroupSelectionViewModel(project));
-            new GroupSelection.GroupSelection().Show();
+            new GroupSelection.GroupSelectionScreen().Show();
             Close();
         }
     }

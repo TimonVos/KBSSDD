@@ -19,9 +19,7 @@ namespace ViewModel
         private int ProjectID;
         public ProjectViewModel ProjectVM { get; set; }
         private GroupManagementHelper _helper = new GroupManagementHelper();
-
-        public RelayCommand StartAssessment { get; set; }
-
+        
         public RelayCommand AddGroup { get; set; }
         public RelayCommand RemoveGroup { get; set; }
         public RelayCommand ChangeGroupName { get; set; }
@@ -148,7 +146,6 @@ namespace ViewModel
                 {
                     MessageBox.Show("Voer een groepsnummer in");
                 }
-
                 UpdateGroupsHelper();
             });
 
@@ -215,12 +212,6 @@ namespace ViewModel
                 UpdateStudentsHelper();
             });
 
-
-
-            StartAssessment = new RelayCommand(() =>
-            {
-                //FormViewModel AssessmentScreen = new FormViewModel(SelectedGroup.GroupModel);
-            });
         }
     }
 }

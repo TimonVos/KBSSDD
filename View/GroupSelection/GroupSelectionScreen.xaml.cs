@@ -1,6 +1,5 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
-using Model;
 using View.FormAssessment;
 using ViewModel;
 using ViewModel.FormAssessment;
@@ -9,11 +8,11 @@ using ViewModel.GroupAdmin;
 namespace View.GroupSelection
 {
     /// <summary>
-    /// Interaction logic for GroupSelection.xaml
+    /// Interaction logic for GroupSelectionScreen.xaml
     /// </summary>
-    public partial class GroupSelection : Window
+    public partial class GroupSelectionScreen : Window
     {
-        public GroupSelection()
+        public GroupSelectionScreen()
         {
             this.InitializeComponent();
 
@@ -22,7 +21,10 @@ namespace View.GroupSelection
         private void StartAssessment(object sender, RoutedEventArgs e)
         {
             var group = (GroupViewModel)((Button)sender).Tag;
-            Application.Current.Resources.Add("AssessmentFormViewModel", new AssessmentFormViewModel(group));
+            if (!Application.Current.Resources.Contains("AssessmentFormViewModel"))
+            {
+                Application.Current.Resources.Add("AssessmentFormViewModel", new AssessmentFormViewModel(group));
+            }
             new FormAssessmentWindow().Show();
             Close();
         }
