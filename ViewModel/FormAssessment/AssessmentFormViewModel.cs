@@ -149,6 +149,5 @@ namespace ViewModel.FormAssessment
             var project = db.Projects.FirstOrDefault();
             Initialize(project, db.Assessments.Where(a => a.Project == project).Include(a => a.Group).FirstOrDefault().Group);
         }
-
     }
 }
