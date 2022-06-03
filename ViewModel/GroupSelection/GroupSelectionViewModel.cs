@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 using Microsoft.EntityFrameworkCore;
@@ -8,6 +9,7 @@ using Service.AssessmentServices;
 using Service.Database;
 using ViewModel.FormAssessment;
 using ViewModel.GroupAdmin;
+using ViewModel.StartingScreen;
 
 namespace ViewModel
 {
@@ -24,9 +26,9 @@ namespace ViewModel
         public RelayCommand RemoveGroup { get; set; }
         public RelayCommand ChangeGroupName { get; set; }
 
-        private ObservableCollection<GroupViewModel> _groups;
+        private IEnumerable<GroupViewModel> _groups;
 
-        public ObservableCollection<GroupViewModel> Groups
+        public IEnumerable<GroupViewModel> Groups
         {
             get { return _groups; }
             set
@@ -114,10 +116,10 @@ namespace ViewModel
         /// <summary>
         /// Constructor, builds the Groupselection screen
         /// </summary>
-        public GroupSelectionViewModel()
+        public GroupSelectionViewModel(Project project)
         {
-            this.ProjectVM = Factory.GetProject(this.ProjectID); // SHOULD BE THE PROJECT ID YOU GET FROM PROJECTSELECTION SCREEN
-            this.ProjectID = 4;
+            this.ProjectVM = Factory.CreateProject(project); // SHOULD BE THE PROJECT ID YOU GET FROM PROJECTSELECTION SCREEN
+            this.ProjectID = project.ProjectId;
 
             //this.ProjectID = projectID;
             using var assessmentContext = new AssessmentContext();

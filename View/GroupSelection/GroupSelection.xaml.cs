@@ -1,8 +1,12 @@
 ﻿using System.Windows;
+using System.Windows.Controls;
+using Model;
+using View.FormAssessment;
 using ViewModel;
+using ViewModel.FormAssessment;
+using ViewModel.GroupAdmin;
 
-
-namespace View
+namespace View.GroupSelection
 {
     /// <summary>
     /// Interaction logic for GroupSelection.xaml
@@ -13,12 +17,14 @@ namespace View
         {
             this.InitializeComponent();
 
-            this.DataContext = new GroupSelectionViewModel();
         }
 
         private void StartAssessment(object sender, RoutedEventArgs e)
         {
-
+            var group = (GroupViewModel)((Button)sender).Tag;
+            Application.Current.Resources.Add("AssessmentFormViewModel", new AssessmentFormViewModel(group));
+            new FormAssessmentWindow().Show();
+            Close();
         }
 
         private void DeleteSelectedStudent(object sender, RoutedEventArgs e)

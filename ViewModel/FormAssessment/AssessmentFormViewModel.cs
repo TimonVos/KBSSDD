@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Data.OleDb;
 using System.Linq;
+using System.Net.Mime;
 using System.Security.RightsManagement;
+using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using Microsoft.EntityFrameworkCore;
@@ -160,14 +162,8 @@ namespace ViewModel.FormAssessment
         }
         #endregion
 
-        public void Initialize(Project project, Group group)
-        {
-            SelectedProject = Factory.CreateProject(project);
-            SelectedGroup = Factory.CreateGroup(group);
-            Form = Factory.CreateForm(SelectedProject.ProjectModel.Form);
-            SelectedCompetence = Form.Competences.FirstOrDefault();
-        }
-        public AssessmentFormViewModel(Project project)
+
+        public AssessmentFormViewModel(GroupViewModel group)
         {
             SaveCommand = new RelayCommand<RequirementViewModel>((RequirementViewModel? requirement) =>
             {
@@ -177,8 +173,11 @@ namespace ViewModel.FormAssessment
             {
                 Load(requirement);
             });
-            using var db = new AssessmentContext();
-            Initialize(project, db.Assessments.Where(a => a.Project == project).Include(a => a.Group).FirstOrDefault().Group);
+            GroupSelectionViewModel temp = (GroupSelectionViewModel)Application.Current.FindResource("GroupSelectionViewModel");
+            SelectedProject = temp.ProjectVM;
+            SelectedGroup = group;
+            Form = Factory.CreateForm(SelectedProject.ProjectModel.Form);
+            SelectedCompetence = Form.Competences.FirstOrDefault();
         }
     }
 }

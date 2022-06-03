@@ -13,5 +13,11 @@ namespace View.FormAssessment
         {
             InitializeComponent();
         }
+
+        private void ManageStudentsButton_Click(object sender, RoutedEventArgs e)
+        {
+            new GroupSelection.GroupSelection().Show();
+            Close();
+        }
     }
 }

@@ -138,7 +138,7 @@ namespace ViewModel.Factory
         /// </summary>
         /// <param name="groups">List of groups given by the AssessmentFormViewModel out of the Project property</param>
         /// <returns>List of newly created group view models with properties set to groups with the correct ids</returns>
-        public IEnumerable<GroupViewModel> CreateGroups(List<Group> groups)
+        public IEnumerable<GroupViewModel> CreateGroups(IEnumerable<Group> groups)
         {
             List<GroupViewModel> temp = new List<GroupViewModel>();
             foreach (Group grp in groups)
