@@ -3,6 +3,7 @@ using System.Linq;
 using System.Security.RightsManagement;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.Toolkit.Mvvm.Input;
@@ -145,7 +146,8 @@ namespace ViewModel.FormAssessment
                 Load(requirement);
             });
             using var db = new AssessmentContext();
-            Initialize(db.Projects.FirstOrDefault(), db.Groups.FirstOrDefault());
+            var project = db.Projects.FirstOrDefault();
+            Initialize(project, db.Assessments.Where(a => a.Project == project).Include(a => a.Group).FirstOrDefault().Group);
         }
 
     }
