@@ -20,7 +20,6 @@
                 <DataTemplate>
                     <StackPanel>
                         <ListBox 
-                            
                             ItemsSource="{Binding Path=CompetenceGrades}"
                             SelectedValuePath="Value"
                             Focusable="False">
@@ -28,8 +27,8 @@
                                 <DataTemplate>
                                     <Border BorderBrush="Black" BorderThickness="2">
                                         <StackPanel>
-                                            <TextBlock Text="{Binding Path=Value}" />
                                             <TextBlock Text="{Binding Path=Key.Name}" />
+                                            <TextBlock Text="{Binding Path=Value}" />
                                         </StackPanel>
                                     </Border>
                                 </DataTemplate>
@@ -38,7 +37,6 @@
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
-            
         </ListView>
     </Grid>
 </UserControl>
