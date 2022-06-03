@@ -25,16 +25,20 @@ namespace View.StartingScreen
         public StartingScreen()
         {
             InitializeComponent();
+
+            this.DataContext = new StartingScreenViewModel();
         }
 
+
+        /*
         public string ProjectName;
         public string ProjectCode;
         public bool IsChecked { get; set; }
+        */
 
         private void ProjectAdd_Click(object sender, RoutedEventArgs e)
         {
-            ProjectName = ProjectN.Text;
-            ProjectCode = ProjectC.Text;
+           
         }
 
         private void NextScreen_Click(object sender, RoutedEventArgs e)
