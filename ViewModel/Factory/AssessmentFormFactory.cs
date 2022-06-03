@@ -244,16 +244,16 @@ namespace ViewModel.Factory
             temp.ProjectModel = _context.Projects.Where(p => p.ProjectId == project.ProjectId).Include(p => p.Form).FirstOrDefault();
             return temp;
         }
-        public IEnumerable<ProjectViewModel> CreateProjects()
+        public ObservableCollection<ProjectViewModel> CreateProjects()
         {
-            AssessmentContext context = new AssessmentContext();
+            using var assessmentContext = new AssessmentContext();
             List<ProjectViewModel> temp = new List<ProjectViewModel>();
-            foreach (Project project in context.Projects!)
+            foreach (Project project in assessmentContext.Projects!)
             {
                 temp.Add(CreateProject(project));
             }
 
-            return temp;
+            return new ObservableCollection<ProjectViewModel>(temp);
         }
     }
 }
