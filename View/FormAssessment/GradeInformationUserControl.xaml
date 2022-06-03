@@ -8,37 +8,29 @@
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance formAssessment:AssessmentFormViewModel}">
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"></RowDefinition>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"></ColumnDefinition>
-            <ColumnDefinition Width="Auto"></ColumnDefinition>
-        </Grid.ColumnDefinitions>
-        <ListView ItemsSource="{Binding }">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel>
-                        <ListBox 
-                            
-                            ItemsSource="{Binding Path=CompetenceGrades}"
-                            SelectedValuePath="Value"
-                            Focusable="False">
-                            <ListBox.ItemTemplate>
-                                <DataTemplate>
-                                    <Border BorderBrush="Black" BorderThickness="2">
-                                        <StackPanel>
-                                            <TextBlock Text="{Binding Path=Value}" />
-                                            <TextBlock Text="{Binding Path=Key.Name}" />
-                                        </StackPanel>
-                                    </Border>
-                                </DataTemplate>
-                            </ListBox.ItemTemplate>
-                        </ListBox>
-                    </StackPanel>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-            
-        </ListView>
+        <StackPanel>
+            <ListBox 
+                ItemsSource="{Binding Source={StaticResource AssessmentFormViewModel},Path=CompetenceGrades}"
+                SelectedValuePath="Value"
+                Focusable="False">
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel></WrapPanel>
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderBrush="Black" BorderThickness="2">
+                            <StackPanel>
+                                <TextBlock Text="{Binding Path=Key.Name}" />
+                                <TextBlock Text="{Binding Path=Value}" />
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <TextBlock Text="{Binding Path=ProjectGrade, 
+                 StringFormat='Project Cijfer: {0}'}" />
+        </StackPanel>
     </Grid>
 </UserControl>

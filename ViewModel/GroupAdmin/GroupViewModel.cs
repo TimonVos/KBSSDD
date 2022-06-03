@@ -21,18 +21,18 @@ namespace ViewModel.GroupAdmin
                 OnPropertyChanged(nameof(SelectedAssessment));
             }
         }
-        public IEnumerable<AssessmentViewModel> Assessments { get; set; }
-        public IEnumerable<StudentViewModel> Students { get; set; }
+        public IEnumerable<AssessmentViewModel>? Assessments { get; set; }
+        public IEnumerable<StudentViewModel>? Students { get; set; }
 
         public GroupViewModel(Group grpMdl)
         {
             GroupModel = grpMdl;
             Students = Factory.CreateStudents(GroupModel.Students);
             Assessments = Factory.CreateAssessments(GroupModel.Assessments);
-            _selectedAssessment = Assessments.FirstOrDefault();
+            _selectedAssessment = Assessments?.FirstOrDefault()!;
         }
 
-        public override string ToString()
+        public override string? ToString()
         {
             return $"{Title} {Number}";
         }

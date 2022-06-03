@@ -9,11 +9,8 @@
         mc:Ignorable="d"
         Title="Beoordeling formulier" Height="auto" Width="auto"
         Background="#FF3A3A3A">
-    <Window.Resources>
-        <viewModel:AssessmentFormViewModel x:Key="ViewModel"/>
-    </Window.Resources>
     <Window.DataContext>
-        <Binding Source="{StaticResource ResourceKey=ViewModel}"></Binding>
+        <Binding Source="{StaticResource ResourceKey=AssessmentFormViewModel}"></Binding>
     </Window.DataContext>
     <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Margin="15">
         <Grid.RowDefinitions>
@@ -54,28 +51,28 @@
         <Border Grid.Column="0" Grid.Row="2" Grid.RowSpan="3" >
             <Border.BorderBrush>AliceBlue</Border.BorderBrush>
             <Border.BorderThickness>3</Border.BorderThickness>
-            <ScrollViewer CanContentScroll="True" VerticalScrollBarVisibility="Auto">
-                <StackPanel MaxHeight="400" Width="200" Margin="5" Background="DarkGray">
-                    <Label  Margin="5" 
+            <ScrollViewer Height="400" CanContentScroll="True" VerticalScrollBarVisibility="Auto">
+                <DockPanel Width="200" Background="DarkGray">
+                    <Label DockPanel.Dock="Top"  Margin="5" 
                             HorizontalAlignment="Center" VerticalAlignment="Center"
                             HorizontalContentAlignment="Center"
                             VerticalContentAlignment="Center"
-                           MaxWidth="175" MaxHeight="25" 
-                           Content="{Binding SelectedCompetence.Title}"/>
-                    <Label  Margin="5" 
+                            MaxWidth="175" MaxHeight="25" 
+                            Content="{Binding SelectedCompetence.Title}"/>
+                    <Label DockPanel.Dock="Top" Margin="5" 
                            HorizontalAlignment="Center" 
                            HorizontalContentAlignment="Center"
                            VerticalContentAlignment="Center"
                            VerticalAlignment="Center" MaxWidth="175" MaxHeight="25" 
                            Content="Criteria: "/>
-                    <view:CriteriaInformationUserControl ></view:CriteriaInformationUserControl>
-                </StackPanel>
+                    <view:CriteriaInformationUserControl DockPanel.Dock="Top" ></view:CriteriaInformationUserControl>
+                </DockPanel>
             </ScrollViewer>
         </Border>
         <Grid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" 
               Width="350" Height="125" Background="DarkGray" 
               Margin="0,25,50,0">
-            <view:GradeInformationUserControl></view:GradeInformationUserControl>
+            <view:GradeInformationUserControl Grid.Row="0" Grid.Column="0"></view:GradeInformationUserControl>
         </Grid>
         <ListBox 
             SelectionMode="Single"
@@ -112,11 +109,8 @@
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
-            <view:CriteriaUserControl></view:CriteriaUserControl>
+            <view:CriteriaUserControl/>
         </StackPanel>
         <Button Grid.Row="5" Grid.Column="0" Height="30" Width="150" Content="Opslaan"  VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"></Button>
-        <!--
-        <TextBox Grid.Row="5" Grid.Column ="1" VerticalAlignment="Center" Height="50" HorizontalContentAlignment="Left" VerticalContentAlignment="Top" Text="Opmerkingen"></TextBox>
-        -->    
-</Grid>
+    </Grid>
 </Window>
