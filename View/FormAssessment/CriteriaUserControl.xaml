@@ -31,7 +31,7 @@
                                         <WrapPanel>
                                             <RadioButton
                                                 GroupName="{Binding RequirementModel.Criterion.Name}"
-                                                Content="{Binding}" Checked="RadioButton_Checked">
+                                                Content="{Binding}" Loaded="RadioButton_Loaded">
                                                 <RadioButton.IsChecked>
                                                     <Binding  Mode="TwoWay" Path="IsChecked"></Binding>
                                                 </RadioButton.IsChecked>
@@ -42,6 +42,12 @@
                                                             Path=SaveCommand}" 
                                                             CommandParameter="{Binding}"/>
                                                     </i:EventTrigger>
+                                                        <i:EventTrigger EventName="Loaded">
+                                                            <i:InvokeCommandAction 
+                                                                Command="{Binding Source={StaticResource AssessmentFormViewModel}, 
+                                                            Path= LoadCommand}" 
+                                                                CommandParameter="{Binding}"/>
+                                                        </i:EventTrigger>
                                                 </i:Interaction.Triggers>
                                             </RadioButton>
                                         </WrapPanel>

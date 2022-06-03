@@ -118,26 +118,18 @@ namespace Service.AssessmentServices
                 }
             }
         }
-
-        public Requirement LoadRating(Assessment assessment, Criterion criterion)
+        
+        public bool GetRating(Assessment assessment, Requirement requirement)
         {
+            var temp = false;
             using (var db = new AssessmentContext())
             {
-                return db.Ratings
-                    .Where(r =>
-                        r.AssessmentId == assessment.AssessmentId && r.CriterionId == criterion.CriterionId).Include(r => r.Requirement)
-                    .FirstOrDefault().Requirement;
+                if (db.Ratings.SingleOrDefault(r =>
+                        r.Assessment == assessment && r.RequirementId == requirement.RequirementId) != null)
+                {
+                    temp = true;
+                }
             }
-        }
-
-        public List<Rating> GetRatings(Assessment assessment, Competence competence)
-        {
-            List<Rating> temp = new List<Rating>();
-            foreach (Rating rating in assessment.Ratings.Where(r => r.Criterion.CompetenceId == competence.CompetenceId))
-            {
-                temp.Add(rating);
-            }
-
             return temp;
         }
     }

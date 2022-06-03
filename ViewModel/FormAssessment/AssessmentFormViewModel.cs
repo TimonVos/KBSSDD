@@ -20,17 +20,6 @@ namespace ViewModel.FormAssessment
         public ProjectViewModel? SelectedProject { get; set; }
         public IEnumerable<SubjectViewModel>? Subjects { get; set; }
 
-        private List<RequirementViewModel> _selectedRequirements { get; set; }
-
-        public List<RequirementViewModel> SelectedRequirements
-        {
-            get => _selectedRequirements;
-            set
-            {
-                _selectedRequirements = value;
-                OnPropertyChanged(nameof(SelectedRequirements));
-            }
-        }
         private SubjectViewModel _selectedSubject;
 
         public SubjectViewModel? SelectedSubject
@@ -80,19 +69,8 @@ namespace ViewModel.FormAssessment
             get => _selectedCompetence;
             set
             {
-                if (_selectedCompetence != null)
-                {
-                    foreach (CriterionViewModel criterion in _selectedCompetence.Criteria)
-                    {
-                        foreach (RequirementViewModel requirement in criterion.Requirements)
-                        {
-                            requirement.IsChecked = false;
-                        }
-                    }
-                }
                 _selectedCompetence = value;
                 OnPropertyChanged(nameof(SelectedCompetence));
-                Load();
             }
         }
 
@@ -116,6 +94,7 @@ namespace ViewModel.FormAssessment
         #region Commands
 
         public ICommand SaveCommand { get; set; }
+        public ICommand LoadCommand { get; set; }
 
         private void Save(RequirementViewModel requirement)
         {
@@ -138,25 +117,12 @@ namespace ViewModel.FormAssessment
             requirement.IsChecked = true;
         }
 
-        private void Load()
+        private void Load(RequirementViewModel requirement)
         {
-            SelectedRequirements.Clear();
             using (var db = new AssessmentContext())
             {
-                var ratings = Helper.GetRatings(SelectedGroup.Assessments.FirstOrDefault().AssessmentModel, SelectedCompetence.CompetenceModel);
-                foreach (var rating in ratings)
-                {
-                    foreach (CriterionViewModel criterion in SelectedCompetence.Criteria)
-                    {
-                        if (rating.CriterionId == criterion.CriterionModel.CriterionId)
-                        {
-                            RequirementViewModel temp = criterion.Requirements
-                                .Where(r => r.RequirementModel.RequirementId == rating.RequirementId).FirstOrDefault();
-                            temp.IsChecked = true;
-                            SelectedRequirements.Add(temp);
-                        }
-                    }
-                }
+                requirement.IsChecked = Helper.GetRating(SelectedGroup.Assessments.FirstOrDefault().AssessmentModel,
+                    requirement.RequirementModel);
             }
         }
         #endregion
@@ -166,7 +132,6 @@ namespace ViewModel.FormAssessment
             SelectedProject = Factory.CreateProject(project);
             SelectedGroup = Factory.CreateGroup(group);
             Form = Factory.CreateForm(SelectedProject.ProjectModel.Form);
-            SelectedRequirements = new List<RequirementViewModel>();
             SelectedCompetence = Form.Competences.FirstOrDefault();
         }
         public AssessmentFormViewModel()
@@ -174,6 +139,10 @@ namespace ViewModel.FormAssessment
             SaveCommand = new RelayCommand<RequirementViewModel>((RequirementViewModel? requirement) =>
             {
                 Save(requirement!);
+            });
+            LoadCommand = new RelayCommand<RequirementViewModel>((RequirementViewModel? requirement) =>
+            {
+                Load(requirement);
             });
             using var db = new AssessmentContext();
             Initialize(db.Projects.FirstOrDefault(), db.Groups.FirstOrDefault());
