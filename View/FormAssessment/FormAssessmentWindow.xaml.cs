@@ -9,9 +9,8 @@ namespace View.FormAssessment
     /// </summary>
     public partial class FormAssessmentWindow : Window
     {
-        public FormAssessmentWindow(Project project) : base()
+        public FormAssessmentWindow() : base()
         {
-            Resources.Add("ViewModel", new AssessmentFormViewModel(project));
             InitializeComponent();
         }
     }

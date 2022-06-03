@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Model;
 using View.FormAssessment;
+using ViewModel.FormAssessment;
 using ViewModel.StartingScreen;
 
 namespace View.StartingScreen
@@ -40,7 +41,8 @@ namespace View.StartingScreen
         private void NextScreen_Click(object sender, RoutedEventArgs e)
         {
             var project = (Project)((Button)sender).Tag;
-            new FormAssessmentWindow(project).Show();
+            Application.Current.Resources.Add("AssessmentFormViewModel", new AssessmentFormViewModel(project));
+            new FormAssessmentWindow().Show();
             Close();
         }
     }

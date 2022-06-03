@@ -167,7 +167,7 @@ namespace ViewModel.FormAssessment
             Form = Factory.CreateForm(SelectedProject.ProjectModel.Form);
             SelectedCompetence = Form.Competences.FirstOrDefault();
         }
-        public AssessmentFormViewModel()
+        public AssessmentFormViewModel(Project project)
         {
             SaveCommand = new RelayCommand<RequirementViewModel>((RequirementViewModel? requirement) =>
             {
@@ -178,7 +178,6 @@ namespace ViewModel.FormAssessment
                 Load(requirement);
             });
             using var db = new AssessmentContext();
-            var project = db.Projects.FirstOrDefault();
             Initialize(project, db.Assessments.Where(a => a.Project == project).Include(a => a.Group).FirstOrDefault().Group);
         }
     }
