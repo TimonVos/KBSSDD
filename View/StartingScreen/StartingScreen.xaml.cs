@@ -11,6 +11,10 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Model;
+using View.FormAssessment;
+using ViewModel.FormAssessment;
+using ViewModel.StartingScreen;
 
 namespace View.StartingScreen
 {
@@ -22,7 +26,24 @@ namespace View.StartingScreen
         public StartingScreen()
         {
             InitializeComponent();
+        }
 
+        public string ProjectName;
+        public string ProjectCode;
+        public bool IsChecked { get; set; }
+
+        private void ProjectAdd_Click(object sender, RoutedEventArgs e)
+        {
+            ProjectName = ProjectN.Text;
+            ProjectCode = ProjectC.Text;
+        }
+
+        private void NextScreen_Click(object sender, RoutedEventArgs e)
+        {
+            var project = (Project)((Button)sender).Tag;
+            Application.Current.Resources.Add("AssessmentFormViewModel", new AssessmentFormViewModel(project));
+            new FormAssessmentWindow().Show();
+            Close();
         }
     }
 }

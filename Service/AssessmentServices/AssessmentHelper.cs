@@ -133,5 +133,11 @@ namespace Service.AssessmentServices
             }
             return temp;
         }
+        public void AddProject(Project project)
+        {
+            using var assessmentContext = new AssessmentContext();
+
+            assessmentContext.Add(project);
+        }
     }
 }
