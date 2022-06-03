@@ -34,7 +34,17 @@ namespace ViewModel.FormAssessment
         }
         public ProjectViewModel? SelectedProject { get; set; }
         public Project? Project { get; set; }
-        public IEnumerable<SubjectViewModel>? Subjects { get; set; }
+
+        private IEnumerable<SubjectViewModel> _subjects;
+        public IEnumerable<SubjectViewModel>? Subjects
+        {
+            get => _subjects;
+            set
+            {
+                _subjects = value;
+                OnPropertyChanged(nameof(Subjects));
+            }
+        }
 
         private SubjectViewModel _selectedSubject;
 
@@ -57,9 +67,12 @@ namespace ViewModel.FormAssessment
                 _selectedGroup = value;
                 List<SubjectViewModel> temp = new List<SubjectViewModel>();
                 temp.Add(_selectedGroup!);
-                foreach (StudentViewModel std in _selectedGroup?.Students!)
+                if (_selectedGroup.Students != null)
                 {
-                    temp.Add(std);
+                    foreach (StudentViewModel std in _selectedGroup?.Students!)
+                    {
+                        temp.Add(std);
+                    }
                 }
                 Subjects = temp;
                 SelectedSubject = _selectedGroup;

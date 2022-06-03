@@ -99,7 +99,9 @@ namespace ViewModel
         private void UpdateGroupsHelper()
         {
             using var assessmentContext = new AssessmentContext();
-            Project proj = assessmentContext.Projects.Where(prj => prj.ProjectId == this.ProjectID).Include(prj => prj.Assessments).ThenInclude(assessment => assessment.Group).FirstOrDefault()! ;
+            Project proj = assessmentContext.Projects.Where(prj => prj.ProjectId == this.ProjectID).
+                Include(prj => prj.Assessments).ThenInclude(assessment => assessment.Group).
+                ThenInclude(g => g.Assessments).FirstOrDefault()! ;
             Groups = Factory.CreateGroups(proj.Groups);
         }
 

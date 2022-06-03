@@ -7,5 +7,9 @@ namespace ViewModel.GroupAdmin
         public string? Title { get; set; }
         public AssessmentViewModel? Assessment { get; set; }
 
+        public override string ToString()
+        {
+            return Title;
+        }
     }
 }
