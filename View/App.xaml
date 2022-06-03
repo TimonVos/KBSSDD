@@ -4,6 +4,7 @@
              xmlns:viewmodel="clr-namespace:ViewModel;assembly=ViewModel"
              StartupUri="StartingScreen/StartingScreen.xaml">
     <Application.Resources>
+        <formAssessment:AssessmentFormViewModel x:Key="AssessmentFormViewModel"/>
         <viewmodel:MainViewModel x:Key="MainData"></viewmodel:MainViewModel>
     </Application.Resources>
 </Application>

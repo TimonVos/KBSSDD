@@ -15,5 +15,10 @@ namespace ViewModel.FormAssessment
             CriterionModel = crit;
             Requirements = Factory.CreateRequirements(CriterionModel.Requirements);
         }
+
+        public override string ToString()
+        {
+            return Title;
+        }
     }
 }

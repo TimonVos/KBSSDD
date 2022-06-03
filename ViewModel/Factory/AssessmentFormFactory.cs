@@ -129,7 +129,7 @@ namespace ViewModel.Factory
         {
             GroupViewModel temp;
             temp = new GroupViewModel(_context?.Groups.Where(grp => grp.GroupId == @group.GroupId)
-                .Include(grp => grp.Students).Include(grp => grp.Assessments)
+                .Include(grp => grp.Students).Include(grp => grp.Assessments).ThenInclude(a => a.Ratings)
                 .FirstOrDefault()!);
             return temp;
         }
@@ -138,7 +138,7 @@ namespace ViewModel.Factory
         /// </summary>
         /// <param name="groups">List of groups given by the AssessmentFormViewModel out of the Project property</param>
         /// <returns>List of newly created group view models with properties set to groups with the correct ids</returns>
-        public IEnumerable<GroupViewModel> CreateGroups(IEnumerable<Group> groups)
+        public IEnumerable<GroupViewModel> CreateGroups(List<Group> groups)
         {
             List<GroupViewModel> temp = new List<GroupViewModel>();
             foreach (Group grp in groups)
@@ -204,7 +204,7 @@ namespace ViewModel.Factory
             AssessmentViewModel temp = new AssessmentViewModel();
             temp.AssessmentModel = _context?.Assessments.
                 Where(assess => assess.AssessmentId == assessment.AssessmentId)
-                .Include(assess => assess.Group)
+                .Include(assess => assess.Group).Include(a => a.Ratings).ThenInclude(r => r.Criterion).ThenInclude(cr => cr.Competence).Include(a => a.Ratings).ThenInclude(r => r.Requirement).ThenInclude(r => r.Indicator)
                 .FirstOrDefault()!;
             return temp;
         }
@@ -224,7 +224,7 @@ namespace ViewModel.Factory
             temp.RatingModel = _context?.Ratings.Where(rat =>
                     rat.AssessmentId == rating.AssessmentId && rat.CriterionId == rating.CriterionId)
                 .Include(rat => rat.Indicator)
-                .Include(rat => rat.Requirement).FirstOrDefault()!;
+                .Include(rat => rat.Requirement).Include(r => r.Criterion).ThenInclude(c => c.Competence).FirstOrDefault()!;
             return temp;
         }
 
@@ -238,21 +238,10 @@ namespace ViewModel.Factory
 
             return temp;
         }
-        /*
-        public ProjectViewModel GetProject()
-        {
-            ProjectViewModel temp;
-            temp = new ProjectViewModel(_context.Projects.
-                Include(prj => prj.Form).
-                Include(prj => prj.Assessments).
-                ThenInclude(assess => assess.Group).FirstOrDefault())!;
-            return temp;
-        }
-        */
         public ProjectViewModel CreateProject(Project project)
         {
             ProjectViewModel temp = new ProjectViewModel();
-            temp.ProjectModel = project;
+            temp.ProjectModel = _context.Projects.Where(p => p.ProjectId == project.ProjectId).Include(p => p.Form).FirstOrDefault();
             return temp;
         }
         public IEnumerable<ProjectViewModel> CreateProjects()

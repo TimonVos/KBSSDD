@@ -31,7 +31,7 @@ namespace ViewModel.GroupAdmin
             _selectedAssessment = Assessments?.FirstOrDefault()!;
         }
 
-        public override string ToString()
+        public override string? ToString()
         {
             return Title;
         }

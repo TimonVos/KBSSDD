@@ -17,5 +17,10 @@ namespace View.FormAssessment
         {
 
         }
+
+        private void RadioButton_Loaded(object sender, RoutedEventArgs e)
+        {
+            
+        }
     }
 }

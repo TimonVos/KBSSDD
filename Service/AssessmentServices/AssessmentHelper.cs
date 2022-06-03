@@ -1,4 +1,5 @@
-﻿using Model;
+﻿using Microsoft.EntityFrameworkCore;
+using Model;
 using Service.Database;
 
 namespace Service.AssessmentServices
@@ -35,7 +36,8 @@ namespace Service.AssessmentServices
                 grade += rating.Requirement.Indicator.Value;
                 if (ratingAmount == selectedRatings.Count())
                 {
-                    temp.Add(prevComp, Math.Round(grade / critAmount, 2));
+                    double newGrade = Math.Round(grade / critAmount, 2);
+                    temp.Add(prevComp, newGrade);
                 }
             }
             return temp;
@@ -51,10 +53,10 @@ namespace Service.AssessmentServices
             foreach (Competence comp in CompetenceGrades.Keys)
             {
 
-                finalGrade += (CompetenceGrades[comp]) * (comp.Weight / 100);
+                finalGrade += (CompetenceGrades[comp]) * comp.Weight;
             }
 
-            finalGrade = Math.Round(finalGrade);
+            finalGrade = Math.Round(finalGrade, 2);
             return finalGrade;
         }
         /// <summary>
@@ -94,6 +96,42 @@ namespace Service.AssessmentServices
                 }
             }
             return true;
+        }
+
+        public void SaveRating(Assessment assessment, Requirement requirement)
+        {
+            using (var db = new AssessmentContext())
+            {
+                var result = db.Ratings.SingleOrDefault(r => r.Assessment == assessment && r.Criterion == requirement.Criterion);
+                if (result != null)
+                {
+                    result.RequirementId = requirement.RequirementId;
+                    db.SaveChanges();
+                }
+                else
+                {
+                    Rating temp = new Rating();
+                    temp.AssessmentId = assessment.AssessmentId;
+                    temp.RequirementId = requirement.RequirementId;
+                    temp.CriterionId = requirement.CriterionId;
+                    db.Ratings.Add(temp);
+                    db.SaveChanges();
+                }
+            }
+        }
+        
+        public bool GetRating(Assessment assessment, Requirement requirement)
+        {
+            var temp = false;
+            using (var db = new AssessmentContext())
+            {
+                if (db.Ratings.SingleOrDefault(r =>
+                        r.Assessment == assessment && r.RequirementId == requirement.RequirementId) != null)
+                {
+                    temp = true;
+                }
+            }
+            return temp;
         }
         public void AddProject(Project project)
         {
