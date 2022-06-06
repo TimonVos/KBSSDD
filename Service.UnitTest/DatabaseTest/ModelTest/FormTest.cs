@@ -114,13 +114,25 @@ namespace Service.UnitTest.DatabaseTest.ModelTest
         [Test]
         public void Form_can_belong_to_projects()
         {
-            throw new NotImplementedException();
+            using var container = EntityFaker.Contained.CreateProject().Save();
+
+            using var context = new AssessmentContext();
+            var form = context.Forms.Where(f => f.FormId == container.Instance.FormId).Include(c => c.Projects).FirstOrDefault();
+
+            Assert.That(form, Is.Not.Null);
+            Assert.That(form.Projects.Any(p => p.ProjectId == container.Instance.ProjectId), Is.True);
         }
 
         [Test]
         public void Form_can_belong_to_competences()
         {
-            throw new NotImplementedException();
+            using var container = EntityFaker.Contained.CreateCompetence().Save();
+
+            using var context = new AssessmentContext();
+            var form = context.Forms.Where(f => f.FormId == container.Instance.FormId).Include(c => c.Competences).FirstOrDefault();
+
+            Assert.That(form, Is.Not.Null);
+            Assert.That(form.Competences.Any(p => p.CompetenceId == container.Instance.CompetenceId), Is.True);
         }
 
         #endregion
