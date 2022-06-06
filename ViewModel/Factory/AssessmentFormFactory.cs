@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows;
 using Microsoft.EntityFrameworkCore;
 using Model;
 using Service.Database;
+using Service.Database.Seeding;
 using ViewModel.FormAssessment;
 using ViewModel.GroupAdmin;
 using ViewModel.StartingScreen;
@@ -23,6 +25,13 @@ namespace ViewModel.Factory
         public AssessmentFormFactory()
         {
             _context = new AssessmentContext();
+
+            if (!_context.Database.CanConnect())
+                if (MessageBoxResult.OK == MessageBox.Show("Er is nog geen database", "", MessageBoxButton.OK))
+                {
+                    MessageBox.Show("Database wordt aangemaakt");
+                    new ReleaseSeeder().Fill(_context);
+                }
         }
 
         /// <summary>
