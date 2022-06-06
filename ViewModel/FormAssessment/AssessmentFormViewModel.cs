@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Data.OleDb;
 using System.Linq;
+using System.Net.Mime;
 using System.Security.RightsManagement;
+using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using Microsoft.EntityFrameworkCore;
@@ -32,7 +34,17 @@ namespace ViewModel.FormAssessment
         }
         public ProjectViewModel? SelectedProject { get; set; }
         public Project? Project { get; set; }
-        public IEnumerable<SubjectViewModel>? Subjects { get; set; }
+
+        private IEnumerable<SubjectViewModel> _subjects;
+        public IEnumerable<SubjectViewModel>? Subjects
+        {
+            get => _subjects;
+            set
+            {
+                _subjects = value;
+                OnPropertyChanged(nameof(Subjects));
+            }
+        }
 
         private SubjectViewModel _selectedSubject;
 
@@ -55,9 +67,12 @@ namespace ViewModel.FormAssessment
                 _selectedGroup = value;
                 List<SubjectViewModel> temp = new List<SubjectViewModel>();
                 temp.Add(_selectedGroup!);
-                foreach (StudentViewModel std in _selectedGroup?.Students!)
+                if (_selectedGroup.Students != null)
                 {
-                    temp.Add(std);
+                    foreach (StudentViewModel std in _selectedGroup?.Students!)
+                    {
+                        temp.Add(std);
+                    }
                 }
                 Subjects = temp;
                 SelectedSubject = _selectedGroup;
@@ -160,14 +175,8 @@ namespace ViewModel.FormAssessment
         }
         #endregion
 
-        public void Initialize(Project project, Group group)
-        {
-            SelectedProject = Factory.CreateProject(project);
-            SelectedGroup = Factory.CreateGroup(group);
-            Form = Factory.CreateForm(SelectedProject.ProjectModel.Form);
-            SelectedCompetence = Form.Competences.FirstOrDefault();
-        }
-        public AssessmentFormViewModel(Project project)
+
+        public AssessmentFormViewModel(GroupViewModel group)
         {
             SaveCommand = new RelayCommand<RequirementViewModel>((RequirementViewModel? requirement) =>
             {
@@ -177,8 +186,11 @@ namespace ViewModel.FormAssessment
             {
                 Load(requirement);
             });
-            using var db = new AssessmentContext();
-            Initialize(project, db.Assessments.Where(a => a.Project == project).Include(a => a.Group).FirstOrDefault().Group);
+            GroupSelectionViewModel temp = (GroupSelectionViewModel)Application.Current.FindResource("GroupSelectionViewModel");
+            SelectedProject = temp.ProjectVM;
+            SelectedGroup = group;
+            Form = Factory.CreateForm(SelectedProject.ProjectModel.Form);
+            SelectedCompetence = Form.Competences.FirstOrDefault();
         }
     }
 }

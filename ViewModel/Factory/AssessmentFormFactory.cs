@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 using Microsoft.EntityFrameworkCore;
@@ -43,7 +44,7 @@ namespace ViewModel.Factory
             FormViewModel temp;
             temp = new FormViewModel(_context?.Forms.Where(fm => fm.FormId == form.FormId)
                 .Include(frm => frm.Competences).Include(frm => frm.Indicators)
-                .FirstOrDefault()!)!;
+                .FirstOrDefault()!);
             return temp;
         }
         /// <summary>
@@ -146,14 +147,14 @@ namespace ViewModel.Factory
         /// </summary>
         /// <param name="groups">List of groups given by the AssessmentFormViewModel out of the Project property</param>
         /// <returns>List of newly created group view models with properties set to groups with the correct ids</returns>
-        public IEnumerable<GroupViewModel> CreateGroups(List<Group> groups)
+        public IEnumerable<GroupViewModel> CreateGroups(IEnumerable<Group> groups)
         {
             List<GroupViewModel> temp = new List<GroupViewModel>();
             foreach (Group grp in groups)
             {
                 temp.Add(CreateGroup(grp));
             }
-            return temp;
+            return new ObservableCollection<GroupViewModel>(temp);
         }
         /// <summary>
         /// Create a view model for a student to allow the view to see student information
@@ -171,14 +172,14 @@ namespace ViewModel.Factory
         /// </summary>
         /// <param name="students">List of students given by the GroupViewModel out of the Students property</param>
         /// <returns>List of newly created student view models with properties set to students with the correct student numbers</returns>
-        public IEnumerable<StudentViewModel> CreateStudents(IEnumerable<Student> students)
+        public ObservableCollection<StudentViewModel> CreateStudents(IEnumerable<Student> students)
         {
             List<StudentViewModel> temp = new List<StudentViewModel>();
             foreach (Student student in students)
             {
                 temp.Add(CreateStudent(student));
             }
-            return temp;
+            return new ObservableCollection<StudentViewModel>(temp);
         }
         /// <summary>
         /// Create a view model for an indicator to allow the view to see the indicator information
@@ -252,16 +253,16 @@ namespace ViewModel.Factory
             temp.ProjectModel = _context.Projects.Where(p => p.ProjectId == project.ProjectId).Include(p => p.Form).FirstOrDefault();
             return temp;
         }
-        public IEnumerable<ProjectViewModel> CreateProjects()
+        public ObservableCollection<ProjectViewModel> CreateProjects()
         {
-            AssessmentContext context = new AssessmentContext();
+            using var assessmentContext = new AssessmentContext();
             List<ProjectViewModel> temp = new List<ProjectViewModel>();
-            foreach (Project project in context.Projects!)
+            foreach (Project project in assessmentContext.Projects!)
             {
                 temp.Add(CreateProject(project));
             }
 
-            return temp;
+            return new ObservableCollection<ProjectViewModel>(temp);
         }
     }
 }
