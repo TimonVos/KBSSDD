@@ -108,13 +108,13 @@ namespace Service.Database.EntityFaker
 
             if (removeRelated)
                 projects
-                    .GroupBy(c => c.Form)
-                    .Select(c => c.FirstOrDefault())
+                    .GroupBy(p => p.Form)
+                    .Select(p => p.FirstOrDefault())
                     .ToList()
-                    .ForEach(c =>
+                    .ForEach(p =>
                     {
-                        if (c is not null)
-                            Remove(c.Form);
+                        if (p is not null)
+                            Remove(p.Form);
                     });
         }
     }
