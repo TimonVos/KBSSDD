@@ -24,6 +24,9 @@ namespace View.GroupSelection
             if (!Application.Current.Resources.Contains("AssessmentFormViewModel"))
             {
                 Application.Current.Resources.Add("AssessmentFormViewModel", new AssessmentFormViewModel(group));
+            } else
+            {
+                ((AssessmentFormViewModel)Application.Current.Resources["AssessmentFormViewModel"]).SelectedGroup = group;
             }
             new FormAssessmentWindow().Show();
             Close();

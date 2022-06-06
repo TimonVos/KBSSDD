@@ -53,6 +53,7 @@ namespace ViewModel
             set
             {
                 _selectedGroup = value;
+                OnPropertyChanged(nameof(SelectedGroup));
                 if (_selectedGroup != null)
                 {
                     Students = new ObservableCollection<StudentViewModel>();
