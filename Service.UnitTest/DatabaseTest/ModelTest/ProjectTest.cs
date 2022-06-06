@@ -136,7 +136,7 @@ namespace Service.UnitTest.DatabaseTest.ModelTest
         #region Assert relationships
 
         [Test]
-        public void Project_can_belong_to_forms()
+        public void Project_can_have_a_form()
         {
             throw new NotImplementedException();
         }
@@ -148,7 +148,7 @@ namespace Service.UnitTest.DatabaseTest.ModelTest
         }
 
         [Test]
-        public void Project_can_get_groups_from_assessments()
+        public void Project_can_get_groups_from_its_assessment()
         {
             throw new NotImplementedException();
         }

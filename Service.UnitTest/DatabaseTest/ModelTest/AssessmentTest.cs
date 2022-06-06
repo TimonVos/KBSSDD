@@ -131,13 +131,13 @@ namespace Service.UnitTest.DatabaseTest.ModelTest
         #region Assert relationships
 
         [Test]
-        public void Assessment_can_have_groups()
+        public void Assessment_can_have_a_group()
         {
             throw new NotImplementedException();
         }
 
         [Test]
-        public void Assessment_can_have_projects()
+        public void Assessment_can_have_a_project()
         {
             throw new NotImplementedException();
         }

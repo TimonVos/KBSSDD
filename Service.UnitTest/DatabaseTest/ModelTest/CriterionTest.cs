@@ -126,13 +126,13 @@ namespace Service.UnitTest.DatabaseTest.ModelTest
         #region Relationships
 
         [Test]
-        public void Criterion_can_belong_to_competences()
+        public void Criterion_can_have_a_competence()
         {
             throw new NotImplementedException();
         }
 
         [Test]
-        public void Criterion_can_have_requirements()
+        public void Criterion_can_belong_to_requirements()
         {
             throw new NotImplementedException();
         }
