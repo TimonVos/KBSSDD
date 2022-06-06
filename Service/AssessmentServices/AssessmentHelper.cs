@@ -19,25 +19,28 @@ namespace Service.AssessmentServices
             int critAmount = 0;
             double grade = 0;
             int ratingAmount = 0;
-            Competence prevComp = assessment.Ratings.FirstOrDefault().Criterion.Competence;
-            
-            IEnumerable<Rating> selectedRatings = assessment.Ratings;
-            foreach (Rating rating in selectedRatings)
+            if (assessment.Ratings.Count() > 0)
             {
-                if (prevComp != rating.Criterion.Competence)
+                Competence prevComp = assessment.Ratings.FirstOrDefault().Criterion.Competence;
+
+                IEnumerable<Rating> selectedRatings = assessment.Ratings;
+                foreach (Rating rating in selectedRatings)
                 {
-                    temp.Add(prevComp, grade / critAmount);
-                    prevComp = rating.Criterion.Competence;
-                    critAmount = 0;
-                    grade = 0;
-                }
-                critAmount++;
-                ratingAmount++;
-                grade += rating.Requirement.Indicator.Value;
-                if (ratingAmount == selectedRatings.Count())
-                {
-                    double newGrade = Math.Round(grade / critAmount, 2);
-                    temp.Add(prevComp, newGrade);
+                    if (prevComp != rating.Criterion.Competence)
+                    {
+                        temp.Add(prevComp, grade / critAmount);
+                        prevComp = rating.Criterion.Competence;
+                        critAmount = 0;
+                        grade = 0;
+                    }
+                    critAmount++;
+                    ratingAmount++;
+                    grade += rating.Requirement.Indicator.Value;
+                    if (ratingAmount == selectedRatings.Count())
+                    {
+                        double newGrade = Math.Round(grade / critAmount, 2);
+                        temp.Add(prevComp, newGrade);
+                    }
                 }
             }
             return temp;

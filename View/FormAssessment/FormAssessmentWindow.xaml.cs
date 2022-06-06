@@ -1,6 +1,4 @@
 ﻿using System.Windows;
-using Model;
-using ViewModel.FormAssessment;
 
 namespace View.FormAssessment
 {
@@ -12,6 +10,12 @@ namespace View.FormAssessment
         public FormAssessmentWindow() : base()
         {
             InitializeComponent();
+        }
+
+        private void ManageStudentsButton_Click(object sender, RoutedEventArgs e)
+        {
+            new GroupSelection.GroupSelectionScreen().Show();
+            Close();
         }
     }
 }
