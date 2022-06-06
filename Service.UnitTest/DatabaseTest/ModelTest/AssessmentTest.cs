@@ -1,4 +1,5 @@
-﻿using Model;
+﻿using Microsoft.EntityFrameworkCore;
+using Model;
 using Service.Database;
 using Service.Database.EntityFaker;
 using Service.Database.EntityFaker.Args;
@@ -133,19 +134,37 @@ namespace Service.UnitTest.DatabaseTest.ModelTest
         [Test]
         public void Assessment_can_have_a_group()
         {
-            throw new NotImplementedException();
+            using var container = EntityFaker.Contained.CreateAssessment().Save();
+
+            using var context = new AssessmentContext();
+            var assessment = context.Assessments.Where(a => a.GroupId == container.Instance.GroupId).Include(a => a.Group).FirstOrDefault();
+
+            Assert.That(assessment, Is.Not.Null);
+            Assert.That(assessment.Group.GroupId, Is.EqualTo(container.Instance.GroupId));
         }
 
         [Test]
         public void Assessment_can_have_a_project()
         {
-            throw new NotImplementedException();
+            using var container = EntityFaker.Contained.CreateAssessment().Save();
+
+            using var context = new AssessmentContext();
+            var assessment = context.Assessments.Where(a => a.ProjectId == container.Instance.ProjectId).Include(a => a.Project).FirstOrDefault();
+
+            Assert.That(assessment, Is.Not.Null);
+            Assert.That(assessment.Project.ProjectId, Is.EqualTo(container.Instance.ProjectId));
         }
 
         [Test]
         public void Assessment_can_belong_to_ratings()
         {
-            throw new NotImplementedException();
+            using var container = EntityFaker.Contained.CreateRating().Save();
+
+            using var context = new AssessmentContext();
+            var assessment = context.Assessments.Where(a => a.AssessmentId == container.Instance.AssessmentId).Include(a => a.Ratings).FirstOrDefault();
+
+            Assert.That(assessment, Is.Not.Null);
+            Assert.That(assessment.Ratings.Any(r => r.AssessmentId == container.Instance.AssessmentId), Is.True);
         }
 
         #endregion

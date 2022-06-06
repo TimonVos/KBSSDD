@@ -1,4 +1,5 @@
-﻿using Model;
+﻿using Microsoft.EntityFrameworkCore;
+using Model;
 using Service.Database;
 using Service.Database.EntityFaker;
 
@@ -142,13 +143,25 @@ namespace Service.UnitTest.DatabaseTest.ModelTest
         [Test]
         public void Competence_can_have_a_form()
         {
-            throw new NotImplementedException();
+            using var container = EntityFaker.Contained.CreateCompetence().Save();
+
+            using var context = new AssessmentContext();
+            var competence = context.Competences.Where(c => c.CompetenceId == container.Instance.CompetenceId).Include(c => c.Form).FirstOrDefault();
+
+            Assert.That(competence, Is.Not.Null);
+            Assert.That(competence.Form.FormId, Is.EqualTo(container.Instance.FormId));
         }
 
         [Test]
-        public void Competence_can_have_critera()
+        public void Competence_can_belong_to_critera()
         {
-            throw new NotImplementedException();
+            using var container = EntityFaker.Contained.CreateCriterion().Save();
+
+            using var context = new AssessmentContext();
+            var competence = context.Competences.Where(c => c.CompetenceId == container.Instance.CompetenceId).Include(c => c.Criteria).FirstOrDefault();
+
+            Assert.That(competence, Is.Not.Null);
+            Assert.That(competence.Criteria.Any(c => c.CompetenceId == container.Instance.CompetenceId), Is.True);
         }
 
         #endregion

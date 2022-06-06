@@ -146,13 +146,13 @@ namespace Service.UnitTest.DatabaseTest.ModelTest
         [Test]
         public void Group_can_have_assessments()
         {
-            using var assessment = EntityFaker.Contained.CreateAssessment().Save();
+            using var container = EntityFaker.Contained.CreateAssessment().Save();
 
             using var context = new AssessmentContext();
-            var group = context.Groups.Where(g => g.GroupId == assessment.Instance.GroupId).Include(g => g.Assessments).FirstOrDefault();
+            var group = context.Groups.Where(g => g.GroupId == container.Instance.GroupId).Include(g => g.Assessments).FirstOrDefault();
 
             Assert.That(group, Is.Not.Null);
-            Assert.That(group.Assessments.Any(a => a.AssessmentId == assessment.Instance.AssessmentId), Is.True);
+            Assert.That(group.Assessments.Any(a => a.AssessmentId == container.Instance.AssessmentId), Is.True);
         }
 
         #endregion
