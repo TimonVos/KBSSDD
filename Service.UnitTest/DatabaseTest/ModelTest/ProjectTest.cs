@@ -147,6 +147,12 @@ namespace Service.UnitTest.DatabaseTest.ModelTest
             throw new NotImplementedException();
         }
 
+        [Test]
+        public void Project_can_get_groups_from_assessments()
+        {
+            throw new NotImplementedException();
+        }
+
         #endregion
 
         [TearDown]

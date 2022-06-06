@@ -19,7 +19,7 @@ namespace Service.UnitTest.Database.EntityFakerTest.ModelTest
             var assessmentA = EntityFaker.CreateAssessment(new AssessmentArgs { Save = true });
             var assessmentB = EntityFaker.CreateAssessment(new AssessmentArgs { Save = true });
 
-            Assert.That(assessmentA.ProjectId, Is.Not.EqualTo(assessmentB.ProjectId));
+            Assert.That(assessmentA.AssessmentId, Is.Not.EqualTo(assessmentB.AssessmentId));
 
             EntityFaker.RemoveRange(new[] { assessmentA, assessmentB }, true);
         }

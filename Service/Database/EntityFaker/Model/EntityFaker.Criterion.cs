@@ -43,13 +43,13 @@ namespace Service.Database.EntityFaker
             if (removeRelated)
             {
                 if (criterion.Competence is not null)
-                    Remove(criterion.Competence);
+                    Remove(criterion.Competence, true);
                 else
                 {
                     var competence = context.Competences.Where(c => c.CompetenceId == criterion.CompetenceId).FirstOrDefault();
 
                     if (competence is not null)
-                        Remove(competence);
+                        Remove(competence, true);
                 }
             }
         }
