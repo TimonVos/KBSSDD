@@ -15,7 +15,23 @@ namespace Service.UnitTest.DatabaseTest.ModelTest
 
         #region Assert attributes
 
+        [Test]
+        public void Requirement_name_is_optional()
+        {
+            using var container = EntityFaker.Contained.CreateRequirement();
 
+            container.Instance.Name = null!;
+            Assert.DoesNotThrow(() => container.Save());
+        }
+
+        [Test]
+        public void Requirement_description_is_required()
+        {
+            using var container = EntityFaker.Contained.CreateRequirement();
+
+            container.Instance.Description = null!;
+            DatabaseAssert.Throws(() => container.Save(), 515, nameof(container.Instance.Description));
+        }
 
         #endregion
 

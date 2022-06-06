@@ -40,8 +40,11 @@ namespace Service.Database.EntityFaker
         public static void Remove(Requirement requirement, bool removeRelated = false)
         {
             using var context = GetContext();
-            context.Requirements.Remove(requirement);
-            context.SaveChanges();
+            if (context.Requirements.Any(r => r == requirement))
+            {
+                context.Requirements.Remove(requirement);
+                context.SaveChanges();
+            }
 
             if (removeRelated)
             {
