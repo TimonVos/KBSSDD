@@ -37,8 +37,11 @@ namespace Service.Database.EntityFaker
         public static void Remove(Criterion criterion, bool removeRelated = false)
         {
             using var context = GetContext();
-            context.Criteria.Remove(criterion);
-            context.SaveChanges();
+            if (context.Criteria.Any(c => c == criterion))
+            {
+                context.Criteria.Remove(criterion);
+                context.SaveChanges();
+            }
 
             if (removeRelated)
             {

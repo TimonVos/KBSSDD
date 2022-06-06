@@ -49,23 +49,13 @@ namespace Service.Database.EntityFaker
             if (removeRelated)
             {
                 if (requirement.Criterion is not null)
-                {
-                    Remove(requirement.Criterion);
-
-                    if (context.Competences.Any(c => c == requirement.Criterion.Competence))
-                        Remove(requirement.Criterion.Competence, true);
-                }
+                    Remove(requirement.Criterion, true);
                 else
                 {
                     var criterion = context.Criteria.Where(c => c.CriterionId == requirement.CriterionId).FirstOrDefault();
 
                     if (criterion is not null)
-                    {
-                        Remove(criterion);
-
-                        if (context.Competences.Any(c => c == criterion.Competence))
-                            Remove(criterion.Competence, true);
-                    }
+                        Remove(criterion, true);
                 }
 
                 if (requirement.Indicator is not null)

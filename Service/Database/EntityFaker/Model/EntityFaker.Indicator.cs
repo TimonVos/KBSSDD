@@ -37,8 +37,11 @@ namespace Service.Database.EntityFaker
         public static void Remove(Indicator indicator)
         {
             using var context = GetContext();
-            context.Indicators.Remove(indicator);
-            context.SaveChanges();
+            if (context.Indicators.Any(i => i == indicator))
+            {
+                context.Indicators.Remove(indicator);
+                context.SaveChanges();
+            }
         }
 
         public static IEnumerable<Indicator> CreateIndicators(EnumerableFakerArgs? fakerArgs = null)

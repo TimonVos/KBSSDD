@@ -106,7 +106,7 @@ namespace Service.UnitTest.DatabaseTest.ModelTest
         [Test]
         public void Criterion_can_be_deleted()
         {
-            var container = EntityFaker.Contained.CreateCriterion().Save();
+            using var container = EntityFaker.Contained.CreateCriterion().Save();
 
             AssessmentContext context;
 

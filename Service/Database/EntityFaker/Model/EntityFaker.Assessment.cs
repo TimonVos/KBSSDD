@@ -9,9 +9,11 @@ namespace Service.Database.EntityFaker
         public static Assessment CreateAssessment(AssessmentArgs? fakerArgs = null)
         {
             fakerArgs ??= new AssessmentArgs();
-            var assessment = new Assessment();
-            assessment.Group = fakerArgs.Group;
-            assessment.Project = fakerArgs.Project;
+            var assessment = new Assessment
+            {
+                Group = fakerArgs.Group,
+                Project = fakerArgs.Project
+            };
 
 
             if (fakerArgs.Save)
@@ -60,22 +62,14 @@ namespace Service.Database.EntityFaker
                 }
 
                 if (assessment.Project is not null)
-                {
-                    Remove(assessment.Project);
-
-                    if (context.Forms.Any(f => f == assessment.Project.Form))
-                        Remove(assessment.Project.Form);
-                }
+                    Remove(assessment.Project, true);
                 else
                 {
                     var project = context.Projects.Where(p => p.ProjectId == assessment.ProjectId).FirstOrDefault();
 
                     if (project is not null)
                     {
-                        Remove(project);
-
-                        if (context.Forms.Any(f => f == project.Form))
-                            Remove(project.Form);
+                        Remove(project, true);
                     }
                 }
             }
