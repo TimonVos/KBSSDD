@@ -11,6 +11,7 @@ namespace Service.Database.EntityFaker
         private static readonly Bogus.Faker<Form> _formFaker;
         private static readonly Bogus.Faker<Competence> _competenceFaker;
         private static readonly Bogus.Faker<Criterion> _criterionFaker;
+        private static readonly Bogus.Faker<Project> _projectFaker;
         public static readonly EntityFakerContained Contained;
 
         static EntityFaker()
@@ -43,9 +44,10 @@ namespace Service.Database.EntityFaker
                 .RuleFor(f => f.Weight, f => f.Random.Float())
                 .RuleFor(f => f.Evidence, f => f.Lorem.Paragraph());
 
-            _criterionFaker = new Bogus.Faker<Criterion>()
+            _projectFaker = new Bogus.Faker<Project>()
                 .RuleFor(f => f.Name, f => f.Lorem.Word())
-                .RuleFor(f => f.Description, f => f.Lorem.Paragraph());
+                .RuleFor(f => f.Description, f => f.Lorem.Paragraph())
+                .RuleFor(f => f.Code, f => f.Random.String(5));
         }
 
         public static AssessmentContext GetContext()
