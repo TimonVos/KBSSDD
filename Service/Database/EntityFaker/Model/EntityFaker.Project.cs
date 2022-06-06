@@ -121,7 +121,7 @@ namespace Service.Database.EntityFaker
 
     public partial class EntityFakerContained
     {
-        public Container<Project> CreateProjects(ProjectArgs? fakerArgs = null)
+        public Container<Project> CreateProject(ProjectArgs? fakerArgs = null)
         {
             fakerArgs ??= new ProjectArgs();
             fakerArgs.Save = false;

@@ -140,7 +140,7 @@ namespace Service.UnitTest.DatabaseTest.ModelTest
         #region Assert relationships
 
         [Test]
-        public void Competence_can_belong_to_a_forms()
+        public void Competence_can_belong_to_forms()
         {
             throw new NotImplementedException();
         }

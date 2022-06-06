@@ -47,7 +47,7 @@ namespace Service.Database.EntityFaker
             _projectFaker = new Bogus.Faker<Project>()
                 .RuleFor(f => f.Name, f => f.Lorem.Word())
                 .RuleFor(f => f.Description, f => f.Lorem.Paragraph())
-                .RuleFor(f => f.Code, f => f.Random.String(5));
+                .RuleFor(f => f.Code, f => f.Random.Chars().ToString());
         }
 
         public static AssessmentContext GetContext()
