@@ -31,10 +31,8 @@ namespace Service.UnitTest.Database.EntityFakerTest.ScenarioTest
                 MaxStudentsPerGroup = 1,
             }).Save();
 
-            using var context = new AssessmentContext();
-
-            Assert.That(context.Groups.Any(g => g.Students.Count == 0), Is.True);
-            AssertScenario(scenario, context);
+            Assert.That(scenario.Groups.Any(g => g.Students.Count == 0), Is.True);
+            AssertScenario(scenario);
         }
 
         [Test]
@@ -48,10 +46,8 @@ namespace Service.UnitTest.Database.EntityFakerTest.ScenarioTest
                 MaxStudentsPerGroup = 1,
             }).Save();
 
-            using var context = new AssessmentContext();
-
-            Assert.That(context.Groups.Any(g => g.Students.Count == 0), Is.False);
-            AssertScenario(scenario, context);
+            Assert.That(scenario.Groups.Any(g => g.Students.Count == 0), Is.False);
+            AssertScenario(scenario);
         }
 
         private void AssertScenario(GroupsWithStudentsScenario scenario, AssessmentContext? context = null)

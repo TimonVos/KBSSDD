@@ -2,9 +2,22 @@
 
 namespace Service.Database.EntityFaker
 {
+    /// <summary>
+    /// Helper class to create test instances of model. Can be easily used and extended.
+    /// </summary>
     public static partial class EntityFaker
     {
+        /// <summary>
+        /// Instance of Bogus.Faker to help generate data on the spot.
+        /// </summary>
         public static Bogus.Faker Faker { get; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public static readonly EntityFakerContained Contained;
+
+        #region Bogus fakers
+
         private static readonly Bogus.Faker<Student> _studentFaker;
         private static readonly Bogus.Faker<Group> _groupFaker;
         private static readonly Bogus.Faker<Indicator> _indicatorFaker;
@@ -13,7 +26,8 @@ namespace Service.Database.EntityFaker
         private static readonly Bogus.Faker<Criterion> _criterionFaker;
         private static readonly Bogus.Faker<Project> _projectFaker;
         private static readonly Bogus.Faker<Requirement> _requirementFaker;
-        public static readonly EntityFakerContained Contained;
+
+        #endregion
 
         static EntityFaker()
         {

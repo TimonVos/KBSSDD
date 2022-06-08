@@ -128,6 +128,8 @@ namespace Service.UnitTest.DatabaseTest.ModelTest
         [Test]
         public void Indicator_can_belong_to_forms()
         {
+            // TODO: implement the forms with indicator scenario...
+
             throw new NotImplementedException();
         }
 
@@ -135,6 +137,7 @@ namespace Service.UnitTest.DatabaseTest.ModelTest
         public void Indicator_can_belong_to_requirements()
         {
             // TODO: add requirements property to Indicator
+
 /*            using var container = EntityFaker.Contained.CreateRequirement().Save();
 
             using var context = new AssessmentContext();

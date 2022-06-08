@@ -31,10 +31,8 @@ namespace Service.UnitTest.Database.EntityFakerTest.ScenarioTest
                 MaxIndicatorsPerForm = 1,
             }).Save();
 
-            using var context = new AssessmentContext();
-
-            Assert.That(context.Forms.Any(f => f.Indicators.Count == 0), Is.True);
-            AssertScenario(scenario, context);
+            Assert.That(scenario.Forms.Any(f => f.Indicators.Count == 0), Is.True);
+            AssertScenario(scenario);
         }
 
         [Test]
@@ -48,10 +46,8 @@ namespace Service.UnitTest.Database.EntityFakerTest.ScenarioTest
                 MaxIndicatorsPerForm = 1,
             }).Save();
 
-            var context = new AssessmentContext();
-
-            Assert.That(context.Forms.Any(f => f.Indicators.Count == 0), Is.False);
-            AssertScenario(scenario, context);
+            Assert.That(scenario.Forms.Any(f => f.Indicators.Count == 0), Is.False);
+            AssertScenario(scenario);
         }
 
         private void AssertScenario(FormsWithIndicatorsScenario scenario, AssessmentContext? context = null)

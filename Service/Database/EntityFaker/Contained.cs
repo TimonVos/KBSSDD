@@ -7,7 +7,11 @@ using Model;
 
 namespace Service.Database.EntityFaker
 {
-    public partial class Contained
+    /// <summary>
+    /// Dummy partial class.
+    /// Used to be extended by EntityFaker partial classes.
+    /// </summary>
+    public partial class EntityFakerContained
     {
     }
 }
