@@ -1,11 +1,14 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
-using System.Windows.Media.TextFormatting;
+using System.Windows;
 using Microsoft.EntityFrameworkCore;
 using Model;
 using Service.Database;
+using Service.Database.Seeding;
 using ViewModel.FormAssessment;
 using ViewModel.GroupAdmin;
+using ViewModel.StartingScreen;
 
 namespace ViewModel.Factory
 {
@@ -14,7 +17,7 @@ namespace ViewModel.Factory
     /// </summary>
     public class AssessmentFormFactory
     {
-        private readonly AssessmentContext? _context;
+        private AssessmentContext? _context;
 
         /// <summary>
         /// constructor that initializes database context object and other service objects
@@ -22,6 +25,13 @@ namespace ViewModel.Factory
         public AssessmentFormFactory()
         {
             _context = new AssessmentContext();
+
+            if (!_context.Database.CanConnect())
+                if (MessageBoxResult.OK == MessageBox.Show("Er is nog geen database", "", MessageBoxButton.OK))
+                {
+                    MessageBox.Show("Database wordt aangemaakt");
+                    new ReleaseSeeder().Fill(_context);
+                }
         }
 
         /// <summary>
@@ -32,9 +42,9 @@ namespace ViewModel.Factory
         public FormViewModel CreateForm(Form form)
         {
             FormViewModel temp;
-            temp = new FormViewModel(_context.Forms.Where(fm => fm.FormId == form.FormId)
+            temp = new FormViewModel(_context?.Forms.Where(fm => fm.FormId == form.FormId)
                 .Include(frm => frm.Competences).Include(frm => frm.Indicators)
-                .FirstOrDefault());
+                .FirstOrDefault()!);
             return temp;
         }
         /// <summary>
@@ -45,9 +55,9 @@ namespace ViewModel.Factory
         public CompetenceViewModel CreateCompetence(Competence competence)
         {
             CompetenceViewModel temp;
-            temp = new CompetenceViewModel(_context.Competences.Where(comp => comp.CompetenceId == competence.CompetenceId)
+            temp = new CompetenceViewModel(_context?.Competences.Where(comp => comp.CompetenceId == competence.CompetenceId)
                 .Include(comp => comp.Criteria)
-                .FirstOrDefault());
+                .FirstOrDefault()!)!;
             return temp;
         }
         /// <summary>
@@ -73,8 +83,8 @@ namespace ViewModel.Factory
         {
             CriterionViewModel temp;
             temp =
-                new CriterionViewModel(_context.Criteria.Where(crit => crit.CriterionId == criterion.CriterionId)
-                    .Include(crit => crit.Requirements).FirstOrDefault());
+                new CriterionViewModel(_context?.Criteria.Where(crit => crit.CriterionId == criterion.CriterionId)
+                    .Include(crit => crit.Requirements).FirstOrDefault()!)!;
             return temp;
         }
         /// <summary>
@@ -99,10 +109,10 @@ namespace ViewModel.Factory
         public RequirementViewModel CreateRequirement(Requirement requirement)
         {
             RequirementViewModel temp;
-            temp = new RequirementViewModel(_context.Requirements.
+            temp = new RequirementViewModel(_context?.Requirements.
                 Where(req => req.RequirementId == requirement.RequirementId).
                 Include(req => req.Indicator).Include(req => req.Criterion).
-                FirstOrDefault())!;
+                FirstOrDefault()!)!;
             return temp;
         }
         /// <summary>
@@ -127,9 +137,9 @@ namespace ViewModel.Factory
         public GroupViewModel CreateGroup(Group group)
         {
             GroupViewModel temp;
-            temp = new GroupViewModel(_context.Groups.Where(grp => grp.GroupId == group.GroupId)
-                .Include(grp => grp.Students).Include(grp => grp.Assessments)
-                .FirstOrDefault());
+            temp = new GroupViewModel(_context?.Groups.Where(grp => grp.GroupId == @group.GroupId)
+                .Include(grp => grp.Students).Include(grp => grp.Assessments).ThenInclude(a => a.Ratings)
+                .FirstOrDefault()!);
             return temp;
         }
         /// <summary>
@@ -144,7 +154,7 @@ namespace ViewModel.Factory
             {
                 temp.Add(CreateGroup(grp));
             }
-            return temp;
+            return new ObservableCollection<GroupViewModel>(temp);
         }
         /// <summary>
         /// Create a view model for a student to allow the view to see student information
@@ -154,7 +164,7 @@ namespace ViewModel.Factory
         public StudentViewModel CreateStudent(Student student)
         {
             StudentViewModel temp = new StudentViewModel();
-            temp.StudentModel = _context.Students.Where(std => std.StudentNumber == student.StudentNumber).FirstOrDefault();
+            temp.StudentModel = (_context?.Students!).FirstOrDefault(std => std.StudentNumber == student.StudentNumber)!;
             return temp;
         }
         /// <summary>
@@ -162,14 +172,14 @@ namespace ViewModel.Factory
         /// </summary>
         /// <param name="students">List of students given by the GroupViewModel out of the Students property</param>
         /// <returns>List of newly created student view models with properties set to students with the correct student numbers</returns>
-        public IEnumerable<StudentViewModel> CreateStudents(IEnumerable<Student> students)
+        public ObservableCollection<StudentViewModel> CreateStudents(IEnumerable<Student> students)
         {
             List<StudentViewModel> temp = new List<StudentViewModel>();
             foreach (Student student in students)
             {
                 temp.Add(CreateStudent(student));
             }
-            return temp;
+            return new ObservableCollection<StudentViewModel>(temp);
         }
         /// <summary>
         /// Create a view model for an indicator to allow the view to see the indicator information
@@ -179,8 +189,8 @@ namespace ViewModel.Factory
         public IndicatorViewModel CreateIndicator(Indicator indicator)
         {
             IndicatorViewModel temp;
-            temp = new IndicatorViewModel(_context.Indicators.Where(indi => indi.IndicatorId == indicator.IndicatorId)
-                .FirstOrDefault());
+            temp = new IndicatorViewModel((_context?.Indicators!)
+                .FirstOrDefault(indi => indi.IndicatorId == indicator.IndicatorId)!);
             return temp;
         }
         /// <summary>
@@ -201,9 +211,9 @@ namespace ViewModel.Factory
         public AssessmentViewModel CreateAssessment(Assessment assessment)
         {
             AssessmentViewModel temp = new AssessmentViewModel();
-            temp.AssessmentModel = _context.Assessments.
+            temp.AssessmentModel = _context?.Assessments.
                 Where(assess => assess.AssessmentId == assessment.AssessmentId)
-                .Include(assess => assess.Group)
+                .Include(assess => assess.Group).Include(a => a.Ratings).ThenInclude(r => r.Criterion).ThenInclude(cr => cr.Competence).Include(a => a.Ratings).ThenInclude(r => r.Requirement).ThenInclude(r => r.Indicator)
                 .FirstOrDefault()!;
             return temp;
         }
@@ -220,10 +230,10 @@ namespace ViewModel.Factory
         public RatingViewModel CreateRating(Rating rating)
         {
             RatingViewModel temp = new RatingViewModel();
-            temp.RatingModel = _context.Ratings.Where(rat =>
+            temp.RatingModel = _context?.Ratings.Where(rat =>
                     rat.AssessmentId == rating.AssessmentId && rat.CriterionId == rating.CriterionId)
                 .Include(rat => rat.Indicator)
-                .Include(rat => rat.Requirement).FirstOrDefault();
+                .Include(rat => rat.Requirement).Include(r => r.Criterion).ThenInclude(c => c.Competence).FirstOrDefault()!;
             return temp;
         }
 
@@ -237,14 +247,22 @@ namespace ViewModel.Factory
 
             return temp;
         }
-        public ProjectViewModel GetProject()
+        public ProjectViewModel CreateProject(Project project)
         {
-            ProjectViewModel temp;
-            temp = new ProjectViewModel(_context.Projects.
-                Include(prj => prj.Form).
-                Include(prj => prj.Assessments).
-                ThenInclude(assess => assess.Group).FirstOrDefault())!;
+            ProjectViewModel temp = new ProjectViewModel();
+            temp.ProjectModel = _context.Projects.Where(p => p.ProjectId == project.ProjectId).Include(p => p.Form).FirstOrDefault();
             return temp;
+        }
+        public ObservableCollection<ProjectViewModel> CreateProjects()
+        {
+            using var assessmentContext = new AssessmentContext();
+            List<ProjectViewModel> temp = new List<ProjectViewModel>();
+            foreach (Project project in assessmentContext.Projects!)
+            {
+                temp.Add(CreateProject(project));
+            }
+
+            return new ObservableCollection<ProjectViewModel>(temp);
         }
     }
 }

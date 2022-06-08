@@ -1,9 +1,19 @@
 ﻿using System.Collections.Generic;
+using System.Data.OleDb;
 using System.Linq;
+using System.Net.Mime;
 using System.Security.RightsManagement;
+using System.Windows;
+using System.Windows.Input;
+using System.Windows.Media.Imaging;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Microsoft.Toolkit.Mvvm.Input;
 using Model;
+using Service.Database;
 using ViewModel.GroupAdmin;
+using ViewModel.StartingScreen;
 
 namespace ViewModel.FormAssessment
 {
@@ -11,12 +21,34 @@ namespace ViewModel.FormAssessment
     {
         #region Properties
 
-        public ProjectViewModel SelectedProject { get; set; }
-        public IEnumerable<SubjectViewModel> Subjects { get; set; }
+        private double _projectGrade;
+
+        public double ProjectGrade
+        {
+            get => _projectGrade;
+            set
+            {
+                _projectGrade = value;
+                OnPropertyChanged(nameof(ProjectGrade));
+            }
+        }
+        public ProjectViewModel? SelectedProject { get; set; }
+        public Project? Project { get; set; }
+
+        private IEnumerable<SubjectViewModel> _subjects;
+        public IEnumerable<SubjectViewModel>? Subjects
+        {
+            get => _subjects;
+            set
+            {
+                _subjects = value;
+                OnPropertyChanged(nameof(Subjects));
+            }
+        }
 
         private SubjectViewModel _selectedSubject;
 
-        public SubjectViewModel SelectedSubject
+        public SubjectViewModel? SelectedSubject
         {
             get => _selectedSubject;
             set
@@ -26,18 +58,21 @@ namespace ViewModel.FormAssessment
             }
         }
         
-        private GroupViewModel _selectedGroup;
-        public GroupViewModel SelectedGroup
+        private GroupViewModel? _selectedGroup;
+        public GroupViewModel? SelectedGroup
         {
             get => _selectedGroup;
             set
             {
                 _selectedGroup = value;
                 List<SubjectViewModel> temp = new List<SubjectViewModel>();
-                temp.Add(_selectedGroup);
-                foreach (StudentViewModel std in _selectedGroup.Students)
+                temp.Add(_selectedGroup!);
+                if (_selectedGroup.Students != null)
                 {
-                    temp.Add(std);
+                    foreach (StudentViewModel std in _selectedGroup?.Students!)
+                    {
+                        temp.Add(std);
+                    }
                 }
                 Subjects = temp;
                 SelectedSubject = _selectedGroup;
@@ -45,8 +80,8 @@ namespace ViewModel.FormAssessment
             }
         }
 
-        private IEnumerable<RatingViewModel> _ratings;
-        public IEnumerable<RatingViewModel> Ratings
+        private IEnumerable<RatingViewModel>? _ratings;
+        public IEnumerable<RatingViewModel>? Ratings
         {
             get => _ratings;
             set
@@ -56,9 +91,9 @@ namespace ViewModel.FormAssessment
             }
         }
 
-        private CompetenceViewModel _selectedCompetence;
+        private CompetenceViewModel? _selectedCompetence;
 
-        public CompetenceViewModel SelectedCompetence
+        public CompetenceViewModel? SelectedCompetence
         {
             get => _selectedCompetence;
             set
@@ -69,8 +104,8 @@ namespace ViewModel.FormAssessment
         }
 
 
-        private FormViewModel _form;
-        public FormViewModel Form
+        private FormViewModel? _form;
+        public FormViewModel? Form
         {
             get => _form;
             set
@@ -80,18 +115,82 @@ namespace ViewModel.FormAssessment
             }
         }
 
-        public IDictionary<Competence, double> CompetenceGrades
+        private IDictionary<Competence, double>? _competenceGrades;
+        public IDictionary<Competence, double>? CompetenceGrades
         {
-            get => Helper.GetGrades(SelectedGroup.SelectedAssessment.AssessmentModel);
+            get => _competenceGrades;
+            set
+            {
+                _competenceGrades = value;
+                OnPropertyChanged(nameof(CompetenceGrades));
+            }
         }
         #endregion
-        public AssessmentFormViewModel()
+        #region Commands
+
+        public ICommand SaveCommand { get; set; }
+        public ICommand LoadCommand { get; set; }
+
+        private void Save(RequirementViewModel requirement)
         {
-            SelectedProject = Factory.GetProject();
-            Form = Factory.CreateForm(SelectedProject.ProjectModel.Form);
-            SelectedGroup = Factory.CreateGroup(SelectedProject.ProjectModel.Groups.Where(grp => grp.Name == "Groep 1").FirstOrDefault());
-            Ratings = Factory.CreateRatings(SelectedGroup.SelectedAssessment.AssessmentModel.Ratings);
+            if (!SelectedGroup.Assessments.Any())
+            {
+                Assessment temp = new Assessment();
+                temp.Project = SelectedProject.ProjectModel;
+                temp.Group = SelectedGroup.GroupModel;
+                Helper.SaveRating(temp, requirement.RequirementModel);
+                SelectedGroup.Assessments = new List<AssessmentViewModel>
+                {
+                    Factory.CreateAssessment(temp)
+                };
+            }
+            else
+            {
+                Helper.SaveRating(SelectedGroup.Assessments.FirstOrDefault().AssessmentModel, requirement.RequirementModel);
+            }
+
+            requirement.IsChecked = true;
+            using (var db = new AssessmentContext())
+            {
+                Assessment oldModel = SelectedGroup.Assessments.FirstOrDefault().AssessmentModel;
+                Assessment newModel = db.Assessments.
+                    Include(a=> a.Ratings).ThenInclude(r => r.Criterion).ThenInclude(c => c.Competence)
+                    .Include(a => a.Ratings).ThenInclude(r => r.Requirement).ThenInclude(r => r.Indicator)
+                    .First(a => a.AssessmentId == oldModel.AssessmentId);
+                SelectedGroup.Assessments.FirstOrDefault().AssessmentModel = newModel;
+            }
+            Load(requirement);
         }
 
+        private void Load(RequirementViewModel requirement)
+        {
+            using (var db = new AssessmentContext())
+            {
+                requirement.IsChecked = Helper.GetRating(SelectedGroup.Assessments.FirstOrDefault().AssessmentModel,
+                    requirement.RequirementModel);
+            }
+
+            CompetenceGrades = Helper.GetGrades(SelectedGroup?.SelectedAssessment.AssessmentModel!);
+            ProjectGrade = Helper.CalculateFinalGrade(CompetenceGrades);
+        }
+        #endregion
+
+
+        public AssessmentFormViewModel(GroupViewModel group)
+        {
+            SaveCommand = new RelayCommand<RequirementViewModel>((RequirementViewModel? requirement) =>
+            {
+                Save(requirement!);
+            });
+            LoadCommand = new RelayCommand<RequirementViewModel>((RequirementViewModel? requirement) =>
+            {
+                Load(requirement);
+            });
+            GroupSelectionViewModel temp = (GroupSelectionViewModel)Application.Current.FindResource("GroupSelectionViewModel");
+            SelectedProject = temp.ProjectVM;
+            SelectedGroup = group;
+            Form = Factory.CreateForm(SelectedProject.ProjectModel.Form);
+            SelectedCompetence = Form.Competences.FirstOrDefault();
+        }
     }
 }

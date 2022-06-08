@@ -7,9 +7,15 @@ namespace View.FormAssessment
     /// </summary>
     public partial class FormAssessmentWindow : Window
     {
-        public FormAssessmentWindow()
+        public FormAssessmentWindow() : base()
         {
             InitializeComponent();
+        }
+
+        private void ManageStudentsButton_Click(object sender, RoutedEventArgs e)
+        {
+            new GroupSelection.GroupSelectionScreen().Show();
+            Close();
         }
     }
 }
