@@ -16,7 +16,7 @@ namespace Service.UnitTest.DatabaseTest.ModelTest
         #region Attributes
 
         [Test]
-        public void Indicators_name_is_required()
+        public void Indicator_name_is_required()
         {
             using var container = EntityFaker.Contained.CreateIndicator();
 
@@ -25,7 +25,7 @@ namespace Service.UnitTest.DatabaseTest.ModelTest
         }
 
         [Test]
-        public void Indicators_name_is_unique()
+        public void Indicator_name_is_unique()
         {
             using var unique = EntityFaker.Contained.CreateIndicator().Save();
             using var indicator = EntityFaker.Contained.CreateIndicator();
@@ -40,7 +40,7 @@ namespace Service.UnitTest.DatabaseTest.ModelTest
         #region CRUD
 
         [Test]
-        public void Indicators_can_be_created()
+        public void Indicator_can_be_created()
         {
             using var container = EntityFaker.Contained.CreateIndicator().Save();
 
@@ -51,7 +51,7 @@ namespace Service.UnitTest.DatabaseTest.ModelTest
         }
 
         [Test]
-        public void Indicators_can_be_read()
+        public void Indicator_can_be_read()
         {
             using var container = EntityFaker.Contained.CreateIndicator().Save();
 
@@ -70,7 +70,7 @@ namespace Service.UnitTest.DatabaseTest.ModelTest
         }
 
         [Test]
-        public void Indicators_can_be_updated()
+        public void Indicator_can_be_updated()
         {
             using var container = EntityFaker.Contained.CreateIndicator().Save();
 
@@ -104,7 +104,7 @@ namespace Service.UnitTest.DatabaseTest.ModelTest
         }
 
         [Test]
-        public void Indicators_can_be_deleted()
+        public void Indicator_can_be_deleted()
         {
             var container = EntityFaker.Contained.CreateIndicator().Save();
 
@@ -126,15 +126,22 @@ namespace Service.UnitTest.DatabaseTest.ModelTest
         #region Relationships
 
         [Test]
-        public void Indicators_can_belong_to_forms()
+        public void Indicator_can_belong_to_forms()
         {
             throw new NotImplementedException();
         }
 
         [Test]
-        public void Indicators_can_belong_to_requirements()
+        public void Indicator_can_belong_to_requirements()
         {
-            throw new NotImplementedException();
+            // TODO: add requirements property to Indicator
+/*            using var container = EntityFaker.Contained.CreateRequirement().Save();
+
+            using var context = new AssessmentContext();
+            var indicator = context.Indicators.Where(i => i.IndicatorId == container.Instance.IndicatorId).Include(i => i.Requirement).FirstOrDefault();
+
+            Assert.That(indicator, Is.Not.Null);
+            Assert.That(indicator.Requirements.Any(r => r.RequirementId == container.Instance.RequirementId), Is.True);*/
         }
 
         #endregion

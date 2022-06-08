@@ -21,7 +21,7 @@ namespace Service.UnitTest.Database.EntityFakerTest.ScenarioTest
         }
 
         [Test]
-        public void EntityFaker_can_create_a_group_with_students_scenario_with_empty_groups()
+        public void EntityFaker_can_create_a_groups_with_students_scenario_with_empty_groups()
         {
             using var scenario = EntityFaker.CreateScenario_GroupsWithStudents(new GroupsWithStudentsArgs
             {
@@ -31,14 +31,14 @@ namespace Service.UnitTest.Database.EntityFakerTest.ScenarioTest
                 MaxStudentsPerGroup = 1,
             }).Save();
 
-            var context = new AssessmentContext();
+            using var context = new AssessmentContext();
 
             Assert.That(context.Groups.Any(g => g.Students.Count == 0), Is.True);
             AssertScenario(scenario, context);
         }
 
         [Test]
-        public void EntityFaker_can_create_a_group_with_students_scenario_without_empty_groups()
+        public void EntityFaker_can_create_a_groups_with_students_scenario_without_empty_groups()
         {
             using var scenario = EntityFaker.CreateScenario_GroupsWithStudents(new GroupsWithStudentsArgs
             {
@@ -48,7 +48,7 @@ namespace Service.UnitTest.Database.EntityFakerTest.ScenarioTest
                 MaxStudentsPerGroup = 1,
             }).Save();
 
-            var context = new AssessmentContext();
+            using var context = new AssessmentContext();
 
             Assert.That(context.Groups.Any(g => g.Students.Count == 0), Is.False);
             AssertScenario(scenario, context);

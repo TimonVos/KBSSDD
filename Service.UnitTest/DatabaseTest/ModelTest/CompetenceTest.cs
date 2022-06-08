@@ -25,12 +25,12 @@ namespace Service.UnitTest.DatabaseTest.ModelTest
         }
 
         [Test]
-        public void Competence_description_is_required()
+        public void Competence_description_is_optional()
         {
             using var container = EntityFaker.Contained.CreateCompetence();
 
             container.Instance.Description = null!;
-            DatabaseAssert.Throws(() => container.Save(), 515, nameof(container.Instance.Description));
+            Assert.DoesNotThrow(() => container.Save());
         }
 
         [Test]
